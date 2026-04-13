@@ -1,100 +1,590 @@
 <!DOCTYPE html>
 <html lang="da">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SmartZonen</title>
-  <link rel="stylesheet" href="/style.css" />
+  <style>
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  color: #1f2937;
+  background: #f5f7fa;
+  min-height: 100vh;
+}
+
+/* NAV */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #1a2f3a;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.2);
+}
+.site-nav .logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.site-nav .site-title {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: none;
+}
+.site-nav .nav-links {
+  margin-left: auto;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.site-nav .nav-links a {
+  color: rgba(255,255,255,.8);
+  text-decoration: none;
+  font-size: 13px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  transition: background .15s, color .15s;
+}
+.site-nav .nav-links a:hover,
+.site-nav .nav-links a.active {
+  background: rgba(255,255,255,.15);
+  color: #fff;
+}
+
+/* HERO */
+.hero {
+  width: 100%;
+  max-height: 340px;
+  overflow: hidden;
+  display: block;
+}
+.hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* INFO BAND */
+.info-band {
+  background: #b8dff0;
+  padding: 28px 24px;
+  text-align: center;
+}
+.info-band h1 {
+  font-size: clamp(22px, 3vw, 36px);
+  font-weight: 800;
+  color: #1a2f3a;
+  margin-bottom: 8px;
+}
+.info-band p {
+  font-size: clamp(15px, 1.8vw, 20px);
+  color: #2a4a5a;
+  font-style: italic;
+  line-height: 1.4;
+}
+
+/* CONTENT */
+.page-content {
+  max-width: 1100px;
+  margin: 32px auto;
+  padding: 0 20px 60px;
+}
+
+/* SECTION TITLES */
+.section-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #1a2f3a;
+  margin: 36px 0 18px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #b8dff0;
+}
+
+/* TOOL GRID */
+.tool-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+/* TOOL CARD */
+.tool-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 4px 14px rgba(15,23,42,.06);
+  transition: transform .18s ease, box-shadow .18s ease;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.tool-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(15,23,42,.13);
+}
+
+/* ILLUSTRATION AREA */
+.card-illo {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 20px 20px 0 0;
+}
+.card-illo svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* CARD TEXT */
+.card-body {
+  padding: 14px 16px 16px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.card-body h3 {
+  font-size: 16px;
+  font-weight: 800;
+  color: #0f766e;
+}
+.card-body p {
+  font-size: 13px;
+  color: #6b7280;
+  line-height: 1.45;
+}
+
+/* FOOTER */
+.site-footer {
+  background: #1a2f3a;
+  color: rgba(255,255,255,.7);
+  text-align: center;
+  padding: 20px 24px;
+  font-size: 13px;
+}
+.site-footer a {
+  color: rgba(255,255,255,.9);
+}
+
+@media (max-width: 640px) {
+  .site-nav .nav-links { display: none; }
+  .info-band { padding: 20px 16px; }
+  .tool-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 14px; }
+}
+
+  </style>
 </head>
 <body>
-  <nav class="site-nav">
-    <img
-      class="logo"
-      src="/assets/logo.png"
-      onerror="this.style.display='none'"
-      alt="SmartZonen logo"
-    />
-    <a class="site-title" href="/">SmartZonen</a>
 
-    <div class="nav-links">
-      <a href="/" class="active">Start</a>
-      <a href="/pustero.html">Pustero</a>
-      <a href="/grupper.html">Grupper</a>
-      <a href="/dagens-dato.html">Dagens dato</a>
-      <a href="/leg-med-lyde-1.html">Leg med lyde 1</a>
-      <a href="/leg-med-lyde-2.html">Leg med lyde 2</a>
-      <a href="/saetningsmaskinen.html">Sætningsmaskinen</a>
-      <a href="/laer-klokken.html">Lær klokken</a>
-      <a href="/regnemaskinen.html">Regnemaskinen</a>
-    </div>
-  </nav>
-
-  <div class="hero">
-    <img
-      src="/assets/banner.jpg"
-      onerror="this.closest('.hero').style.display='none'"
-      alt="SmartZonen banner"
-    />
+<nav class="site-nav">
+  <img class="logo" src="/assets/logo.png" onerror="this.style.display='none'" alt="SmartZonen logo">
+  <a class="site-title" href="/">SmartZonen</a>
+  <div class="nav-links">
+    <a href="/" class="active">Start</a>
+    <a href="/pustero.html">Pustero</a>
+    <a href="/grupper.html">Grupper</a>
+    <a href="/dagens-dato.html">Dagens dato</a>
+    <a href="/leg-med-lyde-1.html">Leg med lyde 1</a>
+    <a href="/leg-med-lyde-2.html">Leg med lyde 2</a>
+    <a href="/saetningsmaskinen.html">Sætningsmaskinen</a>
+    <a href="/laer-klokken.html">Lær klokken</a>
+    <a href="/regnemaskinen.html">Regnemaskinen</a>
   </div>
+</nav>
 
-  <div class="info-band">
-    <h1>SmartZonen</h1>
-    <p>En samling af små digitale læringsværktøjer til indskolingen · Leg, træning og fælles aktiviteter i undervisningen</p>
-  </div>
+<div class="hero">
+  <img src="/assets/banner.jpg" onerror="this.closest('.hero').style.display='none'" alt="SmartZonen banner">
+</div>
 
-  <main class="page-content">
-    <h2 class="section-title">Fælles værktøjer</h2>
-    <div class="tool-grid">
-      <a class="tool-card" href="/pustero.html">
+<div class="info-band">
+  <h1>SmartZonen</h1>
+  <p>En samling af små digitale læringsværktøjer til indskolingen · Leg, træning og fælles aktiviteter i undervisningen</p>
+</div>
+
+<div class="page-content">
+
+  <h2 class="section-title">Fælles værktøjer</h2>
+  <div class="tool-grid">
+
+    <!-- PUSTERO -->
+    <a class="tool-card" href="/pustero.html">
+      <div class="card-illo">
+        <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="bg1" cx="50%" cy="50%" r="60%">
+              <stop offset="0%" stop-color="#d4f5ef"/>
+              <stop offset="100%" stop-color="#8fd8c7"/>
+            </radialGradient>
+          </defs>
+          <rect width="320" height="180" fill="url(#bg1)"/>
+          <!-- outer ring -->
+          <circle cx="160" cy="90" r="62" fill="none" stroke="#5db5a0" stroke-width="5" stroke-dasharray="12 6" opacity=".5"/>
+          <!-- progress arc -->
+          <circle cx="160" cy="90" r="62" fill="none" stroke="#0f766e" stroke-width="6"
+            stroke-dasharray="196 196" stroke-dashoffset="49" stroke-linecap="round"
+            transform="rotate(-90 160 90)"/>
+          <!-- glow circle -->
+          <circle cx="160" cy="90" r="52" fill="rgba(255,255,255,.55)"/>
+          <!-- head -->
+          <circle cx="160" cy="64" r="16" fill="#f1c9a8"/>
+          <!-- hair -->
+          <ellipse cx="160" cy="56" rx="14" ry="9" fill="#6b4b3e"/>
+          <!-- eyes -->
+          <ellipse cx="154" cy="64" rx="2.5" ry="3" fill="#3d2b1f"/>
+          <ellipse cx="166" cy="64" rx="2.5" ry="3" fill="#3d2b1f"/>
+          <!-- smile -->
+          <path d="M154 71 Q160 76 166 71" stroke="#c87941" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+          <!-- neck -->
+          <rect x="156" y="79" width="8" height="8" rx="2" fill="#f1c9a8"/>
+          <!-- torso -->
+          <rect x="145" y="86" width="30" height="28" rx="8" fill="#9fd2f6"/>
+          <!-- legs -->
+          <rect x="148" y="113" width="10" height="18" rx="5" fill="#5d8fe8"/>
+          <rect x="162" y="113" width="10" height="18" rx="5" fill="#5d8fe8"/>
+          <!-- breathing arrows -->
+          <path d="M108 80 Q95 90 108 100" stroke="#0f766e" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <polygon points="106,75 114,82 103,85" fill="#0f766e"/>
+          <path d="M212 80 Q225 90 212 100" stroke="#0f766e" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <polygon points="214,75 206,82 217,85" fill="#0f766e"/>
+          <!-- labels -->
+          <text x="90" y="95" font-size="11" fill="#0f766e" font-weight="700" text-anchor="middle">Ind</text>
+          <text x="230" y="95" font-size="11" fill="#0f766e" font-weight="700" text-anchor="middle">Ud</text>
+        </svg>
+      </div>
+      <div class="card-body">
         <h3>Pustero</h3>
-        <p>Vælg et program og følg ringen sammen. Øvelsen hjælper med ro, fokus og fælles opmærksomhed.</p>
-      </a>
+        <p>Fælles vejrtrækningspause – overgangsritual, koncentrationsøvelse eller klasseøvelse</p>
+      </div>
+    </a>
 
-      <a class="tool-card" href="/grupper.html">
+    <!-- GRUPPER -->
+    <a class="tool-card" href="/grupper.html">
+      <div class="card-illo">
+        <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#fff3e0"/>
+              <stop offset="100%" stop-color="#ffe0b2"/>
+            </linearGradient>
+          </defs>
+          <rect width="320" height="180" fill="url(#bg2)"/>
+          <!-- notepad shadow -->
+          <rect x="96" y="28" width="132" height="130" rx="8" fill="rgba(0,0,0,.08)"/>
+          <!-- notepad -->
+          <rect x="92" y="24" width="132" height="130" rx="8" fill="#fffde7"/>
+          <rect x="92" y="24" width="132" height="20" rx="8" fill="#ffcc02"/>
+          <rect x="92" y="36" width="132" height="8" fill="#ffcc02"/>
+          <!-- spiral -->
+          <circle cx="112" cy="24" r="5" fill="#ccc" stroke="#aaa" stroke-width="1.5"/>
+          <circle cx="130" cy="24" r="5" fill="#ccc" stroke="#aaa" stroke-width="1.5"/>
+          <circle cx="148" cy="24" r="5" fill="#ccc" stroke="#aaa" stroke-width="1.5"/>
+          <circle cx="166" cy="24" r="5" fill="#ccc" stroke="#aaa" stroke-width="1.5"/>
+          <circle cx="184" cy="24" r="5" fill="#ccc" stroke="#aaa" stroke-width="1.5"/>
+          <circle cx="202" cy="24" r="5" fill="#ccc" stroke="#aaa" stroke-width="1.5"/>
+          <!-- name tags -->
+          <rect x="104" y="56" width="88" height="22" rx="11" fill="#f48fb1"/>
+          <text x="148" y="71" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">Emma</text>
+          <rect x="104" y="86" width="88" height="22" rx="11" fill="#80cbc4"/>
+          <text x="148" y="101" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">Noah</text>
+          <rect x="104" y="116" width="88" height="22" rx="11" fill="#9575cd"/>
+          <text x="148" y="131" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">Frederikke</text>
+          <!-- pencil -->
+          <g transform="rotate(-35, 255, 130)">
+            <rect x="245" y="110" width="10" height="38" rx="2" fill="#ffd54f"/>
+            <polygon points="245,148 255,148 250,160" fill="#ffb74d"/>
+            <rect x="245" y="110" width="10" height="6" rx="1" fill="#bdbdbd"/>
+            <rect x="247" y="113" width="6" height="30" fill="#f9a825" opacity=".4"/>
+          </g>
+        </svg>
+      </div>
+      <div class="card-body">
         <h3>Grupper</h3>
-        <p>Lav grupper hurtigt og enkelt til samarbejde, makkerarbejde og fælles aktiviteter.</p>
-      </a>
+        <p>Del klassen i tilfældige grupper til makkerarbejde, samarbejdsopgaver eller aktiviteter</p>
+      </div>
+    </a>
 
-      <a class="tool-card" href="/dagens-dato.html">
+    <!-- DAGENS DATO -->
+    <a class="tool-card" href="/dagens-dato.html">
+      <div class="card-illo">
+        <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="bg3" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#e0f4ff"/>
+              <stop offset="100%" stop-color="#b3e5fc"/>
+            </linearGradient>
+          </defs>
+          <rect width="320" height="180" fill="url(#bg3)"/>
+          <!-- calendar shadow -->
+          <rect x="86" y="22" width="152" height="142" rx="12" fill="rgba(0,0,0,.08)"/>
+          <!-- calendar body -->
+          <rect x="82" y="18" width="152" height="142" rx="12" fill="#fff"/>
+          <!-- header -->
+          <rect x="82" y="18" width="152" height="38" rx="12" fill="#29b6f6"/>
+          <rect x="82" y="44" width="152" height="12" fill="#29b6f6"/>
+          <!-- rings -->
+          <rect x="116" y="12" width="10" height="18" rx="5" fill="#0288d1"/>
+          <rect x="194" y="12" width="10" height="18" rx="5" fill="#0288d1"/>
+          <!-- header text -->
+          <text x="158" y="40" font-size="13" font-weight="700" fill="#fff" text-anchor="middle">april 2026</text>
+          <!-- big date -->
+          <text x="158" y="112" font-size="58" font-weight="900" fill="#0288d1" text-anchor="middle" opacity=".9">13</text>
+          <!-- small decoration -->
+          <circle cx="98" cy="148" r="8" fill="#fff59d" opacity=".8"/>
+          <text x="98" y="152" font-size="10" text-anchor="middle">☀️</text>
+          <circle cx="220" cy="148" r="8" fill="#b2dfdb" opacity=".8"/>
+          <text x="220" y="152" font-size="10" text-anchor="middle">🌱</text>
+          <!-- weekday row marks -->
+          <text x="106" y="78" font-size="9" fill="#90a4ae" text-anchor="middle">Ma</text>
+          <text x="128" y="78" font-size="9" fill="#90a4ae" text-anchor="middle">Ti</text>
+          <text x="150" y="78" font-size="9" fill="#90a4ae" text-anchor="middle">On</text>
+          <text x="172" y="78" font-size="9" fill="#90a4ae" text-anchor="middle">To</text>
+          <text x="194" y="78" font-size="9" fill="#90a4ae" text-anchor="middle">Fr</text>
+          <line x1="90" y1="82" x2="226" y2="82" stroke="#e0e0e0" stroke-width="1"/>
+        </svg>
+      </div>
+      <div class="card-body">
         <h3>Dagens dato</h3>
-        <p>Undersøg dagens dato – hvad er spændende ved netop denne dato?</p>
-      </a>
-    </div>
+        <p>Hvad er spændende ved netop denne dato? Vælg dato og udforsk årstal, årstid og fakta</p>
+      </div>
+    </a>
 
-    <h2 class="section-title">Dansk</h2>
-    <div class="tool-grid">
-      <a class="tool-card" href="/leg-med-lyde-1.html">
+  </div><!-- /Fælles -->
+
+  <h2 class="section-title">Dansk</h2>
+  <div class="tool-grid">
+
+    <!-- LEG MED LYDE 1 -->
+    <a class="tool-card" href="/leg-med-lyde-1.html">
+      <div class="card-illo">
+        <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="bg4" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#f3e8ff"/>
+              <stop offset="100%" stop-color="#ddd6fe"/>
+            </linearGradient>
+          </defs>
+          <rect width="320" height="180" fill="url(#bg4)"/>
+          <!-- letter S bubble -->
+          <circle cx="98" cy="90" r="44" fill="#a78bfa"/>
+          <text x="98" y="103" font-size="52" font-weight="900" fill="#fff" text-anchor="middle">S</text>
+          <!-- plus -->
+          <text x="160" y="100" font-size="32" font-weight="700" fill="#7c3aed" text-anchor="middle">+</text>
+          <!-- letter A bubble -->
+          <circle cx="222" cy="90" r="44" fill="#c4b5fd"/>
+          <text x="222" y="103" font-size="52" font-weight="900" fill="#7c3aed" text-anchor="middle">A</text>
+          <!-- sound waves -->
+          <path d="M272 70 Q284 90 272 110" stroke="#7c3aed" stroke-width="2.5" fill="none" stroke-linecap="round" opacity=".6"/>
+          <path d="M282 60 Q300 90 282 120" stroke="#7c3aed" stroke-width="2" fill="none" stroke-linecap="round" opacity=".4"/>
+          <!-- label -->
+          <text x="160" y="158" font-size="11" fill="#7c3aed" font-weight="600" text-anchor="middle" opacity=".8">enkeltlyde</text>
+        </svg>
+      </div>
+      <div class="card-body">
         <h3>Leg med lyde – enkeltlyde</h3>
-        <p>Sæt en konsonant og en vokal sammen og se, hvilken lyd der kommer frem.</p>
-      </a>
+        <p>Sæt en konsonant og en vokal sammen og hør, hvilken lyd der kommer frem</p>
+      </div>
+    </a>
 
-      <a class="tool-card" href="/leg-med-lyde-2.html">
+    <!-- LEG MED LYDE 2 -->
+    <a class="tool-card" href="/leg-med-lyde-2.html">
+      <div class="card-illo">
+        <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="bg5" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#fff7ed"/>
+              <stop offset="100%" stop-color="#fed7aa"/>
+            </linearGradient>
+          </defs>
+          <rect width="320" height="180" fill="url(#bg5)"/>
+          <!-- ST cluster bubble -->
+          <rect x="44" y="50" width="110" height="80" rx="40" fill="#fb923c"/>
+          <text x="99" y="103" font-size="46" font-weight="900" fill="#fff" text-anchor="middle">ST</text>
+          <!-- plus -->
+          <text x="174" y="100" font-size="32" font-weight="700" fill="#ea580c" text-anchor="middle">+</text>
+          <!-- A bubble -->
+          <circle cx="240" cy="90" r="40" fill="#fdba74"/>
+          <text x="240" y="103" font-size="48" font-weight="900" fill="#c2410c" text-anchor="middle">A</text>
+          <!-- musical note -->
+          <text x="292" y="68" font-size="22" fill="#ea580c" opacity=".7">♪</text>
+          <text x="276" y="90" font-size="16" fill="#ea580c" opacity=".5">♫</text>
+          <!-- label -->
+          <text x="160" y="158" font-size="11" fill="#ea580c" font-weight="600" text-anchor="middle" opacity=".8">sammensatte lyde</text>
+        </svg>
+      </div>
+      <div class="card-body">
         <h3>Leg med lyde – sammensatte lyde</h3>
-        <p>Sæt en konsonantklynge og en vokal sammen og se, hvilken lyd der kommer frem.</p>
-      </a>
+        <p>Sæt en konsonantklynge og en vokal sammen og hør, hvilken lyd der kommer frem</p>
+      </div>
+    </a>
 
-      <a class="tool-card" href="/saetningsmaskinen.html">
+    <!-- SÆTNINGSMASKINEN -->
+    <a class="tool-card" href="/saetningsmaskinen.html">
+      <div class="card-illo">
+        <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="bg6" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ccfbf1"/>
+              <stop offset="100%" stop-color="#99f6e4"/>
+            </linearGradient>
+          </defs>
+          <rect width="320" height="180" fill="url(#bg6)"/>
+          <!-- robot body -->
+          <rect x="114" y="80" width="60" height="68" rx="10" fill="#0d9488"/>
+          <!-- robot head -->
+          <rect x="120" y="44" width="48" height="40" rx="8" fill="#0f766e"/>
+          <!-- antenna -->
+          <line x1="144" y1="44" x2="144" y2="30" stroke="#0f766e" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="144" cy="26" r="6" fill="#22d3ee"/>
+          <!-- eyes -->
+          <rect x="128" y="54" width="12" height="10" rx="3" fill="#22d3ee"/>
+          <rect x="148" y="54" width="12" height="10" rx="3" fill="#22d3ee"/>
+          <!-- mouth -->
+          <rect x="130" y="72" width="28" height="5" rx="2.5" fill="#99f6e4"/>
+          <!-- arms -->
+          <rect x="88" y="86" width="26" height="10" rx="5" fill="#0d9488"/>
+          <rect x="174" y="86" width="26" height="10" rx="5" fill="#0d9488"/>
+          <!-- legs -->
+          <rect x="122" y="146" width="14" height="20" rx="6" fill="#0f766e"/>
+          <rect x="152" y="146" width="14" height="20" rx="6" fill="#0f766e"/>
+          <!-- speech bubble -->
+          <rect x="180" y="28" width="110" height="52" rx="14" fill="#fff" stroke="#0d9488" stroke-width="2"/>
+          <polygon points="188,80 200,80 188,92" fill="#fff" stroke="#0d9488" stroke-width="2" stroke-linejoin="round"/>
+          <polygon points="188,80 202,80 188,90" fill="#fff"/>
+          <!-- word tokens in bubble -->
+          <rect x="190" y="38" width="32" height="14" rx="7" fill="#ccfbf1"/>
+          <text x="206" y="49" font-size="9" fill="#0f766e" font-weight="700" text-anchor="middle">Jeg</text>
+          <rect x="228" y="38" width="48" height="14" rx="7" fill="#99f6e4"/>
+          <text x="252" y="49" font-size="9" fill="#0f766e" font-weight="700" text-anchor="middle">elsker</text>
+          <rect x="190" y="58" width="36" height="14" rx="7" fill="#a7f3d0"/>
+          <text x="208" y="69" font-size="9" fill="#065f46" font-weight="700" text-anchor="middle">bøger</text>
+        </svg>
+      </div>
+      <div class="card-body">
         <h3>Sætningsmaskinen</h3>
-        <p>Byg sætninger sammen med robotten. Skriv ét ord ad gangen – robotten skriver det næste.</p>
-      </a>
-    </div>
+        <p>Byg sætninger sammen med robotten – skriv ét ord ad gangen</p>
+      </div>
+    </a>
 
-    <h2 class="section-title">Matematik</h2>
-    <div class="tool-grid">
-      <a class="tool-card" href="/laer-klokken.html">
+  </div><!-- /Dansk -->
+
+  <h2 class="section-title">Matematik</h2>
+  <div class="tool-grid">
+
+    <!-- LÆR KLOKKEN -->
+    <a class="tool-card" href="/laer-klokken.html">
+      <div class="card-illo">
+        <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="bg7" cx="50%" cy="50%" r="55%">
+              <stop offset="0%" stop-color="#dbeafe"/>
+              <stop offset="100%" stop-color="#bfdbfe"/>
+            </radialGradient>
+          </defs>
+          <rect width="320" height="180" fill="url(#bg7)"/>
+          <!-- clock shadow -->
+          <circle cx="162" cy="92" r="66" fill="rgba(0,0,0,.07)"/>
+          <!-- clock face -->
+          <circle cx="160" cy="90" r="66" fill="#fff" stroke="#3b82f6" stroke-width="4"/>
+          <circle cx="160" cy="90" r="60" fill="#eff6ff"/>
+          <!-- hour markers -->
+          <line x1="160" y1="34" x2="160" y2="44" stroke="#3b82f6" stroke-width="3" stroke-linecap="round"/>
+          <line x1="160" y1="136" x2="160" y2="146" stroke="#3b82f6" stroke-width="3" stroke-linecap="round"/>
+          <line x1="104" y1="90" x2="114" y2="90" stroke="#3b82f6" stroke-width="3" stroke-linecap="round"/>
+          <line x1="206" y1="90" x2="216" y2="90" stroke="#3b82f6" stroke-width="3" stroke-linecap="round"/>
+          <!-- quarter marks lighter -->
+          <line x1="197" y1="48" x2="192" y2="56" stroke="#93c5fd" stroke-width="2" stroke-linecap="round"/>
+          <line x1="197" y1="132" x2="192" y2="124" stroke="#93c5fd" stroke-width="2" stroke-linecap="round"/>
+          <line x1="123" y1="48" x2="128" y2="56" stroke="#93c5fd" stroke-width="2" stroke-linecap="round"/>
+          <line x1="123" y1="132" x2="128" y2="124" stroke="#93c5fd" stroke-width="2" stroke-linecap="round"/>
+          <!-- hour numbers -->
+          <text x="160" y="52" font-size="13" font-weight="700" fill="#1d4ed8" text-anchor="middle">12</text>
+          <text x="212" y="94" font-size="13" font-weight="700" fill="#1d4ed8" text-anchor="middle">3</text>
+          <text x="160" y="148" font-size="13" font-weight="700" fill="#1d4ed8" text-anchor="middle">6</text>
+          <text x="108" y="94" font-size="13" font-weight="700" fill="#1d4ed8" text-anchor="middle">9</text>
+          <!-- hour hand (pointing to ~10) -->
+          <line x1="160" y1="90" x2="131" y2="58" stroke="#1d4ed8" stroke-width="5" stroke-linecap="round"/>
+          <!-- minute hand (pointing to ~2) -->
+          <line x1="160" y1="90" x2="192" y2="58" stroke="#3b82f6" stroke-width="3.5" stroke-linecap="round"/>
+          <!-- center dot -->
+          <circle cx="160" cy="90" r="5" fill="#1d4ed8"/>
+        </svg>
+      </div>
+      <div class="card-body">
         <h3>Lær klokken</h3>
-        <p>Øv hele timer, kvarter og minutter, og læg mærke til i, over og halv.</p>
-      </a>
+        <p>Øv hele timer, kvarter og minutter – timer, over og halv</p>
+      </div>
+    </a>
 
-      <a class="tool-card" href="/regnemaskinen.html">
+    <!-- REGNEMASKINEN -->
+    <a class="tool-card" href="/regnemaskinen.html">
+      <div class="card-illo">
+        <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="bg8" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#dcfce7"/>
+              <stop offset="100%" stop-color="#bbf7d0"/>
+            </linearGradient>
+          </defs>
+          <rect width="320" height="180" fill="url(#bg8)"/>
+          <!-- worksheet shadow -->
+          <rect x="58" y="22" width="210" height="138" rx="10" fill="rgba(0,0,0,.07)"/>
+          <!-- worksheet -->
+          <rect x="54" y="18" width="210" height="138" rx="10" fill="#fff"/>
+          <!-- lines -->
+          <line x1="70" y1="58" x2="248" y2="58" stroke="#bbf7d0" stroke-width="1.5"/>
+          <line x1="70" y1="98" x2="248" y2="98" stroke="#bbf7d0" stroke-width="1.5"/>
+          <line x1="70" y1="138" x2="248" y2="138" stroke="#bbf7d0" stroke-width="1.5"/>
+          <!-- title bar -->
+          <rect x="54" y="18" width="210" height="24" rx="10" fill="#16a34a" opacity=".85"/>
+          <rect x="54" y="30" width="210" height="12" fill="#16a34a" opacity=".85"/>
+          <text x="159" y="34" font-size="11" font-weight="700" fill="#fff" text-anchor="middle">Regnestykker</text>
+          <!-- row 1: 2 + 3 = 5 -->
+          <text x="86" y="84" font-size="26" font-weight="800" fill="#15803d" text-anchor="middle">2</text>
+          <text x="120" y="84" font-size="26" font-weight="700" fill="#4ade80" text-anchor="middle">+</text>
+          <text x="154" y="84" font-size="26" font-weight="800" fill="#15803d" text-anchor="middle">3</text>
+          <text x="188" y="84" font-size="26" font-weight="700" fill="#86efac" text-anchor="middle">=</text>
+          <text x="222" y="84" font-size="26" font-weight="900" fill="#14532d" text-anchor="middle">5</text>
+          <!-- row 2: 7 - 4 = 3 -->
+          <text x="86" y="124" font-size="26" font-weight="800" fill="#15803d" text-anchor="middle">7</text>
+          <text x="120" y="124" font-size="26" font-weight="700" fill="#4ade80" text-anchor="middle">–</text>
+          <text x="154" y="124" font-size="26" font-weight="800" fill="#15803d" text-anchor="middle">4</text>
+          <text x="188" y="124" font-size="26" font-weight="700" fill="#86efac" text-anchor="middle">=</text>
+          <text x="222" y="124" font-size="26" font-weight="900" fill="#14532d" text-anchor="middle">3</text>
+          <!-- pencil -->
+          <g transform="rotate(-20, 272, 40)">
+            <rect x="266" y="20" width="8" height="30" rx="2" fill="#fbbf24"/>
+            <polygon points="266,50 274,50 270,60" fill="#f97316"/>
+            <rect x="266" y="20" width="8" height="5" rx="1" fill="#d1d5db"/>
+          </g>
+        </svg>
+      </div>
+      <div class="card-body">
         <h3>Regnemaskinen</h3>
-        <p>Lav regnestykker i plus og minus til indskolingen.</p>
-      </a>
-    </div>
-  </main>
+        <p>Lav regnestykker i plus og minus – tilpasset indskolingen</p>
+      </div>
+    </a>
 
-  <footer class="site-footer">
-    <p>© 2026 SmartZonen &nbsp;·&nbsp; Udarbejdet af Susan &amp; Manfred Conrath &nbsp;·&nbsp; <a href="mailto:mco@outlook.dk">Kontakt</a></p>
-  </footer>
+  </div><!-- /Matematik -->
+
+</div><!-- /page-content -->
+
+<footer class="site-footer">
+  <p>© 2026 SmartZonen &nbsp;·&nbsp; Udarbejdet af Susan &amp; Manfred Conrath &nbsp;·&nbsp; <a href="mailto:mco@outlook.dk">Kontakt</a></p>
+</footer>
+
 </body>
 </html>
