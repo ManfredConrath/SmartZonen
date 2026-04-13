@@ -130,32 +130,140 @@
       color:var(--accent);
     }
 
+    #smart-sammensattelyde .actions{
+      display:flex;
+      justify-content:center;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-bottom:18px;
+    }
+
+    #smart-sammensattelyde .action-btn{
+      appearance:none;
+      border:none;
+      border-radius:16px;
+      min-height:52px;
+      padding:0 18px;
+      font-size:1rem;
+      font-weight:800;
+      cursor:pointer;
+      transition:transform .05s ease, box-shadow .15s ease, opacity .2s ease;
+    }
+
+    #smart-sammensattelyde .action-btn:active{
+      transform:translateY(1px);
+    }
+
+    #smart-sammensattelyde .action-btn.primary{
+      background:var(--accent);
+      color:#fff;
+      box-shadow:0 10px 18px rgba(15,118,110,.18);
+    }
+
     #smart-sammensattelyde .controls{
       display:grid;
       grid-template-columns:1fr 1fr;
       gap:16px;
       margin-bottom:18px;
+      align-items:start;
     }
 
     #smart-sammensattelyde .panel{
       background:var(--panel);
       border:1px solid var(--card-border);
       border-radius:20px;
-      padding:18px;
+      overflow:hidden;
     }
 
-    #smart-sammensattelyde .panel h3{
-      margin:0 0 10px;
+    #smart-sammensattelyde .panel-toggle{
+      width:100%;
+      border:none;
+      background:transparent;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:18px;
+      cursor:pointer;
+      text-align:left;
+    }
+
+    #smart-sammensattelyde .panel-toggle:hover{
+      background:rgba(15,118,110,.04);
+    }
+
+    #smart-sammensattelyde .panel-toggle-left{
+      min-width:0;
+    }
+
+    #smart-sammensattelyde .panel-toggle h3{
+      margin:0 0 4px;
       font-size:22px;
       line-height:1.2;
       color:var(--text);
     }
 
-    #smart-sammensattelyde .panel p{
-      margin:0 0 12px;
+    #smart-sammensattelyde .panel-toggle p{
+      margin:0;
       color:var(--muted);
       line-height:1.5;
       font-size:15px;
+    }
+
+    #smart-sammensattelyde .panel-toggle-right{
+      flex:0 0 auto;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    #smart-sammensattelyde .selected-chip{
+      min-width:52px;
+      min-height:52px;
+      padding:0 14px;
+      border-radius:16px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:24px;
+      font-weight:900;
+      color:#fff;
+      box-shadow:0 6px 16px rgba(15,23,42,.12);
+    }
+
+    #smart-sammensattelyde .selected-chip.left{
+      background:linear-gradient(135deg, #3b82f6, var(--cluster));
+    }
+
+    #smart-sammensattelyde .selected-chip.right{
+      background:linear-gradient(135deg, #ef4444, var(--vowel));
+    }
+
+    #smart-sammensattelyde .chevron{
+      width:18px;
+      height:18px;
+      border-right:3px solid #64748b;
+      border-bottom:3px solid #64748b;
+      transform:rotate(45deg);
+      transition:transform .2s ease;
+      margin-top:-4px;
+    }
+
+    #smart-sammensattelyde .panel.open .chevron{
+      transform:rotate(-135deg);
+      margin-top:4px;
+    }
+
+    #smart-sammensattelyde .panel-content{
+      max-height:0;
+      overflow:hidden;
+      transition:max-height .25s ease;
+      padding:0 18px;
+    }
+
+    #smart-sammensattelyde .panel.open .panel-content{
+      max-height:520px;
+      padding:0 18px 18px;
     }
 
     #smart-sammensattelyde .tile-grid{
@@ -199,40 +307,8 @@
       color:var(--vowel);
     }
 
-    #smart-sammensattelyde .actions{
-      display:flex;
-      justify-content:center;
-      gap:12px;
-      flex-wrap:wrap;
-      margin-bottom:18px;
-    }
-
-    #smart-sammensattelyde .action-btn{
-      appearance:none;
-      border:none;
-      border-radius:16px;
-      min-height:52px;
-      padding:0 18px;
-      font-size:1rem;
-      font-weight:800;
-      cursor:pointer;
-      transition:transform .05s ease, box-shadow .15s ease, opacity .2s ease;
-    }
-
-    #smart-sammensattelyde .action-btn:active{
-      transform:translateY(1px);
-    }
-
-    #smart-sammensattelyde .action-btn.primary{
-      background:var(--accent);
-      color:#fff;
-      box-shadow:0 10px 18px rgba(15,118,110,.18);
-    }
-
-    #smart-sammensattelyde .action-btn.secondary{
-      background:#fff;
-      color:var(--text);
-      border:1px solid #d1d5db;
+    #smart-sammensattelyde .pick-btn.empty{
+      font-size:24px;
     }
 
     #smart-sammensattelyde .helper{
@@ -279,6 +355,18 @@
       #smart-sammensattelyde .action-btn{
         width:100%;
       }
+
+      #smart-sammensattelyde .panel-toggle{
+        padding:16px;
+      }
+
+      #smart-sammensattelyde .panel.open .panel-content{
+        padding:0 16px 16px;
+      }
+
+      #smart-sammensattelyde .panel-content{
+        padding:0 16px;
+      }
     }
   </style>
 </head>
@@ -314,41 +402,59 @@
         <div class="module-inner">
           <h2 class="module-title">Leg med sammensatte lyde</h2>
           <p class="module-sub">
-            Vælg en konsonantklynge og en vokal. Læs lyden højt sammen.
+            Vælg en konsonantklynge og en vokal. Sæt dem sammen og lav en ny lyd.
           </p>
 
           <div class="display">
             <div>
               <div class="sound">
-                <div class="sound-tile left" id="leftTile">bl</div>
+                <div class="sound-tile left" id="leftTile">?</div>
                 <div class="sound-plus">+</div>
-                <div class="sound-tile right" id="rightTile">a</div>
+                <div class="sound-tile right" id="rightTile">?</div>
               </div>
 
               <div class="sound-result">
                 <span class="sound-result-label">Lyden bliver</span>
-                <div class="sound-result-value" id="resultTile">bla</div>
+                <div class="sound-result-value" id="resultTile">?</div>
               </div>
             </div>
           </div>
 
           <div class="actions">
-            <button class="action-btn primary" id="randomBtn" type="button">Vælg tilfældigt</button>
-            <button class="action-btn secondary" id="speakBtn" type="button">Læs lyden højt</button>
-            <button class="action-btn secondary" id="resetBtn" type="button">Start forfra</button>
+            <button class="action-btn primary" id="randomBtn" type="button">Ny lyd</button>
           </div>
 
           <div class="controls">
-            <div class="panel">
-              <h3>Vælg konsonantklynge</h3>
-              <p>Tryk på en sammensat lyd.</p>
-              <div class="tile-grid" id="leftGrid"></div>
+            <div class="panel" id="leftPanel">
+              <button class="panel-toggle" type="button" data-target="leftPanel">
+                <div class="panel-toggle-left">
+                  <h3>Vælg konsonantklynge</h3>
+                  <p>Vælg en klynge eller ? for tilfældig konsonantklynge.</p>
+                </div>
+                <div class="panel-toggle-right">
+                  <div class="selected-chip left" id="leftSelectedChip">?</div>
+                  <div class="chevron"></div>
+                </div>
+              </button>
+              <div class="panel-content">
+                <div class="tile-grid" id="leftGrid"></div>
+              </div>
             </div>
 
-            <div class="panel">
-              <h3>Vælg vokal</h3>
-              <p>Tryk på en vokal.</p>
-              <div class="tile-grid" id="rightGrid"></div>
+            <div class="panel" id="rightPanel">
+              <button class="panel-toggle" type="button" data-target="rightPanel">
+                <div class="panel-toggle-left">
+                  <h3>Vælg vokal</h3>
+                  <p>Vælg en vokal eller ? for tilfældig vokal.</p>
+                </div>
+                <div class="panel-toggle-right">
+                  <div class="selected-chip right" id="rightSelectedChip">?</div>
+                  <div class="chevron"></div>
+                </div>
+              </button>
+              <div class="panel-content">
+                <div class="tile-grid" id="rightGrid"></div>
+              </div>
             </div>
           </div>
 
@@ -356,9 +462,9 @@
             <h3>Sådan bruges værktøjet</h3>
             <ul>
               <li>Vælg en konsonantklynge og en vokal.</li>
-              <li>Læs lyden højt sammen.</li>
-              <li>Tryk på “Vælg tilfældigt” for at få en ny kombination.</li>
-              <li>Brug “Læs lyden højt”, hvis enheden må afspille lyd.</li>
+              <li>Vælger du <strong>?</strong>, bliver den del tilfældig ved “Ny lyd”.</li>
+              <li>Vælger du en rigtig lyd, bliver den låst fast.</li>
+              <li>Tryk på “Ny lyd” for at lave en ny kombination.</li>
             </ul>
           </div>
         </div>
@@ -372,109 +478,143 @@
 
   <script>
     (() => {
-      const clusters = ["bl", "br", "dr", "fl", "fr", "gl", "gr", "kl", "kr", "pl", "pr", "sl", "sm", "sn", "sp", "st", "tr"];
-      const vowels = ["a", "e", "i", "o", "u", "y", "æ", "ø", "å"];
+      const RANDOM_MARK = "?";
+      const clusters = [RANDOM_MARK, "bl", "br", "dr", "fl", "fr", "gl", "gr", "kl", "kr", "pl", "pr", "sl", "sm", "sn", "sp", "st", "tr"];
+      const vowels = [RANDOM_MARK, "a", "e", "i", "o", "u", "y", "æ", "ø", "å"];
 
       const leftGrid = document.getElementById("leftGrid");
       const rightGrid = document.getElementById("rightGrid");
       const leftTile = document.getElementById("leftTile");
       const rightTile = document.getElementById("rightTile");
       const resultTile = document.getElementById("resultTile");
+      const leftSelectedChip = document.getElementById("leftSelectedChip");
+      const rightSelectedChip = document.getElementById("rightSelectedChip");
       const randomBtn = document.getElementById("randomBtn");
-      const speakBtn = document.getElementById("speakBtn");
-      const resetBtn = document.getElementById("resetBtn");
 
-      let currentCluster = "bl";
-      let currentVowel = "a";
+      let selectedCluster = "?";
+      let selectedVowel = "?";
+      let currentCluster = "";
+      let currentVowel = "";
+
+      function randomChoice(list) {
+        return list[Math.floor(Math.random() * list.length)];
+      }
+
+      function getRandomCluster() {
+        return randomChoice(clusters.filter(item => item !== RANDOM_MARK));
+      }
+
+      function getRandomVowel() {
+        return randomChoice(vowels.filter(item => item !== RANDOM_MARK));
+      }
 
       function updateDisplay() {
+        currentCluster = selectedCluster === RANDOM_MARK ? getRandomCluster() : selectedCluster;
+        currentVowel = selectedVowel === RANDOM_MARK ? getRandomVowel() : selectedVowel;
+
         leftTile.textContent = currentCluster;
         rightTile.textContent = currentVowel;
         resultTile.textContent = currentCluster + currentVowel;
+        leftSelectedChip.textContent = selectedCluster;
+        rightSelectedChip.textContent = selectedVowel;
         updateActiveButtons();
       }
 
       function updateActiveButtons() {
         leftGrid.querySelectorAll(".pick-btn").forEach(btn => {
-          btn.classList.toggle("active", btn.dataset.value === currentCluster);
-          btn.classList.toggle("left", btn.dataset.value === currentCluster);
+          const isActive = btn.dataset.value === selectedCluster;
+          btn.classList.toggle("active", isActive);
+          btn.classList.toggle("left", isActive);
         });
 
         rightGrid.querySelectorAll(".pick-btn").forEach(btn => {
-          btn.classList.toggle("active", btn.dataset.value === currentVowel);
-          btn.classList.toggle("right", btn.dataset.value === currentVowel);
+          const isActive = btn.dataset.value === selectedVowel;
+          btn.classList.toggle("active", isActive);
+          btn.classList.toggle("right", isActive);
         });
+      }
+
+      function closePanel(panelId) {
+        const panel = document.getElementById(panelId);
+        if (panel) {
+          panel.classList.remove("open");
+        }
+      }
+
+      function togglePanel(panelId) {
+        const panel = document.getElementById(panelId);
+        if (panel) {
+          panel.classList.toggle("open");
+        }
       }
 
       function buildButtons() {
         leftGrid.innerHTML = "";
         rightGrid.innerHTML = "";
 
-        clusters.forEach(letter => {
+        clusters.forEach(item => {
           const btn = document.createElement("button");
           btn.type = "button";
           btn.className = "pick-btn";
-          btn.dataset.value = letter;
-          btn.textContent = letter;
+          if (item === RANDOM_MARK) btn.classList.add("empty");
+          btn.dataset.value = item;
+          btn.textContent = item;
 
           btn.addEventListener("click", () => {
-            currentCluster = letter;
+            selectedCluster = item;
             updateDisplay();
+            closePanel("leftPanel");
           });
 
           leftGrid.appendChild(btn);
         });
 
-        vowels.forEach(letter => {
+        vowels.forEach(item => {
           const btn = document.createElement("button");
           btn.type = "button";
           btn.className = "pick-btn";
-          btn.dataset.value = letter;
-          btn.textContent = letter;
+          if (item === RANDOM_MARK) btn.classList.add("empty");
+          btn.dataset.value = item;
+          btn.textContent = item;
 
           btn.addEventListener("click", () => {
-            currentVowel = letter;
+            selectedVowel = item;
             updateDisplay();
+            closePanel("rightPanel");
           });
 
           rightGrid.appendChild(btn);
         });
       }
 
-      function randomChoice(list) {
-        return list[Math.floor(Math.random() * list.length)];
-      }
-
-      function chooseRandom() {
-        currentCluster = randomChoice(clusters);
-        currentVowel = randomChoice(vowels);
-        updateDisplay();
-      }
-
-      function speakSound() {
-        const text = currentCluster + currentVowel;
-
-        if (!("speechSynthesis" in window)) {
-          return;
+      function createNewSound() {
+        if (selectedCluster === RANDOM_MARK) {
+          currentCluster = getRandomCluster();
+        } else {
+          currentCluster = selectedCluster;
         }
 
-        window.speechSynthesis.cancel();
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = "da-DK";
-        utterance.rate = 0.8;
-        utterance.pitch = 1;
-        window.speechSynthesis.speak(utterance);
+        if (selectedVowel === RANDOM_MARK) {
+          currentVowel = getRandomVowel();
+        } else {
+          currentVowel = selectedVowel;
+        }
+
+        leftTile.textContent = currentCluster;
+        rightTile.textContent = currentVowel;
+        resultTile.textContent = currentCluster + currentVowel;
+        leftSelectedChip.textContent = selectedCluster;
+        rightSelectedChip.textContent = selectedVowel;
+        updateActiveButtons();
       }
 
-      function resetAll() {
-        currentCluster = "bl";
-        currentVowel = "a";
-        updateDisplay();
-      }
+      document.querySelectorAll(".panel-toggle").forEach(toggle => {
+        toggle.addEventListener("click", () => {
+          togglePanel(toggle.dataset.target);
+        });
+      });
 
-      randomBtn.addEventListener("click", chooseRandom);
-      speakBtn.addEventListener("click", speakSound);
-      resetBtn.addEventListener("click", resetAll);
+      randomBtn.addEventListener("click", createNewSound);
 
       buildButtons();
       updateDisplay();

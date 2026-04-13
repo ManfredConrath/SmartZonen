@@ -408,14 +408,14 @@
           <div class="display">
             <div>
               <div class="sound">
-                <div class="sound-tile left" id="leftTile">m</div>
+                <div class="sound-tile left" id="leftTile">?</div>
                 <div class="sound-plus">+</div>
-                <div class="sound-tile right" id="rightTile">a</div>
+                <div class="sound-tile right" id="rightTile">?</div>
               </div>
 
               <div class="sound-result">
                 <span class="sound-result-label">Lyden bliver</span>
-                <div class="sound-result-value" id="resultTile">ma</div>
+                <div class="sound-result-value" id="resultTile">?</div>
               </div>
             </div>
           </div>
@@ -425,14 +425,14 @@
           </div>
 
           <div class="controls">
-            <div class="panel open" id="leftPanel">
+            <div class="panel" id="leftPanel">
               <button class="panel-toggle" type="button" data-target="leftPanel">
                 <div class="panel-toggle-left">
                   <h3>Vælg konsonant</h3>
                   <p>Vælg en lyd eller ? for tilfældig konsonant.</p>
                 </div>
                 <div class="panel-toggle-right">
-                  <div class="selected-chip left" id="leftSelectedChip">m</div>
+                  <div class="selected-chip left" id="leftSelectedChip">?</div>
                   <div class="chevron"></div>
                 </div>
               </button>
@@ -441,14 +441,14 @@
               </div>
             </div>
 
-            <div class="panel open" id="rightPanel">
+            <div class="panel" id="rightPanel">
               <button class="panel-toggle" type="button" data-target="rightPanel">
                 <div class="panel-toggle-left">
                   <h3>Vælg vokal</h3>
                   <p>Vælg en lyd eller ? for tilfældig vokal.</p>
                 </div>
                 <div class="panel-toggle-right">
-                  <div class="selected-chip right" id="rightSelectedChip">a</div>
+                  <div class="selected-chip right" id="rightSelectedChip">?</div>
                   <div class="chevron"></div>
                 </div>
               </button>
@@ -491,10 +491,10 @@
       const rightSelectedChip = document.getElementById("rightSelectedChip");
       const randomBtn = document.getElementById("randomBtn");
 
-      let selectedConsonant = "m";
-      let selectedVowel = "a";
-      let currentConsonant = "m";
-      let currentVowel = "a";
+      let selectedConsonant = "?";
+      let selectedVowel = "?";
+      let currentConsonant = "";
+      let currentVowel = "";
 
       function randomChoice(list) {
         return list[Math.floor(Math.random() * list.length)];
