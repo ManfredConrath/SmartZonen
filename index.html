@@ -1,238 +1,100 @@
 <!DOCTYPE html>
 <html lang="da">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SmartZonen – SmartZonen</title>
-  <style>
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-body {
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-  color: #1f2937;
-  background: #f5f7fa;
-  min-height: 100vh;
-}
-
-/* NAV */
-.site-nav {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: #1a2f3a;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 24px;
-  box-shadow: 0 2px 8px rgba(0,0,0,.2);
-}
-.site-nav .logo {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-.site-nav .site-title {
-  color: #fff;
-  font-size: 18px;
-  font-weight: 700;
-  text-decoration: none;
-}
-.site-nav .nav-links {
-  margin-left: auto;
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-}
-.site-nav .nav-links a {
-  color: rgba(255,255,255,.8);
-  text-decoration: none;
-  font-size: 13px;
-  padding: 4px 10px;
-  border-radius: 20px;
-  transition: background .15s, color .15s;
-}
-.site-nav .nav-links a:hover,
-.site-nav .nav-links a.active {
-  background: rgba(255,255,255,.15);
-  color: #fff;
-}
-
-/* HERO */
-.hero {
-  width: 100%;
-  max-height: 340px;
-  overflow: hidden;
-  display: block;
-}
-.hero img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* INFO BAND */
-.info-band {
-  background: #b8dff0;
-  padding: 28px 24px;
-  text-align: center;
-}
-.info-band h1 {
-  font-size: clamp(22px, 3vw, 36px);
-  font-weight: 800;
-  color: #1a2f3a;
-  margin-bottom: 8px;
-}
-.info-band p {
-  font-size: clamp(15px, 1.8vw, 20px);
-  color: #2a4a5a;
-  font-style: italic;
-  line-height: 1.4;
-}
-
-/* CONTENT */
-.page-content {
-  max-width: 1100px;
-  margin: 32px auto;
-  padding: 0 20px 60px;
-}
-
-/* HOME GRID */
-.section-title {
-  font-size: 22px;
-  font-weight: 800;
-  color: #1a2f3a;
-  margin: 32px 0 16px;
-  padding-bottom: 8px;
-  border-bottom: 2px solid #b8dff0;
-}
-.tool-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 18px;
-}
-.tool-card {
-  background: #fff;
-  border: 1px solid #e5e7eb;
-  border-radius: 20px;
-  padding: 22px 20px;
-  text-decoration: none;
-  color: inherit;
-  box-shadow: 0 4px 14px rgba(15,23,42,.06);
-  transition: transform .15s, box-shadow .15s;
-  display: block;
-}
-.tool-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(15,23,42,.12);
-}
-.tool-card h3 {
-  font-size: 18px;
-  font-weight: 800;
-  color: #0f766e;
-  margin-bottom: 6px;
-}
-.tool-card p {
-  font-size: 14px;
-  color: #6b7280;
-  line-height: 1.4;
-}
-
-/* FOOTER */
-.site-footer {
-  background: #1a2f3a;
-  color: rgba(255,255,255,.7);
-  text-align: center;
-  padding: 20px 24px;
-  font-size: 13px;
-}
-.site-footer a {
-  color: rgba(255,255,255,.9);
-}
-
-@media (max-width: 640px) {
-  .site-nav .nav-links { display: none; }
-  .info-band { padding: 20px 16px; }
-}
-
-
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SmartZonen</title>
+  <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
-<nav class="site-nav">
-  <img class="logo" src="/assets/logo.png" onerror="this.style.display='none'" alt="SmartZonen logo">
-  <a class="site-title" href="/">SmartZonen</a>
-  <div class="nav-links">
-    <a href="/" class="active">Start</a>
-<a href="/pustero.html">Pustero</a>
-<a href="/grupper.html">Grupper</a>
-<a href="/dagens-dato.html">Dagens dato</a>
-<a href="/leg-med-lyde-1.html">Leg med lyde 1</a>
-<a href="/leg-med-lyde-2.html">Leg med lyde 2</a>
-<a href="/saetningsmaskinen.html">Sætningsmaskinen</a>
-<a href="/laer-klokken.html">Lær klokken</a>
-<a href="/regnemaskinen.html">Regnemaskinen</a>
+  <nav class="site-nav">
+    <img
+      class="logo"
+      src="/assets/logo.png"
+      onerror="this.style.display='none'"
+      alt="SmartZonen logo"
+    />
+    <a class="site-title" href="/">SmartZonen</a>
 
+    <div class="nav-links">
+      <a href="/" class="active">Start</a>
+      <a href="/pustero.html">Pustero</a>
+      <a href="/grupper.html">Grupper</a>
+      <a href="/dagens-dato.html">Dagens dato</a>
+      <a href="/leg-med-lyde-1.html">Leg med lyde 1</a>
+      <a href="/leg-med-lyde-2.html">Leg med lyde 2</a>
+      <a href="/saetningsmaskinen.html">Sætningsmaskinen</a>
+      <a href="/laer-klokken.html">Lær klokken</a>
+      <a href="/regnemaskinen.html">Regnemaskinen</a>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <img
+      src="/assets/banner.jpg"
+      onerror="this.closest('.hero').style.display='none'"
+      alt="SmartZonen banner"
+    />
   </div>
-</nav>
-<div class="hero">
-  <img src="/assets/banner.jpg" onerror="this.closest('.hero').style.display='none'" alt="SmartZonen banner">
-</div>
-<div class="info-band">
-  <h1>SmartZonen</h1>
-  <p>En samling af små digitale læringsværktøjer til indskolingen · Leg, træning og fælles aktiviteter i undervisningen</p>
-</div>
-<div class="page-content">
 
-<h2 class="section-title">Fælles værktøjer</h2>
-<div class="tool-grid">
-  <a class="tool-card" href="/pustero.html">
-    <h3>Pustero</h3>
-    <p>Vælg et program og følg ringen sammen. Øvelsen hjælper med ro, fokus og fælles opmærksomhed.</p>
-  </a>
-  <a class="tool-card" href="/grupper.html">
-    <h3>Grupper</h3>
-    <p>Del klassen i tilfældige grupper. Makkerarbejde, små grupper eller samarbejdsopgaver.</p>
-  </a>
-  <a class="tool-card" href="/dagens-dato.html">
-    <h3>Dagens dato</h3>
-    <p>Undersøg dagens dato – hvad er spændende ved netop denne dato?</p>
-  </a>
-</div>
+  <div class="info-band">
+    <h1>SmartZonen</h1>
+    <p>En samling af små digitale læringsværktøjer til indskolingen · Leg, træning og fælles aktiviteter i undervisningen</p>
+  </div>
 
-<h2 class="section-title">Dansk</h2>
-<div class="tool-grid">
-  <a class="tool-card" href="/leg-med-lyde-1.html">
-    <h3>Leg med lyde – enkeltlyde</h3>
-    <p>Sæt en konsonant og en vokal sammen og se, hvilken lyd der kommer frem.</p>
-  </a>
-  <a class="tool-card" href="/leg-med-lyde-2.html">
-    <h3>Leg med lyde – sammensatte lyde</h3>
-    <p>Sæt en konsonantklynge og en vokal sammen og se, hvilken lyd der kommer frem.</p>
-  </a>
-  <a class="tool-card" href="/saetningsmaskinen.html">
-    <h3>Sætningsmaskinen</h3>
-    <p>Byg sætninger sammen med robotten. Skriv ét ord ad gangen – robotten skriver det næste.</p>
-  </a>
-</div>
+  <main class="page-content">
+    <h2 class="section-title">Fælles værktøjer</h2>
+    <div class="tool-grid">
+      <a class="tool-card" href="/pustero.html">
+        <h3>Pustero</h3>
+        <p>Vælg et program og følg ringen sammen. Øvelsen hjælper med ro, fokus og fælles opmærksomhed.</p>
+      </a>
 
-<h2 class="section-title">Matematik</h2>
-<div class="tool-grid">
-  <a class="tool-card" href="/laer-klokken.html">
-    <h3>Lær klokken</h3>
-    <p>Øv hele timer, kvarter og minutter, og læg mærke til i, over og halv.</p>
-  </a>
-  <a class="tool-card" href="/regnemaskinen.html">
-    <h3>Regnemaskinen</h3>
-    <p>Lav regnestykker i plus og minus til indskolingen.</p>
-  </a>
-</div>
+      <a class="tool-card" href="/grupper.html">
+        <h3>Grupper</h3>
+        <p>Lav grupper hurtigt og enkelt til samarbejde, makkerarbejde og fælles aktiviteter.</p>
+      </a>
 
-</div>
-<footer class="site-footer">
-  <p>© 2026 SmartZonen &nbsp;·&nbsp; Udarbejdet af Susan &amp; Manfred Conrath &nbsp;·&nbsp; <a href="mailto:mco@outlook.dk">Kontakt</a></p>
-</footer>
+      <a class="tool-card" href="/dagens-dato.html">
+        <h3>Dagens dato</h3>
+        <p>Undersøg dagens dato – hvad er spændende ved netop denne dato?</p>
+      </a>
+    </div>
+
+    <h2 class="section-title">Dansk</h2>
+    <div class="tool-grid">
+      <a class="tool-card" href="/leg-med-lyde-1.html">
+        <h3>Leg med lyde – enkeltlyde</h3>
+        <p>Sæt en konsonant og en vokal sammen og se, hvilken lyd der kommer frem.</p>
+      </a>
+
+      <a class="tool-card" href="/leg-med-lyde-2.html">
+        <h3>Leg med lyde – sammensatte lyde</h3>
+        <p>Sæt en konsonantklynge og en vokal sammen og se, hvilken lyd der kommer frem.</p>
+      </a>
+
+      <a class="tool-card" href="/saetningsmaskinen.html">
+        <h3>Sætningsmaskinen</h3>
+        <p>Byg sætninger sammen med robotten. Skriv ét ord ad gangen – robotten skriver det næste.</p>
+      </a>
+    </div>
+
+    <h2 class="section-title">Matematik</h2>
+    <div class="tool-grid">
+      <a class="tool-card" href="/laer-klokken.html">
+        <h3>Lær klokken</h3>
+        <p>Øv hele timer, kvarter og minutter, og læg mærke til i, over og halv.</p>
+      </a>
+
+      <a class="tool-card" href="/regnemaskinen.html">
+        <h3>Regnemaskinen</h3>
+        <p>Lav regnestykker i plus og minus til indskolingen.</p>
+      </a>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2026 SmartZonen &nbsp;·&nbsp; Udarbejdet af Susan &amp; Manfred Conrath &nbsp;·&nbsp; <a href="mailto:mco@outlook.dk">Kontakt</a></p>
+  </footer>
 </body>
 </html>

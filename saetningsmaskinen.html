@@ -3,342 +3,326 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sætningsmaskinen</title>
+  <title>Sætningsmaskinen – SmartZonen</title>
+  <link rel="stylesheet" href="/style.css" />
   <style>
-    *, *::before, *::after {
-      box-sizing: border-box;
+    #smart-saetningsmaskine{
+      --card:#ffffff;
+      --card-border:#e5e7eb;
+      --panel:#ffffff;
+      --panel-soft:#f8fafc;
+      --text:#1f2937;
+      --muted:#6b7280;
+      --accent:#0f766e;
+      --accent-soft:rgba(15,118,110,.10);
+      --accent-border:#d7e3e6;
+      --shadow:0 4px 14px rgba(15,23,42,.06);
+      --radius:20px;
     }
 
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-      background: #f5f7fa;
-      color: #1f2937;
-      min-height: 100vh;
+    #smart-saetningsmaskine *{
+      box-sizing:border-box;
     }
 
-    .page {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 24px 20px 60px;
+    #smart-saetningsmaskine{
+      max-width:1000px;
+      margin:0 auto;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--text);
     }
 
-    .hero {
-      background: linear-gradient(135deg, #b8dff0, #dff3fb);
-      border-radius: 28px;
-      padding: 28px 24px;
-      margin-bottom: 24px;
-      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+    #smart-saetningsmaskine .ss-wrap{
+      background:var(--card);
+      border:1px solid var(--card-border);
+      border-radius:24px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
     }
 
-    .hero h1 {
-      margin: 0 0 8px;
-      font-size: clamp(28px, 4vw, 42px);
-      color: #16313d;
+    #smart-saetningsmaskine .ss-head{
+      padding:24px 24px 8px;
+      background:linear-gradient(180deg,#f8fbfb 0%, #ffffff 100%);
     }
 
-    .hero p {
-      margin: 0;
-      font-size: 18px;
-      color: #2a4a5a;
+    #smart-saetningsmaskine .ss-title{
+      margin:0;
+      font-size:clamp(1.6rem,2.2vw,2.1rem);
+      line-height:1.15;
+      color:var(--text);
     }
 
-    #smart-saetningsmaskine {
-      --card: #ffffff;
-      --card-border: #e5e7eb;
-      --panel: #f8fafc;
-      --text: #1f2937;
-      --muted: #6b7280;
-      --accent: #0f766e;
-      --accent-soft: rgba(15, 118, 110, 0.10);
-      --accent-border: #d7e3e6;
-      --shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
-      --radius: 18px;
+    #smart-saetningsmaskine .ss-sub{
+      margin:10px 0 0;
+      color:var(--muted);
+      font-size:1rem;
+      line-height:1.55;
     }
 
-    #smart-saetningsmaskine * {
-      box-sizing: border-box;
+    #smart-saetningsmaskine .ss-body{
+      padding:24px;
+      display:grid;
+      gap:20px;
     }
 
-    .ss-wrap {
-      background: var(--card);
-      border: 1px solid var(--card-border);
-      border-radius: 24px;
-      overflow: hidden;
-      box-shadow: var(--shadow);
+    #smart-saetningsmaskine .ss-panel,
+    #smart-saetningsmaskine .ss-sentence-card{
+      background:#fff;
+      border:1px solid var(--card-border);
+      border-radius:20px;
+      box-shadow:var(--shadow);
+      padding:20px;
     }
 
-    .ss-head {
-      padding: 24px 24px 8px;
-      background: linear-gradient(180deg, #f8fbfb 0%, #ffffff 100%);
+    #smart-saetningsmaskine .ss-panel-title{
+      margin:0 0 14px;
+      font-size:1.05rem;
+      font-weight:700;
+      color:var(--text);
     }
 
-    .ss-title {
-      margin: 0;
-      font-size: clamp(1.6rem, 2.2vw, 2.1rem);
-      line-height: 1.15;
-      color: var(--text);
+    #smart-saetningsmaskine .ss-grid{
+      display:grid;
+      grid-template-columns:repeat(12,minmax(0,1fr));
+      gap:14px;
     }
 
-    .ss-sub {
-      margin: 10px 0 0;
-      color: var(--muted);
-      font-size: 1rem;
-      line-height: 1.55;
+    #smart-saetningsmaskine .ss-field{
+      display:flex;
+      flex-direction:column;
+      gap:7px;
     }
 
-    .ss-body {
-      padding: 24px;
-      display: grid;
-      gap: 20px;
+    #smart-saetningsmaskine .ss-field label{
+      font-size:.95rem;
+      font-weight:700;
+      color:var(--text);
     }
 
-    .ss-panel {
-      background: var(--panel);
-      border: 1px solid var(--accent-border);
-      border-radius: var(--radius);
-      padding: 18px;
+    #smart-saetningsmaskine .ss-field small{
+      color:var(--muted);
+      font-size:.83rem;
+      line-height:1.35;
     }
 
-    .ss-panel-title {
-      margin: 0 0 14px;
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--text);
+    #smart-saetningsmaskine .ss-span-4{ grid-column:span 4; }
+    #smart-saetningsmaskine .ss-span-8{ grid-column:span 8; }
+    #smart-saetningsmaskine .ss-span-12{ grid-column:span 12; }
+
+    #smart-saetningsmaskine select,
+    #smart-saetningsmaskine input[type="text"]{
+      width:100%;
+      min-height:48px;
+      border:1px solid #d1d5db;
+      border-radius:14px;
+      padding:10px 12px;
+      font-size:1rem;
+      background:#fff;
+      color:var(--text);
+      outline:none;
     }
 
-    .ss-grid {
-      display: grid;
-      grid-template-columns: repeat(12, minmax(0, 1fr));
-      gap: 14px;
+    #smart-saetningsmaskine select:focus,
+    #smart-saetningsmaskine input[type="text"]:focus{
+      border-color:var(--accent);
+      box-shadow:0 0 0 4px rgba(15,118,110,.12);
     }
 
-    .ss-field {
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
+    #smart-saetningsmaskine .ss-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
     }
 
-    .ss-field label {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--text);
+    #smart-saetningsmaskine button{
+      appearance:none;
+      border:none;
+      border-radius:16px;
+      min-height:54px;
+      padding:0 18px;
+      font-size:1.05rem;
+      font-weight:800;
+      cursor:pointer;
+      transition:transform .05s ease, opacity .2s ease, box-shadow .2s ease;
     }
 
-    .ss-field small {
-      color: var(--muted);
-      font-size: 0.83rem;
-      line-height: 1.35;
+    #smart-saetningsmaskine button:active{
+      transform:translateY(1px);
     }
 
-    .ss-span-4 { grid-column: span 4; }
-    .ss-span-8 { grid-column: span 8; }
-    .ss-span-12 { grid-column: span 12; }
-
-    select,
-    input[type="text"] {
-      width: 100%;
-      min-height: 46px;
-      border: 1px solid #d1d5db;
-      border-radius: 12px;
-      padding: 10px 12px;
-      font-size: 1rem;
-      background: #fff;
-      color: var(--text);
-      outline: none;
+    #smart-saetningsmaskine .ss-btn-primary{
+      background:var(--accent);
+      color:#fff;
+      box-shadow:0 10px 18px rgba(15,118,110,.18);
     }
 
-    select:focus,
-    input[type="text"]:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 4px rgba(15, 118, 110, 0.12);
+    #smart-saetningsmaskine .ss-btn-secondary{
+      background:#fff;
+      color:var(--text);
+      border:1px solid #d1d5db;
     }
 
-    .ss-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      align-items: center;
+    #smart-saetningsmaskine .ss-status{
+      color:var(--muted);
+      font-size:.95rem;
+      min-height:1.3em;
     }
 
-    button {
-      appearance: none;
-      border: none;
-      border-radius: 14px;
-      min-height: 48px;
-      padding: 0 18px;
-      font-size: 1rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: transform .05s ease, opacity .2s ease, box-shadow .2s ease;
+    #smart-saetningsmaskine .ss-sentence-top{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      align-items:center;
+      flex-wrap:wrap;
+      margin-bottom:12px;
     }
 
-    button:active {
-      transform: translateY(1px);
+    #smart-saetningsmaskine .ss-sentence-label{
+      font-size:.9rem;
+      color:var(--muted);
+      font-weight:700;
+      letter-spacing:.02em;
+      text-transform:uppercase;
     }
 
-    .ss-btn-primary {
-      background: var(--accent);
-      color: #fff;
-      box-shadow: 0 10px 18px rgba(15, 118, 110, 0.18);
+    #smart-saetningsmaskine .ss-turn{
+      font-size:.92rem;
+      color:var(--muted);
     }
 
-    .ss-btn-secondary {
-      background: #fff;
-      color: var(--text);
-      border: 1px solid #d1d5db;
+    #smart-saetningsmaskine .ss-sentence{
+      min-height:80px;
+      background:var(--panel-soft);
+      border:1px solid var(--accent-border);
+      border-radius:18px;
+      padding:16px;
+      line-height:1.9;
+      font-size:1.1rem;
     }
 
-    .ss-status {
-      color: var(--muted);
-      font-size: 0.95rem;
-      min-height: 1.3em;
+    #smart-saetningsmaskine .ss-sentence-final{
+      font-size:1.25rem;
+      font-weight:700;
+      color:var(--text);
+      letter-spacing:.01em;
     }
 
-    .ss-sentence-card {
-      background: #fff;
-      border: 1px solid var(--card-border);
-      border-radius: 24px;
-      box-shadow: var(--shadow);
-      padding: 20px;
+    #smart-saetningsmaskine .ss-token{
+      display:inline-block;
+      margin:0 4px 8px 0;
+      padding:7px 13px;
+      border-radius:999px;
+      background:#fff;
+      border:1px solid #d1d5db;
+      font-weight:700;
     }
 
-    .ss-sentence-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      align-items: center;
-      flex-wrap: wrap;
-      margin-bottom: 12px;
+    #smart-saetningsmaskine .ss-token.robot{
+      background:var(--accent-soft);
+      border-color:#9fd5cf;
+      color:#0b5b54;
     }
 
-    .ss-sentence-label {
-      font-size: 0.9rem;
-      color: var(--muted);
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      text-transform: uppercase;
+    #smart-saetningsmaskine .ss-token.user{
+      background:#fff7ed;
+      border-color:#fed7aa;
+      color:#9a3412;
     }
 
-    .ss-turn {
-      font-size: 0.92rem;
-      color: var(--muted);
+    #smart-saetningsmaskine .ss-empty{
+      color:var(--muted);
+      font-style:italic;
     }
 
-    .ss-sentence {
-      min-height: 80px;
-      background: var(--panel);
-      border: 1px solid var(--accent-border);
-      border-radius: 18px;
-      padding: 16px;
-      line-height: 1.9;
-      font-size: 1.1rem;
+    #smart-saetningsmaskine .ss-help{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
     }
 
-    .ss-sentence-final {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--text);
-      letter-spacing: 0.01em;
+    #smart-saetningsmaskine .ss-chip{
+      display:inline-flex;
+      align-items:center;
+      min-height:38px;
+      padding:0 12px;
+      border-radius:999px;
+      border:1px solid #d1d5db;
+      background:#fff;
+      font-size:.95rem;
+      cursor:pointer;
     }
 
-    .ss-token {
-      display: inline-block;
-      margin: 0 4px 8px 0;
-      padding: 7px 13px;
-      border-radius: 999px;
-      background: #fff;
-      border: 1px solid #d1d5db;
-      font-weight: 700;
+    #smart-saetningsmaskine .ss-chip:hover{
+      border-color:var(--accent);
+      background:var(--accent-soft);
     }
 
-    .ss-token.robot {
-      background: var(--accent-soft);
-      border-color: #9fd5cf;
-      color: #0b5b54;
+    #smart-saetningsmaskine .ss-list{
+      margin:0;
+      padding-left:18px;
+      color:var(--muted);
+      line-height:1.7;
     }
 
-    .ss-token.user {
-      background: #fff7ed;
-      border-color: #fed7aa;
-      color: #9a3412;
+    #smart-saetningsmaskine .ss-done-banner{
+      background:#ecfdf5;
+      border:1.5px solid #6ee7b7;
+      border-radius:14px;
+      padding:12px 16px;
+      color:#065f46;
+      font-weight:700;
+      font-size:1rem;
+      margin-top:10px;
+      display:none;
     }
 
-    .ss-empty {
-      color: var(--muted);
-      font-style: italic;
-    }
-
-    .ss-help {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .ss-chip {
-      display: inline-flex;
-      align-items: center;
-      min-height: 38px;
-      padding: 0 12px;
-      border-radius: 999px;
-      border: 1px solid #d1d5db;
-      background: #fff;
-      font-size: 0.95rem;
-      cursor: pointer;
-    }
-
-    .ss-chip:hover {
-      border-color: var(--accent);
-      background: var(--accent-soft);
-    }
-
-    .ss-list {
-      margin: 0;
-      padding-left: 18px;
-      color: var(--muted);
-      line-height: 1.6;
-    }
-
-    .ss-done-banner {
-      background: #ecfdf5;
-      border: 1.5px solid #6ee7b7;
-      border-radius: 14px;
-      padding: 12px 16px;
-      color: #065f46;
-      font-weight: 700;
-      font-size: 1rem;
-      margin-top: 10px;
-      display: none;
-    }
-
-    @media (max-width: 880px) {
-      .ss-span-4,
-      .ss-span-8 {
-        grid-column: span 12;
+    @media (max-width: 880px){
+      #smart-saetningsmaskine .ss-span-4,
+      #smart-saetningsmaskine .ss-span-8{
+        grid-column:span 12;
       }
     }
 
-    @media (max-width: 560px) {
-      .page,
-      .ss-body,
-      .ss-head {
-        padding-left: 16px;
-        padding-right: 16px;
+    @media (max-width: 560px){
+      #smart-saetningsmaskine .ss-body,
+      #smart-saetningsmaskine .ss-head{
+        padding:18px;
       }
 
-      .ss-sentence-card {
-        padding: 16px;
+      #smart-saetningsmaskine .ss-sentence-card,
+      #smart-saetningsmaskine .ss-panel{
+        padding:16px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="page">
-    <div class="hero">
-      <h1>Sætningsmaskinen</h1>
-      <p>Byg sætninger sammen med robotten</p>
+  <nav class="site-nav">
+    <img class="logo" src="/assets/logo.png" onerror="this.style.display='none'" alt="SmartZonen logo" />
+    <a class="site-title" href="/">SmartZonen</a>
+    <div class="nav-links">
+      <a href="/">Start</a>
+      <a href="/pustero.html">Pustero</a>
+      <a href="/grupper.html">Grupper</a>
+      <a href="/dagens-dato.html">Dagens dato</a>
+      <a href="/leg-med-lyde-1.html">Leg med lyde 1</a>
+      <a href="/leg-med-lyde-2.html">Leg med lyde 2</a>
+      <a href="/saetningsmaskinen.html" class="active">Sætningsmaskinen</a>
+      <a href="/laer-klokken.html">Lær klokken</a>
+      <a href="/regnemaskinen.html">Regnemaskinen</a>
     </div>
+  </nav>
 
+  <div class="hero">
+    <img src="/assets/banner.jpg" onerror="this.closest('.hero').style.display='none'" alt="SmartZonen banner" />
+  </div>
+
+  <div class="info-band">
+    <h1>Sætningsmaskinen</h1>
+    <p>Byg sætninger sammen med robotten</p>
+  </div>
+
+  <main class="page-content">
     <div id="smart-saetningsmaskine">
       <div class="ss-wrap">
         <div class="ss-head">
@@ -362,16 +346,8 @@
 
               <div class="ss-field ss-span-8">
                 <label for="ss-word-input">Skriv ét ord</label>
-                <input
-                  id="ss-word-input"
-                  type="text"
-                  autocomplete="off"
-                  spellcheck="false"
-                  placeholder="Skriv ét ord, fx jeg"
-                />
-                <small>
-                  Skriv ét ord ad gangen. Når du trykker på "Tilføj ord", skriver robotten automatisk det næste ord.
-                </small>
+                <input id="ss-word-input" type="text" autocomplete="off" spellcheck="false" placeholder="Skriv ét ord, fx jeg" />
+                <small>Skriv ét ord ad gangen. Når du trykker på "Tilføj ord", skriver robotten automatisk det næste ord.</small>
               </div>
 
               <div class="ss-field ss-span-12">
@@ -420,7 +396,11 @@
         </div>
       </div>
     </div>
-  </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2026 SmartZonen</p>
+  </footer>
 
   <script>
     (() => {
@@ -458,6 +438,7 @@
         "sover": ["nu", "godt", "hjemme"],
         "sidder": ["på", "her", "stille"],
         "smiler": ["glad", "nu", "til"],
+        "leger": ["ude", "nu", "med"],
 
         "en": ["stor", "lille", "glad", "kat", "hund", "bold", "bil"],
         "et": ["stort", "lille", "hus", "træ", "bord"],
@@ -754,16 +735,11 @@
       }
 
       addBtn.addEventListener("click", handleAdd);
-
-      endBtn.addEventListener("click", () => {
-        finishSentence();
-      });
-
+      endBtn.addEventListener("click", () => finishSentence());
       startBtn.addEventListener("click", resetMachine);
-
       robotStartBtn.addEventListener("click", robotStarts);
 
-      inputEl.addEventListener("keydown", (event) => {
+      inputEl.addEventListener("keydown", event => {
         if (event.key === "Enter") {
           handleAdd();
         }

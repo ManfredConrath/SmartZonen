@@ -1,192 +1,10 @@
 <!DOCTYPE html>
 <html lang="da">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Leg med lyde – enkeltlyde – SmartZonen</title>
-  <style>
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-body {
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-  color: #1f2937;
-  background: #f5f7fa;
-  min-height: 100vh;
-}
-
-/* NAV */
-.site-nav {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: #1a2f3a;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 24px;
-  box-shadow: 0 2px 8px rgba(0,0,0,.2);
-}
-.site-nav .logo {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-.site-nav .site-title {
-  color: #fff;
-  font-size: 18px;
-  font-weight: 700;
-  text-decoration: none;
-}
-.site-nav .nav-links {
-  margin-left: auto;
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-}
-.site-nav .nav-links a {
-  color: rgba(255,255,255,.8);
-  text-decoration: none;
-  font-size: 13px;
-  padding: 4px 10px;
-  border-radius: 20px;
-  transition: background .15s, color .15s;
-}
-.site-nav .nav-links a:hover,
-.site-nav .nav-links a.active {
-  background: rgba(255,255,255,.15);
-  color: #fff;
-}
-
-/* HERO */
-.hero {
-  width: 100%;
-  max-height: 340px;
-  overflow: hidden;
-  display: block;
-}
-.hero img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* INFO BAND */
-.info-band {
-  background: #b8dff0;
-  padding: 28px 24px;
-  text-align: center;
-}
-.info-band h1 {
-  font-size: clamp(22px, 3vw, 36px);
-  font-weight: 800;
-  color: #1a2f3a;
-  margin-bottom: 8px;
-}
-.info-band p {
-  font-size: clamp(15px, 1.8vw, 20px);
-  color: #2a4a5a;
-  font-style: italic;
-  line-height: 1.4;
-}
-
-/* CONTENT */
-.page-content {
-  max-width: 1100px;
-  margin: 32px auto;
-  padding: 0 20px 60px;
-}
-
-/* HOME GRID */
-.section-title {
-  font-size: 22px;
-  font-weight: 800;
-  color: #1a2f3a;
-  margin: 32px 0 16px;
-  padding-bottom: 8px;
-  border-bottom: 2px solid #b8dff0;
-}
-.tool-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 18px;
-}
-.tool-card {
-  background: #fff;
-  border: 1px solid #e5e7eb;
-  border-radius: 20px;
-  padding: 22px 20px;
-  text-decoration: none;
-  color: inherit;
-  box-shadow: 0 4px 14px rgba(15,23,42,.06);
-  transition: transform .15s, box-shadow .15s;
-  display: block;
-}
-.tool-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(15,23,42,.12);
-}
-.tool-card h3 {
-  font-size: 18px;
-  font-weight: 800;
-  color: #0f766e;
-  margin-bottom: 6px;
-}
-.tool-card p {
-  font-size: 14px;
-  color: #6b7280;
-  line-height: 1.4;
-}
-
-/* FOOTER */
-.site-footer {
-  background: #1a2f3a;
-  color: rgba(255,255,255,.7);
-  text-align: center;
-  padding: 20px 24px;
-  font-size: 13px;
-}
-.site-footer a {
-  color: rgba(255,255,255,.9);
-}
-
-@media (max-width: 640px) {
-  .site-nav .nav-links { display: none; }
-  .info-band { padding: 20px 16px; }
-}
-
-
-  </style>
-</head>
-<body>
-<nav class="site-nav">
-  <img class="logo" src="/assets/logo.png" onerror="this.style.display='none'" alt="SmartZonen logo">
-  <a class="site-title" href="/">SmartZonen</a>
-  <div class="nav-links">
-    <a href="/">Start</a>
-<a href="/pustero.html">Pustero</a>
-<a href="/grupper.html">Grupper</a>
-<a href="/dagens-dato.html">Dagens dato</a>
-<a href="/leg-med-lyde-1.html" class="active">Leg med lyde 1</a>
-<a href="/leg-med-lyde-2.html">Leg med lyde 2</a>
-<a href="/saetningsmaskinen.html">Sætningsmaskinen</a>
-<a href="/laer-klokken.html">Lær klokken</a>
-<a href="/regnemaskinen.html">Regnemaskinen</a>
-
-  </div>
-</nav>
-<div class="hero">
-  <img src="/assets/banner.jpg" onerror="this.closest('.hero').style.display='none'" alt="SmartZonen banner">
-</div>
-<div class="info-band">
-  <h1>Leg med lyde – enkeltlyde</h1>
-  <p>Sæt en konsonant og en vokal sammen og se, hvilken lyd der kommer frem</p>
-</div>
-<div class="page-content">
-<!-- SmartZonen – Enkeltlyde (tilpasset fælles layout) -->
-<div id="smart-enkeltlyde" style="max-width:900px;margin:0 auto;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:#1f2937;">
+  <link rel="stylesheet" href="/style.css" />
   <style>
     #smart-enkeltlyde{
       --card:#ffffff;
@@ -201,7 +19,16 @@ body {
       --tile-right:#c1121f;
     }
 
-    #smart-enkeltlyde *{ box-sizing:border-box; }
+    #smart-enkeltlyde *{
+      box-sizing:border-box;
+    }
+
+    #smart-enkeltlyde{
+      max-width:900px;
+      margin:0 auto;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:#1f2937;
+    }
 
     #smart-enkeltlyde .module{
       background:var(--card);
@@ -245,97 +72,199 @@ body {
       margin-bottom:18px;
     }
 
-    #smart-enkeltlyde .window{
+    #smart-enkeltlyde .sound{
       display:flex;
       align-items:center;
       justify-content:center;
-      gap:18px;
-      padding:8px;
+      gap:12px;
+      flex-wrap:wrap;
+      text-align:center;
     }
 
-    #smart-enkeltlyde .tile{
-      width:128px;
-      height:84px;
-      border-radius:18px;
-      background:#ffffff;
-      border:1px solid #d1d5db;
+    #smart-enkeltlyde .sound-tile{
+      min-width:120px;
+      min-height:120px;
+      border-radius:24px;
       display:flex;
       align-items:center;
       justify-content:center;
+      font-size:clamp(42px,7vw,70px);
       font-weight:900;
-      font-size:clamp(32px,2.8vw,46px);
-      box-shadow:0 4px 12px rgba(15,23,42,.08);
+      color:#fff;
+      box-shadow:0 10px 24px rgba(15,23,42,.14);
       user-select:none;
     }
 
-    #smart-enkeltlyde .tile.left{ color:var(--tile-left); }
-    #smart-enkeltlyde .tile.right{ color:var(--tile-right); }
+    #smart-enkeltlyde .sound-tile.left{
+      background:linear-gradient(135deg, #5a2381, var(--tile-left));
+    }
 
-    #smart-enkeltlyde .controls-panel{
-      background:var(--panel);
-      border:1px solid var(--card-border);
-      border-radius:18px;
-      padding:16px;
+    #smart-enkeltlyde .sound-tile.right{
+      background:linear-gradient(135deg, #e03c4a, var(--tile-right));
+    }
+
+    #smart-enkeltlyde .sound-plus{
+      font-size:clamp(26px,4vw,42px);
+      font-weight:900;
+      color:var(--secondary);
+    }
+
+    #smart-enkeltlyde .sound-result{
+      margin-top:14px;
+      text-align:center;
+    }
+
+    #smart-enkeltlyde .sound-result-label{
+      display:block;
+      margin-bottom:6px;
+      font-size:14px;
+      font-weight:800;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:.04em;
+    }
+
+    #smart-enkeltlyde .sound-result-value{
+      font-size:clamp(34px,5vw,54px);
+      line-height:1.1;
+      font-weight:900;
+      color:var(--accent);
     }
 
     #smart-enkeltlyde .controls{
       display:grid;
       grid-template-columns:1fr 1fr;
-      gap:16px 14px;
-      margin-bottom:14px;
+      gap:16px;
+      margin-bottom:18px;
     }
 
-    #smart-enkeltlyde .col{
-      display:flex;
-      flex-direction:column;
+    #smart-enkeltlyde .panel{
+      background:var(--panel);
+      border:1px solid var(--card-border);
+      border-radius:20px;
+      padding:18px;
+    }
+
+    #smart-enkeltlyde .panel h3{
+      margin:0 0 10px;
+      font-size:22px;
+      line-height:1.2;
+      color:var(--text);
+    }
+
+    #smart-enkeltlyde .panel p{
+      margin:0 0 12px;
+      color:var(--muted);
+      line-height:1.5;
+      font-size:15px;
+    }
+
+    #smart-enkeltlyde .tile-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(68px, 1fr));
       gap:10px;
     }
 
-    #smart-enkeltlyde select{
-      width:100%;
-      padding:12px 14px;
-      border-radius:14px;
+    #smart-enkeltlyde .pick-btn{
+      appearance:none;
       border:1px solid #d1d5db;
-      font-size:15px;
+      border-radius:18px;
+      min-height:68px;
       background:#fff;
-      color:#1f2937;
-      outline:none;
+      color:var(--text);
+      font-size:30px;
+      font-weight:900;
+      cursor:pointer;
+      transition:transform .05s ease, border-color .15s ease, background .15s ease, color .15s ease, box-shadow .15s ease;
     }
 
-    #smart-enkeltlyde .btn-row{
+    #smart-enkeltlyde .pick-btn:active{
+      transform:translateY(1px);
+    }
+
+    #smart-enkeltlyde .pick-btn:hover{
+      border-color:var(--accent);
+      box-shadow:0 8px 18px rgba(15,118,110,.12);
+    }
+
+    #smart-enkeltlyde .pick-btn.active.left{
+      background:rgba(75,29,107,.10);
+      border-color:rgba(75,29,107,.35);
+      color:var(--tile-left);
+    }
+
+    #smart-enkeltlyde .pick-btn.active.right{
+      background:rgba(193,18,31,.10);
+      border-color:rgba(193,18,31,.35);
+      color:var(--tile-right);
+    }
+
+    #smart-enkeltlyde .actions{
       display:flex;
       justify-content:center;
       gap:12px;
       flex-wrap:wrap;
-      margin-top:2px;
+      margin-bottom:18px;
     }
 
-    #smart-enkeltlyde button{
-      padding:12px 16px;
-      border-radius:14px;
-      border:0;
+    #smart-enkeltlyde .action-btn{
+      appearance:none;
+      border:none;
+      border-radius:16px;
+      min-height:52px;
+      padding:0 18px;
+      font-size:1rem;
       font-weight:800;
-      font-size:15px;
       cursor:pointer;
-      white-space:nowrap;
-      box-shadow:0 4px 10px rgba(15,23,42,.12);
+      transition:transform .05s ease, box-shadow .15s ease, opacity .2s ease;
     }
 
-    #smart-enkeltlyde .btn-next{
-      background:var(--secondary);
-      color:#fff;
-      width:100%;
+    #smart-enkeltlyde .action-btn:active{
+      transform:translateY(1px);
     }
 
-    #smart-enkeltlyde .btn-spin{
+    #smart-enkeltlyde .action-btn.primary{
       background:var(--accent);
       color:#fff;
-      min-width:140px;
+      box-shadow:0 10px 18px rgba(15,118,110,.18);
     }
 
-    #smart-enkeltlyde button:disabled{
-      opacity:.6;
-      cursor:not-allowed;
+    #smart-enkeltlyde .action-btn.secondary{
+      background:#fff;
+      color:var(--text);
+      border:1px solid #d1d5db;
+    }
+
+    #smart-enkeltlyde .helper{
+      background:var(--panel);
+      border:1px solid var(--card-border);
+      border-radius:20px;
+      padding:18px;
+    }
+
+    #smart-enkeltlyde .helper h3{
+      margin:0 0 10px;
+      font-size:20px;
+      line-height:1.2;
+      color:var(--text);
+    }
+
+    #smart-enkeltlyde .helper ul{
+      margin:0;
+      padding-left:18px;
+      color:var(--muted);
+      line-height:1.7;
+    }
+
+    @media (max-width: 720px){
+      #smart-enkeltlyde .controls{
+        grid-template-columns:1fr;
+      }
+
+      #smart-enkeltlyde .sound-tile{
+        min-width:96px;
+        min-height:96px;
+      }
     }
 
     @media (max-width: 640px){
@@ -343,190 +272,213 @@ body {
         padding:20px 16px 18px;
       }
 
-      #smart-enkeltlyde .controls{
-        grid-template-columns:1fr;
+      #smart-enkeltlyde .actions{
+        flex-direction:column;
       }
 
-      #smart-enkeltlyde .tile{
-        width:110px;
-        height:76px;
+      #smart-enkeltlyde .action-btn{
+        width:100%;
       }
     }
   </style>
+</head>
+<body>
+  <nav class="site-nav">
+    <img class="logo" src="/assets/logo.png" onerror="this.style.display='none'" alt="SmartZonen logo" />
+    <a class="site-title" href="/">SmartZonen</a>
+    <div class="nav-links">
+      <a href="/">Start</a>
+      <a href="/pustero.html">Pustero</a>
+      <a href="/grupper.html">Grupper</a>
+      <a href="/dagens-dato.html">Dagens dato</a>
+      <a href="/leg-med-lyde-1.html" class="active">Leg med lyde 1</a>
+      <a href="/leg-med-lyde-2.html">Leg med lyde 2</a>
+      <a href="/saetningsmaskinen.html">Sætningsmaskinen</a>
+      <a href="/laer-klokken.html">Lær klokken</a>
+      <a href="/regnemaskinen.html">Regnemaskinen</a>
+    </div>
+  </nav>
 
-  <div class="module">
-    <div class="module-inner">
-      <h3 class="module-title">Enkeltlyde</h3>
-      <p class="module-sub"> </p>
+  <div class="hero">
+    <img src="/assets/banner.jpg" onerror="this.closest('.hero').style.display='none'" alt="SmartZonen banner" />
+  </div>
 
-      <div class="display">
-        <div class="window">
-          <div class="tile left" id="rmA-read-left"></div>
-          <div class="tile right" id="rmA-read-right"></div>
-        </div>
-      </div>
+  <div class="info-band">
+    <h1>Leg med lyde – enkeltlyde</h1>
+    <p>Sæt en konsonant og en vokal sammen og se, hvilken lyd der kommer frem</p>
+  </div>
 
-      <div class="controls-panel">
-        <div class="controls">
-          <div class="col">
-            <select id="rmA-select-left" aria-label="Vælg venstre bogstav">
-              <option value="">Venstre: Tilfældigt</option>
-            </select>
-            <button id="rmA-next-left" type="button" class="btn-next">Næste venstre</button>
+  <main class="page-content">
+    <div id="smart-enkeltlyde">
+      <div class="module">
+        <div class="module-inner">
+          <h2 class="module-title">Leg med lyde</h2>
+          <p class="module-sub">
+            Vælg én konsonant og én vokal. Se lydene sammen og læs dem højt.
+          </p>
+
+          <div class="display">
+            <div>
+              <div class="sound">
+                <div class="sound-tile left" id="leftTile">m</div>
+                <div class="sound-plus">+</div>
+                <div class="sound-tile right" id="rightTile">a</div>
+              </div>
+
+              <div class="sound-result">
+                <span class="sound-result-label">Lyden bliver</span>
+                <div class="sound-result-value" id="resultTile">ma</div>
+              </div>
+            </div>
           </div>
 
-          <div class="col">
-            <select id="rmA-select-right" aria-label="Vælg højre bogstav">
-              <option value="">Højre: Tilfældigt</option>
-            </select>
-            <button id="rmA-next-right" type="button" class="btn-next">Næste højre</button>
+          <div class="actions">
+            <button class="action-btn primary" id="randomBtn" type="button">Vælg tilfældigt</button>
+            <button class="action-btn secondary" id="speakBtn" type="button">Læs lyden højt</button>
+            <button class="action-btn secondary" id="resetBtn" type="button">Start forfra</button>
           </div>
-        </div>
 
-        <div class="btn-row">
-          <button id="rmA-spin" type="button" class="btn-spin">Tilfældigt</button>
+          <div class="controls">
+            <div class="panel">
+              <h3>Vælg konsonant</h3>
+              <p>Tryk på en konsonant.</p>
+              <div class="tile-grid" id="leftGrid"></div>
+            </div>
+
+            <div class="panel">
+              <h3>Vælg vokal</h3>
+              <p>Tryk på en vokal.</p>
+              <div class="tile-grid" id="rightGrid"></div>
+            </div>
+          </div>
+
+          <div class="helper">
+            <h3>Sådan bruges værktøjet</h3>
+            <ul>
+              <li>Vælg en konsonant og en vokal.</li>
+              <li>Læs lyden højt sammen.</li>
+              <li>Tryk på “Vælg tilfældigt” for at få en ny kombination.</li>
+              <li>Brug “Læs lyden højt”, hvis enheden må afspille lyd.</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
+  </main>
 
-<script>
-(() => {
-  const leftItems = ["j","h","k","v","b","t","p","g","d","n","f","r","l","m","s"];
-  const rightItems = ["i","y","ø","u","o","å","a","æ","e"];
+  <footer class="site-footer">
+    <p>© 2026 SmartZonen</p>
+  </footer>
 
-  const selL = document.getElementById("rmA-select-left");
-  const selR = document.getElementById("rmA-select-right");
-  const btnSpin = document.getElementById("rmA-spin");
-  const btnNextL = document.getElementById("rmA-next-left");
-  const btnNextR = document.getElementById("rmA-next-right");
-  const readL = document.getElementById("rmA-read-left");
-  const readR = document.getElementById("rmA-read-right");
+  <script>
+    (() => {
+      const consonants = ["m", "s", "l", "p", "b", "t", "d", "f", "n", "k", "g", "r"];
+      const vowels = ["a", "e", "i", "o", "u", "y", "æ", "ø", "å"];
 
-  let leftIndex = 0;
-  let rightIndex = 0;
+      const leftGrid = document.getElementById("leftGrid");
+      const rightGrid = document.getElementById("rightGrid");
+      const leftTile = document.getElementById("leftTile");
+      const rightTile = document.getElementById("rightTile");
+      const resultTile = document.getElementById("resultTile");
+      const randomBtn = document.getElementById("randomBtn");
+      const speakBtn = document.getElementById("speakBtn");
+      const resetBtn = document.getElementById("resetBtn");
 
-  let running = false;
-  let timerL = null;
-  let timerR = null;
-  let finishTimeout = null;
+      let currentConsonant = "m";
+      let currentVowel = "a";
 
-  const randIndex = (arr) => Math.floor(Math.random() * arr.length);
+      function updateDisplay() {
+        leftTile.textContent = currentConsonant;
+        rightTile.textContent = currentVowel;
+        resultTile.textContent = currentConsonant + currentVowel;
+        updateActiveButtons();
+      }
 
-  leftItems.forEach(item => selL.add(new Option(item, item)));
-  rightItems.forEach(item => selR.add(new Option(item, item)));
+      function updateActiveButtons() {
+        leftGrid.querySelectorAll(".pick-btn").forEach(btn => {
+          btn.classList.toggle("active", btn.dataset.value === currentConsonant);
+          btn.classList.toggle("left", btn.dataset.value === currentConsonant);
+        });
 
-  function update(){
-    readL.textContent = leftItems[leftIndex];
-    readR.textContent = rightItems[rightIndex];
-  }
+        rightGrid.querySelectorAll(".pick-btn").forEach(btn => {
+          btn.classList.toggle("active", btn.dataset.value === currentVowel);
+          btn.classList.toggle("right", btn.dataset.value === currentVowel);
+        });
+      }
 
-  function setControlsDisabled(disabled){
-    btnSpin.disabled = disabled;
-    btnNextL.disabled = disabled;
-    btnNextR.disabled = disabled;
-    selL.disabled = disabled;
-    selR.disabled = disabled;
-  }
+      function buildButtons() {
+        leftGrid.innerHTML = "";
+        rightGrid.innerHTML = "";
 
-  function stopFlashIfRunning(){
-    if (timerL) { clearInterval(timerL); timerL = null; }
-    if (timerR) { clearInterval(timerR); timerR = null; }
-    if (finishTimeout) { clearTimeout(finishTimeout); finishTimeout = null; }
-    running = false;
-    setControlsDisabled(false);
-  }
+        consonants.forEach(letter => {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "pick-btn";
+          btn.dataset.value = letter;
+          btn.textContent = letter;
 
-  function flashAllThenPick(){
-    if (running) return;
-    running = true;
+          btn.addEventListener("click", () => {
+            currentConsonant = letter;
+            updateDisplay();
+          });
 
-    const totalMs = 1000;
-    const lockLeft = !!selL.value;
-    const lockRight = !!selR.value;
+          leftGrid.appendChild(btn);
+        });
 
-    if (lockLeft){
-      leftIndex = leftItems.indexOf(selL.value);
-      readL.textContent = leftItems[leftIndex];
-    }
-    if (lockRight){
-      rightIndex = rightItems.indexOf(selR.value);
-      readR.textContent = rightItems[rightIndex];
-    }
+        vowels.forEach(letter => {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "pick-btn";
+          btn.dataset.value = letter;
+          btn.textContent = letter;
 
-    setControlsDisabled(true);
+          btn.addEventListener("click", () => {
+            currentVowel = letter;
+            updateDisplay();
+          });
 
-    if (!lockLeft){
-      const stepMsL = Math.max(10, Math.floor(totalMs / leftItems.length));
-      let iL = 0;
-      readL.textContent = leftItems[iL];
-      timerL = setInterval(() => {
-        iL++;
-        if (iL >= leftItems.length) {
-          clearInterval(timerL);
-          timerL = null;
-        } else {
-          readL.textContent = leftItems[iL];
+          rightGrid.appendChild(btn);
+        });
+      }
+
+      function randomChoice(list) {
+        return list[Math.floor(Math.random() * list.length)];
+      }
+
+      function chooseRandom() {
+        currentConsonant = randomChoice(consonants);
+        currentVowel = randomChoice(vowels);
+        updateDisplay();
+      }
+
+      function speakSound() {
+        const text = currentConsonant + currentVowel;
+
+        if (!("speechSynthesis" in window)) {
+          return;
         }
-      }, stepMsL);
-    }
 
-    if (!lockRight){
-      const stepMsR = Math.max(10, Math.floor(totalMs / rightItems.length));
-      let iR = 0;
-      readR.textContent = rightItems[iR];
-      timerR = setInterval(() => {
-        iR++;
-        if (iR >= rightItems.length) {
-          clearInterval(timerR);
-          timerR = null;
-        } else {
-          readR.textContent = rightItems[iR];
-        }
-      }, stepMsR);
-    }
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = "da-DK";
+        utterance.rate = 0.8;
+        utterance.pitch = 1;
+        window.speechSynthesis.speak(utterance);
+      }
 
-    finishTimeout = setTimeout(() => {
-      if (timerL) { clearInterval(timerL); timerL = null; }
-      if (timerR) { clearInterval(timerR); timerR = null; }
-      finishTimeout = null;
+      function resetAll() {
+        currentConsonant = "m";
+        currentVowel = "a";
+        updateDisplay();
+      }
 
-      if (!lockLeft) leftIndex = randIndex(leftItems);
-      if (!lockRight) rightIndex = randIndex(rightItems);
+      randomBtn.addEventListener("click", chooseRandom);
+      speakBtn.addEventListener("click", speakSound);
+      resetBtn.addEventListener("click", resetAll);
 
-      update();
-      running = false;
-      setControlsDisabled(false);
-    }, totalMs);
-  }
-
-  function nextLeft(){
-    stopFlashIfRunning();
-    selL.value = "";
-    leftIndex = (leftIndex + 1) % leftItems.length;
-    update();
-  }
-
-  function nextRight(){
-    stopFlashIfRunning();
-    selR.value = "";
-    rightIndex = (rightIndex + 1) % rightItems.length;
-    update();
-  }
-
-  btnSpin.addEventListener("click", flashAllThenPick);
-  btnNextL.addEventListener("click", nextLeft);
-  btnNextR.addEventListener("click", nextRight);
-
-  leftIndex = randIndex(leftItems);
-  rightIndex = randIndex(rightItems);
-  update();
-})();
-</script>
-</div>
-<footer class="site-footer">
-  <p>© 2026 SmartZonen &nbsp;·&nbsp; Udarbejdet af Susan &amp; Manfred Conrath &nbsp;·&nbsp; <a href="mailto:mco@outlook.dk">Kontakt</a></p>
-</footer>
+      buildButtons();
+      updateDisplay();
+    })();
+  </script>
 </body>
 </html>
