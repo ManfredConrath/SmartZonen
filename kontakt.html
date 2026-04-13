@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kontakt – SmartZonen</title>
+  <style>
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  color: #1f2937;
+  background: #f5f7fa;
+  min-height: 100vh;
+}
+
+/* NAV */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #1a2f3a;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.2);
+}
+.site-nav .logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.site-nav .site-title {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: none;
+}
+.site-nav .nav-links {
+  margin-left: auto;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.site-nav .nav-links a {
+  color: rgba(255,255,255,.8);
+  text-decoration: none;
+  font-size: 13px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  transition: background .15s, color .15s;
+}
+.site-nav .nav-links a:hover,
+.site-nav .nav-links a.active {
+  background: rgba(255,255,255,.15);
+  color: #fff;
+}
+
+/* HERO */
+.hero {
+  width: 100%;
+  max-height: 340px;
+  overflow: hidden;
+  display: block;
+}
+.hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* INFO BAND */
+.info-band {
+  background: #b8dff0;
+  padding: 28px 24px;
+  text-align: center;
+}
+.info-band h1 {
+  font-size: clamp(22px, 3vw, 36px);
+  font-weight: 800;
+  color: #1a2f3a;
+  margin-bottom: 8px;
+}
+.info-band p {
+  font-size: clamp(15px, 1.8vw, 20px);
+  color: #2a4a5a;
+  font-style: italic;
+  line-height: 1.4;
+}
+
+/* CONTENT */
+.page-content {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px 80px;
+}
+
+/* FOOTER */
+.site-footer {
+  background: #1a2f3a;
+  color: rgba(255,255,255,.7);
+  text-align: center;
+  padding: 20px 24px;
+  font-size: 13px;
+}
+.site-footer a {
+  color: rgba(255,255,255,.9);
+}
+
+@media (max-width: 640px) {
+  .site-nav .nav-links { display: none; }
+  .info-band { padding: 20px 16px; }
+}
+
+/* ── CONTACT FORM ─────────────────────────────────────── */
+
+.contact-wrap {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 40px;
+  align-items: start;
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+.contact-intro {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 24px;
+  padding: 32px 28px;
+  box-shadow: 0 8px 24px rgba(15,23,42,.06);
+}
+
+.contact-intro h2 {
+  font-size: 22px;
+  font-weight: 800;
+  color: #1a2f3a;
+  margin-bottom: 14px;
+  line-height: 1.25;
+}
+
+.contact-intro p {
+  color: #4b5563;
+  font-size: 15px;
+  line-height: 1.7;
+  margin-bottom: 14px;
+}
+
+.contact-intro p:last-child {
+  margin-bottom: 0;
+}
+
+.contact-intro .tag {
+  display: inline-block;
+  background: #e0f2fe;
+  color: #0369a1;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin: 4px 4px 4px 0;
+}
+
+.contact-form-box {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 24px;
+  padding: 36px 32px;
+  box-shadow: 0 8px 24px rgba(15,23,42,.06);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  font-size: 14px;
+  font-weight: 700;
+  color: #374151;
+  letter-spacing: .01em;
+}
+
+.form-group input,
+.form-group textarea {
+  appearance: none;
+  border: 1.5px solid #d1d5db;
+  border-radius: 14px;
+  padding: 12px 16px;
+  font-size: 15px;
+  font-family: inherit;
+  color: #1f2937;
+  background: #f9fafb;
+  transition: border-color .15s, box-shadow .15s, background .15s;
+  outline: none;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #0f766e;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(15,118,110,.12);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 130px;
+  line-height: 1.6;
+}
+
+.form-submit {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 4px;
+}
+
+.btn-send {
+  appearance: none;
+  border: none;
+  border-radius: 16px;
+  min-height: 52px;
+  padding: 0 28px;
+  font-size: 1rem;
+  font-weight: 800;
+  font-family: inherit;
+  cursor: pointer;
+  background: #1a2f3a;
+  color: #fff;
+  box-shadow: 0 8px 18px rgba(26,47,58,.20);
+  transition: transform .05s ease, box-shadow .15s ease, background .15s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-send:hover {
+  background: #0f766e;
+  box-shadow: 0 10px 22px rgba(15,118,110,.22);
+}
+
+.btn-send:active {
+  transform: translateY(1px);
+}
+
+.btn-send svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+/* Success / error states */
+.form-notice {
+  display: none;
+  padding: 16px 20px;
+  border-radius: 14px;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.5;
+  margin-top: 18px;
+}
+
+.form-notice.success {
+  background: #ecfdf5;
+  border: 1.5px solid #6ee7b7;
+  color: #065f46;
+}
+
+.form-notice.error {
+  background: #fef2f2;
+  border: 1.5px solid #fca5a5;
+  color: #991b1b;
+}
+
+@media (max-width: 860px) {
+  .contact-wrap {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  .contact-form-box {
+    padding: 24px 18px;
+  }
+}
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <img class="logo" src="/assets/logo.png" onerror="this.style.display='none'" alt="SmartZonen logo" />
+    <a class="site-title" href="/">SmartZonen</a>
+    <div class="nav-links">
+      <a href="/">Start</a>
+      <a href="/pustero.html">Pustero</a>
+      <a href="/grupper.html">Grupper</a>
+      <a href="/dagens-dato.html">Dagens dato</a>
+      <a href="/leg-med-lyde-1.html">Leg med lyde 1</a>
+      <a href="/leg-med-lyde-2.html">Leg med lyde 2</a>
+      <a href="/saetningsmaskinen.html">Sætningsmaskinen</a>
+      <a href="/laer-klokken.html">Lær klokken</a>
+      <a href="/regnemaskinen.html">Regnemaskinen</a>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <img src="/assets/banner.jpg" onerror="this.closest('.hero').style.display='none'" alt="SmartZonen banner" />
+  </div>
+
+  <div class="info-band">
+    <h1>Kontakt</h1>
+    <p>Har du idéer, ønsker eller spørgsmål? Skriv til os</p>
+  </div>
+
+  <main class="page-content">
+    <div class="contact-wrap">
+
+      <div class="contact-intro">
+        <h2>Hvad kan vi hjælpe med?</h2>
+        <p>
+          SmartZonen er udviklet til brug i undervisningen og opdateres løbende ud fra
+          de erfaringer, vi gør os i praksis.
+        </p>
+        <p>
+          Har du idéer til nye funktioner, ønsker til eksisterende værktøjer, eller
+          oplever du noget, der ikke virker som det skal? Du er meget velkommen til at
+          skrive til os.
+        </p>
+        <p><strong>Vi hører gerne om:</strong></p>
+        <span class="tag">Udviklingsønsker</span>
+        <span class="tag">Fejl og bugs</span>
+        <span class="tag">Nye værktøjer</span>
+        <span class="tag">Samarbejde</span>
+        <span class="tag">Andet</span>
+      </div>
+
+      <div class="contact-form-box">
+        <!--
+          OPSÆTNING: Opret en gratis konto på formspree.io
+          Klik "New Form", kopier dit form-id og indsæt det nedenfor:
+          action="https://formspree.io/f/DIT-FORM-ID"
+        -->
+        <form id="contactForm" action="https://formspree.io/f/DIT-FORM-ID" method="POST" novalidate>
+
+          <!-- Honeypot spam-beskyttelse -->
+          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+          <input type="hidden" name="_subject" value="Ny henvendelse fra SmartZonen" />
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="navn">Navn <span style="color:#c1121f">*</span></label>
+              <input type="text" id="navn" name="navn" placeholder="Dit fulde navn" required autocomplete="name" />
+            </div>
+            <div class="form-group">
+              <label for="organisation">Organisation</label>
+              <input type="text" id="organisation" name="organisation" placeholder="Skole, institution el.l." autocomplete="organization" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">E-mail <span style="color:#c1121f">*</span></label>
+            <input type="email" id="email" name="email" placeholder="din@email.dk" required autocomplete="email" />
+          </div>
+
+          <div class="form-group">
+            <label for="besked">Besked / ønske <span style="color:#c1121f">*</span></label>
+            <textarea id="besked" name="besked" placeholder="Beskriv dit ønske eller din henvendelse…" required></textarea>
+          </div>
+
+          <div class="form-submit">
+            <button type="submit" class="btn-send">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+              Send besked
+            </button>
+          </div>
+
+          <div class="form-notice success" id="formSuccess">
+            Tak for din besked! Vi vender tilbage hurtigst muligt.
+          </div>
+          <div class="form-notice error" id="formError">
+            Der opstod en fejl. Prøv igen, eller skriv direkte til
+            <a href="mailto:mco@outlook.dk">mco@outlook.dk</a>.
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2026 SmartZonen &nbsp;·&nbsp; Udarbejdet af Susan &amp; Manfred Conrath &nbsp;·&nbsp; <a href="/kontakt.html">Kontakt</a></p>
+  </footer>
+
+  <script>
+    const form = document.getElementById('contactForm');
+    const successBox = document.getElementById('formSuccess');
+    const errorBox = document.getElementById('formError');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      successBox.style.display = 'none';
+      errorBox.style.display = 'none';
+
+      // Basic client-side validation
+      const required = form.querySelectorAll('[required]');
+      let valid = true;
+      required.forEach(field => {
+        if (!field.value.trim()) {
+          field.style.borderColor = '#c1121f';
+          valid = false;
+        } else {
+          field.style.borderColor = '';
+        }
+      });
+      if (!valid) return;
+
+      const btn = form.querySelector('.btn-send');
+      const originalText = btn.innerHTML;
+      btn.disabled = true;
+      btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg> Sender…';
+
+      try {
+        const data = new FormData(form);
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          form.reset();
+          successBox.style.display = 'block';
+          successBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        } else {
+          errorBox.style.display = 'block';
+        }
+      } catch {
+        errorBox.style.display = 'block';
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = originalText;
+      }
+    });
+
+    // Clear red border on input
+    form.querySelectorAll('input, textarea').forEach(field => {
+      field.addEventListener('input', () => {
+        field.style.borderColor = '';
+      });
+    });
+  </script>
+
+</body>
+</html>
