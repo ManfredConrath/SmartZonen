@@ -355,6 +355,76 @@ body {
       margin:0 auto;
     }
 
+    /* CALENDAR GRID (date picker) */
+    #smart-dagens-dato .cal-header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:14px 16px 6px;
+      font-weight:700;
+      font-size:17px;
+      color:var(--text);
+    }
+    #smart-dagens-dato .cal-nav{
+      background:none;
+      border:none;
+      font-size:26px;
+      cursor:pointer;
+      color:var(--btn);
+      padding:0 6px;
+      border-radius:6px;
+      line-height:1;
+      transition:background .12s;
+    }
+    #smart-dagens-dato .cal-nav:hover{
+      background:rgba(15,118,110,.1);
+    }
+    #smart-dagens-dato .cal-weekdays{
+      display:grid;
+      grid-template-columns:repeat(7,1fr);
+      text-align:center;
+      font-size:11px;
+      font-weight:700;
+      color:var(--muted);
+      padding:0 8px 4px;
+      letter-spacing:.03em;
+    }
+    #smart-dagens-dato .cal-grid{
+      display:grid;
+      grid-template-columns:repeat(7,1fr);
+      gap:2px;
+      padding:0 8px 8px;
+    }
+    #smart-dagens-dato .cal-day{
+      aspect-ratio:1;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:14px;
+      border-radius:50%;
+      cursor:pointer;
+      transition:background .12s, color .12s;
+      user-select:none;
+    }
+    #smart-dagens-dato .cal-day:not(.empty):hover{
+      background:rgba(15,118,110,.13);
+    }
+    #smart-dagens-dato .cal-day.today{
+      font-weight:800;
+      color:var(--btn);
+      outline:2px solid var(--btn);
+      outline-offset:-2px;
+    }
+    #smart-dagens-dato .cal-day.selected{
+      background:var(--btn);
+      color:#fff;
+      font-weight:700;
+      outline:none;
+    }
+    #smart-dagens-dato .cal-day.empty{
+      cursor:default;
+    }
+
     #smart-dagens-dato .wheel{
       height:100%;
       overflow-y:auto;
@@ -509,17 +579,17 @@ body {
           <button class="display-btn" id="dateDisplay" type="button"></button>
 
           <div class="picker-pop" id="datePicker">
-            <div class="picker-shell">
-              <div class="picker-highlight"></div>
-              <div class="picker-columns date">
-                <div class="wheel" id="dayWheel"></div>
-                <div class="wheel" id="monthWheel"></div>
-                <div class="wheel" id="yearWheel"></div>
-              </div>
+            <div class="cal-header">
+              <button class="cal-nav" id="calPrev" type="button">&#8249;</button>
+              <span id="calMonthYear"></span>
+              <button class="cal-nav" id="calNext" type="button">&#8250;</button>
             </div>
+            <div class="cal-weekdays">
+              <span>Ma</span><span>Ti</span><span>On</span><span>To</span><span>Fr</span><span>Lø</span><span>Sø</span>
+            </div>
+            <div class="cal-grid" id="calGrid"></div>
             <div class="picker-actions">
-              <button class="picker-btn cancel" type="button" id="dateCancel">Annuller</button>
-              <button class="picker-btn ok" type="button" id="dateOk">Fastsæt</button>
+              <button class="picker-btn cancel" type="button" id="dateCancel">Luk</button>
             </div>
           </div>
         </div>
@@ -992,9 +1062,6 @@ body {
       const seasonPicker = document.getElementById("seasonPicker");
       const dayTypePicker = document.getElementById("dayTypePicker");
 
-      const dayWheel = document.getElementById("dayWheel");
-      const monthWheel = document.getElementById("monthWheel");
-      const yearWheel = document.getElementById("yearWheel");
       const seasonWheel = document.getElementById("seasonWheel");
       const dayTypeWheel = document.getElementById("dayTypeWheel");
 
@@ -1056,8 +1123,9 @@ body {
         [datePicker, seasonPicker, dayTypePicker].forEach(p => p.classList.remove("open"));
       }
 
-      function openDatePicker() {  copyStateToDraft();
-        rebuildDateWheels();
+      function openDatePicker() {
+        copyStateToDraft();
+        renderCalendar();
         datePicker.classList.add("open");
         seasonPicker.classList.remove("open");
         dayTypePicker.classList.remove("open");
@@ -1171,39 +1239,48 @@ body {
         onSelect(centered.dataset.value);
       }
 
-      function rebuildDateWheels() {
-        const maxDays = daysInMonth(draft.month, draft.year);
-        if (draft.day > maxDays) draft.day = maxDays;
+      function renderCalendar() {
+        const month = draft.month;
+        const year = draft.year;
+        const monthLabel = document.getElementById("calMonthYear");
+        const grid = document.getElementById("calGrid");
+        monthLabel.textContent = `${maaneder[month - 1]} ${year}`;
+        grid.innerHTML = "";
 
-        makeWheel(
-          dayWheel,
-          Array.from({ length: maxDays }, (_, i) => i + 1),
-          v => String(v),
-          value => { draft.day = Number(value); },
-          draft.day
-        );
+        // Week starts Monday: Monday=0 … Sunday=6
+        const firstWeekday = (new Date(year, month - 1, 1).getDay() + 6) % 7;
+        const totalDays = daysInMonth(month, year);
+        const today = new Date();
 
-        makeWheel(
-          monthWheel,
-          maaneder.map((_, i) => i + 1),
-          v => maaneder[v - 1],
-          value => {
-            draft.month = Number(value);
-            rebuildDateWheels();
-          },
-          draft.month
-        );
+        for (let i = 0; i < firstWeekday; i++) {
+          const empty = document.createElement("div");
+          empty.className = "cal-day empty";
+          grid.appendChild(empty);
+        }
 
-        makeWheel(
-          yearWheel,
-          years,
-          v => String(v),
-          value => {
-            draft.year = Number(value);
-            rebuildDateWheels();
-          },
-          draft.year
-        );
+        for (let d = 1; d <= totalDays; d++) {
+          const cell = document.createElement("div");
+          cell.className = "cal-day";
+          cell.textContent = d;
+          if (d === state.day && month === state.month && year === state.year) {
+            cell.classList.add("selected");
+          }
+          if (d === today.getDate() && month === today.getMonth() + 1 && year === today.getFullYear()) {
+            cell.classList.add("today");
+          }
+          cell.addEventListener("click", () => {
+            state.day = d;
+            state.month = month;
+            state.year = year;
+            state.season = hentAarstidFraDato(d, month, year);
+            state.dayType = hentDagTypeFraDato(d, month, year);
+            draft.month = month;
+            draft.year = year;
+            updateDisplays();
+            closeAllPickers();
+          });
+          grid.appendChild(cell);
+        }
       }
 
       function rebuildSeasonWheel() {
@@ -1226,30 +1303,7 @@ body {
         );
       }
 
-      function commitDate() {
-        const selectedMonth = Number(getCenteredValue(monthWheel) || draft.month);
-        const selectedYear = Number(getCenteredValue(yearWheel) || draft.year);
 
-        let selectedDay = Number(getCenteredValue(dayWheel) || draft.day);
-        const maxDays = daysInMonth(selectedMonth, selectedYear);
-
-        if (selectedDay > maxDays) {
-          selectedDay = maxDays;
-        }
-
-        draft.day = selectedDay;
-        draft.month = selectedMonth;
-        draft.year = selectedYear;
-
-        state.day = draft.day;
-        state.month = draft.month;
-        state.year = draft.year;
-        state.season = hentAarstidFraDato(state.day, state.month, state.year);
-        state.dayType = hentDagTypeFraDato(state.day, state.month, state.year);
-
-        updateDisplays();
-        closeAllPickers();
-      }
 
       function commitSeason() {
         state.season = draft.season;
@@ -1283,7 +1337,19 @@ body {
       seasonDisplay.addEventListener("click", openSeasonPicker);
       dayTypeDisplay.addEventListener("click", openDayTypePicker);
 
-      document.getElementById("dateOk").addEventListener("click", commitDate);
+      document.getElementById("calPrev").addEventListener("click", (e) => {
+        e.stopPropagation();
+        draft.month--;
+        if (draft.month < 1) { draft.month = 12; draft.year--; }
+        renderCalendar();
+      });
+      document.getElementById("calNext").addEventListener("click", (e) => {
+        e.stopPropagation();
+        draft.month++;
+        if (draft.month > 12) { draft.month = 1; draft.year++; }
+        renderCalendar();
+      });
+
       document.getElementById("seasonOk").addEventListener("click", commitSeason);
       document.getElementById("dayTypeOk").addEventListener("click", commitDayType);
 
@@ -1304,15 +1370,6 @@ body {
       setToday();
     })();
   </script>
-</div>
-
-
-Tab Context:
-- Executed on tabId: 1501817133
-- Available tabs:
-  • tabId 1501817133: "SmartZonen" (https://sites.google.com/d/1VBHxLQCyD8kuNjj8bSF4id7FuAATcNrr/p/1IxBH_7NthvKFh7n_VtabWMPxEdOCkApj/edit)
-  • tabId 1501817136: "SmartZonen" (https://www.smartzonen.dk/)
-Found 37 console messages:
 </div>
 <footer class="site-footer">
   <p>© 2026 SmartZonen &nbsp;·&nbsp; Udarbejdet af Susan &amp; Manfred Conrath &nbsp;·&nbsp; <a href="mailto:mco@outlook.dk">Kontakt</a></p>
