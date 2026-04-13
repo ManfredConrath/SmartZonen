@@ -1,630 +1,463 @@
 <!DOCTYPE html>
 <html lang="da">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lær klokken – SmartZonen</title>
-  <link rel="stylesheet" href="/style.css" />
   <style>
-    #smart-laer-klokken{
-      --card:#ffffff;
-      --card-border:#e5e7eb;
-      --panel:#f8fafc;
-      --text:#1f2937;
-      --muted:#6b7280;
-      --accent:#0f766e;
-      --blue:#355caa;
-      --green:#2f6f4f;
-      --dark:#0f172a;
-      --face:#ffffff;
-      --tick:#94a3b8;
-      --hour:#1f2937;
-      --minute:#0f766e;
-      --center:#ef4444;
-    }
 
-    #smart-laer-klokken *{
-      box-sizing:border-box;
-    }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    #smart-laer-klokken{
-      max-width:1000px;
-      margin:0 auto;
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      color:var(--text);
-    }
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  color: #1f2937;
+  background: #f5f7fa;
+  min-height: 100vh;
+}
 
-    #smart-laer-klokken .module{
-      background:var(--card);
-      border:1px solid var(--card-border);
-      border-radius:24px;
-      box-shadow:0 8px 24px rgba(15,23,42,.06);
-      padding:28px 24px 24px;
-    }
+/* NAV */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #1a2f3a;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.2);
+}
+.site-nav .logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.site-nav .site-title {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: none;
+}
+.site-nav .nav-links {
+  margin-left: auto;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.site-nav .nav-links a {
+  color: rgba(255,255,255,.8);
+  text-decoration: none;
+  font-size: 13px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  transition: background .15s, color .15s;
+}
+.site-nav .nav-links a:hover,
+.site-nav .nav-links a.active {
+  background: rgba(255,255,255,.15);
+  color: #fff;
+}
 
-    #smart-laer-klokken .module-inner{
-      max-width:900px;
-      margin:0 auto;
-    }
+/* HERO */
+.hero {
+  width: 100%;
+  max-height: 340px;
+  overflow: hidden;
+  display: block;
+}
+.hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 
-    #smart-laer-klokken .intro{
-      text-align:center;
-      margin-bottom:20px;
-    }
+/* INFO BAND */
+.info-band {
+  background: #b8dff0;
+  padding: 28px 24px;
+  text-align: center;
+}
+.info-band h1 {
+  font-size: clamp(22px, 3vw, 36px);
+  font-weight: 800;
+  color: #1a2f3a;
+  margin-bottom: 8px;
+}
+.info-band p {
+  font-size: clamp(15px, 1.8vw, 20px);
+  color: #2a4a5a;
+  font-style: italic;
+  line-height: 1.4;
+}
 
-    #smart-laer-klokken .title{
-      margin:0 0 10px;
-      font-size:clamp(30px,2.4vw,40px);
-      line-height:1.1;
-      font-weight:800;
-      color:var(--text);
-    }
+/* CONTENT */
+.page-content {
+  max-width: 1100px;
+  margin: 32px auto;
+  padding: 0 20px 60px;
+}
 
-    #smart-laer-klokken .lead{
-      margin:0 auto;
-      max-width:720px;
-      color:var(--muted);
-      font-size:1rem;
-      line-height:1.65;
-    }
+/* HOME GRID */
+.section-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #1a2f3a;
+  margin: 32px 0 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #b8dff0;
+}
+.tool-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 18px;
+}
+.tool-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  padding: 22px 20px;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 4px 14px rgba(15,23,42,.06);
+  transition: transform .15s, box-shadow .15s;
+  display: block;
+}
+.tool-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(15,23,42,.12);
+}
+.tool-card h3 {
+  font-size: 18px;
+  font-weight: 800;
+  color: #0f766e;
+  margin-bottom: 6px;
+}
+.tool-card p {
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 1.4;
+}
 
-    #smart-laer-klokken .tool{
-      display:grid;
-      grid-template-columns:1.2fr .8fr;
-      gap:18px;
-      align-items:start;
-    }
+/* FOOTER */
+.site-footer {
+  background: #1a2f3a;
+  color: rgba(255,255,255,.7);
+  text-align: center;
+  padding: 20px 24px;
+  font-size: 13px;
+}
+.site-footer a {
+  color: rgba(255,255,255,.9);
+}
 
-    #smart-laer-klokken .clock-card,
-    #smart-laer-klokken .panel{
-      background:var(--panel);
-      border:1px solid var(--card-border);
-      border-radius:20px;
-      padding:18px;
-    }
+@media (max-width: 640px) {
+  .site-nav .nav-links { display: none; }
+  .info-band { padding: 20px 16px; }
+}
 
-    #smart-laer-klokken .clock-card{
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      min-height:620px;
-    }
 
-    #smart-laer-klokken .clock-wrap{
-      width:100%;
-      max-width:760px;
-      position:relative;
-      margin:0 auto;
-      padding:0 64px 52px;
-    }
-
-    #smart-laer-klokken .label-over,
-    #smart-laer-klokken .label-i,
-    #smart-laer-klokken .label-halv{
-      position:absolute;
-      font-weight:800;
-      letter-spacing:.2px;
-      user-select:none;
-    }
-
-    #smart-laer-klokken .label-over{
-      right:8px;
-      top:50%;
-      transform:translateY(-50%);
-      color:var(--green);
-      font-size:clamp(18px,2vw,24px);
-    }
-
-    #smart-laer-klokken .label-i{
-      left:8px;
-      top:50%;
-      transform:translateY(-50%);
-      color:var(--blue);
-      font-size:clamp(18px,2vw,24px);
-    }
-
-    #smart-laer-klokken .label-halv{
-      left:50%;
-      bottom:20px;
-      transform:translate(-50%,100%);
-      color:#374151;
-      font-size:clamp(18px,2vw,24px);
-    }
-
-    #smart-laer-klokken .clock{
-      width:min(80vw, 520px);
-      height:min(80vw, 520px);
-      max-width:520px;
-      max-height:520px;
-      border-radius:50%;
-      position:relative;
-      margin:0 auto;
-      background:radial-gradient(circle at 30% 30%, #ffffff 0%, #f8fbff 48%, #eef5f6 100%);
-      border:8px solid #dbe2ea;
-      box-shadow:
-        inset 0 2px 10px rgba(255,255,255,.8),
-        0 10px 30px rgba(15,23,42,.08);
-    }
-
-    #smart-laer-klokken .center-dot{
-      position:absolute;
-      left:50%;
-      top:50%;
-      width:18px;
-      height:18px;
-      transform:translate(-50%, -50%);
-      background:var(--center);
-      border-radius:50%;
-      z-index:5;
-      box-shadow:0 0 0 4px #fff;
-    }
-
-    #smart-laer-klokken .hand{
-      position:absolute;
-      left:50%;
-      top:50%;
-      transform-origin:bottom center;
-      border-radius:999px;
-      z-index:4;
-    }
-
-    #smart-laer-klokken .hour-hand{
-      width:10px;
-      height:120px;
-      margin-left:-5px;
-      margin-top:-120px;
-      background:var(--hour);
-    }
-
-    #smart-laer-klokken .minute-hand{
-      width:6px;
-      height:170px;
-      margin-left:-3px;
-      margin-top:-170px;
-      background:var(--minute);
-    }
-
-    #smart-laer-klokken .tick{
-      position:absolute;
-      left:50%;
-      top:50%;
-      width:4px;
-      height:18px;
-      margin-left:-2px;
-      margin-top:8px;
-      transform-origin:center calc(260px - 17px);
-      background:var(--tick);
-      border-radius:999px;
-    }
-
-    #smart-laer-klokken .tick.hour{
-      height:28px;
-      width:6px;
-      margin-left:-3px;
-      background:#64748b;
-    }
-
-    #smart-laer-klokken .number{
-      position:absolute;
-      left:50%;
-      top:50%;
-      width:44px;
-      height:44px;
-      margin-left:-22px;
-      margin-top:-22px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:clamp(20px,2vw,28px);
-      font-weight:900;
-      color:var(--dark);
-      user-select:none;
-    }
-
-    #smart-laer-klokken .side{
-      display:grid;
-      gap:16px;
-    }
-
-    #smart-laer-klokken .panel h3{
-      margin:0 0 10px;
-      font-size:22px;
-      line-height:1.2;
-      color:var(--text);
-    }
-
-    #smart-laer-klokken .panel p{
-      margin:0 0 12px;
-      color:var(--muted);
-      line-height:1.55;
-      font-size:15px;
-    }
-
-    #smart-laer-klokken .time-display{
-      background:#fff;
-      border:1px solid #d1d5db;
-      border-radius:18px;
-      padding:16px;
-      text-align:center;
-      box-shadow:0 4px 14px rgba(15,23,42,.04);
-    }
-
-    #smart-laer-klokken .digital{
-      font-size:clamp(34px,4vw,48px);
-      line-height:1;
-      font-weight:900;
-      color:var(--accent);
-      margin-bottom:8px;
-    }
-
-    #smart-laer-klokken .spoken{
-      font-size:18px;
-      line-height:1.4;
-      color:#374151;
-      font-weight:700;
-    }
-
-    #smart-laer-klokken .control-group{
-      display:grid;
-      gap:12px;
-    }
-
-    #smart-laer-klokken label{
-      font-size:.95rem;
-      font-weight:800;
-      color:var(--text);
-    }
-
-    #smart-laer-klokken select{
-      width:100%;
-      min-height:48px;
-      border:1px solid #d1d5db;
-      border-radius:14px;
-      padding:10px 12px;
-      background:#fff;
-      color:var(--text);
-      font-size:1rem;
-      outline:none;
-    }
-
-    #smart-laer-klokken select:focus{
-      border-color:var(--accent);
-      box-shadow:0 0 0 4px rgba(15,118,110,.12);
-    }
-
-    #smart-laer-klokken .actions{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-top:6px;
-    }
-
-    #smart-laer-klokken button{
-      appearance:none;
-      border:none;
-      border-radius:16px;
-      min-height:52px;
-      padding:0 18px;
-      font-size:1rem;
-      font-weight:800;
-      cursor:pointer;
-      transition:transform .05s ease, box-shadow .15s ease, opacity .2s ease;
-    }
-
-    #smart-laer-klokken button:active{
-      transform:translateY(1px);
-    }
-
-    #smart-laer-klokken .btn-primary{
-      background:var(--accent);
-      color:#fff;
-      box-shadow:0 10px 18px rgba(15,118,110,.18);
-    }
-
-    #smart-laer-klokken .btn-secondary{
-      background:#fff;
-      color:var(--text);
-      border:1px solid #d1d5db;
-    }
-
-    #smart-laer-klokken .helper{
-      background:#fff;
-      border:1px solid #e5e7eb;
-      border-radius:16px;
-      padding:14px;
-      line-height:1.65;
-      color:var(--muted);
-    }
-
-    #smart-laer-klokken .helper ul{
-      margin:0;
-      padding-left:18px;
-    }
-
-    @media (max-width: 980px){
-      #smart-laer-klokken .tool{
-        grid-template-columns:1fr;
-      }
-
-      #smart-laer-klokken .clock-card{
-        min-height:auto;
-      }
-    }
-
-    @media (max-width: 720px){
-      #smart-laer-klokken .clock-wrap{
-        padding:0 34px 46px;
-      }
-
-      #smart-laer-klokken .label-over,
-      #smart-laer-klokken .label-i,
-      #smart-laer-klokken .label-halv{
-        font-size:18px;
-      }
-    }
-
-    @media (max-width: 640px){
-      #smart-laer-klokken .module{
-        padding:20px 16px 18px;
-      }
-
-      #smart-laer-klokken .actions{
-        flex-direction:column;
-      }
-
-      #smart-laer-klokken .actions button{
-        width:100%;
-      }
-    }
   </style>
 </head>
 <body>
-  <nav class="site-nav">
-    <img class="logo" src="/assets/logo.png" onerror="this.style.display='none'" alt="SmartZonen logo" />
-    <a class="site-title" href="/">SmartZonen</a>
-    <div class="nav-links">
-      <a href="/">Start</a>
-      <a href="/pustero.html">Pustero</a>
-      <a href="/grupper.html">Grupper</a>
-      <a href="/dagens-dato.html">Dagens dato</a>
-      <a href="/leg-med-lyde-1.html">Leg med lyde 1</a>
-      <a href="/leg-med-lyde-2.html">Leg med lyde 2</a>
-      <a href="/saetningsmaskinen.html">Sætningsmaskinen</a>
-      <a href="/laer-klokken.html" class="active">Lær klokken</a>
-      <a href="/regnemaskinen.html">Regnemaskinen</a>
-    </div>
-  </nav>
+<nav class="site-nav">
+  <img class="logo" src="/assets/logo.png" onerror="this.style.display='none'" alt="SmartZonen logo">
+  <a class="site-title" href="/">SmartZonen</a>
+  <div class="nav-links">
+    <a href="/">Start</a>
+<a href="/pustero.html">Pustero</a>
+<a href="/grupper.html">Grupper</a>
+<a href="/dagens-dato.html">Dagens dato</a>
+<a href="/leg-med-lyde-1.html">Leg med lyde 1</a>
+<a href="/leg-med-lyde-2.html">Leg med lyde 2</a>
+<a href="/saetningsmaskinen.html">Sætningsmaskinen</a>
+<a href="/laer-klokken.html" class="active">Lær klokken</a>
+<a href="/regnemaskinen.html">Regnemaskinen</a>
 
-  <div class="hero">
-    <img src="/assets/banner.jpg" onerror="this.closest('.hero').style.display='none'" alt="SmartZonen banner" />
   </div>
+</nav>
+<div class="hero">
+  <img src="/assets/banner.jpg" onerror="this.closest('.hero').style.display='none'" alt="SmartZonen banner">
+</div>
+<div class="info-band">
+  <h1>Lær klokken</h1>
+  <p>Øv hele timer, kvarter og minutter, og læg mærke til i, over og halv</p>
+</div>
+<div class="page-content">
+<!-- Lær klokken – roligere og mere ensartet layout -->
+<div style="width:100%;margin:0 auto;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:#1f2937;">
+  <div style="display:flex;flex-direction:column;align-items:center;gap:20px;">
 
-  <div class="info-band">
-    <h1>Lær klokken</h1>
-    <p>Øv hele timer, kvarter og minutter, og læg mærke til i, over og halv</p>
-  </div>
+    <!-- Selve værktøjet -->
+    <div style="
+      width:100%;
+      max-width:900px;
+      margin:0 auto;
+      padding:28px 24px 24px;
+      box-sizing:border-box;
+      background:#ffffff;
+      border:1px solid #e5e7eb;
+      border-radius:24px;
+      box-shadow:0 8px 24px rgba(15,23,42,.06);
+    ">
 
-  <main class="page-content">
-    <div id="smart-laer-klokken">
-      <div class="module">
-        <div class="module-inner">
-          <div class="intro">
-            <h2 class="title">Lær klokken</h2>
-            <p class="lead">
-              Flyt tiden og se, hvordan viserne ændrer sig. Øv både digital tid og hvordan man siger klokken med i, over og halv.
-            </p>
-          </div>
+      <!-- Ur-zone -->
+      <div id="wrap" style="
+        width:100%;
+        max-width:760px;
+        position:relative;
+        margin:0 auto;
+        padding:0 64px 52px;
+        box-sizing:border-box;
+      ">
 
-          <div class="tool">
-            <div class="clock-card">
-              <div class="clock-wrap">
-                <div class="label-over">over</div>
-                <div class="label-i">i</div>
-                <div class="label-halv">halv</div>
+        <!-- OVER / I / HALV -->
+        <div style="
+          position:absolute;
+          right:8px; top:50%;
+          transform:translateY(-50%);
+          font-weight:800; font-size:clamp(18px,2vw,24px); color:#2f6f4f;
+          letter-spacing:.2px;">
+          over
+        </div>
 
-                <div class="clock" id="clockFace">
-                  <div class="center-dot"></div>
-                  <div class="hand hour-hand" id="hourHand"></div>
-                  <div class="hand minute-hand" id="minuteHand"></div>
-                </div>
-              </div>
-            </div>
+        <div style="
+          position:absolute;
+          left:8px; top:50%;
+          transform:translateY(-50%);
+          font-weight:800; font-size:clamp(18px,2vw,24px); color:#355caa;
+          letter-spacing:.2px;">
+          i
+        </div>
 
-            <div class="side">
-              <div class="panel">
-                <h3>Vælg tid</h3>
-                <p>Vælg time og minutter, eller brug de hurtige knapper.</p>
+        <div style="
+          position:absolute;
+          left:50%; bottom:20px;
+          transform:translate(-50%,100%);
+          font-weight:800; font-size:clamp(18px,2vw,24px); color:#374151;
+          letter-spacing:.2px;">
+          halv
+        </div>
 
-                <div class="control-group">
-                  <div>
-                    <label for="hourSelect">Time</label>
-                    <select id="hourSelect"></select>
-                  </div>
+        <!-- UR -->
+        <div id="clockFace" style="
+          width:min(520px, 100%);
+          aspect-ratio:1 / 1;
+          border-radius:50%;
+          margin:0 auto;
+          position:relative;
+          overflow:hidden;
+          border:7px solid #1f2937;
+          background:linear-gradient(90deg,#dbeafe 0%,#dbeafe 50%,#dcfce7 50%,#dcfce7 100%);
+          box-shadow:0 10px 26px rgba(15,23,42,.10);
+        ">
+          <div id="ticksLayer" style="position:absolute;inset:0;"></div>
+          <div id="numbersLayer" style="position:absolute;inset:0;"></div>
 
-                  <div>
-                    <label for="minuteSelect">Minutter</label>
-                    <select id="minuteSelect"></select>
-                  </div>
-                </div>
+          <!-- Timeviser -->
+          <div id="hourHand" style="
+            position:absolute;left:50%;top:50%;
+            width:10px;height:90px;
+            background:#111827;border-radius:999px;
+            transform-origin:50% 85%;
+            transform:translate(-50%,-85%) rotate(0deg);
+            z-index:5;"></div>
 
-                <div class="actions">
-                  <button class="btn-primary" type="button" id="randomTimeBtn">Tilfældig tid</button>
-                  <button class="btn-secondary" type="button" id="wholeHourBtn">Hel time</button>
-                  <button class="btn-secondary" type="button" id="quarterBtn">Kvarter</button>
-                  <button class="btn-secondary" type="button" id="halfBtn">Halv</button>
-                </div>
-              </div>
+          <!-- Minutviser -->
+          <div id="minuteHand" style="
+            position:absolute;left:50%;top:50%;
+            width:8px;height:125px;
+            background:#2563eb;border-radius:999px;
+            transform-origin:50% 88%;
+            transform:translate(-50%,-88%) rotate(0deg);
+            z-index:6;"></div>
 
-              <div class="panel">
-                <h3>Tiden er</h3>
-                <div class="time-display">
-                  <div class="digital" id="digitalTime">08:00</div>
-                  <div class="spoken" id="spokenTime">Klokken er otte</div>
-                </div>
-              </div>
+          <!-- Midterprik -->
+          <div style="
+            position:absolute;left:50%;top:50%;
+            width:16px;height:16px;border-radius:50%;
+            background:#111827;
+            transform:translate(-50%,-50%);
+            z-index:7;"></div>
+        </div>
+      </div>
 
-              <div class="helper">
-                <ul>
-                  <li>Se hvor timeviseren og minutviseren peger.</li>
-                  <li>Prøv hele timer, kvarter over, halv og minutter i.</li>
-                  <li>Tal om forskellen på digital tid og det, man siger højt.</li>
-                </ul>
-              </div>
-            </div>
-          </div>
+      <!-- Kontrolpanel -->
+      <div style="
+        width:100%;
+        max-width:620px;
+        margin:22px auto 0;
+        padding:16px;
+        border:1px solid #e5e7eb;
+        border-radius:18px;
+        background:#f8fafc;
+        box-sizing:border-box;
+      ">
+        <!-- Digital tid -->
+        <div id="digitalBox" style="
+          width:100%;
+          padding:10px 12px;
+          border:1px solid #dbe2ea;
+          border-radius:14px;
+          text-align:center;
+          background:#ffffff;
+          box-sizing:border-box;">
+          <div style="font-size:13px;color:#6b7280;margin-bottom:2px;">Digital tid</div>
+          <div id="timeReadout" style="font-size:30px;font-weight:900;line-height:1.1;">--:--</div>
+        </div>
+
+        <!-- Knapper -->
+        <div style="
+          display:flex;
+          gap:10px;
+          flex-wrap:wrap;
+          justify-content:center;
+          margin-top:14px;">
+          <button id="btnWhole" style="
+            padding:12px 16px;border-radius:14px;border:none;
+            font-weight:800;font-size:15px;
+            background:#0f766e;color:white;
+            box-shadow:0 4px 10px rgba(15,118,110,.20);
+            cursor:pointer;">
+            Hel time
+          </button>
+
+          <button id="btnQuarter" style="
+            padding:12px 16px;border-radius:14px;border:none;
+            font-weight:800;font-size:15px;
+            background:#f59e0b;color:#111827;
+            box-shadow:0 4px 10px rgba(245,158,11,.18);
+            cursor:pointer;">
+            Kvarter
+          </button>
+
+          <button id="btnFive" style="
+            padding:12px 16px;border-radius:14px;border:none;
+            font-weight:800;font-size:15px;
+            background:#3b82f6;color:white;
+            box-shadow:0 4px 10px rgba(59,130,246,.18);
+            cursor:pointer;">
+            Minut
+          </button>
+
+          <button id="btnHide" style="
+            padding:12px 16px;border-radius:14px;border:none;
+            font-weight:800;font-size:15px;
+            background:#6b7280;color:white;
+            box-shadow:0 4px 10px rgba(107,114,128,.18);
+            cursor:pointer;">
+            Skjul
+          </button>
         </div>
       </div>
     </div>
-  </main>
+  </div>
+</div>
 
-  <footer class="site-footer">
-    <p>© 2026 SmartZonen</p>
-  </footer>
+<script>
+(function(){
+  const face = document.getElementById("clockFace");
+  const nums = document.getElementById("numbersLayer");
+  const ticks = document.getElementById("ticksLayer");
+  const hHand = document.getElementById("hourHand");
+  const mHand = document.getElementById("minuteHand");
+  const read = document.getElementById("timeReadout");
+  const digitalBox = document.getElementById("digitalBox");
+  const btnHide = document.getElementById("btnHide");
 
-  <script>
-    (() => {
-      const hourSelect = document.getElementById("hourSelect");
-      const minuteSelect = document.getElementById("minuteSelect");
-      const hourHand = document.getElementById("hourHand");
-      const minuteHand = document.getElementById("minuteHand");
-      const digitalTime = document.getElementById("digitalTime");
-      const spokenTime = document.getElementById("spokenTime");
-      const clockFace = document.getElementById("clockFace");
+  const pad = n => String(n).padStart(2,"0");
+  const rand = (a,b) => Math.floor(Math.random()*(b-a+1))+a;
 
-      const randomTimeBtn = document.getElementById("randomTimeBtn");
-      const wholeHourBtn = document.getElementById("wholeHourBtn");
-      const quarterBtn = document.getElementById("quarterBtn");
-      const halfBtn = document.getElementById("halfBtn");
+  let isHidden = false;
 
-      const hourWords = [
-        "tolv", "et", "to", "tre", "fire", "fem",
-        "seks", "syv", "otte", "ni", "ti", "elleve", "tolv", "et"
-      ];
+  function build(){
+    nums.innerHTML = "";
+    ticks.innerHTML = "";
 
-      let currentHour = 8;
-      let currentMinute = 0;
+    const s = face.clientWidth;
+    const c = s / 2;
+    const scale = s / 320;
 
-      function pad(num) {
-        return String(num).padStart(2, "0");
-      }
+    hHand.style.width  = (10 * scale) + "px";
+    hHand.style.height = (90 * scale) + "px";
+    mHand.style.width  = (8 * scale) + "px";
+    mHand.style.height = (125 * scale) + "px";
 
-      function buildSelects() {
-        hourSelect.innerHTML = "";
-        minuteSelect.innerHTML = "";
+    for(let n = 1; n <= 12; n++){
+      const a = (n * 30 - 90) * Math.PI / 180;
+      const r = s * 0.34;
+      const d = document.createElement("div");
+      d.textContent = n;
+      d.style.cssText = `
+        position:absolute;
+        left:${c + r*Math.cos(a)}px;
+        top:${c + r*Math.sin(a)}px;
+        transform:translate(-50%,-50%);
+        font-weight:900;
+        font-size:${Math.round(22*scale)}px;
+        color:#111827;
+        z-index:3;
+      `;
+      nums.appendChild(d);
+    }
 
-        for (let hour = 0; hour < 24; hour++) {
-          const option = document.createElement("option");
-          option.value = String(hour);
-          option.textContent = pad(hour);
-          if (hour === currentHour) option.selected = true;
-          hourSelect.appendChild(option);
-        }
+    for(let i = 0; i < 60; i++){
+      const quarter = i % 15 === 0;
+      const hour = i % 5 === 0;
 
-        for (let minute = 0; minute < 60; minute += 5) {
-          const option = document.createElement("option");
-          option.value = String(minute);
-          option.textContent = pad(minute);
-          if (minute === currentMinute) option.selected = true;
-          minuteSelect.appendChild(option);
-        }
-      }
+      const w = (quarter ? 5 : hour ? 4 : 2) * scale;
+      const hgt = (quarter ? 18 : hour ? 14 : 8) * scale;
+      const offset = (s / 2 - 18 * scale);
 
-      function createClockMarks() {
-        for (let i = 0; i < 60; i++) {
-          const tick = document.createElement("div");
-          tick.className = "tick" + (i % 5 === 0 ? " hour" : "");
-          tick.style.transform = `rotate(${i * 6}deg)`;
-          clockFace.appendChild(tick);
-        }
+      const t = document.createElement("div");
+      t.style.cssText = `
+        position:absolute;
+        left:50%;
+        top:50%;
+        width:${w}px;
+        height:${hgt}px;
+        background:${quarter ? "#1f2937" : hour ? "#4b5563" : "#cbd5e1"};
+        transform-origin:50% ${offset}px;
+        transform:translate(-50%,-${offset}px) rotate(${i*6}deg);
+        border-radius:999px;
+      `;
+      ticks.appendChild(t);
+    }
+  }
 
-        for (let n = 1; n <= 12; n++) {
-          const number = document.createElement("div");
-          number.className = "number";
-          const angle = ((n * 30) - 90) * (Math.PI / 180);
-          const radius = 182;
-          const x = Math.cos(angle) * radius;
-          const y = Math.sin(angle) * radius;
-          number.style.transform = `translate(${x}px, ${y}px)`;
-          number.textContent = String(n);
-          clockFace.appendChild(number);
-        }
-      }
+  function setTime(h,m){
+    mHand.style.transform = `translate(-50%,-88%) rotate(${m*6}deg)`;
+    hHand.style.transform = `translate(-50%,-85%) rotate(${h%12*30 + m*0.5}deg)`;
+    read.textContent = `${pad(h)}:${pad(m)}`;
+  }
 
-      function spokenClock(hour24, minute) {
-        const nextHourWord = hourWords[(hour24 % 12) + 1];
-        const thisHourWord = hourWords[hour24 % 12];
+  function applyHiddenState(){
+    const content = digitalBox.querySelectorAll("div");
+    content.forEach(el => {
+      el.style.visibility = isHidden ? "hidden" : "visible";
+    });
+    btnHide.textContent = isHidden ? "Vis" : "Skjul";
+  }
 
-        if (minute === 0) return `Klokken er ${thisHourWord}`;
-        if (minute === 15) return `Klokken er kvart over ${thisHourWord}`;
-        if (minute === 30) return `Klokken er halv ${nextHourWord}`;
-        if (minute === 45) return `Klokken er kvart i ${nextHourWord}`;
+  document.getElementById("btnWhole").onclick = () => setTime(rand(1,12), 0);
+  document.getElementById("btnQuarter").onclick = () => setTime(rand(1,12), [0,15,30,45][rand(0,3)]);
+  document.getElementById("btnFive").onclick = () => setTime(rand(1,12), rand(0,11) * 5);
 
-        if (minute < 30) {
-          return `Klokken er ${minute} minutter over ${thisHourWord}`;
-        }
+  btnHide.onclick = () => {
+    isHidden = !isHidden;
+    applyHiddenState();
+  };
 
-        return `Klokken er ${60 - minute} minutter i ${nextHourWord}`;
-      }
-
-      function renderClock() {
-        const minuteAngle = currentMinute * 6;
-        const hourAngle = ((currentHour % 12) * 30) + (currentMinute * 0.5);
-
-        minuteHand.style.transform = `rotate(${minuteAngle}deg)`;
-        hourHand.style.transform = `rotate(${hourAngle}deg)`;
-
-        digitalTime.textContent = `${pad(currentHour)}:${pad(currentMinute)}`;
-        spokenTime.textContent = spokenClock(currentHour, currentMinute);
-
-        hourSelect.value = String(currentHour);
-        minuteSelect.value = String(currentMinute);
-      }
-
-      function setTime(hour, minute) {
-        currentHour = hour;
-        currentMinute = minute;
-        renderClock();
-      }
-
-      function randomChoice(items) {
-        return items[Math.floor(Math.random() * items.length)];
-      }
-
-      hourSelect.addEventListener("change", () => {
-        setTime(Number(hourSelect.value), currentMinute);
-      });
-
-      minuteSelect.addEventListener("change", () => {
-        setTime(currentHour, Number(minuteSelect.value));
-      });
-
-      randomTimeBtn.addEventListener("click", () => {
-        const randomHour = Math.floor(Math.random() * 24);
-        const minuteChoices = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55];
-        const randomMinute = randomChoice(minuteChoices);
-        setTime(randomHour, randomMinute);
-      });
-
-      wholeHourBtn.addEventListener("click", () => {
-        const randomHour = Math.floor(Math.random() * 24);
-        setTime(randomHour, 0);
-      });
-
-      quarterBtn.addEventListener("click", () => {
-        const randomHour = Math.floor(Math.random() * 24);
-        const quarterMinute = randomChoice([15, 45]);
-        setTime(randomHour, quarterMinute);
-      });
-
-      halfBtn.addEventListener("click", () => {
-        const randomHour = Math.floor(Math.random() * 24);
-        setTime(randomHour, 30);
-      });
-
-      buildSelects();
-      createClockMarks();
-      renderClock();
-    })();
-  </script>
+  build();
+  setTime(3,0);
+  applyHiddenState();
+  window.addEventListener("resize", build);
+})();
+</script>
+</div>
+<footer class="site-footer">
+  <p>© 2026 SmartZonen &nbsp;·&nbsp; Udarbejdet af Susan &amp; Manfred Conrath &nbsp;·&nbsp; <a href="mailto:mco@outlook.dk">Kontakt</a></p>
+</footer>
 </body>
 </html>
