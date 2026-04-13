@@ -1,508 +1,667 @@
 <!DOCTYPE html>
 <html lang="da">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sætningsmaskinen – SmartZonen</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sætningsmaskinen</title>
   <style>
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-body {
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-  color: #1f2937;
-  background: #f5f7fa;
-  min-height: 100vh;
-}
-
-/* NAV */
-.site-nav {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: #1a2f3a;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 24px;
-  box-shadow: 0 2px 8px rgba(0,0,0,.2);
-}
-.site-nav .logo {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-.site-nav .site-title {
-  color: #fff;
-  font-size: 18px;
-  font-weight: 700;
-  text-decoration: none;
-}
-.site-nav .nav-links {
-  margin-left: auto;
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-}
-.site-nav .nav-links a {
-  color: rgba(255,255,255,.8);
-  text-decoration: none;
-  font-size: 13px;
-  padding: 4px 10px;
-  border-radius: 20px;
-  transition: background .15s, color .15s;
-}
-.site-nav .nav-links a:hover,
-.site-nav .nav-links a.active {
-  background: rgba(255,255,255,.15);
-  color: #fff;
-}
-
-/* HERO */
-.hero {
-  width: 100%;
-  max-height: 340px;
-  overflow: hidden;
-  display: block;
-}
-.hero img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* INFO BAND */
-.info-band {
-  background: #b8dff0;
-  padding: 28px 24px;
-  text-align: center;
-}
-.info-band h1 {
-  font-size: clamp(22px, 3vw, 36px);
-  font-weight: 800;
-  color: #1a2f3a;
-  margin-bottom: 8px;
-}
-.info-band p {
-  font-size: clamp(15px, 1.8vw, 20px);
-  color: #2a4a5a;
-  font-style: italic;
-  line-height: 1.4;
-}
-
-/* CONTENT */
-.page-content {
-  max-width: 1100px;
-  margin: 32px auto;
-  padding: 0 20px 60px;
-}
-
-/* HOME GRID */
-.section-title {
-  font-size: 22px;
-  font-weight: 800;
-  color: #1a2f3a;
-  margin: 32px 0 16px;
-  padding-bottom: 8px;
-  border-bottom: 2px solid #b8dff0;
-}
-.tool-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 18px;
-}
-.tool-card {
-  background: #fff;
-  border: 1px solid #e5e7eb;
-  border-radius: 20px;
-  padding: 22px 20px;
-  text-decoration: none;
-  color: inherit;
-  box-shadow: 0 4px 14px rgba(15,23,42,.06);
-  transition: transform .15s, box-shadow .15s;
-  display: block;
-}
-.tool-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(15,23,42,.12);
-}
-.tool-card h3 {
-  font-size: 18px;
-  font-weight: 800;
-  color: #0f766e;
-  margin-bottom: 6px;
-}
-.tool-card p {
-  font-size: 14px;
-  color: #6b7280;
-  line-height: 1.4;
-}
-
-/* FOOTER */
-.site-footer {
-  background: #1a2f3a;
-  color: rgba(255,255,255,.7);
-  text-align: center;
-  padding: 20px 24px;
-  font-size: 13px;
-}
-.site-footer a {
-  color: rgba(255,255,255,.9);
-}
-
-@media (max-width: 640px) {
-  .site-nav .nav-links { display: none; }
-  .info-band { padding: 20px 16px; }
-}
-
-
-    #smart-saetningsmaskine{
-      --card:#ffffff;
-      --card-border:#e5e7eb;
-      --panel:#f8fafc;
-      --panel-strong:#eef5f6;
-      --text:#1f2937;
-      --muted:#6b7280;
-      --accent:#0f766e;
-      --accent-soft:rgba(15,118,110,.10);
-      --accent-border:#d7e3e6;
-      --shadow:0 10px 24px rgba(15,23,42,.06);
-      --radius:18px;
+    *, *::before, *::after {
+      box-sizing: border-box;
     }
-    #smart-saetningsmaskine *{box-sizing:border-box}
-    #smart-saetningsmaskine .ss-wrap{background:var(--card);border:1px solid var(--card-border);border-radius:24px;overflow:hidden;box-shadow:var(--shadow)}
-    #smart-saetningsmaskine .ss-head{padding:24px 24px 8px;background:linear-gradient(180deg,#f8fbfb 0%, #ffffff 100%)}
-    #smart-saetningsmaskine .ss-title{margin:0;font-size:clamp(1.6rem,2.2vw,2.1rem);line-height:1.15;color:var(--text)}
-    #smart-saetningsmaskine .ss-sub{margin:10px 0 0;color:var(--muted);font-size:1rem;line-height:1.55}
-    #smart-saetningsmaskine .ss-body{padding:24px;display:grid;gap:20px}
-    #smart-saetningsmaskine .ss-panel{background:var(--panel);border:1px solid var(--accent-border);border-radius:var(--radius);padding:18px}
-    #smart-saetningsmaskine .ss-panel-title{margin:0 0 14px;font-size:1.05rem;font-weight:700;color:var(--text)}
-    #smart-saetningsmaskine .ss-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:14px}
-    #smart-saetningsmaskine .ss-field{display:flex;flex-direction:column;gap:7px}
-    #smart-saetningsmaskine .ss-field label{font-size:.95rem;font-weight:600;color:var(--text)}
-    #smart-saetningsmaskine .ss-field small{color:var(--muted);font-size:.83rem;line-height:1.35}
-    #smart-saetningsmaskine .ss-span-4{grid-column:span 4}
-    #smart-saetningsmaskine .ss-span-6{grid-column:span 6}
-    #smart-saetningsmaskine .ss-span-8{grid-column:span 8}
-    #smart-saetningsmaskine .ss-span-12{grid-column:span 12}
-    #smart-saetningsmaskine select,
-    #smart-saetningsmaskine input[type="text"]{
-      width:100%;min-height:46px;border:1px solid #d1d5db;border-radius:12px;padding:10px 12px;font-size:1rem;background:#fff;color:var(--text);outline:none
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      background: #f5f7fa;
+      color: #1f2937;
+      min-height: 100vh;
     }
-    #smart-saetningsmaskine select:focus,
-    #smart-saetningsmaskine input[type="text"]:focus{border-color:var(--accent);box-shadow:0 0 0 4px rgba(15,118,110,.12)}
-    #smart-saetningsmaskine .ss-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
-    #smart-saetningsmaskine button{appearance:none;border:none;border-radius:14px;min-height:48px;padding:0 18px;font-size:1rem;font-weight:700;cursor:pointer;transition:transform .05s ease, opacity .2s ease, box-shadow .2s ease}
-    #smart-saetningsmaskine button:active{transform:translateY(1px)}
-    #smart-saetningsmaskine .ss-btn-primary{background:var(--accent);color:#fff;box-shadow:0 10px 18px rgba(15,118,110,.18)}
-    #smart-saetningsmaskine .ss-btn-secondary{background:#fff;color:var(--text);border:1px solid #d1d5db}
-    #smart-saetningsmaskine .ss-status{color:var(--muted);font-size:.95rem;min-height:1.3em}
-    #smart-saetningsmaskine .ss-sentence-card{background:#fff;border:1px solid var(--card-border);border-radius:24px;box-shadow:var(--shadow);padding:20px}
-    #smart-saetningsmaskine .ss-sentence-top{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
-    #smart-saetningsmaskine .ss-sentence-label{font-size:.9rem;color:var(--muted);font-weight:700;letter-spacing:.02em;text-transform:uppercase}
-    #smart-saetningsmaskine .ss-turn{font-size:.92rem;color:var(--muted)}
-    #smart-saetningsmaskine .ss-sentence{min-height:80px;background:var(--panel);border:1px solid var(--accent-border);border-radius:18px;padding:16px;line-height:1.9;font-size:1.1rem}
-    #smart-saetningsmaskine .ss-sentence-final{font-size:1.25rem;font-weight:700;color:var(--text);letter-spacing:.01em}
-    #smart-saetningsmaskine .ss-token{display:inline-block;margin:0 4px 8px 0;padding:7px 13px;border-radius:999px;background:#fff;border:1px solid #d1d5db;font-weight:700}
-    #smart-saetningsmaskine .ss-token.robot{background:var(--accent-soft);border-color:#9fd5cf;color:#0b5b54}
-    #smart-saetningsmaskine .ss-token.user{background:#fff7ed;border-color:#fed7aa;color:#9a3412}
-    #smart-saetningsmaskine .ss-empty{color:var(--muted);font-style:italic}
-    #smart-saetningsmaskine .ss-help{display:flex;flex-wrap:wrap;gap:8px}
-    #smart-saetningsmaskine .ss-chip{display:inline-flex;align-items:center;min-height:38px;padding:0 12px;border-radius:999px;border:1px solid #d1d5db;background:#fff;font-size:.95rem;cursor:pointer}
-    #smart-saetningsmaskine .ss-chip:hover{border-color:var(--accent);background:var(--accent-soft)}
-    #smart-saetningsmaskine .ss-list{margin:0;padding-left:18px;color:var(--muted);line-height:1.6}
-    #smart-saetningsmaskine .ss-done-banner{background:#ecfdf5;border:1.5px solid #6ee7b7;border-radius:14px;padding:12px 16px;color:#065f46;font-weight:700;font-size:1rem;margin-top:10px;display:none}
-    @media (max-width: 880px){
-      #smart-saetningsmaskine .ss-span-4,
-      #smart-saetningsmaskine .ss-span-6,
-      #smart-saetningsmaskine .ss-span-8{grid-column:span 12}
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px 20px 60px;
     }
-    @media (max-width: 560px){
-      #smart-saetningsmaskine .ss-body,#smart-saetningsmaskine .ss-head{padding:18px}
-      #smart-saetningsmaskine .ss-sentence-card{padding:16px}
+
+    .hero {
+      background: linear-gradient(135deg, #b8dff0, #dff3fb);
+      border-radius: 28px;
+      padding: 28px 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
     }
-  
+
+    .hero h1 {
+      margin: 0 0 8px;
+      font-size: clamp(28px, 4vw, 42px);
+      color: #16313d;
+    }
+
+    .hero p {
+      margin: 0;
+      font-size: 18px;
+      color: #2a4a5a;
+    }
+
+    #smart-saetningsmaskine {
+      --card: #ffffff;
+      --card-border: #e5e7eb;
+      --panel: #f8fafc;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --accent: #0f766e;
+      --accent-soft: rgba(15, 118, 110, 0.10);
+      --accent-border: #d7e3e6;
+      --shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+      --radius: 18px;
+    }
+
+    #smart-saetningsmaskine * {
+      box-sizing: border-box;
+    }
+
+    .ss-wrap {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .ss-head {
+      padding: 24px 24px 8px;
+      background: linear-gradient(180deg, #f8fbfb 0%, #ffffff 100%);
+    }
+
+    .ss-title {
+      margin: 0;
+      font-size: clamp(1.6rem, 2.2vw, 2.1rem);
+      line-height: 1.15;
+      color: var(--text);
+    }
+
+    .ss-sub {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.55;
+    }
+
+    .ss-body {
+      padding: 24px;
+      display: grid;
+      gap: 20px;
+    }
+
+    .ss-panel {
+      background: var(--panel);
+      border: 1px solid var(--accent-border);
+      border-radius: var(--radius);
+      padding: 18px;
+    }
+
+    .ss-panel-title {
+      margin: 0 0 14px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .ss-grid {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .ss-field {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .ss-field label {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .ss-field small {
+      color: var(--muted);
+      font-size: 0.83rem;
+      line-height: 1.35;
+    }
+
+    .ss-span-4 { grid-column: span 4; }
+    .ss-span-8 { grid-column: span 8; }
+    .ss-span-12 { grid-column: span 12; }
+
+    select,
+    input[type="text"] {
+      width: 100%;
+      min-height: 46px;
+      border: 1px solid #d1d5db;
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-size: 1rem;
+      background: #fff;
+      color: var(--text);
+      outline: none;
+    }
+
+    select:focus,
+    input[type="text"]:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px rgba(15, 118, 110, 0.12);
+    }
+
+    .ss-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    button {
+      appearance: none;
+      border: none;
+      border-radius: 14px;
+      min-height: 48px;
+      padding: 0 18px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform .05s ease, opacity .2s ease, box-shadow .2s ease;
+    }
+
+    button:active {
+      transform: translateY(1px);
+    }
+
+    .ss-btn-primary {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 10px 18px rgba(15, 118, 110, 0.18);
+    }
+
+    .ss-btn-secondary {
+      background: #fff;
+      color: var(--text);
+      border: 1px solid #d1d5db;
+    }
+
+    .ss-status {
+      color: var(--muted);
+      font-size: 0.95rem;
+      min-height: 1.3em;
+    }
+
+    .ss-sentence-card {
+      background: #fff;
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      padding: 20px;
+    }
+
+    .ss-sentence-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .ss-sentence-label {
+      font-size: 0.9rem;
+      color: var(--muted);
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .ss-turn {
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    .ss-sentence {
+      min-height: 80px;
+      background: var(--panel);
+      border: 1px solid var(--accent-border);
+      border-radius: 18px;
+      padding: 16px;
+      line-height: 1.9;
+      font-size: 1.1rem;
+    }
+
+    .ss-sentence-final {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: 0.01em;
+    }
+
+    .ss-token {
+      display: inline-block;
+      margin: 0 4px 8px 0;
+      padding: 7px 13px;
+      border-radius: 999px;
+      background: #fff;
+      border: 1px solid #d1d5db;
+      font-weight: 700;
+    }
+
+    .ss-token.robot {
+      background: var(--accent-soft);
+      border-color: #9fd5cf;
+      color: #0b5b54;
+    }
+
+    .ss-token.user {
+      background: #fff7ed;
+      border-color: #fed7aa;
+      color: #9a3412;
+    }
+
+    .ss-empty {
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .ss-help {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .ss-chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 38px;
+      padding: 0 12px;
+      border-radius: 999px;
+      border: 1px solid #d1d5db;
+      background: #fff;
+      font-size: 0.95rem;
+      cursor: pointer;
+    }
+
+    .ss-chip:hover {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+    }
+
+    .ss-list {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .ss-done-banner {
+      background: #ecfdf5;
+      border: 1.5px solid #6ee7b7;
+      border-radius: 14px;
+      padding: 12px 16px;
+      color: #065f46;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-top: 10px;
+      display: none;
+    }
+
+    @media (max-width: 880px) {
+      .ss-span-4,
+      .ss-span-8 {
+        grid-column: span 12;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .page,
+      .ss-body,
+      .ss-head {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      .ss-sentence-card {
+        padding: 16px;
+      }
+    }
   </style>
 </head>
 <body>
-<nav class="site-nav">
-  <img class="logo" src="/assets/logo.png" onerror="this.style.display='none'" alt="SmartZonen logo">
-  <a class="site-title" href="/">SmartZonen</a>
-  <div class="nav-links">
-    <a href="/">Start</a>
-<a href="/pustero.html">Pustero</a>
-<a href="/grupper.html">Grupper</a>
-<a href="/dagens-dato.html">Dagens dato</a>
-<a href="/leg-med-lyde-1.html">Leg med lyde 1</a>
-<a href="/leg-med-lyde-2.html">Leg med lyde 2</a>
-<a href="/saetningsmaskinen.html" class="active">Sætningsmaskinen</a>
-<a href="/laer-klokken.html">Lær klokken</a>
-<a href="/regnemaskinen.html">Regnemaskinen</a>
-
-  </div>
-</nav>
-<div class="hero">
-  <img src="/assets/banner.jpg" onerror="this.closest('.hero').style.display='none'" alt="SmartZonen banner">
-</div>
-<div class="info-band">
-  <h1>Sætningsmaskinen</h1>
-  <p>Byg sætninger sammen med robotten</p>
-</div>
-<div class="page-content">
-<div id="smart-saetningsmaskine" style="max-width:1100px;margin:0 auto;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:#1f2937;">
-  <style>
-    #smart-saetningsmaskine{
-      --card:#ffffff;
-      --card-border:#e5e7eb;
-      --panel:#f8fafc;
-      --panel-strong:#eef5f6;
-      --text:#1f2937;
-      --muted:#6b7280;
-      --accent:#0f766e;
-      --accent-soft:rgba(15,118,110,.10);
-      --accent-border:#d7e3e6;
-      --shadow:0 10px 24px rgba(15,23,42,.06);
-      --radius:18px;
-    }
-    #smart-saetningsmaskine *{box-sizing:border-box}
-    #smart-saetningsmaskine .ss-wrap{background:var(--card);border:1px solid var(--card-border);border-radius:24px;overflow:hidden;box-shadow:var(--shadow)}
-    #smart-saetningsmaskine .ss-head{padding:24px 24px 8px;background:linear-gradient(180deg,#f8fbfb 0%, #ffffff 100%)}
-    #smart-saetningsmaskine .ss-title{margin:0;font-size:clamp(1.6rem,2.2vw,2.1rem);line-height:1.15;color:var(--text)}
-    #smart-saetningsmaskine .ss-sub{margin:10px 0 0;color:var(--muted);font-size:1rem;line-height:1.55}
-    #smart-saetningsmaskine .ss-body{padding:24px;display:grid;gap:20px}
-    #smart-saetningsmaskine .ss-panel{background:var(--panel);border:1px solid var(--accent-border);border-radius:var(--radius);padding:18px}
-    #smart-saetningsmaskine .ss-panel-title{margin:0 0 14px;font-size:1.05rem;font-weight:700;color:var(--text)}
-    #smart-saetningsmaskine .ss-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:14px}
-    #smart-saetningsmaskine .ss-field{display:flex;flex-direction:column;gap:7px}
-    #smart-saetningsmaskine .ss-field label{font-size:.95rem;font-weight:600;color:var(--text)}
-    #smart-saetningsmaskine .ss-field small{color:var(--muted);font-size:.83rem;line-height:1.35}
-    #smart-saetningsmaskine .ss-span-4{grid-column:span 4}
-    #smart-saetningsmaskine .ss-span-6{grid-column:span 6}
-    #smart-saetningsmaskine .ss-span-8{grid-column:span 8}
-    #smart-saetningsmaskine .ss-span-12{grid-column:span 12}
-    #smart-saetningsmaskine select,
-    #smart-saetningsmaskine input[type="text"]{
-      width:100%;min-height:46px;border:1px solid #d1d5db;border-radius:12px;padding:10px 12px;font-size:1rem;background:#fff;color:var(--text);outline:none
-    }
-    #smart-saetningsmaskine select:focus,
-    #smart-saetningsmaskine input[type="text"]:focus{border-color:var(--accent);box-shadow:0 0 0 4px rgba(15,118,110,.12)}
-    #smart-saetningsmaskine .ss-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
-    #smart-saetningsmaskine button{appearance:none;border:none;border-radius:14px;min-height:48px;padding:0 18px;font-size:1rem;font-weight:700;cursor:pointer;transition:transform .05s ease, opacity .2s ease, box-shadow .2s ease}
-    #smart-saetningsmaskine button:active{transform:translateY(1px)}
-    #smart-saetningsmaskine .ss-btn-primary{background:var(--accent);color:#fff;box-shadow:0 10px 18px rgba(15,118,110,.18)}
-    #smart-saetningsmaskine .ss-btn-secondary{background:#fff;color:var(--text);border:1px solid #d1d5db}
-    #smart-saetningsmaskine .ss-status{color:var(--muted);font-size:.95rem;min-height:1.3em}
-    #smart-saetningsmaskine .ss-sentence-card{background:#fff;border:1px solid var(--card-border);border-radius:24px;box-shadow:var(--shadow);padding:20px}
-    #smart-saetningsmaskine .ss-sentence-top{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
-    #smart-saetningsmaskine .ss-sentence-label{font-size:.9rem;color:var(--muted);font-weight:700;letter-spacing:.02em;text-transform:uppercase}
-    #smart-saetningsmaskine .ss-turn{font-size:.92rem;color:var(--muted)}
-    #smart-saetningsmaskine .ss-sentence{min-height:80px;background:var(--panel);border:1px solid var(--accent-border);border-radius:18px;padding:16px;line-height:1.9;font-size:1.1rem}
-    #smart-saetningsmaskine .ss-sentence-final{font-size:1.25rem;font-weight:700;color:var(--text);letter-spacing:.01em}
-    #smart-saetningsmaskine .ss-token{display:inline-block;margin:0 4px 8px 0;padding:7px 13px;border-radius:999px;background:#fff;border:1px solid #d1d5db;font-weight:700}
-    #smart-saetningsmaskine .ss-token.robot{background:var(--accent-soft);border-color:#9fd5cf;color:#0b5b54}
-    #smart-saetningsmaskine .ss-token.user{background:#fff7ed;border-color:#fed7aa;color:#9a3412}
-    #smart-saetningsmaskine .ss-empty{color:var(--muted);font-style:italic}
-    #smart-saetningsmaskine .ss-help{display:flex;flex-wrap:wrap;gap:8px}
-    #smart-saetningsmaskine .ss-chip{display:inline-flex;align-items:center;min-height:38px;padding:0 12px;border-radius:999px;border:1px solid #d1d5db;background:#fff;font-size:.95rem;cursor:pointer}
-    #smart-saetningsmaskine .ss-chip:hover{border-color:var(--accent);background:var(--accent-soft)}
-    #smart-saetningsmaskine .ss-list{margin:0;padding-left:18px;color:var(--muted);line-height:1.6}
-    #smart-saetningsmaskine .ss-done-banner{background:#ecfdf5;border:1.5px solid #6ee7b7;border-radius:14px;padding:12px 16px;color:#065f46;font-weight:700;font-size:1rem;margin-top:10px;display:none}
-    @media (max-width: 880px){
-      #smart-saetningsmaskine .ss-span-4,
-      #smart-saetningsmaskine .ss-span-6,
-      #smart-saetningsmaskine .ss-span-8{grid-column:span 12}
-    }
-    @media (max-width: 560px){
-      #smart-saetningsmaskine .ss-body,#smart-saetningsmaskine .ss-head{padding:18px}
-      #smart-saetningsmaskine .ss-sentence-card{padding:16px}
-    }
-  </style>
-
-  <div class="ss-wrap">
-    <div class="ss-head">
-      <h2 class="ss-title">Sætningsmaskinen</h2>
-      <p class="ss-sub">Byg en sætning sammen med robotten. Skriv ét ord ad gangen – robotten skriver automatisk det næste ord.</p>
+  <div class="page">
+    <div class="hero">
+      <h1>Sætningsmaskinen</h1>
+      <p>Byg sætninger sammen med robotten</p>
     </div>
 
-    <div class="ss-body">
-      <div class="ss-panel">        <h3 class="ss-panel-title">Indstillinger</h3>
-        <div class="ss-grid">
-          <div class="ss-field ss-span-4">
-            <label for="ss-startmode">Hvem starter?</label>
-            <select id="ss-startmode">
-              <option value="user">Jeg starter</option>
-              <option value="robot">Robotten starter</option>
-            </select>
-          </div>
-          <div class="ss-field ss-span-8">
-            <label for="ss-word-input">Skriv ét ord</label>
-            <input id="ss-word-input" type="text" autocomplete="off" spellcheck="false" placeholder="Skriv ét ord, fx jeg" />
-            <small>Skriv ét ord ad gangen. Når du trykker på "Tilføj ord", skriver robotten automatisk det næste ord.</small>
-          </div>
-          <div class="ss-field ss-span-12">
-            <div class="ss-actions">
-              <button class="ss-btn-primary" id="ss-add-word" type="button">Tilføj ord</button>
-              <button class="ss-btn-secondary" id="ss-end-sentence" type="button">Afslut sætning ✓</button>
-              <button class="ss-btn-secondary" id="ss-start" type="button">Start forfra</button>
-              <button class="ss-btn-secondary" id="ss-robot-start" type="button">Lad robotten starte nu</button>
+    <div id="smart-saetningsmaskine">
+      <div class="ss-wrap">
+        <div class="ss-head">
+          <h2 class="ss-title">Sætningsmaskinen</h2>
+          <p class="ss-sub">
+            Byg en sætning sammen med robotten. Skriv ét ord ad gangen – robotten skriver automatisk det næste ord.
+          </p>
+        </div>
+
+        <div class="ss-body">
+          <div class="ss-panel">
+            <h3 class="ss-panel-title">Indstillinger</h3>
+            <div class="ss-grid">
+              <div class="ss-field ss-span-4">
+                <label for="ss-startmode">Hvem starter?</label>
+                <select id="ss-startmode">
+                  <option value="user">Jeg starter</option>
+                  <option value="robot">Robotten starter</option>
+                </select>
+              </div>
+
+              <div class="ss-field ss-span-8">
+                <label for="ss-word-input">Skriv ét ord</label>
+                <input
+                  id="ss-word-input"
+                  type="text"
+                  autocomplete="off"
+                  spellcheck="false"
+                  placeholder="Skriv ét ord, fx jeg"
+                />
+                <small>
+                  Skriv ét ord ad gangen. Når du trykker på "Tilføj ord", skriver robotten automatisk det næste ord.
+                </small>
+              </div>
+
+              <div class="ss-field ss-span-12">
+                <div class="ss-actions">
+                  <button class="ss-btn-primary" id="ss-add-word" type="button">Tilføj ord</button>
+                  <button class="ss-btn-secondary" id="ss-end-sentence" type="button">Afslut sætning ✓</button>
+                  <button class="ss-btn-secondary" id="ss-start" type="button">Start forfra</button>
+                  <button class="ss-btn-secondary" id="ss-robot-start" type="button">Lad robotten starte nu</button>
+                </div>
+              </div>
+
+              <div class="ss-field ss-span-12">
+                <div class="ss-status" id="ss-status">Vælg hvem der starter, og begynd med ét ord.</div>
+              </div>
             </div>
           </div>
-          <div class="ss-field ss-span-12">
-            <div class="ss-status" id="ss-status">Vælg hvem der starter, og begynd med ét ord.</div>
+
+          <div class="ss-sentence-card">
+            <div class="ss-sentence-top">
+              <div class="ss-sentence-label">Sætning</div>
+              <div class="ss-turn" id="ss-turn">Ingen ord endnu</div>
+            </div>
+
+            <div class="ss-sentence" id="ss-sentence-output">
+              <span class="ss-empty">Sætningen kommer her.</span>
+            </div>
+
+            <div class="ss-done-banner" id="ss-done-banner">🎉 Sætningen er færdig!</div>
+          </div>
+
+          <div class="ss-panel">
+            <h3 class="ss-panel-title">Startforslag</h3>
+            <div class="ss-help" id="ss-starter-chips"></div>
+          </div>
+
+          <div class="ss-panel">
+            <h3 class="ss-panel-title">Sådan bruges Sætningsmaskinen</h3>
+            <ul class="ss-list">
+              <li>Vælg om du selv eller robotten skal starte.</li>
+              <li>Skriv ét ord ad gangen og tryk på "Tilføj ord".</li>
+              <li>Robotten skriver automatisk det næste ord.</li>
+              <li>Robotten gentager ikke sine egne ord i samme sætning.</li>
+              <li>Ordene nulstilles først ved "Start forfra" eller "Lad robotten starte nu".</li>
+            </ul>
           </div>
         </div>
-      </div>
-
-      <div class="ss-sentence-card">
-        <div class="ss-sentence-top">
-          <div class="ss-sentence-label">Sætning</div>
-          <div class="ss-turn" id="ss-turn">Ingen ord endnu</div>
-        </div>
-        <div class="ss-sentence" id="ss-sentence-output">
-          <span class="ss-empty">Sætningen kommer her.</span>
-        </div>
-        <div class="ss-done-banner" id="ss-done-banner">🎉 Sætningen er færdig!</div>
-      </div>
-
-      <div class="ss-panel">
-        <h3 class="ss-panel-title">Startforslag</h3>
-        <div class="ss-help" id="ss-starter-chips"></div>
-      </div>
-
-      <div class="ss-panel">
-        <h3 class="ss-panel-title">Sådan bruges Sætningsmaskinen</h3>
-        <ul class="ss-list">
-          <li>Vælg om du selv eller robotten skal starte.</li>
-          <li>Skriv ét ord ad gangen og tryk på "Tilføj ord".</li>
-          <li>Robotten skriver automatisk det næste ord.</li>
-          <li>Sætningen afsluttes automatisk efter 8-9 ord, eller tryk på "Afslut sætning".</li>
-        </ul>
       </div>
     </div>
   </div>
 
-  <script id="ss-data" type="application/json">{"metadata":{"language":"da","audience":"indskoling","source_word_list":"Alinea 500 hyppigste ord","source_next_words":"UD Danish DDT","top_words_count":493,"max_next_words":10,"fallback_word":"og","version":"2.0"},"starter_words":["jeg","du","vi","det","den","han","hun","mor","far","barn","pige","vand","hus","bil"],"words":{"og":{"rank":1,"best_next_word":"det","next_words":["det","en","så","i","de","den","jeg","at","derfor","har"]},"i":{"rank":2,"best_next_word":"en","next_words":["en","den","det","de","et","går","dag","stedet"]},"at":{"rank":3,"best_next_word":"de","next_words":["de","det","få","der","være","vi","han","den","blive","man"]},"det":{"rank":4,"best_next_word":"er","next_words":["er","var","ikke","kan","har","samme","vil","i","blev"]},"er":{"rank":5,"best_next_word":"det","next_words":["det","en","ikke","der","et","i","blevet","den","også","jo"]},"en":{"rank":6,"best_next_word":"af","next_words":["af","ny","anden","del","stor","lille","mand","lang","meget"]},"på":{"rank":7,"best_next_word":"en","next_words":["en","at","det","den","et","de","vej","samme","plads"]},"til":{"rank":8,"best_next_word":"at","next_words":["at","den","en","de","et","det","sig","i"]},"med":{"rank":9,"best_next_word":"en","next_words":["en","at","et","i","den","det","sin","de","til","hende"]},"af":{"rank":10,"best_next_word":"de","next_words":["de","en","den","det","dem","et","at","i"]},"ikke":{"rank":11,"best_next_word":"er","next_words":["er","kan","har","at","noget","var","en","være","til"]},"var":{"rank":12,"best_next_word":"det","next_words":["det","der","i","en","på","ikke","kommet","så","ved"]},"for":{"rank":13,"best_next_word":"at","next_words":["at","det","den","de","en","et","mig","meget","mange","dem"]},"der":{"rank":14,"best_next_word":"er","next_words":["er","har","var","ikke","skal","i","kan","blev","en"]},"den":{"rank":15,"best_next_word":"store","next_words":["store","ene","anden","måde","er","nye","første","har","lille"]},"de":{"rank":16,"best_next_word":"to","next_words":["to","fleste","er","har","andre","kan","ikke","mange","store"]},"jeg":{"rank":17,"best_next_word":"har","next_words":["har","er","ikke","kan","tror","var","kunne","vil","ved"]},"han":{"rank":18,"best_next_word":"har","next_words":["har","er","ikke","havde","i","var","skulle","fik","vil","blev"]},"som":{"rank":19,"best_next_word":"en","next_words":["en","er","den","i","et","det","om","de","han","jeg"]},"har":{"rank":20,"best_next_word":"fået","next_words":["fået","en","i","ikke","han","jeg","vi","man","et"]},"et":{"rank":21,"best_next_word":"par","next_words":["par","af","år","godt","lille","stort","nyt","helt","andet","øjeblik"]},"så":{"rank":22,"best_next_word":"er","next_words":["er","meget","kan","mange","de","skal","det","vi","han","godt"]},"om":{"rank":23,"best_next_word":"at","next_words":["at","det","en","den","der","et","de","jeg","han","man"]},"sig":{"rank":24,"best_next_word":"selv","next_words":["selv","i","om","til","med","for","at","og","på","over"]},"hun":{"rank":25,"best_next_word":"var","next_words":["var","har","havde","er","kan","blev","kunne","sig","ikke","ville"]},"havde":{"rank":26,"best_next_word":"fået","next_words":["fået","været","jeg","han","de","hun","en","i","set","haft"]},"kan":{"rank":27,"best_next_word":"ikke","next_words":["ikke","man","få","være","jeg","det","blive","se","vi","du"]},"men":{"rank":28,"best_next_word":"det","next_words":["det","i","jeg","der","de","ikke","han","vi","den","hun"]},"fra":{"rank":29,"best_next_word":"den","next_words":["den","de","det","en","et","ham","sin","at"]},"ved":{"rank":30,"best_next_word":"at","next_words":["at","siden","de","ikke","en","det","jeg","med","den","flere"]},"vi":{"rank":31,"best_next_word":"har","next_words":["har","er","ikke","skal","kan","vil","så","havde","må","i"]},"mig":{"rank":32,"best_next_word":"ikke","next_words":["ikke","selv","i","til","om","over","så","altid","lige","at"]},"skal":{"rank":33,"best_next_word":"være","next_words":["være","have","vi","der","ikke","man","nu","gøre","de","du"]},"ud":{"rank":34,"best_next_word":"af","next_words":["af","i","til","over","på","fra","at","med","og","for"]},"kunne":{"rank":35,"best_next_word":"ikke","next_words":["ikke","være","se","have","man","gå","jeg","blive","tage","de"]},"man":{"rank":36,"best_next_word":"ikke","next_words":["ikke","kan","skal","er","i","har","bliver","også","vil","ved"]},"du":{"rank":37,"best_next_word":"ikke","next_words":["ikke","er","må","kan","har","skal","gør","nok","i","da"]},"ham":{"rank":38,"best_next_word":"og","next_words":["og","med","til","i","om","selv","en","på","lidt"]},"blev":{"rank":39,"best_next_word":"der","next_words":["der","de","i","han","den","en","det","ved","hun"]},"op":{"rank":40,"best_next_word":"i","next_words":["i","til","og","på","med","for","igen","fra","ad","efter"]},"være":{"rank":41,"best_next_word":"et","next_words":["et","en","med","i","blevet","det","sammen","noget","helt"]},"over":{"rank":42,"best_next_word":"for","next_words":["for","hele","de","det","den","og","i","en","sin","et"]},"også":{"rank":43,"best_next_word":"i","next_words":["i","er","en","at","det","på","har","et","for","fået"]},"vil":{"rank":44,"best_next_word":"være","next_words":["være","blive","jeg","det","ikke","du","kunne","gerne","man","have"]},"noget":{"rank":45,"best_next_word":"at","next_words":["at","af","i","med","om","som","nyt","for","andet","mere"]},"da":{"rank":46,"best_next_word":"han","next_words":["han","hun","de","jeg","vi","det","der","ikke","også"]},"sin":{"rank":47,"best_next_word":"mor","next_words":["mor","far","mand","store","søn","meget","krop"]},"nu":{"rank":48,"best_next_word":"er","next_words":["er","skal","har","må","vil","også","kan","kommer","at","en"]},"selv":{"rank":49,"best_next_word":"om","next_words":["om","har","at","som","og","på","er","en","til","i"]},"hvor":{"rank":50,"best_next_word":"de","next_words":["de","han","der","man","mange","vi","jeg","det","den","meget"]},"eller":{"rank":51,"best_next_word":"i","next_words":["i","anden","en","andet","mindre","som","hvad","på","de","om"]},"efter":{"rank":52,"best_next_word":"at","next_words":["at","en","et","blev","de","det","den","hende","ham"]},"sagde":{"rank":53,"best_next_word":"han","next_words":["han","hun","jeg","det","en","til","du","på","i"]},"ind":{"rank":54,"best_next_word":"i","next_words":["i","på","og","for","med","til","over","mod","igennem"]},"ville":{"rank":55,"best_next_word":"jeg","next_words":["jeg","ikke","have","være","komme","det","blive","han","hun","stå"]},"meget":{"rank":56,"best_next_word":"mere","next_words":["mere","af","at","i","som","om","til","lang"]},"år":{"rank":57,"best_next_word":"siden","next_words":["siden","har","og","er","i","på","gamle","tilbage","været","med"]},"skulle":{"rank":58,"best_next_word":"være","next_words":["være","have","til","få","han","det","sige","der","gå","komme"]},"hende":{"rank":59,"best_next_word":"i","next_words":["i","til","og","på","ind","for","aldrig","sammen","at","ville"]},"dem":{"rank":60,"best_next_word":"var","next_words":["var","er","i","på","til","og","vi","der","en","med"]},"hans":{"rank":61,"best_next_word":"far","next_words":["far","mor","øjne","familie","unge"]},"når":{"rank":62,"best_next_word":"de","next_words":["de","man","det","han","hun","jeg","vi","der","en","den"]},"have":{"rank":63,"best_next_word":"en","next_words":["en","været","et","noget","gjort","svært","haft","samme","sagt","og"]},"siger":{"rank":64,"best_next_word":"han","next_words":["han","den","hun","en","de","du","sig","ja","jeg"]},"været":{"rank":65,"best_next_word":"med","next_words":["med","på","i","en","ude","så","det","helt","svært","let"]},"hvad":{"rank":66,"best_next_word":"der","next_words":["der","er","de","han","det","jeg","skal","man","vi","siger"]},"min":{"rank":67,"best_next_word":"far","next_words":["far","mand","familie","pige","tid"]},"få":{"rank":68,"best_next_word":"en","next_words":["en","den","et","ham","det","gang","mere","noget","hjælp"]},"to":{"rank":69,"best_next_word":"år","next_words":["år","store","børn","gange","dage","af","er","mænd","små"]},"godt":{"rank":70,"best_next_word":"som","next_words":["som","nok","og","i","af","være","ud","op","på","at"]},"kom":{"rank":71,"best_next_word":"til","next_words":["til","på","ind","i","vi","fra","med","han","ud","først"]},"mere":{"rank":72,"best_next_word":"end","next_words":["end","for","eller","på","af","plads","er","til","ud"]},"alle":{"rank":73,"best_next_word":"de","next_words":["de","andre","er","vil","har","sammen","ved","dem"]},"lidt":{"rank":74,"best_next_word":"mere","next_words":["mere","længere","på","med","i","over","af","op","igennem"]},"gik":{"rank":75,"best_next_word":"ud","next_words":["ud","det","til","op","jeg","ind","hen","i","på","med"]},"fik":{"rank":76,"best_next_word":"jeg","next_words":["jeg","en","han","alle","lov","da","sin","den","i","et"]},"mod":{"rank":77,"best_next_word":"de","next_words":["de","en","den","at","det","til","hende","et"]},"kun":{"rank":78,"best_next_word":"en","next_words":["en","er","kan","om","havde","den","for","med","nogle","i"]},"ned":{"rank":79,"best_next_word":"i","next_words":["i","til","på","ad","og","af","med","over","for"]},"end":{"rank":80,"best_next_word":"de","next_words":["de","i","ikke","vi","en","at","nogen","jeg","tre"]},"sammen":{"rank":81,"best_next_word":"med","next_words":["med","i","på","for","og","have","siden","af","igen","brug"]},"helt":{"rank":82,"best_next_word":"nyt","next_words":["nyt","at","store","så","i","ny","op","anden","tilbage"]},"deres":{"rank":83,"best_next_word":"mor","next_words":["mor","barn","gamle","dage","børn","hænder"]},"jo":{"rank":84,"best_next_word":"ikke","next_words":["ikke","også","så","ingen","en","være","næsten","heller","stadig","i"]},"bliver":{"rank":85,"best_next_word":"det","next_words":["det","en","der","ikke","til","jeg","han","den","mest"]},"mange":{"rank":86,"best_next_word":"andre","next_words":["andre","år","af","børn","er","steder","forskellige","der"]},"må":{"rank":87,"best_next_word":"jeg","next_words":["jeg","være","ikke","de","have","man","vi","jo","der","i"]},"hele":{"rank":88,"best_next_word":"tiden","next_words":["tiden","verden","taget","landet","det","mit","hans"]},"lige":{"rank":89,"best_next_word":"så","next_words":["så","før","med","ved","i","nu","efter","over","fra","gøre"]},"andre":{"rank":90,"best_next_word":"steder","next_words":["steder","ord","har","er","i","end","til","gange","og"]},"igen":{"rank":91,"best_next_word":"i","next_words":["i","og","at","var","klar","kommer","for","lige","gik","kan"]},"hendes":{"rank":92,"best_next_word":"far","next_words":["far","mand","øjne","og","hænder","mere","to"]},"hvis":{"rank":93,"best_next_word":"man","next_words":["man","der","jeg","de","du","det","vi","den","ikke","han"]},"se":{"rank":94,"best_next_word":"på","next_words":["på","ud","en","mere","det","ham","for","mor","at","folk"]},"gang":{"rank":95,"best_next_word":"med","next_words":["med","i","på","til","om","var","er","kunne","og","det"]},"dag":{"rank":96,"best_next_word":"er","next_words":["er","i","og","kan","for","ligger","blev","at"]},"blive":{"rank":97,"best_next_word":"en","next_words":["en","et","i","til","glad","holdt"]},"os":{"rank":98,"best_next_word":"i","next_words":["i","til","få","med","for","en","og","alle","selv","tage"]},"nok":{"rank":99,"best_next_word":"til","next_words":["til","så","med","sige","en","at","komme","engang"]},"lille":{"rank":100,"best_next_word":"pige","next_words":["pige","mand","land","uge","liv","del"]},"bare":{"rank":101,"best_next_word":"ikke","next_words":["ikke","at","i","en","lidt","gå","bliver","jeg"]},"her":{"rank":102,"best_next_word":"i","next_words":["i","er","har","vil","står","kan","for","kom","med"]},"går":{"rank":103,"best_next_word":"i","next_words":["i","på","til","ind","ud","en","var","med","det","de"]},"dig":{"rank":104,"best_next_word":"for","next_words":["for","med","i","og","noget","over","om","det","mere"]},"alt":{"rank":105,"best_next_word":"for","next_words":["for","det","om","fra","på","går","i","ikke","sammen","er"]},"uden":{"rank":106,"best_next_word":"at","next_words":["at","for","videre","om","en","efter","det"]},"under":{"rank":107,"best_next_word":"en","next_words":["en","alle","det","på","vand","de","et","anden"]},"sit":{"rank":108,"best_next_word":"liv","next_words":["liv","hjem","gamle","ansigt","land","gode","ben"]},"kommer":{"rank":109,"best_next_word":"til","next_words":["til","fra","de","der","du","ikke","ind","en","det","i"]},"store":{"rank":110,"best_next_word":"børn","next_words":["børn","del","og","fra","verden","som","arbejde"]},"siden":{"rank":111,"best_next_word":"af","next_words":["af","har","den","gik","han","vi","de","år","ville"]},"aldrig":{"rank":112,"best_next_word":"har","next_words":["har","før","så","nogen","fik","været","mere","holdt","blev"]},"tid":{"rank":113,"best_next_word":"til","next_words":["til","at","i","og","efter","var","med","være","før","fra"]},"anden":{"rank":114,"best_next_word":"måde","next_words":["måde","gang","side","og","mand","er","om","bil"]},"før":{"rank":115,"best_next_word":"man","next_words":["man","den","havde","eller","i","et","og","vi","det","der"]},"tilbage":{"rank":116,"best_next_word":"til","next_words":["til","i","med","af","igen","om","for","er","på","har"]},"første":{"rank":117,"best_next_word":"gang","next_words":["gang","og","dage","af","to","som","arbejde"]},"ingen":{"rank":119,"best_next_word":"af","next_words":["af","i","kan","der","anden","mennesker"]},"gå":{"rank":120,"best_next_word":"med","next_words":["med","i","til","på","af","hjem","rundt","hen","ind"]},"andet":{"rank":121,"best_next_word":"sted","next_words":["sted","end","af","kan","i","er","godt"]},"fordi":{"rank":122,"best_next_word":"de","next_words":["de","han","der","man","jeg","hun","det","vi","en"]},"får":{"rank":123,"best_next_word":"man","next_words":["man","du","en","de","han","jeg","for","i","et"]},"denne":{"rank":126,"best_next_word":"gang","next_words":["gang","uge","verden","i","tid","dag"]},"komme":{"rank":127,"best_next_word":"til","next_words":["til","i","ud","med","hjem","på","ind","en","over","fra"]},"gøre":{"rank":128,"best_next_word":"det","next_words":["det","sig","en","dem","med","alt","den","noget","ham","meget"]},"sine":{"rank":129,"best_next_word":"venner","next_words":["venner","øjne","lidt","børn","med","dage","ting"]},"samme":{"rank":130,"best_next_word":"måde","next_words":["måde","år","grund","øjeblik","som","tid","dag","til"]},"nogle":{"rank":131,"best_next_word":"af","next_words":["af","få","år","steder","gode","ganske"]},"mand":{"rank":132,"best_next_word":"i","next_words":["i","til","med","på","er","have","skulle","blive","og"]},"mens":{"rank":133,"best_next_word":"de","next_words":["de","han","den","jeg","det","der","et","folk","hun"]},"sådan":{"rank":134,"best_next_word":"en","next_words":["en","er","som","noget","et","at","kommer","lidt"]},"stod":{"rank":135,"best_next_word":"i","next_words":["i","og","stadig","tilbage","den","frem","man","for","ikke","en"]},"altid":{"rank":136,"best_next_word":"at","next_words":["at","har","været","er","og","noget","det","op","med","blev"]},"nogen":{"rank":137,"best_next_word":"af","next_words":["af","kan","helt","som","at","må","hørte"]},"mellem":{"rank":138,"best_next_word":"de","next_words":["de","en","den","sig","gamle","deres","det","forældre","på"]},"sidste":{"rank":139,"best_next_word":"år","next_words":["år","uge","to","par","gang","par","fire","fem"]},"måtte":{"rank":140,"best_next_word":"have","next_words":["have","vi","i","gå","være","det","de","han","gerne"]},"tog":{"rank":141,"best_next_word":"en","next_words":["en","jeg","den","hun","hendes","han","med","for","det"]},"frem":{"rank":142,"best_next_word":"til","next_words":["til","for","i","på","mod","går","efter","og","fra"]},"endnu":{"rank":143,"best_next_word":"ikke","next_words":["ikke","mere","har","bedre","en","et","kan","i"]},"hen":{"rank":144,"best_next_word":"til","next_words":["til","og","over","ad","at"]},"måske":{"rank":145,"best_next_word":"ikke","next_words":["ikke","er","få","være","også","kan","godt","aldrig","var"]},"fået":{"rank":146,"best_next_word":"en","next_words":["en","et","mere","vores","den","at","bedre","lidt","set"]},"sige":{"rank":147,"best_next_word":"til","next_words":["til","noget","fra","om","en","lige","sig","hjemme"]},"hjem":{"rank":148,"best_next_word":"fra","next_words":["fra","med","til","og","igen","i","om","på","for"]},"mor":{"rank":149,"best_next_word":"var","next_words":["var","til","blev","og","ud","begyndte","i","havde","ikke"]},"nye":{"rank":150,"best_next_word":"i","next_words":["i","steder","og","øjne","mor","år","venner","for"]},"tre":{"rank":152,"best_next_word":"dage","next_words":["dage","måneder","år","gange","af","nye","ting"]},"ser":{"rank":153,"best_next_word":"ud","next_words":["ud","det","sig","man","de","i","vi","mig"]},"hos":{"rank":154,"best_next_word":"sin","next_words":["sin","de","en","den","hende","det","folk","ikke","ham"]},"par":{"rank":155,"best_next_word":"år","next_words":["år","timer","måneder","i","gode","andre","gamle","gange"]},"flere":{"rank":156,"best_next_word":"af","next_words":["af","gange","og","år","dage","ting","store"]},"tage":{"rank":157,"best_next_word":"en","next_words":["en","med","til","sig","meget","os","hånd","på"]},"gør":{"rank":158,"best_next_word":"det","next_words":["det","vi","man","alligevel","den","i","også","de","lige"]},"står":{"rank":159,"best_next_word":"på","next_words":["på","den","det","i","om","han","til","her","en","et"]},"gamle":{"rank":160,"best_next_word":"dage","next_words":["dage","og","mænd","bil","mand","ud","som"]},"næsten":{"rank":161,"best_next_word":"alle","next_words":["alle","ikke","en","til","se","som","på"]},"hver":{"rank":162,"best_next_word":"gang","next_words":["gang","sin","dag","sit","for","en","eneste","anden","morgen","og"]},"stor":{"rank":163,"best_next_word":"del","next_words":["del","og","som","i","glæde"]},"hinanden":{"rank":164,"best_next_word":"og","next_words":["og","godt","efter","på","op","end","meget","om","ret","fra"]},"rundt":{"rank":165,"best_next_word":"i","next_words":["i","på","med","om","og","mellem","omkring","ad"]},"ad":{"rank":166,"best_next_word":"vejen","next_words":["vejen","hende","den","døren"]},"mit":{"rank":167,"best_next_word":"liv","next_words":["liv","arbejde","land","hus","lille","stille","hår","forhold"]},"sad":{"rank":168,"best_next_word":"i","next_words":["i","ved","de","på","stadig","der","en"]},"gjorde":{"rank":169,"best_next_word":"det","next_words":["det","han","hvad","noget","man","vi","os","mig","ikke","lidt"]},"far":{"rank":170,"best_next_word":"og","next_words":["og","har","havde","er","i","på","så","godt","blev","står"]},"stadig":{"rank":171,"best_next_word":"ikke","next_words":["ikke","er","en","kan","i","den","sin","ved","på","lige"]},"dette":{"rank":172,"best_next_word":"er","next_words":["er","var","og","i","skal","kan"]},"omkring":{"rank":173,"best_next_word":"en","next_words":["en","det","de","sig","i","om"]},"mine":{"rank":174,"best_next_word":"børn","next_words":["børn","forældre","ben"]},"børn":{"rank":175,"best_next_word":"og","next_words":["og","i","bliver","vil","var","blev"]},"mennesker":{"rank":176,"best_next_word":"på","next_words":["på","i","og","vil","var","som","ikke","kan"]},"hvordan":{"rank":177,"best_next_word":"den","next_words":["den","der","det","man","han","en","de","gik"]},"dog":{"rank":178,"best_next_word":"ikke","next_words":["ikke","langt","fra","et","for","i","en","også","ville"]},"inden":{"rank":179,"best_next_word":"for","next_words":["for","det","hun","vi","i","han","du","to"]},"vores":{"rank":180,"best_next_word":"lille","next_words":["lille","alt","forhold","på","mand","liv"]},"arbejde":{"rank":181,"best_next_word":"med","next_words":["med","for","i","her","videre","nu","på","en","ved","af"]},"liv":{"rank":182,"best_next_word":"og","next_words":["og","i","på","med","vil","som","har"]},"først":{"rank":183,"best_next_word":"og","next_words":["og","på","i","har","et","med","om"]},"både":{"rank":184,"best_next_word":"i","next_words":["i","den","dem","de","ude","at","til","sammen","hos"]},"sted":{"rank":185,"best_next_word":"i","next_words":["i","til","langt","at","med","på"]},"lå":{"rank":187,"best_next_word":"i","next_words":["i","og","stadig","han","med","på","vi"]},"set":{"rank":188,"best_next_word":"den","next_words":["den","er","en","noget","så","verden","på","i"]},"tror":{"rank":189,"best_next_word":"ikke","next_words":["ikke","på","vi","det","du","jeg","de","godt"]},"finde":{"rank":190,"best_next_word":"på","next_words":["på","sig","ud","sted","hjem","os","noget","en","frem"]},"måde":{"rank":191,"best_next_word":"at","next_words":["at","som","er","kunne","i","har","blev","en"]},"langt":{"rank":193,"best_next_word":"fra","next_words":["fra","mere","de","ud","ude","inde","efter"]},"heller":{"rank":194,"best_next_word":"ikke","next_words":["ikke","aldrig","et","om"]},"holdt":{"rank":195,"best_next_word":"fast","next_words":["fast","vi","på","en","et","sammen","den"]},"vidste":{"rank":196,"best_next_word":"jeg","next_words":["jeg","du","ingen","for"]},"længe":{"rank":197,"best_next_word":"og","next_words":["og","siden","har","om","til","før","jeg"]},"allerede":{"rank":198,"best_next_word":"i","next_words":["i","på","har","er","mange","nu","et","taget","igen"]},"begyndte":{"rank":199,"best_next_word":"at","next_words":["at","med","på","i","og","jeg","den","han","nu"]},"spurgte":{"rank":200,"best_next_word":"hun","next_words":["hun","han","mig","min","jeg"]},"god":{"rank":201,"best_next_word":"tid","next_words":["tid","og","nok","til"]},"din":{"rank":202,"best_next_word":"mor","next_words":["mor","far","krop","lille","pige","bil"]},"holde":{"rank":203,"best_next_word":"sig","next_words":["sig","ud","øjne","til","op","en","bil","dem","på","et"]},"side":{"rank":204,"best_next_word":"af","next_words":["af","har","eller","til","var","i","om","med","kan"]},"gange":{"rank":206,"best_next_word":"i","next_words":["i","om","har","før","så","med","er","to"]},"bag":{"rank":207,"best_next_word":"på","next_words":["på","ham","de","sig","mig","en","dem"]},"øjne":{"rank":208,"best_next_word":"og","next_words":["og","så","se","kunne","på"]},"ene":{"rank":209,"best_next_word":"side","next_words":["side","eller","hånd","sted","dag","af","gang","ben","mand"]},"unge":{"rank":210,"best_next_word":"mand","next_words":["mand","mænd","i","på","pige","piger"]},"haft":{"rank":211,"best_next_word":"en","next_words":["en","lov","i","nogen","siden","et","det","min"]},"gerne":{"rank":212,"best_next_word":"være","next_words":["være","have","ville","vil","med","og","tage","den","gå"]},"tale":{"rank":213,"best_next_word":"om","next_words":["om","med","til","som","uden","på","os","og","går"]},"væk":{"rank":214,"best_next_word":"fra","next_words":["fra","på","og","af"]},"små":{"rank":215,"best_next_word":"og","next_words":["og","tre","eller","børn"]},"vel":{"rank":216,"best_next_word":"at","next_words":["at","en","muligt","sådan","de","ikke","aldrig"]},"folk":{"rank":217,"best_next_word":"til","next_words":["til","ikke","bliver","af","kan","skal","i","med"]},"del":{"rank":218,"best_next_word":"af","next_words":["af","i","er","ikke","vi","mennesker"]},"ny":{"rank":219,"best_next_word":"og","next_words":["og","måde","på","en","ved"]},"dage":{"rank":220,"best_next_word":"efter","next_words":["efter","med","som","i","og","helt","og","havde"]},"gav":{"rank":221,"best_next_word":"et","next_words":["et","hende","en","gode","mit","op","ham","alene","mig"]},"bedre":{"rank":224,"best_next_word":"end","next_words":["end","at","noget","bliver","til","få"]},"taget":{"rank":225,"best_next_word":"på","next_words":["på","til","mig","noget","med","det","sin","ved","i"]},"kommet":{"rank":226,"best_next_word":"i","next_words":["i","så","en","ind","frem","ganske","hjem","ny"]},"vej":{"rank":227,"best_next_word":"til","next_words":["til","fra","ud","at","ind","i","mod","op"]},"ude":{"rank":228,"best_next_word":"i","next_words":["i","og","at","eller","fra","for","til","af","på"]},"ligger":{"rank":229,"best_next_word":"i","next_words":["i","på","et","der","under","og","hans","bag","en"]},"mener":{"rank":230,"best_next_word":"han","next_words":["han","om","at","er","også","jeg","ikke"]},"stille":{"rank":232,"best_next_word":"op","next_words":["op","og","sin","dage","med","siden"]},"ret":{"rank":233,"best_next_word":"til","next_words":["til","meget","stor","lille","så"]},"fire":{"rank":234,"best_next_word":"år","next_words":["år","et","gange","har","fra","er","børn"]},"give":{"rank":235,"best_next_word":"dem","next_words":["dem","et","sin","en","mine","skal","hende"]},"altså":{"rank":237,"best_next_word":"ikke","next_words":["ikke","om","en","god","have","med","se"]},"ting":{"rank":238,"best_next_word":"på","next_words":["på","tager","har","til","for"]},"videre":{"rank":240,"best_next_word":"med","next_words":["med","på","siger","kan","til","i"]},"mest":{"rank":242,"best_next_word":"af","next_words":["af","muligt","er","for","lyst"]},"gået":{"rank":243,"best_next_word":"til","next_words":["til","ind","for","ned","i","videre","godt","hjemme","op"]},"verden":{"rank":244,"best_next_word":"over","next_words":["over","i","at","er","kan","for","og","rundt","som"]},"tager":{"rank":245,"best_next_word":"det","next_words":["det","ikke","vi","man","i","alle","sig","ud","den"]},"egen":{"rank":247,"best_next_word":"søn","next_words":["søn","hånd","fri","bil"]},"grund":{"rank":248,"best_next_word":"af","next_words":["af","til","blev","var"]},"derfor":{"rank":249,"best_next_word":"er","next_words":["er","skal","har","vil","et","blev","kan","bliver","fik"]},"penge":{"rank":250,"best_next_word":"til","next_words":["til","og","i","nok","ved","skal"]},"alene":{"rank":252,"best_next_word":"i","next_words":["i","kan","til","var","om","et","med","på","være","de"]},"disse":{"rank":254,"best_next_word":"dage","next_words":["dage","ting","har","her","år","to","med"]},"ord":{"rank":255,"best_next_word":"at","next_words":["at","om","i","er","de"]},"fald":{"rank":257,"best_next_word":"ikke","next_words":["ikke","blev","i","kan","har","bliver"]},"ellers":{"rank":258,"best_next_word":"er","next_words":["er","ikke","var","have","komme","har","meget","havde","først"]},"synes":{"rank":259,"best_next_word":"jeg","next_words":["jeg","at","de","også","du","ikke","han","om"]},"aften":{"rank":260,"best_next_word":"er","next_words":["er","i","som","kan","for","på","vil"]},"næste":{"rank":261,"best_next_word":"uge","next_words":["uge","år","dag","gange","side","liv","var"]},"pludselig":{"rank":262,"best_next_word":"en","next_words":["en","var","ikke","det","og"]},"sidder":{"rank":263,"best_next_word":"på","next_words":["på","en","ved","han","foran","bare","lige","man"]},"gode":{"rank":264,"best_next_word":"og","next_words":["og","til","hos","at","dage","ved"]},"inde":{"rank":265,"best_next_word":"i","next_words":["i","som","på","for","til"]},"netop":{"rank":267,"best_next_word":"nu","next_words":["nu","ikke","var","har","af","der","som","i"]},"mindst":{"rank":268,"best_next_word":"i","next_words":["i","på","har","tre","af"]},"slet":{"rank":269,"best_next_word":"ikke","next_words":["ikke","og"]},"hånd":{"rank":270,"best_next_word":"på","next_words":["på","om","af","frem","har","over"]},"hurtigt":{"rank":271,"best_next_word":"blive","next_words":["blive","kan","at","op","og","af","ud"]},"begge":{"rank":272,"best_next_word":"er","next_words":["er","hænder","to","har","gange","de","den","ben"]},"foran":{"rank":273,"best_next_word":"huset","next_words":["huset","og","mig","den","sig","det"]},"ja":{"rank":274,"best_next_word":"til","next_words":["til","så","der","næsten","og"]},"giver":{"rank":275,"best_next_word":"en","next_words":["en","ham","et","mig","i","os","mulighed"]},"vist":{"rank":276,"best_next_word":"sig","next_words":["sig","på","et","kun","først","for"]},"fandt":{"rank":280,"best_next_word":"sted","next_words":["sted","en","jeg","sig","vi","det","han","ud","hurtigt"]},"pige":{"rank":282,"best_next_word":"på","next_words":["på","har","med","og","du"]},"fast":{"rank":283,"best_next_word":"og","next_words":["og","ved","på","til","i","som","arbejde"]},"blot":{"rank":287,"best_next_word":"at","next_words":["at","kan","for","i","den","skal","en","gør"]},"engang":{"rank":291,"best_next_word":"ikke","next_words":["ikke","var","stod","for","til","skal","få"]},"vide":{"rank":292,"best_next_word":"hvad","next_words":["hvad","alt","hvor","om"]},"større":{"rank":294,"best_next_word":"end","next_words":["end","eller","og"]},"plads":{"rank":295,"best_next_word":"i","next_words":["i","til","har","på"]},"snart":{"rank":296,"best_next_word":"ikke","next_words":["ikke","til","blive","stor","være"]},"fem":{"rank":297,"best_next_word":"år","next_words":["år","dage","af","andre","i"]},"morgen":{"rank":298,"best_next_word":"i","next_words":["i","og","kommer","aften","at","det"]},"barn":{"rank":301,"best_next_word":"i","next_words":["i","jeg","der","fra"]},"svært":{"rank":302,"best_next_word":"at","next_words":["at","ved","for","det","med"]},"holder":{"rank":303,"best_next_word":"op","next_words":["op","ikke","jo","en","til","sig","af","han"]},"stå":{"rank":304,"best_next_word":"på","next_words":["på","og","fast","op","for","flere"]},"vejen":{"rank":305,"best_next_word":"til","next_words":["til","med","op"]},"kort":{"rank":307,"best_next_word":"tid","next_words":["tid","før","efter","og","til"]},"lod":{"rank":309,"best_next_word":"sig","next_words":["sig","mig","den"]},"fortæller":{"rank":310,"best_next_word":"om","next_words":["om","en","hun","noget","også","han"]},"ansigt":{"rank":312,"best_next_word":"ved","next_words":["ved","om","bag"]},"byen":{"rank":313,"best_next_word":"er","next_words":["er","for","med","som","og","ikke","i"]},"livet":{"rank":314,"best_next_word":"går","next_words":["går","aldrig","på","har"]},"nemlig":{"rank":316,"best_next_word":"at","next_words":["at","ikke","som","den","det","alle","være","i"]},"klar":{"rank":317,"best_next_word":"til","next_words":["til","over","i","tale","igen","en"]},"lang":{"rank":319,"best_next_word":"tid","next_words":["tid","og"]},"lave":{"rank":320,"best_next_word":"en","next_words":["en","to","på","den","et","i"]},"tænke":{"rank":322,"best_next_word":"på","next_words":["på","og","en","selv","efter"]},"sat":{"rank":324,"best_next_word":"i","next_words":["i","ind","til","to","en","på","det","gang"]},"mænd":{"rank":325,"best_next_word":"er","next_words":["er","i","med","og","har","sammen","havde"]},"fortælle":{"rank":327,"best_next_word":"noget","next_words":["noget","mig","lidt","en","om"]},"hørte":{"rank":328,"best_next_word":"den","next_words":["den","heller","om","sit","hun","man","det","en"]},"bedste":{"rank":329,"best_next_word":"venner","next_words":["venner","for","og","vi"]},"virkelig":{"rank":332,"best_next_word":"være","next_words":["være","er","have","har","var","glad","ud"]},"huset":{"rank":333,"best_next_word":"på","next_words":["på"]},"hjemme":{"rank":335,"best_next_word":"i","next_words":["i","hos","og","på"]},"fortalte":{"rank":336,"best_next_word":"om","next_words":["om","mig","kun","i","han"]},"lyst":{"rank":337,"best_next_word":"til","next_words":["til","på"]},"let":{"rank":338,"best_next_word":"at","next_words":["at","for","blive","til","samme","få"]},"rigtig":{"rank":339,"best_next_word":"er","next_words":["er","din"]},"lov":{"rank":340,"best_next_word":"til","next_words":["til","at","eller"]},"faktisk":{"rank":342,"best_next_word":"er","next_words":["er","ikke","også","kan","i","kun","det","har"]},"hvem":{"rank":343,"best_next_word":"der","next_words":["der","de","mig","er","man","den"]},"ligesom":{"rank":344,"best_next_word":"de","next_words":["de","sin","man","den","alle","med","en"]},"hvorfor":{"rank":346,"best_next_word":"det","next_words":["det","ikke","de","jeg","kommer","vil","gør","du","skal"]},"bange":{"rank":347,"best_next_word":"for","next_words":["for","mennesker"]},"problemer":{"rank":349,"best_next_word":"med","next_words":["med","i","at"]},"kender":{"rank":350,"best_next_word":"ikke","next_words":["ikke","hinanden","vi","alle","ham","også","den","jeg"]},"muligt":{"rank":352,"best_next_word":"at","next_words":["at","uden","og","fra"]},"forbi":{"rank":353,"best_next_word":"ham","next_words":["ham","det"]},"glad":{"rank":358,"best_next_word":"for","next_words":["for","og","af"]},"møde":{"rank":359,"best_next_word":"med","next_words":["med","eller","i","frem","det","og"]},"vand":{"rank":361,"best_next_word":"en","next_words":["en","i","og","fra","til","under"]},"ofte":{"rank":362,"best_next_word":"med","next_words":["med","måtte","er","må","fra","sammen"]},"sidst":{"rank":364,"best_next_word":"i","next_words":["i","kunne","har","måtte","så","til"]},"fleste":{"rank":366,"best_next_word":"af","next_words":["af","har","i","andre","nu","er","steder","går","mennesker"]},"klare":{"rank":368,"best_next_word":"sig","next_words":["sig","det","den","i","de","en"]},"tro":{"rank":370,"best_next_word":"på","next_words":["på","det","og","har"]},"kvinde":{"rank":374,"best_next_word":"fra","next_words":["fra","med","får"]},"syv":{"rank":375,"best_next_word":"år","next_words":["år","på","til","er"]},"mærke":{"rank":377,"best_next_word":"til","next_words":["til","ikke","det","med","den","noget"]},"vendte":{"rank":378,"best_next_word":"ud","next_words":["ud","hjem","om"]},"syntes":{"rank":380,"best_next_word":"at","next_words":["at","mor"]},"brug":{"rank":381,"best_next_word":"for","next_words":["for","i","af","den","tiden"]},"sikkert":{"rank":382,"best_next_word":"også","next_words":["også","i","bare","ikke"]},"kendte":{"rank":383,"best_next_word":"og","next_words":["og","alle","ikke","hinanden"]},"bordet":{"rank":384,"best_next_word":"med","next_words":["med","at"]},"dagen":{"rank":386,"best_next_word":"før","next_words":["før","lang","uden","på","er","blev","efter"]},"midt":{"rank":387,"best_next_word":"i","next_words":["i","om","over","på"]},"navn":{"rank":389,"best_next_word":"er","next_words":["er","og","efter"]},"kørte":{"rank":391,"best_next_word":"rundt","next_words":["rundt","den","igen","uden","fra","ind"]},"gammel":{"rank":393,"best_next_word":"mand","next_words":["mand","nok"]},"sker":{"rank":395,"best_next_word":"ved","next_words":["ved","det","igen","der","med","kun"]},"hænder":{"rank":396,"best_next_word":"frem","next_words":["frem","i","som","til"]},"hører":{"rank":397,"best_next_word":"til","next_words":["til","med","en","de","kun","det","ikke"]},"troede":{"rank":399,"best_next_word":"jeg","next_words":["jeg","var","ikke"]},"lagt":{"rank":401,"best_next_word":"de","next_words":["de","på","bag","i","over","et","sig"]},"tæt":{"rank":402,"best_next_word":"på","next_words":["på","ved","samme","ind"]},"ønsker":{"rank":403,"best_next_word":"at","next_words":["at","og","jeg","vel","ikke","er","man","om"]},"lys":{"rank":405,"best_next_word":"og","next_words":["og","eller","for"]},"højt":{"rank":407,"best_next_word":"af","next_words":["af","som"]},"faldt":{"rank":409,"best_next_word":"i","next_words":["i","dog","hende","til","den","på","de","en"]},"ben":{"rank":410,"best_next_word":"for","next_words":["for","og","på","næsten","midt"]},"tænker":{"rank":412,"best_next_word":"på","next_words":["på","eller","jeg","over","han"]},"talte":{"rank":415,"best_next_word":"med","next_words":["med","til","under","jeg"]},"venner":{"rank":417,"best_next_word":"og","next_words":["og","sig","hos","i"]},"viste":{"rank":418,"best_next_word":"sig","next_words":["sig","en","med","et","noget","i","hende"]},"leve":{"rank":420,"best_next_word":"med","next_words":["med","i","op","af"]},"hjælp":{"rank":422,"best_next_word":"af","next_words":["af","til","på","for","og"]},"hår":{"rank":423,"best_next_word":"og","next_words":["og"]},"nej":{"rank":426,"best_next_word":"til","next_words":["til","den"]},"fri":{"rank":428,"best_next_word":"for","next_words":["for","til","af"]},"oppe":{"rank":431,"best_next_word":"i","next_words":["i","at","på"]},"hedder":{"rank":432,"best_next_word":"det","next_words":["det","den","på","en"]},"hjælpe":{"rank":433,"best_next_word":"ham","next_words":["ham","sin","mig","hende","de","mere","hinanden","med"]},"hårdt":{"rank":434,"best_next_word":"at","next_words":["at","og","for","af"]},"bil":{"rank":435,"best_next_word":"hvis","next_words":["hvis","for","har","kørte","med","skal"]},"egentlig":{"rank":436,"best_next_word":"altid","next_words":["altid","først","også","har","blev","med"]},"klart":{"rank":437,"best_next_word":"at","next_words":["at","til","og"]},"eget":{"rank":439,"best_next_word":"land","next_words":["land","liv","hus"]},"seks":{"rank":440,"best_next_word":"år","next_words":["år","gange","er","måneder","morgen","timer"]},"nede":{"rank":442,"best_next_word":"i","next_words":["i","på","ad"]},"bestemt":{"rank":445,"best_next_word":"ikke","next_words":["ikke","synes"]},"finder":{"rank":446,"best_next_word":"en","next_words":["en","den","bedre","det","på","man"]},"familie":{"rank":449,"best_next_word":"med","next_words":["med","i","til","og"]},"ung":{"rank":450,"best_next_word":"pige","next_words":["pige"]},"piger":{"rank":451,"best_next_word":"med","next_words":["med","til","som","sidder"]},"straks":{"rank":452,"best_next_word":"på","next_words":["på","fra","efter"]},"føler":{"rank":453,"best_next_word":"sig","next_words":["sig","mig","den","jeg"]},"endelig":{"rank":456,"best_next_word":"har","next_words":["har","er","var"]},"uge":{"rank":457,"best_next_word":"hjem","next_words":["hjem","i","gik","efter","sad"]},"langsomt":{"rank":459,"best_next_word":"i","next_words":["i","blev","ved","er"]},"sidde":{"rank":460,"best_next_word":"og","next_words":["og","en","med","alle","på","fra","ved"]},"steder":{"rank":461,"best_next_word":"i","next_words":["i","at","bedre","på","og"]},"land":{"rank":464,"best_next_word":"og","next_words":["og","i","af","til","kunne"]},"mente":{"rank":465,"best_next_word":"han","next_words":["han","i","hun","at"]},"krop":{"rank":466,"best_next_word":"der","next_words":["der","for"]},"menneske":{"rank":468,"best_next_word":"i","next_words":["i","har"]},"forstå":{"rank":473,"best_next_word":"det","next_words":["det"]},"forældre":{"rank":474,"best_next_word":"og","next_words":["og","får","ved","at","til","er","for"]},"mulighed":{"rank":475,"best_next_word":"for","next_words":["for","til"]},"gulvet":{"rank":477,"best_next_word":"og","next_words":["og","være"]},"lejlighed":{"rank":478,"best_next_word":"til","next_words":["til","på","side","selv"]},"søn":{"rank":479,"best_next_word":"af","next_words":["af","med","på","er"]},"direkte":{"rank":480,"best_next_word":"på","next_words":["på","ud","ned","fra","gik"]},"fortsatte":{"rank":481,"best_next_word":"han","next_words":["han","i","hun","sit"]},"lide":{"rank":482,"best_next_word":"at","next_words":["at","dig","dem"]},"glæde":{"rank":483,"best_next_word":"og","next_words":["og","af","sig","os","for","mig","har"]},"manden":{"rank":487,"best_next_word":"var","next_words":["var","vil","i","er","bag","har"]},"seng":{"rank":490,"best_next_word":"i","next_words":["i","og","eller","med"]},"dit":{"rank":491,"best_next_word":"og","next_words":["og"]}}}</script>
-
   <script>
-    (function(){
-      const data = JSON.parse(document.getElementById('ss-data').textContent);
-      const wordsMap = data.words || {};
-      const starterWords = data.starter_words || [];
-      const fallbackWord = (data.metadata && data.metadata.fallback_word) || 'og';
+    (() => {
       const MAX_WORDS = 9;
 
-      const SUBJECTS = new Set(['jeg','du','vi','han','hun','den','det','de','man','mor','far','barn','pige']);
-      const VERBS = new Set(['er','har','kan','går','kommer','vil','skal','siger','ser','sidder','står','giver','tager','finder','holder','løber','hopper','leger','spiser','sover','ved','tror','hører']);
-      const ARTICLES = new Set(['en','et','den','det']);
-      const ADJECTIVES = new Set(['stor','lille','glad','god','gammel','ny','unge','små','rigtig']);
-      const PREPOSITIONS = new Set(['i','på','til','med','af','for','hos','under','over','fra','om']);
-      const AUXILIARY = new Set(['kan','skal','vil','må','kunne','ville','skulle']);
-      const INFINITIVE_VERBS = new Set(['gå','løbe','hoppe','lege','spise','drikke','se','komme','bo','sidde','stå','ligge','tage','give','finde','holde','fortælle','hjælpe','lide','forstå','blive','gøre']);
+      const starterWords = [
+        "jeg", "du", "vi", "han", "hun", "det", "den", "mor", "far", "barn", "pige", "dreng", "kat", "hund"
+      ];
 
-      const startModeEl = document.getElementById('ss-startmode');
-      const inputEl = document.getElementById('ss-word-input');
-      const addBtn = document.getElementById('ss-add-word');
-      const endBtn = document.getElementById('ss-end-sentence');
-      const startBtn = document.getElementById('ss-start');
-      const robotStartBtn = document.getElementById('ss-robot-start');
-      const statusEl = document.getElementById('ss-status');
-      const sentenceEl = document.getElementById('ss-sentence-output');
-      const turnEl = document.getElementById('ss-turn');
-      const chipsEl = document.getElementById('ss-starter-chips');
-      const doneBanner = document.getElementById('ss-done-banner');
+      const wordsMap = {
+        "jeg": ["er", "har", "kan", "vil", "ser", "går", "finder"],
+        "du": ["er", "har", "kan", "vil", "ser", "går"],
+        "vi": ["er", "har", "kan", "vil", "går", "leger"],
+        "han": ["er", "har", "kan", "vil", "ser", "løber"],
+        "hun": ["er", "har", "kan", "vil", "ser", "hopper"],
+        "det": ["er", "kan", "var", "bliver", "ligger"],
+        "den": ["er", "store", "lille", "hopper", "ligger"],
+        "mor": ["er", "har", "ser", "går", "smiler"],
+        "far": ["er", "har", "ser", "går", "smiler"],
+        "barn": ["er", "har", "leger", "løber", "smiler"],
+        "pige": ["er", "har", "leger", "løber", "smiler"],
+        "dreng": ["er", "har", "leger", "løber", "smiler"],
+        "kat": ["er", "har", "løber", "sover", "sidder"],
+        "hund": ["er", "har", "løber", "sover", "sidder"],
+
+        "er": ["glad", "træt", "stor", "lille", "her", "ude"],
+        "har": ["en", "et", "to", "mange"],
+        "kan": ["løbe", "hoppe", "lege", "synge", "sove"],
+        "vil": ["løbe", "hoppe", "lege", "synge", "sove"],
+        "ser": ["en", "et", "på", "mig", "dig"],
+        "går": ["i", "på", "til", "hjem", "videre"],
+        "finder": ["en", "et", "mig", "dig"],
+        "løber": ["i", "på", "til", "hjem", "hurtigt"],
+        "hopper": ["i", "på", "nu", "glad"],
+        "sover": ["nu", "godt", "hjemme"],
+        "sidder": ["på", "her", "stille"],
+        "smiler": ["glad", "nu", "til"],
+
+        "en": ["stor", "lille", "glad", "kat", "hund", "bold", "bil"],
+        "et": ["stort", "lille", "hus", "træ", "bord"],
+        "to": ["børn", "hunde", "katte"],
+        "mange": ["børn", "dyr", "biler"],
+
+        "stor": ["hund", "kat", "bil", "bold"],
+        "lille": ["hund", "kat", "bil", "bold", "pige"],
+        "stort": ["hus", "træ", "bord"],
+        "glad": ["i", "nu", "barn", "pige"],
+        "træt": ["nu", "i", "dag"],
+        "her": ["nu", "hjemme", "i"],
+        "ude": ["i", "nu", "på"],
+
+        "løbe": ["i", "på", "nu", "hjem"],
+        "hoppe": ["i", "på", "nu"],
+        "lege": ["med", "ude", "nu"],
+        "synge": ["nu", "glad"],
+        "sove": ["nu", "godt", "hjemme"],
+
+        "i": ["huset", "haven", "skolen", "dag"],
+        "på": ["vejen", "gulvet", "bordet"],
+        "til": ["skolen", "hjem", "mor", "far"],
+        "med": ["mig", "dig", "mor", "far"],
+
+        "hjem": ["nu", "igen"],
+        "videre": ["nu", "hjem"],
+        "hurtigt": ["nu", "hjem"],
+        "stille": ["nu", "her"],
+        "godt": ["nu", "hjemme"],
+        "hjemme": ["nu", "igen"],
+        "igen": ["nu", "hjem"],
+
+        "mig": ["nu", "og", "her"],
+        "dig": ["nu", "og", "her"],
+        "huset": ["nu", "er", "her"],
+        "haven": ["nu", "er", "her"],
+        "skolen": ["nu", "er", "her"],
+        "dag": ["nu", "er", "god"],
+        "vejen": ["nu", "er", "lang"],
+        "gulvet": ["nu", "er", "koldt"],
+        "bordet": ["nu", "er", "her"],
+
+        "bold": ["er", "hopper", "ruller"],
+        "bil": ["er", "kører", "står"],
+        "hus": ["er", "stort", "her"],
+        "træ": ["er", "stort", "her"],
+        "bord": ["er", "stort", "her"],
+        "børn": ["leger", "løber", "smiler"],
+        "dyr": ["løber", "sover", "sidder"],
+        "biler": ["kører", "står", "er"],
+        "hunde": ["løber", "sover", "leger"],
+        "katte": ["løber", "sover", "sidder"],
+
+        "ruller": ["nu", "hjem"],
+        "kører": ["nu", "hjem", "på"],
+        "står": ["her", "nu", "på"],
+
+        "lang": ["nu", "vej"],
+        "koldt": ["nu", "her"],
+        "god": ["dag", "nu"]
+      };
+
+      const SUBJECTS = new Set(["jeg", "du", "vi", "han", "hun", "det", "den", "mor", "far", "barn", "pige", "dreng", "kat", "hund"]);
+      const VERBS = new Set(["er", "har", "kan", "vil", "ser", "går", "finder", "løber", "hopper", "sover", "sidder", "smiler", "leger", "ruller", "kører", "står"]);
+      const AUXILIARY = new Set(["kan", "vil"]);
+      const INFINITIVES = new Set(["løbe", "hoppe", "lege", "synge", "sove"]);
+      const ARTICLES = new Set(["en", "et"]);
+      const PREPOSITIONS = new Set(["i", "på", "til", "med"]);
+
+      const startModeEl = document.getElementById("ss-startmode");
+      const inputEl = document.getElementById("ss-word-input");
+      const addBtn = document.getElementById("ss-add-word");
+      const endBtn = document.getElementById("ss-end-sentence");
+      const startBtn = document.getElementById("ss-start");
+      const robotStartBtn = document.getElementById("ss-robot-start");
+      const statusEl = document.getElementById("ss-status");
+      const sentenceEl = document.getElementById("ss-sentence-output");
+      const turnEl = document.getElementById("ss-turn");
+      const chipsEl = document.getElementById("ss-starter-chips");
+      const doneBanner = document.getElementById("ss-done-banner");
 
       let sentence = [];
       let isDone = false;
 
-      function normalizeWord(word){
-        return (word || '').toLowerCase().trim().replace(/[^a-zæøå]/g, '');
+      function normalizeWord(word) {
+        return (word || "")
+          .toLowerCase()
+          .trim()
+          .replace(/[^a-zæøå]/g, "");
       }
 
-      function capitalize(str){
-        if(!str) return str;
-        return str.charAt(0).toUpperCase() + str.slice(1);
+      function capitalize(text) {
+        return text ? text.charAt(0).toUpperCase() + text.slice(1) : "";
       }
 
-      function setStatus(text){
+      function setStatus(text) {
         statusEl.textContent = text;
       }
 
-      function renderSentence(){
-        if(!sentence.length){
+      function renderSentence() {
+        if (!sentence.length) {
           sentenceEl.innerHTML = '<span class="ss-empty">Sætningen kommer her.</span>';
-          turnEl.textContent = 'Ingen ord endnu';
-          doneBanner.style.display = 'none';
+          turnEl.textContent = "Ingen ord endnu";
+          doneBanner.style.display = "none";
           return;
         }
 
-        if(isDone){
-          const cleanSentence = capitalize(sentence.map(i => i.word).join(' ')) + '.';
-          sentenceEl.innerHTML = '<span class="ss-sentence-final">' + cleanSentence + '</span>';
-          turnEl.textContent = 'Sætning færdig';
-          doneBanner.style.display = 'block';
-        } else {
-          const words = sentence.map(item => {
-            const cls = item.by === 'robot' ? 'robot' : 'user';
-            return '<span class="ss-token ' + cls + '">' + item.word + '</span>';
-          });
-          sentenceEl.innerHTML = words.join(' ');
-          turnEl.textContent = 'Din tur';
-          doneBanner.style.display = 'none';
+        if (isDone) {
+          const finalSentence = capitalize(sentence.map(item => item.word).join(" ")) + ".";
+          sentenceEl.innerHTML = '<span class="ss-sentence-final">' + finalSentence + "</span>";
+          turnEl.textContent = "Sætning færdig";
+          doneBanner.style.display = "block";
+          return;
         }
+
+        sentenceEl.innerHTML = sentence.map(item => {
+          const cls = item.by === "robot" ? "robot" : "user";
+          return '<span class="ss-token ' + cls + '">' + item.word + "</span>";
+        }).join(" ");
+
+        turnEl.textContent = "Din tur";
+        doneBanner.style.display = "none";
       }
 
-      function getEntry(word){
-        return wordsMap[word] || null;
+      function finishSentence(customMessage) {
+        if (!sentence.length) return;
+        isDone = true;
+        inputEl.disabled = true;
+        addBtn.disabled = true;
+        endBtn.disabled = true;
+        renderSentence();
+        setStatus(customMessage || 'Sætningen er færdig! Tryk på "Start forfra" for at starte igen.');
       }
 
-      function chooseRobotWord(lastWord){
-        const entry = getEntry(lastWord);
-        let candidates = entry && entry.next_words ? [...entry.next_words] : [fallbackWord];
+      function resetMachine() {
+        sentence = [];
+        isDone = false;
+        inputEl.value = "";
+        inputEl.disabled = false;
+        addBtn.disabled = false;
+        endBtn.disabled = false;
+        renderSentence();
+        doneBanner.style.display = "none";
+        setStatus("Vælg hvem der starter, og begynd med ét ord.");
+      }
 
-        const prev = sentence.length >= 2 ? sentence[sentence.length - 2].word : '';
-        const position = sentence.length;
+      function getRobotWrittenWords() {
+        return new Set(
+          sentence
+            .filter(item => item.by === "robot")
+            .map(item => item.word)
+        );
+      }
 
-        if (position === 1 && SUBJECTS.has(prev)) {
-          const filtered = candidates.filter(w => VERBS.has(w) || AUXILIARY.has(w));
-          if (filtered.length) candidates = filtered;
+      function randomItem(arr) {
+        if (!Array.isArray(arr) || arr.length === 0) return null;
+        return arr[Math.floor(Math.random() * arr.length)] || null;
+      }
+
+      function getCandidates(lastWord) {
+        return Array.isArray(wordsMap[lastWord]) ? [...wordsMap[lastWord]] : [];
+      }
+
+      function chooseRobotWord(lastWord) {
+        const robotWritten = getRobotWrittenWords();
+        const previousWord = sentence.length >= 2 ? sentence[sentence.length - 2].word : "";
+        let candidates = getCandidates(lastWord);
+
+        if (!candidates.length) {
+          return null;
         }
 
-        if (ARTICLES.has(lastWord)) {
-          const filtered = candidates.filter(w => ADJECTIVES.has(w) || (!VERBS.has(w) && !PREPOSITIONS.has(w)));
-          if (filtered.length) candidates = filtered;
-        }
-
-        if (ADJECTIVES.has(lastWord)) {
-          const filtered = candidates.filter(w => !VERBS.has(w) && !PREPOSITIONS.has(w) && !ARTICLES.has(w));
+        if (SUBJECTS.has(lastWord)) {
+          const filtered = candidates.filter(word => VERBS.has(word));
           if (filtered.length) candidates = filtered;
         }
 
         if (AUXILIARY.has(lastWord)) {
-          const filtered = candidates.filter(w => INFINITIVE_VERBS.has(w));
+          const filtered = candidates.filter(word => INFINITIVES.has(word));
+          if (filtered.length) candidates = filtered;
+        }
+
+        if (ARTICLES.has(lastWord)) {
+          const filtered = candidates.filter(word => !VERBS.has(word) && !PREPOSITIONS.has(word));
           if (filtered.length) candidates = filtered;
         }
 
         if (PREPOSITIONS.has(lastWord)) {
-          const filtered = candidates.filter(w => ARTICLES.has(w) || SUBJECTS.has(w) || (!VERBS.has(w) && w !== 'og'));
+          const filtered = candidates.filter(word => !VERBS.has(word) || SUBJECTS.has(word));
           if (filtered.length) candidates = filtered;
         }
 
-        if (sentence.length >= 2) {
-          const filtered = candidates.filter(w => w !== prev);
-          if (filtered.length) candidates = filtered;
+        candidates = candidates.filter(word => word !== lastWord && word !== previousWord);
+        candidates = candidates.filter(word => !robotWritten.has(word));
+
+        if (!candidates.length) {
+          return null;
         }
 
-        if (sentence.length >= 1) {
-          const filtered = candidates.filter(w => w !== lastWord);
-          if (filtered.length) candidates = filtered;
-        }
-
-        return candidates[0] || fallbackWord;
+        return randomItem(candidates);
       }
 
-      function autoAddRobotWord(){
+      function autoAddRobotWord() {
         if (isDone || !sentence.length) return;
 
         if (sentence.length >= MAX_WORDS) {
@@ -513,7 +672,12 @@ body {
         const lastWord = sentence[sentence.length - 1].word;
         const robotWord = chooseRobotWord(lastWord);
 
-        sentence.push({word: robotWord, by: 'robot'});
+        if (!robotWord) {
+          finishSentence('Robotten har ikke flere nye ord i denne sætning. Tryk på "Start forfra" eller "Lad robotten starte nu".');
+          return;
+        }
+
+        sentence.push({ word: robotWord, by: "robot" });
 
         if (sentence.length >= MAX_WORDS) {
           finishSentence();
@@ -525,93 +689,89 @@ body {
         inputEl.focus();
       }
 
-      function resetMachine(){
-        sentence = [];
-        isDone = false;
-        inputEl.value = '';
-        inputEl.disabled = false;
-        addBtn.disabled = false;
-        endBtn.disabled = false;
-        renderSentence();
-        doneBanner.style.display = 'none';
-        setStatus('Vælg hvem der starter, og begynd med ét ord.');
-      }
-
-      function finishSentence(){
-        if(!sentence.length) return;
-        isDone = true;
-        inputEl.disabled = true;
-        addBtn.disabled = true;
-        endBtn.disabled = true;
-        renderSentence();
-        setStatus('Sætningen er færdig! Tryk "Start forfra" for at lave en ny.');
-      }  function robotStarts(){
+      function robotStarts() {
         resetMachine();
-        const subjectStarters = starterWords.filter(w => SUBJECTS.has(w));
-        const pool = subjectStarters.length ? subjectStarters : starterWords;
-        const starter = pool[Math.floor(Math.random() * pool.length)] || fallbackWord;
 
-        sentence.push({word: starter, by: 'robot'});
+        const pool = starterWords.filter(word => SUBJECTS.has(word));
+        const startWord = randomItem(pool.length ? pool : starterWords) || "jeg";
+
+        sentence.push({ word: startWord, by: "robot" });
         renderSentence();
-        setStatus('Robotten startede med "' + starter + '". Nu er det din tur.');
+        setStatus('Robotten startede med "' + startWord + '". Nu er det din tur.');
         inputEl.focus();
       }
 
-      function handleAdd(){
-        if(isDone) return;
+      function handleAdd() {
+        if (isDone) return;
 
         const userWord = normalizeWord(inputEl.value);
-        if(!userWord){
-          setStatus('Skriv ét ord først.');
+
+        if (!userWord) {
+          setStatus("Skriv ét ord først.");
           inputEl.focus();
           return;
         }
 
-        if(!sentence.length && startModeEl.value === 'robot'){
+        if (!sentence.length && startModeEl.value === "robot") {
           setStatus('Tryk på "Lad robotten starte nu", eller vælg "Jeg starter".');
           return;
         }
 
-        sentence.push({word: userWord, by: 'user'});
-        inputEl.value = '';
+        sentence.push({ word: userWord, by: "user" });
+        inputEl.value = "";
 
-        if(sentence.length >= MAX_WORDS){
+        if (sentence.length >= MAX_WORDS) {
           finishSentence();
           return;
         }
 
         renderSentence();
         setStatus('Du skrev "' + userWord + '". Robotten tænker...');
-        setTimeout(autoAddRobotWord, 250);
+
+        setTimeout(() => {
+          autoAddRobotWord();
+        }, 250);
       }
 
-      function buildStarterChips(){
-        chipsEl.innerHTML = '';
-        starterWords.slice(0, 18).forEach(word => {
-          const btn = document.createElement('button');
-          btn.type = 'button';
-          btn.className = 'ss-chip';
+      function buildStarterChips() {
+        chipsEl.innerHTML = "";
+
+        starterWords.forEach(word => {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "ss-chip";
           btn.textContent = word;
-          btn.addEventListener('click', function(){
-            startModeEl.value = 'user';
+
+          btn.addEventListener("click", () => {
+            startModeEl.value = "user";
             inputEl.value = word;
             inputEl.focus();
             setStatus('Start med ordet "' + word + '" og tryk på "Tilføj ord".');
           });
+
           chipsEl.appendChild(btn);
         });
       }
 
-      addBtn.addEventListener('click', handleAdd);
-      endBtn.addEventListener('click', finishSentence);
-      startBtn.addEventListener('click', resetMachine);
-      robotStartBtn.addEventListener('click', robotStarts);
-      inputEl.addEventListener('keydown', function(e){
-        if(e.key === 'Enter') handleAdd();
+      addBtn.addEventListener("click", handleAdd);
+
+      endBtn.addEventListener("click", () => {
+        finishSentence();
       });
-      startModeEl.addEventListener('change', function(){
+
+      startBtn.addEventListener("click", resetMachine);
+
+      robotStartBtn.addEventListener("click", robotStarts);
+
+      inputEl.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+          handleAdd();
+        }
+      });
+
+      startModeEl.addEventListener("change", () => {
         resetMachine();
-        if(startModeEl.value === 'robot'){
+        if (startModeEl.value === "robot") {
           setStatus('Tryk på "Lad robotten starte nu".');
         }
       });
@@ -620,10 +780,5 @@ body {
       resetMachine();
     })();
   </script>
-</div>
-</div>
-<footer class="site-footer">
-  <p>© 2026 SmartZonen &nbsp;·&nbsp; Udarbejdet af Susan &amp; Manfred Conrath &nbsp;·&nbsp; <a href="mailto:mco@outlook.dk">Kontakt</a></p>
-</footer>
 </body>
 </html>
