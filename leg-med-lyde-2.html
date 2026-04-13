@@ -4,8 +4,118 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Leg med lyde – sammensatte lyde – SmartZonen</title>
-  <link rel="stylesheet" href="/style.css" />
   <style>
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  color: #1f2937;
+  background: #f5f7fa;
+  min-height: 100vh;
+}
+
+/* NAV */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #1a2f3a;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.2);
+}
+.site-nav .logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.site-nav .site-title {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: none;
+}
+.site-nav .nav-links {
+  margin-left: auto;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.site-nav .nav-links a {
+  color: rgba(255,255,255,.8);
+  text-decoration: none;
+  font-size: 13px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  transition: background .15s, color .15s;
+}
+.site-nav .nav-links a:hover,
+.site-nav .nav-links a.active {
+  background: rgba(255,255,255,.15);
+  color: #fff;
+}
+
+/* HERO */
+.hero {
+  width: 100%;
+  max-height: 340px;
+  overflow: hidden;
+  display: block;
+}
+.hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* INFO BAND */
+.info-band {
+  background: #b8dff0;
+  padding: 28px 24px;
+  text-align: center;
+}
+.info-band h1 {
+  font-size: clamp(22px, 3vw, 36px);
+  font-weight: 800;
+  color: #1a2f3a;
+  margin-bottom: 8px;
+}
+.info-band p {
+  font-size: clamp(15px, 1.8vw, 20px);
+  color: #2a4a5a;
+  font-style: italic;
+  line-height: 1.4;
+}
+
+/* CONTENT */
+.page-content {
+  max-width: 1100px;
+  margin: 32px auto;
+  padding: 0 20px 60px;
+}
+
+/* FOOTER */
+.site-footer {
+  background: #1a2f3a;
+  color: rgba(255,255,255,.7);
+  text-align: center;
+  padding: 20px 24px;
+  font-size: 13px;
+}
+.site-footer a {
+  color: rgba(255,255,255,.9);
+}
+
+@media (max-width: 640px) {
+  .site-nav .nav-links { display: none; }
+  .info-band { padding: 20px 16px; }
+}
+
     #smart-sammensattelyde{
       --card:#ffffff;
       --card-border:#e5e7eb;
@@ -39,23 +149,6 @@
     #smart-sammensattelyde .module-inner{
       max-width:760px;
       margin:0 auto;
-    }
-
-    #smart-sammensattelyde .module-title{
-      text-align:center;
-      margin:0 0 8px;
-      font-size:clamp(30px,2.4vw,40px);
-      line-height:1.1;
-      color:var(--text);
-      font-weight:800;
-    }
-
-    #smart-sammensattelyde .module-sub{
-      text-align:center;
-      margin:0 0 18px;
-      color:var(--muted);
-      font-size:clamp(15px,1.15vw,18px);
-      line-height:1.4;
     }
 
     #smart-sammensattelyde .display{
@@ -400,10 +493,6 @@
     <div id="smart-sammensattelyde">
       <div class="module">
         <div class="module-inner">
-          <h2 class="module-title">Leg med sammensatte lyde</h2>
-          <p class="module-sub">
-            Vælg en konsonantklynge og en vokal. Sæt dem sammen og lav en ny lyd.
-          </p>
 
           <div class="display">
             <div>
@@ -462,9 +551,9 @@
             <h3>Sådan bruges værktøjet</h3>
             <ul>
               <li>Vælg en konsonantklynge og en vokal.</li>
-              <li>Vælger du <strong>?</strong>, bliver den del tilfældig ved “Ny lyd”.</li>
+              <li>Vælger du <strong>?</strong>, bliver den del tilfældig ved "Ny lyd".</li>
               <li>Vælger du en rigtig lyd, bliver den låst fast.</li>
-              <li>Tryk på “Ny lyd” for at lave en ny kombination.</li>
+              <li>Tryk på "Ny lyd" for at lave en ny kombination.</li>
             </ul>
           </div>
         </div>
@@ -473,7 +562,7 @@
   </main>
 
   <footer class="site-footer">
-    <p>© 2026 SmartZonen</p>
+    <p>© 2026 SmartZonen &nbsp;·&nbsp; Udarbejdet af Susan &amp; Manfred Conrath &nbsp;·&nbsp; <a href="mailto:mco@outlook.dk">Kontakt</a></p>
   </footer>
 
   <script>
