@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dagens dato – SmartZonen</title>
+  <style>
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  color: #1f2937;
+  background: #f5f7fa;
+  min-height: 100vh;
+}
+
+/* NAV */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #1a2f3a;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.2);
+}
+.site-nav .logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.site-nav .site-title {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: none;
+}
+.site-nav .nav-links {
+  margin-left: auto;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.site-nav .nav-links a {
+  color: rgba(255,255,255,.8);
+  text-decoration: none;
+  font-size: 13px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  transition: background .15s, color .15s;
+}
+.site-nav .nav-links a:hover,
+.site-nav .nav-links a.active {
+  background: rgba(255,255,255,.15);
+  color: #fff;
+}
+
+/* HERO */
+.hero {
+  width: 100%;
+  max-height: 340px;
+  overflow: hidden;
+  display: block;
+}
+.hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* INFO BAND */
+.info-band {
+  background: #b8dff0;
+  padding: 28px 24px;
+  text-align: center;
+}
+.info-band h1 {
+  font-size: clamp(22px, 3vw, 36px);
+  font-weight: 800;
+  color: #1a2f3a;
+  margin-bottom: 8px;
+}
+.info-band p {
+  font-size: clamp(15px, 1.8vw, 20px);
+  color: #2a4a5a;
+  font-style: italic;
+  line-height: 1.4;
+}
+
+/* CONTENT */
+.page-content {
+  max-width: 1100px;
+  margin: 32px auto;
+  padding: 0 20px 60px;
+}
+
+/* HOME GRID */
+.section-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #1a2f3a;
+  margin: 32px 0 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #b8dff0;
+}
+.tool-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 18px;
+}
+.tool-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  padding: 22px 20px;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 4px 14px rgba(15,23,42,.06);
+  transition: transform .15s, box-shadow .15s;
+  display: block;
+}
+.tool-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(15,23,42,.12);
+}
+.tool-card h3 {
+  font-size: 18px;
+  font-weight: 800;
+  color: #0f766e;
+  margin-bottom: 6px;
+}
+.tool-card p {
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 1.4;
+}
+
+/* FOOTER */
+.site-footer {
+  background: #1a2f3a;
+  color: rgba(255,255,255,.7);
+  text-align: center;
+  padding: 20px 24px;
+  font-size: 13px;
+}
+.site-footer a {
+  color: rgba(255,255,255,.9);
+}
+
+@media (max-width: 640px) {
+  .site-nav .nav-links { display: none; }
+  .info-band { padding: 20px 16px; }
+}
+
+
+  </style>
+</head>
+<body>
+<nav class="site-nav">
+  <img class="logo" src="/assets/logo.png" onerror="this.style.display='none'" alt="SmartZonen logo">
+  <a class="site-title" href="/">SmartZonen</a>
+  <div class="nav-links">
+    <a href="/">Start</a>
+<a href="/pustero.html">Pustero</a>
+<a href="/grupper.html">Grupper</a>
+<a href="/dagens-dato.html" class="active">Dagens dato</a>
+<a href="/leg-med-lyde-1.html">Leg med lyde 1</a>
+<a href="/leg-med-lyde-2.html">Leg med lyde 2</a>
+<a href="/saetningsmaskinen.html">Sætningsmaskinen</a>
+<a href="/laer-klokken.html">Lær klokken</a>
+<a href="/regnemaskinen.html">Regnemaskinen</a>
+
+  </div>
+</nav>
+<div class="hero">
+  <img src="/assets/banner.jpg" onerror="this.closest('.hero').style.display='none'" alt="SmartZonen banner">
+</div>
+<div class="info-band">
+  <h1>Dagens dato</h1>
+  <p>Hvad er spændende ved netop denne dato?</p>
+</div>
+<div class="page-content">
+<!-- SmartZonen – Dagens dato (tilpasset fælles layout) -->
+<div id="smart-dagens-dato" style="max-width:1000px;margin:0 auto;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:#1f2937;">
+  <style>
+    #smart-dagens-dato{
+      --card:#ffffff;
+      --card-border:#e5e7eb;
+      --panel:#f8fafc;
+      --panel-strong:#eef5f6;
+      --text:#1f2937;
+      --muted:#6b7280;
+      --highlight:#ffffff;
+      --picker-bg:#f8fafc;
+      --picker-text:#1f2937;
+      --picker-muted:rgba(31,41,55,.35);
+      --picker-active:rgba(15,118,110,.10);
+      --picker-border:#d7e3e6;
+      --item-h:58px;
+      --btn:#0f766e;
+      --neutral:#6b7280;
+    }
+
+    #smart-dagens-dato *{ box-sizing:border-box; }
+
+    #smart-dagens-dato .module{
+      background:var(--card);
+      border:1px solid var(--card-border);
+      border-radius:24px;
+      box-shadow:0 8px 24px rgba(15,23,42,.06);
+      padding:28px 24px 24px;
+    }
+
+    #smart-dagens-dato .module-inner{
+      max-width:900px;
+      margin:0 auto;
+    }
+
+    #smart-dagens-dato .top-grid{
+      display:grid;
+      grid-template-columns:1.35fr 1fr 1fr;
+      gap:16px;
+      margin-bottom:18px;
+    }
+
+    #smart-dagens-dato .card{
+      background:var(--panel);
+      border:1px solid var(--card-border);
+      border-radius:20px;
+      padding:18px;
+      min-height:120px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+    }
+
+    #smart-dagens-dato .display-btn{
+      width:100%;
+      min-height:78px;
+      border:0;
+      background:transparent;
+      color:var(--text);
+      font-size:clamp(24px,2vw,32px);
+      font-weight:800;
+      cursor:pointer;
+      border-radius:16px;
+      padding:10px 14px;
+      transition:background .15s ease;
+    }
+
+    #smart-dagens-dato .display-btn:hover{
+      background:rgba(15,118,110,.05);
+    }
+
+    #smart-dagens-dato .season-display{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:8px;
+    }
+
+    #smart-dagens-dato .season-icon{
+      font-size:34px;
+      line-height:1;
+    }
+
+    #smart-dagens-dato .picker-pop{
+      position:absolute;
+      left:50%;
+      transform:translateX(-50%);
+      top:0;
+      width:420px;
+      min-width:260px;
+      max-width:90vw;
+      background:var(--picker-bg);
+      border:1px solid var(--picker-border);
+      border-radius:24px;
+      box-shadow:0 20px 50px rgba(15,23,42,.18);
+      display:none;
+      z-index:100;
+      overflow:hidden;
+    }
+
+    #smart-dagens-dato .picker-pop.open{
+      display:flex;
+      flex-direction:column;
+    }
+
+    #smart-dagens-dato .picker-shell{
+      width:100%;
+      height:290px;
+      position:relative;
+      overflow:hidden;
+      background:linear-gradient(180deg,#ffffff 0%, #f8fafc 100%);
+    }
+
+    #smart-dagens-dato .picker-shell::before,
+    #smart-dagens-dato .picker-shell::after{
+      content:"";
+      position:absolute;
+      left:0;
+      right:0;
+      height:28%;
+      z-index:2;
+      pointer-events:none;
+    }
+
+    #smart-dagens-dato .picker-shell::before{
+      top:0;
+      background:linear-gradient(to bottom, rgba(248,250,252,.96), rgba(248,250,252,0));
+    }
+
+    #smart-dagens-dato .picker-shell::after{
+      bottom:0;
+      background:linear-gradient(to top, rgba(248,250,252,.96), rgba(248,250,252,0));
+    }
+
+    #smart-dagens-dato .picker-highlight{
+      position:absolute;
+      left:12px;
+      right:12px;
+      top:50%;
+      height:var(--item-h);
+      transform:translateY(-50%);
+      background:var(--picker-active);
+      border:1px solid rgba(15,118,110,.10);
+      border-radius:999px;
+      z-index:1;
+      pointer-events:none;
+    }
+
+    #smart-dagens-dato .picker-columns{
+      width:100%;
+      height:100%;
+      display:grid;
+      gap:8px;
+      padding:0 8px;
+      z-index:3;
+      position:relative;
+    }
+
+    #smart-dagens-dato .picker-columns.date{
+      grid-template-columns:.8fr 1.5fr 1fr;
+    }
+
+    #smart-dagens-dato .picker-columns.single{
+      grid-template-columns:1fr;
+      max-width:260px;
+      margin:0 auto;
+    }
+
+    #smart-dagens-dato .wheel{
+      height:100%;
+      overflow-y:auto;
+      scroll-snap-type:y mandatory;
+      scrollbar-width:none;
+      -ms-overflow-style:none;
+      padding:calc(var(--item-h) * 1.5) 0;
+    }
+
+    #smart-dagens-dato .wheel::-webkit-scrollbar{
+      display:none;
+    }
+
+    #smart-dagens-dato .wheel-item{
+      height:var(--item-h);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      scroll-snap-align:center;
+      font-size:clamp(22px,2vw,30px);
+      color:var(--picker-muted);
+      transition:all .18s ease;
+      user-select:none;
+      text-align:center;
+      padding:0 8px;
+    }
+
+    #smart-dagens-dato .wheel-spacer{
+      opacity:0;
+      pointer-events:none;
+    }
+
+    #smart-dagens-dato .wheel-item.active{
+      color:var(--picker-text);
+      font-weight:800;
+      font-size:clamp(24px,2.1vw,34px);
+    }
+
+    #smart-dagens-dato .season-stack{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:4px;
+    }
+
+    #smart-dagens-dato .season-stack .season-icon{
+      font-size:28px;
+    }
+
+    #smart-dagens-dato .picker-actions{
+      display:flex;
+      justify-content:flex-end;
+      gap:10px;
+      padding:12px;
+      background:#ffffff;
+      border-top:1px solid #d7e3e6;
+    }
+
+    #smart-dagens-dato .picker-btn{
+      border:0;
+      border-radius:14px;
+      padding:10px 16px;
+      font-size:15px;
+      font-weight:800;
+      cursor:pointer;
+      box-shadow:0 4px 10px rgba(15,23,42,.10);
+    }
+
+    #smart-dagens-dato .picker-btn.cancel{
+      background:#e8eff1;
+      color:#284046;
+    }
+
+    #smart-dagens-dato .picker-btn.ok{
+      background:var(--btn);
+      color:#fff;
+    }
+
+    #smart-dagens-dato .actions{
+      display:flex;
+      justify-content:center;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:4px;
+      margin-bottom:18px;
+    }
+
+   #smart-dagens-datobutton.primary{
+  appearance:none;
+  border:0;
+  border-radius:14px;
+  padding:12px 16px;
+  font-size:15px;
+  font-weight:800;
+  cursor:pointer;
+  box-shadow:0 4px 10px rgba(15,23,42,.12);
+  background:var(--btn);
+  color:#fff;
+}
+
+    #smart-dagens-dato .fact-box{
+      background:var(--panel);
+      border:1px solid var(--card-border);
+      border-radius:20px;
+      padding:18px;
+    }
+
+    #smart-dagens-dato .fact-box h2{
+      margin:0 0 12px;
+      text-align:center;
+      font-size:clamp(24px,2vw,30px);
+      line-height:1.1;
+      color:var(--text);
+    }
+
+    #smart-dagens-dato .fact{
+      background:var(--highlight);
+      border:1px solid #d1d5db;
+      border-radius:16px;
+      padding:18px;
+      font-size:clamp(18px,1.6vw,24px);
+      line-height:1.55;
+      text-align:center;
+      color:#374151;
+    }
+
+    @media (max-width: 900px){
+      #smart-dagens-dato .top-grid{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 640px){
+      #smart-dagens-dato .module{
+        padding:20px 16px 18px;
+      }
+
+      #smart-dagens-dato .actions{
+        flex-direction:column;
+      }
+
+      #smart-dagens-dato button.primary{
+  width:100%;
+}
+    }
+  </style>
+
+  <div class="module">
+    <div class="module-inner">
+      <div class="top-grid">
+        <div class="card">
+          <button class="display-btn" id="dateDisplay" type="button"></button>
+
+          <div class="picker-pop" id="datePicker">
+            <div class="picker-shell">
+              <div class="picker-highlight"></div>
+              <div class="picker-columns date">
+                <div class="wheel" id="dayWheel"></div>
+                <div class="wheel" id="monthWheel"></div>
+                <div class="wheel" id="yearWheel"></div>
+              </div>
+            </div>
+            <div class="picker-actions">
+              <button class="picker-btn cancel" type="button" id="dateCancel">Annuller</button>
+              <button class="picker-btn ok" type="button" id="dateOk">Fastsæt</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <button class="display-btn" id="seasonDisplay" type="button"></button>
+
+          <div class="picker-pop" id="seasonPicker">
+            <div class="picker-shell">
+              <div class="picker-highlight"></div>
+              <div class="picker-columns single">
+                <div class="wheel" id="seasonWheel"></div>
+              </div>
+            </div>
+            <div class="picker-actions">
+              <button class="picker-btn cancel" type="button" id="seasonCancel">Annuller</button>
+              <button class="picker-btn ok" type="button" id="seasonOk">Fastsæt</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <button class="display-btn" id="dayTypeDisplay" type="button"></button>
+
+          <div class="picker-pop" id="dayTypePicker">
+            <div class="picker-shell">
+              <div class="picker-highlight"></div>
+              <div class="picker-columns single">
+                <div class="wheel" id="dayTypeWheel"></div>
+              </div>
+            </div>
+            <div class="picker-actions">
+              <button class="picker-btn cancel" type="button" id="dayTypeCancel">Annuller</button>
+              <button class="picker-btn ok" type="button" id="dayTypeOk">Fastsæt</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="primary" type="button" id="todayBtn">Vis dagens dato</button>
+      </div>
+
+      <div class="fact-box">
+        <h2>Vidste du at...</h2>
+        <div class="fact" id="faktaFelt"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (() => {
+      const maaneder = [
+        "januar", "februar", "marts", "april", "maj", "juni",
+        "juli", "august", "september", "oktober", "november", "december"
+      ];
+
+      const seasonIcons = {
+        "vinter": "❄️",
+        "forår": "🌱",
+        "sommer": "☀️",
+        "efterår": "🍂"
+      };
+
+      const faktaDatabase = {
+        "01-01": "1901 – Vidste du at Australien på denne dag blev samlet som ét land? Før havde området flere dele, men nu hørte de sammen.",
+"02-01": "1912 – Vidste du at en forsker fandt på, at verdensdele kan flytte sig meget langsomt? Derfor ser jorden ikke altid helt ens ud.",
+"03-01": "1927 – Vidste du at mennesker kunne tale i telefon mellem Amerika og England? Det var smart, fordi landene ligger langt fra hinanden.",
+"04-01": "1908 – Vidste du at spejderne blev en rigtig bevægelse? Spejdere lærer om natur, samarbejde og at hjælpe andre.",
+"05-01": "1933 – Vidste du at byggeriet af en meget stor bro begyndte? Broen hedder Golden Gate Bridge og er kendt i hele verden.",
+"06-01": "1838 – Vidste du at en tidlig maskine kunne sende beskeder med tegn? Det var en vigtig idé før telefoner og computere.",
+"07-01": "1927 – Vidste du at virksomheder kunne tale sammen i telefon over Atlanterhavet? Det gjorde det lettere at samarbejde langt væk.",
+"08-01": "1889 – Vidste du at en mand lavede en maskine med hulkort? Sådanne idéer var med til at føre til de første computere.",
+"09-01": "1839 – Vidste du at en tidlig måde at tage billeder på blev vist frem? Dengang var fotografering helt nyt og meget spændende.",
+"10-01": "1946 – Vidste du at forskere sendte radiosignaler til Månen og fik dem tilbage? Det viste, at signaler kunne rejse meget langt.",
+"11-01": "1922 – Vidste du at et menneske fik insulin for første gang? Insulin hjælper mennesker med en sygdom, der hedder diabetes.",
+"12-01": "1932 – Vidste du at en kvinde blev valgt til det amerikanske senat? Det var vigtigt, fordi flere kvinder så kunne få en stemme i politik.",
+"13-01": "1888 – Vidste du at National Geographic blev grundlagt? Det er kendt for at fortælle om natur, dyr og verden.",
+"14-01": "1952 – Vidste du at et morgen-tv-program blev sendt for første gang? Mange mennesker så det for at høre nyheder og spændende historier.",
+"15-01": "1892 – Vidste du at reglerne til basketball blev skrevet ned? Så kunne mange lære at spille det samme spil.",
+"16-01": "1909 – Vidste du at en ekspedition fandt den magnetiske sydpol? Det hjalp mennesker med at forstå mere om jorden.",
+"17-01": "1912 – Vidste du at en opdagelsesrejsende nåede Sydpolen? Det er et meget koldt sted helt nede på jorden.",
+"18-01": "1911 – Vidste du at et fly landede på et skib for første gang? Det var en stor idé i flyvningens historie.",
+"19-01": "1883 – Vidste du at elektrisk lys blev brugt udenfor på en gade? Det gjorde det lettere at se, når det var mørkt.",
+"20-01": "1909 – Vidste du at et bilfirma voksede og senere blev kendt for biler? Biler blev efterhånden en vigtig del af hverdagen.",
+"21-01": "1948 – Vidste du at et flag blev taget i brug for første gang? Flag kan vise, hvor man hører til.",
+"22-01": "1927 – Vidste du at en fodboldkamp blev sendt i radioen? Så kunne mennesker lytte med, selv om de ikke var på stadion.",
+"23-01": "1922 – Vidste du at en dreng fik en vigtig behandling med insulin? Det hjalp ham med at få det bedre.",
+"24-01": "1908 – Vidste du at den første spejdergruppe blev startet? Spejdere laver ofte aktiviteter i naturen og lærer at klare sig.",
+"25-01": "1924 – Vidste du at de første vinter-OL begyndte? Her konkurrerede sportsfolk i fx ski og skøjter.",
+"26-01": "1905 – Vidste du at verdens største diamant blev fundet? Den var meget stor og meget særlig.",
+"27-01": "1939 – Vidste du at et nyt fly fløj for første gang? Når et fly prøves første gang, er det meget spændende.",
+"28-01": "1902 – Vidste du at en stor institution for forskning blev startet? Forskning hjælper mennesker med at lære nyt.",
+"29-01": "1959 – Vidste du at en sangkonkurrence blev holdt for første gang? Musik kan samle mange mennesker.",
+"30-01": "1920 – Vidste du at bilfirmaet Mazda blev grundlagt? Nogle bilfirmaer starter småt og bliver senere kendt i mange lande.",
+"31-01": "1901 – Vidste du at et teaterstykke havde premiere? En premiere er første gang, et stykke bliver vist for publikum.",
+
+// Februar
+"01-02": "1884 – Vidste du at den første del af Oxford English Dictionary udkom på denne dag? Det er en meget stor ordbog med ord og forklaringer.",
+"02-02": "1709 – Vidste du at en sømand, som havde levet alene på en ø, blev reddet på denne dag? Hans historie var med til at inspirere fortællingen om Robinson Crusoe.",
+"03-02": "1690 – Vidste du at nogle af de første pengesedler i Nordamerika blev taget i brug på denne dag? Sedler gjorde det lettere at betale end kun med mønter.",
+"04-02": "2004 – Vidste du at Facebook blev startet på denne dag? Det begyndte som en hjemmeside, hvor mennesker kunne være sammen på nettet.",
+"05-02": "1971 – Vidste du at astronauter fra Apollo 14 landede på Månen på denne dag? De gik rundt på Månens overflade og undersøgte den.",
+"06-02": "1952 – Vidste du at Elizabeth den 2. blev dronning på denne dag? Hun blev senere kendt af mennesker i hele verden.",
+"07-02": "1984 – Vidste du at en astronaut svævede frit i rummet på denne dag uden at være fastgjort med line? Det var en stor begivenhed i rumfartens historie.",
+"08-02": "1910 – Vidste du at spejderbevægelsen i USA blev startet på denne dag? Spejdere lærer ofte om natur, fællesskab og at hjælpe andre.",
+"09-02": "1964 – Vidste du at The Beatles optrådte i amerikansk tv på denne dag? Mange mennesker så med og blev meget glade for deres musik.",
+"10-02": "1996 – Vidste du at en computer vandt et skakspil mod verdensmesteren Garry Kasparov på denne dag? Det viste, at computere kunne blive meget dygtige til at tænke i spil.",
+"11-02": "2010 – Vidste du at en vigtig satellit til at kigge på Solen blev sendt op på denne dag? Forskere bruger sådan en til at lære mere om sollys og varme.",
+"12-02": "1809 – Vidste du at børn i mange lande markerer Abraham Lincolns fødselsdag på denne dag? Han er kendt som en vigtig person i USA's historie.",
+"13-02": "1922 – Vidste du at radioen blev brugt til at sende nyheder og historier til mange mennesker på denne dag? Radio gjorde det muligt at lytte sammen, selv når man var langt væk.",
+"14-02": "1876 – Vidste du at Alexander Graham Bell søgte patent på telefonen på denne dag? Telefonen gjorde det muligt at tale sammen over lange afstande.",
+"15-02": "1946 – Vidste du at en af de første store computere, ENIAC, blev vist frem på denne dag? Den fyldte meget mere end de computere, vi kender i dag.",
+"16-02": "1923 – Vidste du at gravkammeret i Tutankhamons grav blev åbnet på denne dag? Det hjalp mennesker med at lære mere om Egypten i gamle dage.",
+"17-02": "1933 – Vidste du at et nyt blad med nyheder, som senere blev kendt som Newsweek, blev startet på denne dag? Blade hjælper mennesker med at læse om verden.",
+"18-02": "1930 – Vidste du at Pluto blev opdaget på denne dag? Pluto er et lille himmellegeme langt ude i Solsystemet.",
+"19-02": "1878 – Vidste du at Thomas Edison fik patent på fonografen på denne dag? En fonograf kunne optage og afspille lyd.",
+"20-02": "1962 – Vidste du at John Glenn blev den første amerikaner til at rejse rundt om jorden i et rumfartøj på denne dag? Det var en stor begivenhed i rumfarten.",
+"21-02": "1878 – Vidste du at den første telefonbog blev lavet på denne dag? En telefonbog hjalp mennesker med at finde andres numre.",
+"22-02": "1980 – Vidste du at det amerikanske ishockeyhold vandt en meget berømt kamp ved vinter-OL på denne dag? Mange kalder den kamp for 'Miracle on Ice'.",
+"23-02": "1947 – Vidste du at en vigtig organisation for fælles regler og mål blev grundlagt på denne dag? Sådanne regler gør det lettere at få ting til at passe sammen.",
+"24-02": "1582 – Vidste du at paven godkendte den kalender, vi stadig bruger mange steder i dag? Den kaldes den gregorianske kalender.",
+"25-02": "1836 – Vidste du at Samuel Colt fik patent på en ny slags revolver på denne dag? Det var en opfindelse, som ændrede våbenhistorien.",
+"26-02": "1935 – Vidste du at radar blev vist frem som en vigtig opfindelse på denne dag? Radar kan hjælpe med at opdage ting langt væk.",
+"27-02": "1827 – Vidste du at New Orleans holdt en tidlig Mardi Gras-fejring på denne dag? Det er en fest med musik, farver og udklædning.",
+"28-02": "1953 – Vidste du at forskere fandt ud af, hvordan DNA ser ud, på denne dag? DNA er kroppens lille byggeplan, som fortæller, hvordan levende ting bliver lavet.",
+
+// Marts
+"01-03": "1872 – Vidste du at Yellowstone blev verdens første nationalpark på denne dag? En nationalpark er et særligt naturområde, som mennesker passer godt på.",
+"02-03": "1949 – Vidste du at en raket på denne dag nåede helt op til kanten af rummet? Det var vigtigt for de første forsøg med rumfart.",
+"03-03": "1875 – Vidste du at en af de første rigtige ishockeykampe blev spillet på denne dag? Ishockey spilles på is med skøjter, stave og en puck.",
+"04-03": "1837 – Vidste du at Chicago blev en rigtig storby på denne dag? En storby har mange mennesker, huse og veje.",
+"05-03": "1963 – Vidste du at Hula Hoop blev meget populær på denne dag i USA? Det er en ring, man kan dreje rundt om kroppen som leg.",
+"06-03": "1899 – Vidste du at navnet aspirin blev registreret på denne dag? Aspirin er en slags medicin, som voksne kan bruge mod smerter.",
+"07-03": "1876 – Vidste du at Alexander Graham Bell fik patent på telefonen på denne dag? Telefonen gjorde det muligt at tale sammen over lange afstande.",
+"08-03": "1911 – Vidste du at mange markerer kvindernes internationale kampdag på denne dag? Dagen handler om lige muligheder og respekt.",
+"09-03": "1959 – Vidste du at Barbie-dukken blev vist frem for første gang på denne dag? Siden da er den blevet kendt af børn i mange lande.",
+"10-03": "1876 – Vidste du at den første rigtige telefonsamtale blev gennemført på denne dag? Det var et stort skridt i historien om kommunikation.",
+"11-03": "2011 – Vidste du at en stor jordskælvs- og tsunami-katastrofe ramte Japan på denne dag? Den lærte mange mennesker mere om naturkræfter og sikkerhed.",
+"12-03": "1912 – Vidste du at Girl Scouts blev startet på denne dag i USA? Det er en bevægelse, hvor børn og unge lærer om fællesskab og nye færdigheder.",
+"13-03": "1781 – Vidste du at planeten Uranus blev opdaget på denne dag? Det gjorde vores billede af Solsystemet større.",
+"14-03": "1879 – Vidste du at Albert Einstein blev født på denne dag? Han var en meget kendt videnskabsmand, som tænkte meget over lys, tid og rum.",
+"15-03": "1906 – Vidste du at Rolls-Royce blev startet på denne dag? Det blev senere kendt som et bilfirma, der laver særlige biler.",
+"16-03": "1926 – Vidste du at den første raket med flydende brændstof blev sendt op på denne dag? Det var vigtigt for udviklingen af moderne raketter.",
+"17-03": "1762 – Vidste du at det grønne kløverblad ofte bruges på denne dag, som er Sankt Patricks dag? Mange forbinder dagen med farven grøn og festlige optog.",
+"18-03": "1965 – Vidste du at et menneske gik i rumdragt uden for et rumfartøj på denne dag? Det kaldes en rumvandring.",
+"19-03": "1918 – Vidste du at regler om tid og tidszoner blev vedtaget på denne dag i USA? Så blev det lettere at holde styr på klokkeslæt over store afstande.",
+"20-03": "1852 – Vidste du at en berømt bog om en familie i USA blev udgivet på denne dag? Bøger kan hjælpe mennesker med at forstå verden og andre mennesker bedre.",
+"21-03": "2006 – Vidste du at Twitter blev startet på denne dag? Det blev en hjemmeside og app, hvor mennesker kunne skrive korte beskeder til hinanden.",
+"22-03": "1993 – Vidste du at mange markerer Verdens Vanddag på denne dag? Dagen minder os om, at rent vand er vigtigt for mennesker, dyr og planter.",
+"23-03": "1903 – Vidste du at Wright-brødrene på denne dag søgte patent på en flyvemaskine? Det var en vigtig idé i historien om flyvning.",
+"24-03": "1882 – Vidste du at en forsker på denne dag fortalte, at han havde fundet bakterien bag tuberkulose? Det hjalp læger med at forstå sygdommen bedre.",
+"25-03": "1655 – Vidste du at Titan, en stor måne ved planeten Saturn, blev opdaget på denne dag? Titan er en af de mest spændende måner i Solsystemet.",
+"26-03": "1953 – Vidste du at Jonas Salk fortalte om en vaccine mod polio på denne dag? Vacciner kan hjælpe kroppen med at beskytte sig mod sygdomme.",
+"27-03": "1962 – Vidste du at mange markerer Verdens Teaterdag på denne dag? Teater er historier, som bliver spillet for et publikum.",
+"28-03": "1921 – Vidste du at der på denne dag blev sendt et vigtigt radiosignal mellem to lande? Radio gjorde det muligt at sende lyd over lange afstande.",
+"29-03": "1974 – Vidste du at rumsonden Mariner 10 fløj forbi planeten Merkur på denne dag? Så lærte mennesker mere om den lille planet tæt på Solen.",
+"30-03": "1964 – Vidste du at quizprogrammet Jeopardy! blev sendt i tv for første gang på denne dag? I quizzer gælder det om at tænke sig godt om og svare rigtigt.",
+"31-03": "1889 – Vidste du at Eiffeltårnet blev åbnet på denne dag? Det er et meget kendt tårn i Paris, som mange mennesker besøger.",
+
+// April
+"01-04": "1976 – Vidste du at Apple blev startet på denne dag? Apple er et firma, som senere blev kendt for computere, iPads og telefoner.",
+"02-04": "1805 – Vidste du at H.C. Andersen blev født på denne dag? Han skrev eventyr som mange børn stadig kender i dag.",
+"03-04": "1860 – Vidste du at Pony Express begyndte på denne dag? Det var en hurtig måde at sende breve på med ryttere til hest.",
+"04-04": "1975 – Vidste du at Microsoft blev startet på denne dag? Microsoft er kendt for computere og programmer, som mange bruger i skolen og derhjemme.",
+"05-04": "1722 – Vidste du at mennesker på denne dag rejste ud for at opdage nye steder i verden? Opdagelsesrejser hjalp mennesker med at lære mere om jorden.",
+"06-04": "1896 – Vidste du at de første moderne olympiske lege åbnede på denne dag? Her mødes sportsfolk fra mange lande for at konkurrere.",
+"07-04": "1948 – Vidste du at Verdenssundhedsorganisationen blev startet på denne dag? Den arbejder for, at mennesker over hele verden kan få et sundere liv.",
+"08-04": "1820 – Vidste du at den berømte statue Venus de Milo blev fundet på denne dag? Det er en gammel statue, som mange mennesker kender fra et museum.",
+"09-04": "1959 – Vidste du at NASA valgte de første amerikanske astronauter på denne dag? Det var vigtigt for de første rejser ud i rummet.",
+"10-04": "1912 – Vidste du at Titanic sejlede ud på sin første rejse på denne dag? Skibet er blevet meget kendt i historien.",
+"11-04": "1970 – Vidste du at Apollo 13 blev sendt op i rummet på denne dag? Det var en rumrejse, som mange stadig husker.",
+"12-04": "1961 – Vidste du at det første menneske rejste ud i rummet på denne dag? Han hed Yuri Gagarin og fløj rundt om jorden.",
+"13-04": "1943 – Vidste du at Jefferson Memorial blev indviet på denne dag? Det er et stort mindested i USA.",
+"14-04": "1828 – Vidste du at den første amerikanske ordbog med mange ord og forklaringer blev beskyttet på denne dag? Ordbøger hjælper os med at forstå ord bedre.",
+"15-04": "1452 – Vidste du at Leonardo da Vinci blev født på denne dag? Han var både kunstner, opfinder og en meget nysgerrig tænker.",
+"16-04": "1889 – Vidste du at Charlie Chaplin blev født på denne dag? Han blev kendt for sjove film uden mange ord.",
+"17-04": "1964 – Vidste du at bilen Ford Mustang blev vist frem for første gang på denne dag? Mange mennesker kender den som en berømt bil.",
+"18-04": "1938 – Vidste du at Superman første gang kom ud i et tegneseriehæfte omkring denne dag? Superman blev en af verdens mest kendte superhelte.",
+"19-04": "1897 – Vidste du at det første Boston Marathon blev løbet på denne dag? Det er et meget kendt langt løb.",
+"20-04": "1841 – Vidste du at mennesker på denne dag arbejdede videre med ting, der senere gjorde rejser og post nemmere? Opfindelser kan ændre hverdagen meget.",
+"21-04": "753 f.Kr. – Vidste du at mange fortællinger siger, at Rom blev grundlagt på denne dag? Rom blev senere en meget vigtig by i historien.",
+"22-04": "1970 – Vidste du at mange markerer Jordens Dag på denne dag? Dagen handler om naturen og om at passe godt på vores planet.",
+"23-04": "1995 – Vidste du at mange markerer Verdens Bogdag på denne dag? Bøger kan tage os med til nye verdener og give os ny viden.",
+"24-04": "1800 – Vidste du at Library of Congress blev startet på denne dag? Det er et meget stort bibliotek med mange bøger og vigtige tekster.",
+"25-04": "1953 – Vidste du at forskere fortalte om DNA's form på denne dag? DNA er som en lille byggeplan inde i levende ting.",
+"26-04": "2001 – Vidste du at mange mennesker bruger denne dag til at tænke over, hvordan opfindelser og idéer bliver skabt? Nye idéer kan gøre verden smartere.",
+"27-04": "1791 – Vidste du at Samuel Morse blev født på denne dag? Han var med til at lave morsekode, som kunne sende beskeder med prikker og streger.",
+"28-04": "2001 – Vidste du at mennesker på denne dag rejste endnu mere ud i rummet i nyere tid? Rumrejser hjælper os med at lære mere om universet.",
+"29-04": "1982 – Vidste du at mange markerer Dansens Dag på denne dag? Dans bruger kroppen, rytmen og musikken på en sjov måde.",
+"30-04": "1789 – Vidste du at George Washington blev den første præsident i USA på denne dag? Det var en vigtig dag i landets historie.",
+
+// Maj
+"01-05": "1931 – Vidste du at Empire State Building åbnede på denne dag? Det er en meget høj bygning i New York.",
+"02-05": "1933 – Vidste du at mange begyndte at tale om Loch Ness-uhyret på denne dag? Det er et kendt søuhyre fra Skotland, som mange stadig synes er spændende at høre om.",
+"03-05": "1950 – Vidste du at det første løb i Formel 1-verdensmesterskabet blev kørt på denne dag? Formel 1 er racerløb med meget hurtige biler.",
+"04-05": "1904 – Vidste du at arbejdet med Panamakanalen begyndte på denne dag? Kanalen gør det lettere for skibe at sejle mellem to have.",
+"05-05": "1961 – Vidste du at Alan Shepard rejste ud i rummet på denne dag? Han blev den første amerikaner i rummet.",
+"06-05": "1889 – Vidste du at verdensudstillingen i Paris åbnede på denne dag? Der kunne mennesker blandt andet se Eiffeltårnet.",
+"07-05": "1946 – Vidste du at firmaet, som senere blev til Sony, blev startet på denne dag? Sony blev kendt for radioer, musik og elektronik.",
+"08-05": "1886 – Vidste du at Coca-Cola blev solgt for første gang på denne dag? Det startede som en ny drik i USA.",
+"09-05": "1926 – Vidste du at nogle flyvere på denne dag prøvede at flyve over Nordpolen? Nordpolen er et meget koldt sted helt oppe mod toppen af jorden.",
+"10-05": "1869 – Vidste du at den første jernbane tværs over USA blev færdig på denne dag? Tog kunne derefter rejse meget lettere gennem landet.",
+"11-05": "1997 – Vidste du at computeren Deep Blue vandt over skakmesteren Garry Kasparov på denne dag? Det viste, at computere kunne blive meget dygtige til spil.",
+"12-05": "1902 – Vidste du at en tidlig trolleybus begyndte at køre på denne dag? En trolleybus er en bus, som får strøm fra ledninger.",
+"13-05": "1950 – Vidste du at det første løb i Formel 1-verdensmesterskabet blev kørt på denne dag? Her dyster racerkørere i meget hurtige biler.",
+"14-05": "1796 – Vidste du at den første vaccination mod kopper blev givet på denne dag? Vacciner hjælper kroppen med at beskytte sig mod sygdomme.",
+"15-05": "1940 – Vidste du at den første McDonald's-restaurant åbnede på denne dag? Den startede som en lille restaurant i USA.",
+"16-05": "1929 – Vidste du at de første Oscar-priser blev uddelt på denne dag? Oscar er en kendt pris til film.",
+"17-05": "1900 – Vidste du at bogen Troldmanden fra Oz udkom på denne dag? Det er en kendt historie om Dorothy og hendes eventyr.",
+"18-05": "1897 – Vidste du at bogen Dracula udkom på denne dag? Det er en meget kendt historie om en vampyr.",
+"19-05": "1535 – Vidste du at opdagelsesrejseren Jacques Cartier sejlede ud på denne dag? Han rejste for at lære mere om nye steder i verden.",
+"20-05": "1873 – Vidste du at de blå jeans fik patent på denne dag? Jeans er bukser, som mange stadig går med i dag.",
+"21-05": "1927 – Vidste du at Charles Lindbergh landede i Paris på denne dag efter at have fløjet alene over Atlanterhavet? Det var en stor begivenhed i flyvningens historie.",
+"22-05": "1906 – Vidste du at Wright-brødrene fik patent på deres flyvemaskine på denne dag? De var med til at gøre flyvning mulig.",
+"23-05": "1895 – Vidste du at New York Public Library blev oprettet på denne dag? Et bibliotek er et sted med mange bøger og viden.",
+"24-05": "1844 – Vidste du at den første besked blev sendt med telegraf på denne dag? Telegrafen kunne sende beskeder over lange afstande.",
+"25-05": "1977 – Vidste du at den første Star Wars-film havde premiere på denne dag? Mange børn og voksne kender filmene om rummet og lyssværdene.",
+"26-05": "1927 – Vidste du at den sidste Ford Model T blev bygget på denne dag? Det var en bil, som mange mennesker havde råd til.",
+"27-05": "1937 – Vidste du at Golden Gate Bridge åbnede for mennesker til fods på denne dag? Det er en meget kendt bro i USA.",
+"28-05": "1930 – Vidste du at Chrysler Building åbnede på denne dag? Det er en høj bygning i New York med et særligt skinnende tag.",
+"29-05": "1953 – Vidste du at Edmund Hillary og Tenzing Norgay nåede toppen af Mount Everest på denne dag? Everest er verdens højeste bjerg.",
+"30-05": "1971 – Vidste du at rumsonden Mariner 9 blev sendt op på denne dag? Den blev senere den første sonde, som kom i kredsløb om en anden planet.",
+"31-05": "1859 – Vidste du at Big Ben begyndte at holde tiden i London på denne dag? Big Ben er det store kendte urtårn i England.",
+
+// Juni
+"01-06": "1938 – Vidste du at tegnefilmen om Anders Ands nevøer blev vist på denne dag? Mange børn kender dem som Rip, Rap og Rup.",
+"02-06": "1896 – Vidste du at Guglielmo Marconi fik patent på radioen på denne dag? Radio gjorde det muligt at sende lyd over lange afstande.",
+"03-06": "1965 – Vidste du at astronauten Ed White gik uden for sit rumfartøj på denne dag? Det kaldes en rumvandring.",
+"04-06": "1919 – Vidste du at kvinder i USA fik ret til at stemme på denne dag? Det var vigtigt, fordi flere mennesker så kunne være med til at bestemme.",
+"05-06": "1977 – Vidste du at den første Apple-computer kom til salg på denne dag? Det var en tidlig computer, som blev vigtig i computerhistorien.",
+"06-06": "1933 – Vidste du at den første drive-in-biograf åbnede på denne dag? Her kunne mennesker se film, mens de sad i deres bil.",
+"07-06": "1892 – Vidste du at Benjamin Harrison blev den første amerikanske præsident, der så en baseballkamp på denne dag? Baseball er en meget kendt sport i USA.",
+"08-06": "1783 – Vidste du at vulkanen Laki i Island begyndte et stort udbrud på denne dag? Vulkaner kan sende aske og ild op fra jorden.",
+"09-06": "1934 – Vidste du at Anders And første gang kom med i en tegnefilm på denne dag? Siden da er han blevet kendt i mange lande.",
+"10-06": "1752 – Vidste du at Benjamin Franklin fløj med en drage i tordenvejr på denne dag? Han lærte mere om elektricitet.",
+"11-06": "1963 – Vidste du at en buddhistisk munk på denne dag blev kendt i hele verden for en meget alvorlig protest? Det mindede mange om, at mennesker ønsker fred og retfærdighed.",
+"12-06": "1963 – Vidste du at filmen Cleopatra havde premiere på denne dag? Det var en stor film om en dronning fra det gamle Egypten.",
+"13-06": "1983 – Vidste du at rumsonden Pioneer 10 blev det første menneskeskabte objekt, der rejste forbi planeten Neptuns bane? Så kom den meget langt ud i rummet.",
+"14-06": "1777 – Vidste du at USA valgte sit flag på denne dag? Et flag kan vise, hvilket land man hører til.",
+"15-06": "1752 – Vidste du at Benjamin Franklin på denne tid lavede forsøg med lyn og elektricitet? Han var meget nysgerrig på, hvordan naturen virker.",
+"16-06": "1963 – Vidste du at Valentina Teresjkova rejste ud i rummet på denne dag? Hun blev den første kvinde i rummet.",
+"17-06": "1885 – Vidste du at Frihedsgudinden kom til New York på denne dag? Den store statue blev en gave fra Frankrig.",
+"18-06": "1983 – Vidste du at Sally Ride rejste ud i rummet på denne dag? Hun blev den første amerikanske kvinde i rummet.",
+"19-06": "1846 – Vidste du at den første officielle baseballkamp med nye regler blev spillet på denne dag? Regler hjælper et spil med at være ens for alle.",
+"20-06": "1782 – Vidste du at USA valgte ørnen som et vigtigt symbol på denne dag? Symboler kan fortælle noget om et land.",
+"21-06": "1948 – Vidste du at det første program i tv-serien Kukla, Fran and Ollie blev sendt på denne dag? Det var et kendt børneprogram med dukker.",
+"22-06": "1633 – Vidste du at Galileo på denne dag blev straffet for sine idéer om rummet? Han var en forsker, som lærte meget om jorden og solen.",
+"23-06": "1868 – Vidste du at Christopher Latham Sholes fik patent på skrivemaskinen på denne dag? Skrivemaskinen gjorde det lettere at skrive tekster hurtigt.",
+"24-06": "1947 – Vidste du at mange begyndte at tale om flyvende tallerkener på denne dag? Det gjorde historier om rumvæsner og himlen ekstra spændende for mange.",
+"25-06": "1876 – Vidste du at slaget ved Little Bighorn begyndte på denne dag? Det er en kendt begivenhed i USA's historie.",
+"26-06": "1870 – Vidste du at den første julebog om Julemanden og amerikanske juletraditioner blev kendt omkring denne tid? Julehistorier har længe været populære.",
+"27-06": "1954 – Vidste du at verdens første atomkraftværk begyndte at lave strøm på denne dag? Strøm kan komme fra forskellige slags energi.",
+"28-06": "1914 – Vidste du at en vigtig begivenhed i Europa skete på denne dag, som senere førte til Første Verdenskrig? Nogle historiske dage ændrer meget i verden.",
+"29-06": "2007 – Vidste du at den første iPhone kom til salg på denne dag? Den blev en meget kendt telefon med skærm og apps.",
+"30-06": "1908 – Vidste du at der skete en kæmpe eksplosion over Tunguska i Sibirien på denne dag? Mange tror, at det kom fra en sten fra rummet.",
+
+// Juli
+"01-07": "1876 – Vidste du at den første internationale telefonlinje åbnede på denne dag? Nu kunne mennesker tale sammen over længere afstande.",
+"02-07": "1937 – Vidste du at piloten Amelia Earhart forsvandt på denne dag under en flyvetur? Hun var en modig flyver, som mange stadig husker.",
+"03-07": "1886 – Vidste du at Karl Benz prøvekørte en af de første biler på denne dag? Det var en vigtig begyndelse for bilen.",
+"04-07": "1862 – Vidste du at Alice i Eventyrland blev fortalt som historie på denne dag? Senere blev den til en kendt bog om en pige og en mærkelig eventyrverden.",
+"05-07": "1687 – Vidste du at Isaac Newton udgav en vigtig bog på denne dag? Han hjalp mennesker med at forstå mere om bevægelse og tyngdekraft.",
+"06-07": "1885 – Vidste du at den første vaccine mod rabies blev givet på denne dag? Vacciner hjælper kroppen med at beskytte sig mod sygdomme.",
+"07-07": "1898 – Vidste du at USA annekterede Hawaii på denne dag? Hawaii er en øgruppe med vulkaner, strande og varmt vejr.",
+"08-07": "1947 – Vidste du at mange begyndte at tale om et mærkeligt fund ved Roswell på denne dag? Det gjorde historier om rumvæsner ekstra spændende for mange.",
+"09-07": "1955 – Vidste du at rock and roll-musik blev meget populær på denne dag? Musik kan få mennesker til at synge, danse og være glade.",
+"10-07": "1962 – Vidste du at Telstar blev sendt op på denne dag? Det var en satellit, som hjalp tv-signaler med at rejse over store afstande.",
+"11-07": "1960 – Vidste du at bogen Dræb ikke en sangfugl blev udgivet på denne dag? Bøger kan få mennesker til at tænke over retfærdighed og venskab.",
+"12-07": "1817 – Vidste du at forfatteren Henry David Thoreau blev født på denne dag? Han skrev om naturen og om at leve enkelt.",
+"13-07": "1930 – Vidste du at det første verdensmesterskab i fodbold begyndte på denne dag? Her spiller lande mod hinanden i fodbold.",
+"14-07": "1881 – Vidste du at Billy the Kid blev skudt på denne dag? Han er blevet en kendt figur i fortællinger om det vilde vesten.",
+"15-07": "1975 – Vidste du at et amerikansk og et sovjetisk rumfartøj mødtes i rummet på denne dag? Det viste, at lande kunne samarbejde i rummet.",
+"16-07": "1969 – Vidste du at Apollo 11 blev sendt mod Månen på denne dag? Det var rumrejsen, som senere førte de første mennesker til Månen.",
+"17-07": "1955 – Vidste du at Disneyland åbnede på denne dag? Det blev en kendt park med figurer, eventyr og forlystelser.",
+"18-07": "1968 – Vidste du at Intel blev startet på denne dag? Intel er kendt for små dele i computere, som hjælper dem med at tænke hurtigt.",
+"19-07": "1900 – Vidste du at den første metro i Paris åbnede på denne dag? En metro er et tog, som ofte kører under jorden i en stor by.",
+"20-07": "1969 – Vidste du at mennesker gik på Månen på denne dag? De fløj derud i et rumskib og gik rundt på Månens overflade.",
+"21-07": "365 – Vidste du at et meget kraftigt jordskælv og en stor bølge ramte på denne dag for længe siden? Sådanne naturkræfter kan ændre meget på kort tid.",
+"22-07": "1933 – Vidste du at piloten Wiley Post fløj jorden rundt alene på denne dag? Det var en stor bedrift i flyvningens historie.",
+"23-07": "1903 – Vidste du at Ford solgte sin første bil på denne dag? Biler blev efterhånden en vigtig del af hverdagen for mange mennesker.",
+"24-07": "1969 – Vidste du at Apollo 11 kom tilbage til Jorden på denne dag? Astronauterne landede sikkert efter deres rejse til Månen.",
+"25-07": "1909 – Vidste du at Louis Blériot fløj over Den Engelske Kanal på denne dag? Det viste, at fly kunne klare længere ture.",
+"26-07": "1948 – Vidste du at præsident Truman besluttede på denne dag, at mennesker i militæret skulle behandles mere lige? Lige rettigheder er vigtige i et samfund.",
+"27-07": "1940 – Vidste du at Bugs Bunny første gang kom med i en tegnefilm på denne dag? Han er en kendt figur fra sjove tegnefilm.",
+"28-07": "1868 – Vidste du at den 14. ændring til USA's grundlov trådte i kraft på denne dag? Den handlede om rettigheder og beskyttelse af mennesker.",
+"29-07": "1958 – Vidste du at NASA blev startet på denne dag? NASA arbejder med rumrejser, raketter og forskning om rummet.",
+"30-07": "1932 – Vidste du at de olympiske lege begyndte i Los Angeles på denne dag? Ved OL konkurrerer sportsfolk fra mange lande.",
+"31-07": "1971 – Vidste du at astronauter kørte i en lille månebil på denne dag? Bilen hjalp dem med at undersøge Månen bedre.",
+
+// August
+"01-08": "1981 – Vidste du at musikkanalen MTV begyndte på denne dag? Her kunne mennesker se musikvideoer i fjernsynet.",
+"02-08": "1939 – Vidste du at Albert Einstein skrev et vigtigt brev på denne dag om atomenergi? Forskere kan hjælpe mennesker med at forstå svære ting i naturen.",
+"03-08": "1492 – Vidste du at Christoffer Columbus sejlede ud på denne dag? Han rejste over havet for at finde nye veje til andre steder i verden.",
+"04-08": "1892 – Vidste du at Lizzie Bordens historie blev kendt på denne dag? Den er blevet en del af mange gamle fortællinger og gåder fra USA.",
+"05-08": "1914 – Vidste du at det første elektriske trafiklys blev taget i brug på denne dag? Trafiklys hjælper biler og mennesker med at komme sikkert frem.",
+"06-08": "1930 – Vidste du at morgenmadsproduktet cornflakes blev opfundet tidligere og blev meget kendt omkring denne tid? Mange børn og voksne kender stadig cornflakes i dag.",
+"07-08": "1942 – Vidste du at Hedy Lamarr og George Antheil fik patent på en smart måde at sende signaler på? Den idé blev senere vigtig for trådløs teknologi som fx Wi-Fi.",
+"08-08": "1908 – Vidste du at Wilbur Wright fløj offentligt på denne dag i Frankrig? Det var med til at vise, at flyvemaskiner virkelig kunne bruges.",
+"09-08": "1892 – Vidste du at Thomas Edison fik patent på en tovejs-telegraf på denne dag? Det gjorde det lettere at sende beskeder frem og tilbage.",
+"10-08": "1846 – Vidste du at Smithsonian Institution blev oprettet på denne dag? Det er et stort sted med museer, viden og spændende ting at lære om.",
+"11-08": "1934 – Vidste du at det første fængsel med Alcatraz-navnet åbnede som føderalt fængsel på denne dag? I dag kender mange stedet som en berømt ø med en spændende historie.",
+"12-08": "1990 – Vidste du at den store dinosaur Sue blev fundet på denne dag? Sue er et af de mest kendte skeletter af Tyrannosaurus rex.",
+"13-08": "1918 – Vidste du at Opha Mae Johnson blev den første kvinde i det amerikanske marinekorps på denne dag? Det viste, at kvinder også kunne få nye roller.",
+"14-08": "1935 – Vidste du at Social Security blev underskrevet i USA på denne dag? Det var med til at hjælpe mennesker, når de blev gamle eller havde brug for støtte.",
+"15-08": "1947 – Vidste du at Indien blev et frit land på denne dag? Det var en vigtig dag for mange mennesker.",
+"16-08": "1858 – Vidste du at dronning Victoria og USA's præsident James Buchanan sendte en hilsen gennem det første transatlantiske telegrafkabel på denne dag? Det var en tidlig måde at sende beskeder under havet på.",
+"17-08": "1877 – Vidste du at Asaph Hall opdagede månen Phobos på denne dag? Phobos er en af Mars' to små måner.",
+"18-08": "1868 – Vidste du at den franske astronom Pierre Janssen opdagede helium i Solens lys på denne dag? Helium er en gas, som også bruges i balloner.",
+"19-08": "1909 – Vidste du at det første racerløb på Indianapolis Motor Speedway blev kørt på denne dag? Banen blev senere kendt over hele verden.",
+"20-08": "1977 – Vidste du at rumsonden Voyager 2 blev sendt op på denne dag? Den rejste ud for at undersøge planeter langt væk.",
+"21-08": "1959 – Vidste du at Hawaii blev en delstat i USA på denne dag? Hawaii er kendt for øer, vulkaner og varmt vejr.",
+"22-08": "1902 – Vidste du at Cadillac Motor Company blev startet på denne dag? Det blev senere et kendt bilfirma.",
+"23-08": "1904 – Vidste du at sneglepostkort og små sjove opfindelser blev vist frem på denne tid? Mennesker har længe fundet på kreative måder at sende hilsner til hinanden.",
+"24-08": "1853 – Vidste du at kartoffelchips ifølge en kendt fortælling blev lavet på denne dag? Chips blev senere en snack, som mange kender.",
+"25-08": "1835 – Vidste du at avisen The Sun skrev en berømt historie om liv på Månen på denne dag? Mange mennesker blev meget nysgerrige.",
+"26-08": "1920 – Vidste du at kvinder i USA fik ret til at stemme på denne dag? Det var vigtigt, fordi flere mennesker så kunne være med til at bestemme.",
+"27-08": "1883 – Vidste du at vulkanen Krakatau havde et kæmpe udbrud på denne dag? Vulkanudbrud kan sende aske og lyd meget langt væk.",
+"28-08": "1963 – Vidste du at Martin Luther King Jr. holdt en meget kendt tale på denne dag? Talen handlede om håb og om, at mennesker skal behandles lige.",
+"29-08": "1831 – Vidste du at Michael Faraday opdagede elektromagnetisk induktion på denne dag? Den idé blev senere vigtig for elektricitet og maskiner.",
+"30-08": "1963 – Vidste du at den varme telefonlinje mellem Washington og Moskva blev taget i brug på denne dag? Den skulle hjælpe lande med at tale sammen hurtigt.",
+"31-08": "1897 – Vidste du at Thomas Edison fik patent på Kinetoscope på denne dag? Det var en tidlig maskine til at se levende billeder, før moderne film blev almindelige.",
+      // September
+      "01-09": "1985 – Vidste du at vraget af Titanic blev fundet på denne dag? Titanic var et stort skib, som sank i havet, og mange var spændte på at finde det igen.",
+"02-09": "1666 – Vidste du at den store brand i London begyndte på denne dag? Branden ødelagde mange huse, og bagefter byggede man byen op igen.",
+"03-09": "1967 – Vidste du at Sverige begyndte at køre i højre side af vejen på denne dag? Det var en stor ændring, så trafik og biler skulle vænne sig til nye regler.",
+"04-09": "1888 – Vidste du at George Eastman fik patent på et kamera med filmrulle på denne dag? Det gjorde det lettere for mange mennesker at tage billeder.",
+"05-09": "1977 – Vidste du at rumsonden Voyager 1 blev sendt op på denne dag? Den rejste ud for at undersøge planeter og er kommet meget langt ud i rummet.",
+"06-09": "1522 – Vidste du at et skib på denne dag kom hjem efter at have sejlet hele vejen rundt om jorden? Det viste, at jorden kan rundes med et skib.",
+"07-09": "1822 – Vidste du at Brasilien blev et frit land på denne dag? Det var en vigtig dag for mange mennesker i landet.",
+"08-09": "1966 – Vidste du at den første episode af Star Trek blev vist på denne dag? Serien handler om rumrejser, stjerner og eventyr langt ude i universet.",
+"09-09": "1776 – Vidste du at navnet 'United States' blev brugt officielt på denne dag? Det blev navnet på landet USA.",
+"10-09": "1846 – Vidste du at Elias Howe fik patent på symaskinen på denne dag? Symaskinen gjorde det meget lettere og hurtigere at sy tøj.",
+"11-09": "1962 – Vidste du at The Beatles indspillede deres første single på denne dag? Senere blev de et af verdens mest kendte bands.",
+"12-09": "1953 – Vidste du at John F. Kennedy giftede sig med Jacqueline Bouvier på denne dag? De blev senere et meget kendt par i USA.",
+"13-09": "1956 – Vidste du at IBM viste det første computerlager med harddisk på denne dag? Det var vigtigt, fordi computere skulle kunne gemme information.",
+"14-09": "1959 – Vidste du at rumsonden Luna 2 nåede Månen på denne dag? Det var første gang et menneskeskabt objekt kom helt frem til Månen.",
+"15-09": "1916 – Vidste du at de første kampvogne blev brugt på denne dag? Det er mest en voksen historiebegivenhed, men den viser, hvordan maskiner ændrede verden.",
+"16-09": "1908 – Vidste du at firmaet General Motors blev startet på denne dag? Det blev senere kendt for at lave mange slags biler.",
+"17-09": "1787 – Vidste du at USA's forfatning blev underskrevet på denne dag? En forfatning er et sæt vigtige regler for et land.",
+"18-09": "1851 – Vidste du at avisen The New York Times udkom for første gang på denne dag? Aviser hjælper mennesker med at læse om verden.",
+"19-09": "1893 – Vidste du at New Zealand gav kvinder stemmeret på denne dag? Det var vigtigt, fordi flere mennesker så kunne være med til at bestemme.",
+"20-09": "1519 – Vidste du at Ferdinand Magellans ekspedition sejlede ud på denne dag? Rejsen blev kendt, fordi skibene senere kom hele vejen rundt om jorden.",
+"21-09": "1937 – Vidste du at bogen The Hobbit udkom på denne dag? Det er en kendt fortælling om eventyr, drager og en hobbit ved navn Bilbo.",
+"22-09": "1991 – Vidste du at det store hul i ozonlaget over Antarktis blev meldt som meget stort på denne dag? Ozonlaget hjælper med at beskytte jorden mod stærkt sollys.",
+"23-09": "1846 – Vidste du at planeten Neptun blev opdaget på denne dag? Neptun er en stor blå planet langt ude i Solsystemet.",
+"24-09": "1789 – Vidste du at USA's højesteret blev oprettet på denne dag? En højesteret er et sted, hvor vigtige regler og love bliver tolket.",
+"25-09": "1926 – Vidste du at Henry Ford indførte 5-dages arbejdsuge på denne dag? Det betød mere tid til hvile og familieliv for mange mennesker.",
+"26-09": "1960 – Vidste du at den første tv-debat mellem præsidentkandidater i USA blev sendt på denne dag? Fjernsyn gjorde det muligt for mange at følge med hjemmefra.",
+"27-09": "1825 – Vidste du at verdens første offentlige jernbane med damplokomotiv åbnede på denne dag? Tog gjorde det lettere at rejse og flytte varer.",
+"28-09": "1928 – Vidste du at Alexander Fleming opdagede penicillin på denne dag? Penicillin blev en vigtig medicin, som kunne hjælpe mod sygdomme.",
+"29-09": "1962 – Vidste du at tegnefilmen The Jetsons blev vist første gang på denne dag? Serien forestillede sig en fremtid med flyvende biler og smart teknologi.",
+"30-09": "1954 – Vidste du at den første atomdrevne ubåd blev taget i brug på denne dag? Det viste, hvordan ny energi kunne bruges i store maskiner.",
+
+// Oktober
+"01-10": "1908 – Vidste du at den første Ford Model T kom på denne dag? Det var en bil, som gjorde det lettere for mange familier at få en bil.",
+"02-10": "1950 – Vidste du at tegneserien Peanuts begyndte på denne dag? Her møder man blandt andet Charlie Brown og hunden Snoopy.",
+"03-10": "1967 – Vidste du at sangen 'Puff, the Magic Dragon' blev meget kendt omkring denne tid? Sange kan sætte gang i fantasien og fortælle små historier.",
+"04-10": "1957 – Vidste du at Sputnik 1 blev sendt op på denne dag? Det var den første satellit i rummet.",
+"05-10": "1947 – Vidste du at den første tale blev sendt fra Det Hvide Hus i fjernsynet på denne dag? Fjernsyn gjorde det muligt for mange at følge med hjemmefra.",
+"06-10": "1889 – Vidste du at Thomas Edison viste en tidlig film på denne dag? Det var med til at begynde historien om levende billeder.",
+"07-10": "1913 – Vidste du at Henry Ford begyndte at bruge samlebånd på denne dag? Det gjorde det hurtigere at bygge biler.",
+"08-10": "1871 – Vidste du at den store brand i Chicago begyndte på denne dag? Bagefter byggede man byen op igen.",
+"09-10": "1963 – Vidste du at dæmningen Vajont gav store problemer på denne dag? Det lærte mange mennesker, hvor stærk naturen kan være.",
+"10-10": "1971 – Vidste du at London Bridge blev åbnet igen i USA på denne dag? Den gamle bro var blevet flyttet sten for sten fra England.",
+"11-10": "1884 – Vidste du at byen Washington fik sit første monument med Washington Monument på denne dag? Monumenter er store mindesmærker.",
+"12-10": "1960 – Vidste du at den første olympiske maskot blev brugt omkring denne tid? Maskotter er sjove figurer, som hjælper med at gøre store begivenheder mere festlige.",
+"13-10": "1792 – Vidste du at Det Hvide Hus fik sin grundsten på denne dag? Det er et kendt hus i USA.",
+"14-10": "1947 – Vidste du at Chuck Yeager fløj hurtigere end lydens hastighed på denne dag? Det var en stor begivenhed i flyvningens historie.",
+"15-10": "1997 – Vidste du at rumsonden Cassini blev sendt op på denne dag? Den rejste ud for at undersøge planeten Saturn.",
+"16-10": "1846 – Vidste du at læger brugte bedøvelse med ether på denne dag? Det gjorde behandlinger mindre smertefulde.",
+"17-10": "1973 – Vidste du at OPEC-landene på denne dag begyndte en vigtig oliepolitik? Det påvirkede, hvordan biler og maskiner kunne få brændstof.",
+"18-10": "1867 – Vidste du at USA købte Alaska på denne dag? Alaska er kendt for kulde, sne og smuk natur.",
+"19-10": "1781 – Vidste du at en vigtig kamp sluttede på denne dag i USA's historie? Nogle historiske dage ændrer meget for et land.",
+"20-10": "1973 – Vidste du at dronning Elizabeth 2. åbnede operahuset i Sydney på denne dag? Det er en meget kendt bygning i Australien.",
+"21-10": "1879 – Vidste du at Thomas Edison lavede en glødepære, som kunne lyse længe, på denne dag? Det gjorde elektrisk lys meget nyttigt.",
+"22-10": "1797 – Vidste du at André-Jacques Garnerin sprang ned med faldskærm på denne dag? Det var en tidlig og modig faldskærmstur.",
+"23-10": "2001 – Vidste du at Apple viste den første iPod på denne dag? Den kunne gemme musik, så man kunne tage sangene med sig.",
+"24-10": "1945 – Vidste du at FN blev startet på denne dag? FN er en stor organisation, hvor lande taler sammen om verden.",
+"25-10": "1854 – Vidste du at den lette brigade red frem på denne dag? Det er blevet en kendt fortælling i historien.",
+"26-10": "1881 – Vidste du at den berømte duel ved O.K. Corral skete på denne dag? Den er blevet en del af historier om det vilde vesten.",
+"27-10": "1904 – Vidste du at New Yorks første undergrundsbane åbnede på denne dag? En metro hjælper mange mennesker med at komme rundt i en stor by.",
+"28-10": "1886 – Vidste du at Frihedsgudinden blev indviet på denne dag? Den store statue står i New York og er kendt over hele verden.",
+"29-10": "1969 – Vidste du at en af de første beskeder på internettet blev sendt på denne dag? Det var en vigtig begyndelse på det internet, vi bruger i dag.",
+"30-10": "1938 – Vidste du at et spændende radioteater blev sendt på denne dag? Mange lyttede med og syntes, det var meget dramatisk.",
+"31-10": "1517 – Vidste du at Martin Luther på denne dag satte sine teser op på en kirkedør? Det blev starten på en stor forandring i kirken.",
+
+// November
+"01-11": "1952 – Vidste du at den første brintbombe blev prøvesprængt på denne dag? Det er en meget alvorlig begivenhed, men den lærte verden, hvor vigtigt det er at arbejde for fred.",
+"02-11": "1936 – Vidste du at BBC begyndte at sende verdens første faste tv-service på denne dag? Det gjorde det muligt for mennesker at se programmer hjemme i stuen.",
+"03-11": "1957 – Vidste du at hunden Laika blev sendt ud i rummet på denne dag? Hun blev et af de første levende væsner i kredsløb om jorden.",
+"04-11": "1922 – Vidste du at man fandt indgangen til faraoen Tutankhamons grav på denne dag? Det hjalp mennesker med at lære mere om Egypten i gamle dage.",
+"05-11": "1872 – Vidste du at kvindesagsforkæmperen Susan B. Anthony stemte ved et valg på denne dag, selv om kvinder ikke havde stemmeret endnu? Det var med til at vise, at regler kunne ændres.",
+"06-11": "1860 – Vidste du at Abraham Lincoln blev valgt som præsident i USA på denne dag? Han er en af de mest kendte personer i USA's historie.",
+"07-11": "1940 – Vidste du at Tacoma Narrows Bridge brød sammen på denne dag? Broens historie hjalp ingeniører med at bygge sikrere broer bagefter.",
+"08-11": "1895 – Vidste du at Wilhelm Röntgen opdagede røntgenstråler på denne dag? Røntgen hjælper læger med at kigge ind i kroppen uden at åbne den.",
+"09-11": "1989 – Vidste du at Berlinmuren begyndte at falde på denne dag? Mange mennesker blev glade, fordi familier og venner lettere kunne være sammen igen.",
+"10-11": "1969 – Vidste du at børneprogrammet Sesame Street begyndte på denne dag? Programmet hjalp børn med bogstaver, tal og små historier.",
+"11-11": "1620 – Vidste du at mennesker på skibet Mayflower skrev en fælles aftale på denne dag? Aftalen handlede om at samarbejde og lave regler sammen.",
+"12-11": "1933 – Vidste du at verdens første billede med en dybfrys-frosset madvare blev taget på denne dag i USA? Dybfrysning gjorde det lettere at gemme mad i længere tid.",
+"13-11": "1851 – Vidste du at den første undervandstelegraf mellem England og Frankrig blev taget i brug på denne dag? Det gjorde det lettere at sende beskeder mellem lande.",
+"14-11": "1889 – Vidste du at journalisten Nellie Bly begyndte sin rejse jorden rundt på denne dag? Hun ville se, om hun kunne klare det hurtigere end i en kendt bog.",
+"15-11": "1889 – Vidste du at Brasilien blev republik på denne dag? Det var en vigtig dag, hvor landet fik en ny måde at styre sig selv på.",
+"16-11": "1907 – Vidste du at Oklahoma blev en delstat i USA på denne dag? En delstat er en del af et større land med egne regler og byer.",
+"17-11": "1970 – Vidste du at rumsonden Luna 17 landede på Månen på denne dag? Den havde en lille månebil med, som kunne køre rundt og undersøge overfladen.",
+"18-11": "1928 – Vidste du at Mickey Mouse første gang kom med i tegnefilmen Steamboat Willie på denne dag? Siden da er han blevet kendt af børn i mange lande.",
+"19-11": "1863 – Vidste du at Abraham Lincoln holdt Gettysburg-talen på denne dag? Talen er blevet kendt, fordi den handlede om frihed og fællesskab.",
+"20-11": "1947 – Vidste du at Storbritanniens prinsesse Elizabeth giftede sig på denne dag? Hun blev senere dronning Elizabeth 2.",
+"21-11": "1877 – Vidste du at Thomas Edison viste fonografen frem på denne dag? En fonograf kunne optage og afspille lyd.",
+"22-11": "1963 – Vidste du at tv-serien Doctor Who begyndte på denne dag? Det er en kendt serie om eventyr, tid og rum.",
+"23-11": "1889 – Vidste du at verdens første jukeboks blev vist frem på denne dag? En jukeboks er en maskine, som kan spille musik.",
+"24-11": "1859 – Vidste du at Charles Darwin udgav en vigtig bog om dyr og natur på denne dag? Bogen hjalp mennesker med at forstå, hvordan levende ting ændrer sig over meget lang tid.",
+"25-11": "1783 – Vidste du at den sidste britiske hær forlod New York på denne dag efter USA's frihedskrig? Det var en vigtig dag i USA's historie.",
+"26-11": "1922 – Vidste du at Howard Carter og Lord Carnarvon gik ind i Tutankhamons gravkammer på denne dag? De så gamle skatte og ting fra Egypten.",
+"27-11": "1895 – Vidste du at Alfred Nobel skrev under på sit testamente på denne dag? Senere blev Nobelpriserne lavet for at hylde vigtig viden og gode idéer.",
+"28-11": "1964 – Vidste du at rumsonden Mariner 4 blev sendt mod Mars på denne dag? Den hjalp mennesker med at lære mere om den røde planet.",
+"29-11": "1945 – Vidste du at Jugoslavien blev republik på denne dag? Det var en vigtig ændring i, hvordan landet blev styret.",
+"30-11": "1954 – Vidste du at en sten fra rummet faldt ned gennem et tag i Alabama på denne dag? Den ramte faktisk en kvinde, som heldigvis overlevede.",
+
+// December
+"01-12": "1955 – Vidste du at Rosa Parks på denne dag sagde nej til at rejse sig i en bus? Det blev en vigtig del af kampen for, at mennesker skal behandles lige.",
+"02-12": "1804 – Vidste du at Napoleon blev kejser på denne dag? Det var en stor begivenhed i Frankrigs historie.",
+"03-12": "1967 – Vidste du at den første hjertetransplantation blev gennemført på denne dag? Lægerne prøvede at hjælpe et menneske med et nyt hjerte.",
+"04-12": "1996 – Vidste du at rumsonden Mars Pathfinder blev sendt op på denne dag? Den rejste mod Mars for at lære mere om den røde planet.",
+"05-12": "1901 – Vidste du at Walt Disney blev født på denne dag? Han blev senere kendt for tegnefilm og figurer som Mickey Mouse.",
+"06-12": "1768 – Vidste du at den første udgave af Encyclopaedia Britannica kom ud på denne dag? Det er et stort opslagsværk med viden om mange ting.",
+"07-12": "1972 – Vidste du at astronauterne på Apollo 17 tog et meget kendt billede af hele Jorden på denne dag? Billedet viser, hvor smuk og rund vores planet er.",
+"08-12": "1980 – Vidste du at John Lennon døde på denne dag? Han var en kendt musiker fra bandet The Beatles.",
+"09-12": "1968 – Vidste du at en tidlig computer-mus blev vist frem på denne dag? Senere blev computermusen en vigtig del af at bruge computere.",
+"10-12": "1901 – Vidste du at de første Nobelpriser blev uddelt på denne dag? Nobelpriser gives til mennesker, som har gjort noget vigtigt for verden.",
+"11-12": "1936 – Vidste du at kong Edward den 8. stoppede som konge på denne dag? Det er en kendt begivenhed i britisk historie.",
+"12-12": "1901 – Vidste du at det første radiosignal rejste over Atlanterhavet på denne dag? Det viste, at beskeder kunne sendes meget langt uden ledninger.",
+"13-12": "1577 – Vidste du at Francis Drake sejlede ud på denne dag for at rejse rundt om jorden? Rejsen blev senere meget kendt.",
+"14-12": "1911 – Vidste du at Roald Amundsen nåede Sydpolen på denne dag? Sydpolen er et meget koldt sted helt nede på jorden.",
+"15-12": "1966 – Vidste du at Walt Disney døde på denne dag? Mange kender stadig hans figurer og historier.",
+"16-12": "1773 – Vidste du at mennesker i Boston på denne dag kastede te i havet? Det blev en kendt protest i USA's historie.",
+"17-12": "1903 – Vidste du at Wright-brødrene fløj med et motorfly på denne dag? Det var en af de første rigtige flyveture med fly.",
+"18-12": "1892 – Vidste du at Tjajkovskijs ballet Nøddeknækkeren blev vist første gang på denne dag? Mange forbinder den med musik og jul.",
+"19-12": "1843 – Vidste du at bogen Et juleeventyr udkom på denne dag? Det er en kendt fortælling om jul og om at blive et bedre menneske.",
+"20-12": "1803 – Vidste du at Frankrig solgte et stort landområde til USA på denne dag? Det gjorde USA meget større.",
+"21-12": "1937 – Vidste du at filmen Snehvide og de syv små dværge havde premiere på denne dag? Det blev en meget kendt tegnefilm.",
+"22-12": "1937 – Vidste du at den første kopidonat blev lavet på denne dag? Donuts er en sød kage, som mange kender.",
+"23-12": "1823 – Vidste du at et kendt juledigt om julemanden blev udgivet på denne dag? Det var med til at forme, hvordan mange forestiller sig julemanden.",
+"24-12": "1968 – Vidste du at astronauterne på Apollo 8 sendte billeder af Jorden fra rummet på denne dag? Mange syntes, det var helt fantastisk.",
+"25-12": "1066 – Vidste du at Vilhelm Erobreren blev kronet som konge på denne dag? Det er en vigtig begivenhed i Englands historie.",
+"26-12": "2004 – Vidste du at et meget stort jordskælv og en tsunami ramte på denne dag? Det lærte mange mennesker, hvor vigtigt det er at hjælpe hinanden ved store naturkatastrofer.",
+"27-12": "1831 – Vidste du at Charles Darwin sejlede ud på denne dag med skibet Beagle? Rejsen hjalp ham med at lære meget om dyr, planter og natur.",
+"28-12": "1895 – Vidste du at de første film blev vist for betalende gæster på denne dag? Det var en vigtig begyndelse på biografens historie.",
+"29-12": "1845 – Vidste du at Texas blev en del af USA på denne dag? Det var en vigtig ændring for området.",
+"30-12": "1922 – Vidste du at Sovjetunionen blev dannet på denne dag? Det blev senere et meget stort land.",
+"31-12": "1879 – Vidste du at Thomas Edison viste elektrisk lys offentligt på denne dag? Det hjalp mennesker med at se, hvordan lys kunne bruges i hverdagen."
+    };
+
+      const initialState = {
+        day: 1,
+        month: 3,
+        year: 2026,
+        season: "forår",
+        dayType: "hverdag"
+      };
+
+      const state = { ...initialState };
+      const draft = { ...initialState };
+
+      const dateDisplay = document.getElementById("dateDisplay");
+      const seasonDisplay = document.getElementById("seasonDisplay");
+      const dayTypeDisplay = document.getElementById("dayTypeDisplay");
+
+      const datePicker = document.getElementById("datePicker");
+      const seasonPicker = document.getElementById("seasonPicker");
+      const dayTypePicker = document.getElementById("dayTypePicker");
+
+      const dayWheel = document.getElementById("dayWheel");
+      const monthWheel = document.getElementById("monthWheel");
+      const yearWheel = document.getElementById("yearWheel");
+      const seasonWheel = document.getElementById("seasonWheel");
+      const dayTypeWheel = document.getElementById("dayTypeWheel");
+
+      const faktaFelt = document.getElementById("faktaFelt");
+      const todayBtn = document.getElementById("todayBtn");
+      const seasons = ["vinter", "forår", "sommer", "efterår"];
+      const dayTypes = ["hverdag", "weekend"];
+      const years = [];
+      for (let y = 2024; y <= 2035; y++) years.push(y);
+
+      function daysInMonth(month, year) {
+        return new Date(year, month, 0).getDate();
+      }
+
+      function hentAarstidFraDato(day, month, year) {
+        const dato = new Date(year, month - 1, day, 12);
+        const foraar = new Date(year, 2, 1);
+        const sommer = new Date(year, 5, 1);
+        const efteraar = new Date(year, 8, 1);
+        const vinter = new Date(year, 11, 1);
+
+        if (dato >= vinter || dato < foraar) return "vinter";
+        if (dato >= foraar && dato < sommer) return "forår";
+        if (dato >= sommer && dato < efteraar) return "sommer";
+        return "efterår";
+      }
+
+      function hentDagTypeFraDato(day, month, year) {
+        const ugedag = new Date(year, month - 1, day, 12).getDay();
+        return (ugedag === 0 || ugedag === 6) ? "weekend" : "hverdag";
+      }
+
+      function vælgFakta() {
+        const key = `${String(state.day).padStart(2,"0")}-${String(state.month).padStart(2,"0")}`;
+        return faktaDatabase[key] || "Vidste du at der sker spændende ting hver dag i historien?";
+      }
+
+      function updateDisplays() {
+        dateDisplay.textContent = `${state.day}. ${maaneder[state.month - 1]} ${state.year}`;
+        seasonDisplay.innerHTML = `
+          <div class="season-display">
+            <div class="season-icon">${seasonIcons[state.season]}</div>
+            <div>${state.season}</div>
+          </div>
+        `;
+        dayTypeDisplay.textContent = state.dayType;
+        faktaFelt.textContent = vælgFakta();
+      }
+
+      function copyStateToDraft() {
+        draft.day = state.day;
+        draft.month = state.month;
+        draft.year = state.year;
+        draft.season = state.season;
+        draft.dayType = state.dayType;
+      }
+
+      function closeAllPickers() {
+        [datePicker, seasonPicker, dayTypePicker].forEach(p => p.classList.remove("open"));
+      }
+
+      function openDatePicker() {  copyStateToDraft();
+        rebuildDateWheels();
+        datePicker.classList.add("open");
+        seasonPicker.classList.remove("open");
+        dayTypePicker.classList.remove("open");
+      }
+
+      function openSeasonPicker() {
+        copyStateToDraft();
+        rebuildSeasonWheel();
+        seasonPicker.classList.add("open");
+        datePicker.classList.remove("open");
+        dayTypePicker.classList.remove("open");
+      }
+
+      function openDayTypePicker() {
+        copyStateToDraft();
+        rebuildDayTypeWheel();
+        dayTypePicker.classList.add("open");
+        datePicker.classList.remove("open");
+        seasonPicker.classList.remove("open");
+      }
+
+      function makeWheel(container, values, formatter, onSelect, currentValue) {
+        container.innerHTML = "";
+        const padCount = 2;
+
+        for (let i = 0; i < padCount; i++) {
+          const spacer = document.createElement("div");
+          spacer.className = "wheel-item wheel-spacer";
+          spacer.setAttribute("aria-hidden", "true");
+          spacer.innerHTML = "&nbsp;";
+          container.appendChild(spacer);
+        }
+
+        values.forEach(value => {
+          const item = document.createElement("div");
+          item.className = "wheel-item";
+          item.dataset.value = String(value);
+          item.innerHTML = formatter(value);
+          container.appendChild(item);
+        });
+
+        for (let i = 0; i < padCount; i++) {
+          const spacer = document.createElement("div");
+          spacer.className = "wheel-item wheel-spacer";
+          spacer.setAttribute("aria-hidden", "true");
+          spacer.innerHTML = "&nbsp;";
+          container.appendChild(spacer);
+        }
+
+        requestAnimationFrame(() => {
+          scrollWheelToValue(container, currentValue);
+          updateWheelActive(container);
+        });
+
+        container.onscroll = () => {
+          updateWheelActive(container);
+          clearTimeout(container._scrollTimer);
+          container._scrollTimer = setTimeout(() => {
+            snapWheel(container, onSelect);
+          }, 90);
+        };
+      }
+
+      function scrollWheelToValue(container, value) {
+        const items = [...container.querySelectorAll(".wheel-item")];
+        const target = items.find(item => item.dataset.value === String(value));
+        if (!target) return;
+        const top = target.offsetTop - (container.clientHeight / 2) + (target.clientHeight / 2);
+        container.scrollTop = top;
+        updateWheelActive(container);
+      }
+
+      function getCenteredItem(container) {
+        const items = [...container.querySelectorAll(".wheel-item:not(.wheel-spacer)")];
+        const center = container.scrollTop + container.clientHeight / 2;
+
+        let best = null;
+        let bestDist = Infinity;
+
+        items.forEach(item => {
+          const itemCenter = item.offsetTop + item.clientHeight / 2;
+          const dist = Math.abs(center - itemCenter);
+          if (dist < bestDist) {
+            bestDist = dist;
+            best = item;
+          }
+        });
+
+        return best;
+      }
+
+      function getCenteredValue(container) {
+        const centered = getCenteredItem(container);
+        return centered ? centered.dataset.value : null;
+      }
+
+      function updateWheelActive(container) {
+        const centered = getCenteredItem(container);
+        [...container.querySelectorAll(".wheel-item:not(.wheel-spacer)")].forEach(item => {
+          item.classList.toggle("active", item === centered);
+        });
+      }
+
+      function snapWheel(container, onSelect) {
+        const centered = getCenteredItem(container);
+        if (!centered) return;
+
+        const top = centered.offsetTop - (container.clientHeight / 2) + (centered.clientHeight / 2);
+        container.scrollTo({ top });
+        updateWheelActive(container);
+        onSelect(centered.dataset.value);
+      }
+
+      function rebuildDateWheels() {
+        const maxDays = daysInMonth(draft.month, draft.year);
+        if (draft.day > maxDays) draft.day = maxDays;
+
+        makeWheel(
+          dayWheel,
+          Array.from({ length: maxDays }, (_, i) => i + 1),
+          v => String(v),
+          value => { draft.day = Number(value); },
+          draft.day
+        );
+
+        makeWheel(
+          monthWheel,
+          maaneder.map((_, i) => i + 1),
+          v => maaneder[v - 1],
+          value => {
+            draft.month = Number(value);
+            rebuildDateWheels();
+          },
+          draft.month
+        );
+
+        makeWheel(
+          yearWheel,
+          years,
+          v => String(v),
+          value => {
+            draft.year = Number(value);
+            rebuildDateWheels();
+          },
+          draft.year
+        );
+      }
+
+      function rebuildSeasonWheel() {
+        makeWheel(
+          seasonWheel,
+          seasons,
+          v => `<div class="season-stack"><div class="season-icon">${seasonIcons[v]}</div><div>${v}</div></div>`,
+          value => { draft.season = value; },
+          draft.season
+        );
+      }
+
+      function rebuildDayTypeWheel() {
+        makeWheel(
+          dayTypeWheel,
+          dayTypes,
+          v => v,
+          value => { draft.dayType = value; },
+          draft.dayType
+        );
+      }
+
+      function commitDate() {
+        const selectedMonth = Number(getCenteredValue(monthWheel) || draft.month);
+        const selectedYear = Number(getCenteredValue(yearWheel) || draft.year);
+
+        let selectedDay = Number(getCenteredValue(dayWheel) || draft.day);
+        const maxDays = daysInMonth(selectedMonth, selectedYear);
+
+        if (selectedDay > maxDays) {
+          selectedDay = maxDays;
+        }
+
+        draft.day = selectedDay;
+        draft.month = selectedMonth;
+        draft.year = selectedYear;
+
+        state.day = draft.day;
+        state.month = draft.month;
+        state.year = draft.year;
+        state.season = hentAarstidFraDato(state.day, state.month, state.year);
+        state.dayType = hentDagTypeFraDato(state.day, state.month, state.year);
+
+        updateDisplays();
+        closeAllPickers();
+      }
+
+      function commitSeason() {
+        state.season = draft.season;
+        updateDisplays();
+        closeAllPickers();
+      }
+
+      function commitDayType() {
+        state.dayType = draft.dayType;
+        updateDisplays();
+        closeAllPickers();
+      }
+
+      function cancelPicker() {
+        closeAllPickers();
+      }
+
+      function setToday() {
+        const now = new Date();
+        state.day = now.getDate();
+        state.month = now.getMonth() + 1;
+        state.year = now.getFullYear();
+        state.season = hentAarstidFraDato(state.day, state.month, state.year);
+        state.dayType = hentDagTypeFraDato(state.day, state.month, state.year);
+        updateDisplays();
+        closeAllPickers();
+      }
+
+
+      dateDisplay.addEventListener("click", openDatePicker);
+      seasonDisplay.addEventListener("click", openSeasonPicker);
+      dayTypeDisplay.addEventListener("click", openDayTypePicker);
+
+      document.getElementById("dateOk").addEventListener("click", commitDate);
+      document.getElementById("seasonOk").addEventListener("click", commitSeason);
+      document.getElementById("dayTypeOk").addEventListener("click", commitDayType);
+
+      document.getElementById("dateCancel").addEventListener("click", cancelPicker);
+      document.getElementById("seasonCancel").addEventListener("click", cancelPicker);
+      document.getElementById("dayTypeCancel").addEventListener("click", cancelPicker);
+
+      todayBtn.addEventListener("click", setToday);
+
+      document.addEventListener("click", (e) => {
+        const insideCard = e.target.closest("#smart-dagens-dato .card");
+        const insidePickerButton = e.target.closest("#smart-dagens-dato .picker-btn");
+        if (!insideCard && !insidePickerButton) {
+          closeAllPickers();
+        }
+      });
+
+      setToday();
+    })();
+  </script>
+</div>
+
+
+Tab Context:
+- Executed on tabId: 1501817133
+- Available tabs:
+  • tabId 1501817133: "SmartZonen" (https://sites.google.com/d/1VBHxLQCyD8kuNjj8bSF4id7FuAATcNrr/p/1IxBH_7NthvKFh7n_VtabWMPxEdOCkApj/edit)
+  • tabId 1501817136: "SmartZonen" (https://www.smartzonen.dk/)
+Found 37 console messages:
+</div>
+<footer class="site-footer">
+  <p>© 2026 SmartZonen &nbsp;·&nbsp; Udarbejdet af Susan &amp; Manfred Conrath &nbsp;·&nbsp; <a href="mailto:mco@outlook.dk">Kontakt</a></p>
+</footer>
+</body>
+</html>

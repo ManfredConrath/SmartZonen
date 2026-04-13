@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leg med lyde – enkeltlyde – SmartZonen</title>
+  <style>
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  color: #1f2937;
+  background: #f5f7fa;
+  min-height: 100vh;
+}
+
+/* NAV */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #1a2f3a;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.2);
+}
+.site-nav .logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.site-nav .site-title {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: none;
+}
+.site-nav .nav-links {
+  margin-left: auto;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.site-nav .nav-links a {
+  color: rgba(255,255,255,.8);
+  text-decoration: none;
+  font-size: 13px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  transition: background .15s, color .15s;
+}
+.site-nav .nav-links a:hover,
+.site-nav .nav-links a.active {
+  background: rgba(255,255,255,.15);
+  color: #fff;
+}
+
+/* HERO */
+.hero {
+  width: 100%;
+  max-height: 340px;
+  overflow: hidden;
+  display: block;
+}
+.hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* INFO BAND */
+.info-band {
+  background: #b8dff0;
+  padding: 28px 24px;
+  text-align: center;
+}
+.info-band h1 {
+  font-size: clamp(22px, 3vw, 36px);
+  font-weight: 800;
+  color: #1a2f3a;
+  margin-bottom: 8px;
+}
+.info-band p {
+  font-size: clamp(15px, 1.8vw, 20px);
+  color: #2a4a5a;
+  font-style: italic;
+  line-height: 1.4;
+}
+
+/* CONTENT */
+.page-content {
+  max-width: 1100px;
+  margin: 32px auto;
+  padding: 0 20px 60px;
+}
+
+/* HOME GRID */
+.section-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #1a2f3a;
+  margin: 32px 0 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #b8dff0;
+}
+.tool-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 18px;
+}
+.tool-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  padding: 22px 20px;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 4px 14px rgba(15,23,42,.06);
+  transition: transform .15s, box-shadow .15s;
+  display: block;
+}
+.tool-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(15,23,42,.12);
+}
+.tool-card h3 {
+  font-size: 18px;
+  font-weight: 800;
+  color: #0f766e;
+  margin-bottom: 6px;
+}
+.tool-card p {
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 1.4;
+}
+
+/* FOOTER */
+.site-footer {
+  background: #1a2f3a;
+  color: rgba(255,255,255,.7);
+  text-align: center;
+  padding: 20px 24px;
+  font-size: 13px;
+}
+.site-footer a {
+  color: rgba(255,255,255,.9);
+}
+
+@media (max-width: 640px) {
+  .site-nav .nav-links { display: none; }
+  .info-band { padding: 20px 16px; }
+}
+
+
+  </style>
+</head>
+<body>
+<nav class="site-nav">
+  <img class="logo" src="/assets/logo.png" onerror="this.style.display='none'" alt="SmartZonen logo">
+  <a class="site-title" href="/">SmartZonen</a>
+  <div class="nav-links">
+    <a href="/">Start</a>
+<a href="/pustero.html">Pustero</a>
+<a href="/grupper.html">Grupper</a>
+<a href="/dagens-dato.html">Dagens dato</a>
+<a href="/leg-med-lyde-1.html" class="active">Leg med lyde 1</a>
+<a href="/leg-med-lyde-2.html">Leg med lyde 2</a>
+<a href="/saetningsmaskinen.html">Sætningsmaskinen</a>
+<a href="/laer-klokken.html">Lær klokken</a>
+<a href="/regnemaskinen.html">Regnemaskinen</a>
+
+  </div>
+</nav>
+<div class="hero">
+  <img src="/assets/banner.jpg" onerror="this.closest('.hero').style.display='none'" alt="SmartZonen banner">
+</div>
+<div class="info-band">
+  <h1>Leg med lyde – enkeltlyde</h1>
+  <p>Sæt en konsonant og en vokal sammen og se, hvilken lyd der kommer frem</p>
+</div>
+<div class="page-content">
+<!-- SmartZonen – Enkeltlyde (tilpasset fælles layout) -->
+<div id="smart-enkeltlyde" style="max-width:900px;margin:0 auto;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:#1f2937;">
+  <style>
+    #smart-enkeltlyde{
+      --card:#ffffff;
+      --card-border:#e5e7eb;
+      --panel:#f8fafc;
+      --panel-soft:#eef5f6;
+      --text:#1f2937;
+      --muted:#6b7280;
+      --accent:#0f766e;
+      --secondary:#334155;
+      --tile-left:#4b1d6b;
+      --tile-right:#c1121f;
+    }
+
+    #smart-enkeltlyde *{ box-sizing:border-box; }
+
+    #smart-enkeltlyde .module{
+      background:var(--card);
+      border:1px solid var(--card-border);
+      border-radius:24px;
+      box-shadow:0 8px 24px rgba(15,23,42,.06);
+      padding:28px 24px 24px;
+    }
+
+    #smart-enkeltlyde .module-inner{
+      max-width:760px;
+      margin:0 auto;
+    }
+
+    #smart-enkeltlyde .module-title{
+      text-align:center;
+      margin:0 0 8px;
+      font-size:clamp(30px,2.4vw,40px);
+      line-height:1.1;
+      color:var(--text);
+      font-weight:800;
+    }
+
+    #smart-enkeltlyde .module-sub{
+      text-align:center;
+      margin:0 0 18px;
+      color:var(--muted);
+      font-size:clamp(15px,1.15vw,18px);
+      line-height:1.4;
+    }
+
+    #smart-enkeltlyde .display{
+      background:var(--panel);
+      border:1px solid var(--card-border);
+      border-radius:20px;
+      min-height:180px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:20px 16px;
+      margin-bottom:18px;
+    }
+
+    #smart-enkeltlyde .window{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:18px;
+      padding:8px;
+    }
+
+    #smart-enkeltlyde .tile{
+      width:128px;
+      height:84px;
+      border-radius:18px;
+      background:#ffffff;
+      border:1px solid #d1d5db;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:900;
+      font-size:clamp(32px,2.8vw,46px);
+      box-shadow:0 4px 12px rgba(15,23,42,.08);
+      user-select:none;
+    }
+
+    #smart-enkeltlyde .tile.left{ color:var(--tile-left); }
+    #smart-enkeltlyde .tile.right{ color:var(--tile-right); }
+
+    #smart-enkeltlyde .controls-panel{
+      background:var(--panel);
+      border:1px solid var(--card-border);
+      border-radius:18px;
+      padding:16px;
+    }
+
+    #smart-enkeltlyde .controls{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px 14px;
+      margin-bottom:14px;
+    }
+
+    #smart-enkeltlyde .col{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    #smart-enkeltlyde select{
+      width:100%;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid #d1d5db;
+      font-size:15px;
+      background:#fff;
+      color:#1f2937;
+      outline:none;
+    }
+
+    #smart-enkeltlyde .btn-row{
+      display:flex;
+      justify-content:center;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:2px;
+    }
+
+    #smart-enkeltlyde button{
+      padding:12px 16px;
+      border-radius:14px;
+      border:0;
+      font-weight:800;
+      font-size:15px;
+      cursor:pointer;
+      white-space:nowrap;
+      box-shadow:0 4px 10px rgba(15,23,42,.12);
+    }
+
+    #smart-enkeltlyde .btn-next{
+      background:var(--secondary);
+      color:#fff;
+      width:100%;
+    }
+
+    #smart-enkeltlyde .btn-spin{
+      background:var(--accent);
+      color:#fff;
+      min-width:140px;
+    }
+
+    #smart-enkeltlyde button:disabled{
+      opacity:.6;
+      cursor:not-allowed;
+    }
+
+    @media (max-width: 640px){
+      #smart-enkeltlyde .module{
+        padding:20px 16px 18px;
+      }
+
+      #smart-enkeltlyde .controls{
+        grid-template-columns:1fr;
+      }
+
+      #smart-enkeltlyde .tile{
+        width:110px;
+        height:76px;
+      }
+    }
+  </style>
+
+  <div class="module">
+    <div class="module-inner">
+      <h3 class="module-title">Enkeltlyde</h3>
+      <p class="module-sub"> </p>
+
+      <div class="display">
+        <div class="window">
+          <div class="tile left" id="rmA-read-left"></div>
+          <div class="tile right" id="rmA-read-right"></div>
+        </div>
+      </div>
+
+      <div class="controls-panel">
+        <div class="controls">
+          <div class="col">
+            <select id="rmA-select-left" aria-label="Vælg venstre bogstav">
+              <option value="">Venstre: Tilfældigt</option>
+            </select>
+            <button id="rmA-next-left" type="button" class="btn-next">Næste venstre</button>
+          </div>
+
+          <div class="col">
+            <select id="rmA-select-right" aria-label="Vælg højre bogstav">
+              <option value="">Højre: Tilfældigt</option>
+            </select>
+            <button id="rmA-next-right" type="button" class="btn-next">Næste højre</button>
+          </div>
+        </div>
+
+        <div class="btn-row">
+          <button id="rmA-spin" type="button" class="btn-spin">Tilfældigt</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(() => {
+  const leftItems = ["j","h","k","v","b","t","p","g","d","n","f","r","l","m","s"];
+  const rightItems = ["i","y","ø","u","o","å","a","æ","e"];
+
+  const selL = document.getElementById("rmA-select-left");
+  const selR = document.getElementById("rmA-select-right");
+  const btnSpin = document.getElementById("rmA-spin");
+  const btnNextL = document.getElementById("rmA-next-left");
+  const btnNextR = document.getElementById("rmA-next-right");
+  const readL = document.getElementById("rmA-read-left");
+  const readR = document.getElementById("rmA-read-right");
+
+  let leftIndex = 0;
+  let rightIndex = 0;
+
+  let running = false;
+  let timerL = null;
+  let timerR = null;
+  let finishTimeout = null;
+
+  const randIndex = (arr) => Math.floor(Math.random() * arr.length);
+
+  leftItems.forEach(item => selL.add(new Option(item, item)));
+  rightItems.forEach(item => selR.add(new Option(item, item)));
+
+  function update(){
+    readL.textContent = leftItems[leftIndex];
+    readR.textContent = rightItems[rightIndex];
+  }
+
+  function setControlsDisabled(disabled){
+    btnSpin.disabled = disabled;
+    btnNextL.disabled = disabled;
+    btnNextR.disabled = disabled;
+    selL.disabled = disabled;
+    selR.disabled = disabled;
+  }
+
+  function stopFlashIfRunning(){
+    if (timerL) { clearInterval(timerL); timerL = null; }
+    if (timerR) { clearInterval(timerR); timerR = null; }
+    if (finishTimeout) { clearTimeout(finishTimeout); finishTimeout = null; }
+    running = false;
+    setControlsDisabled(false);
+  }
+
+  function flashAllThenPick(){
+    if (running) return;
+    running = true;
+
+    const totalMs = 1000;
+    const lockLeft = !!selL.value;
+    const lockRight = !!selR.value;
+
+    if (lockLeft){
+      leftIndex = leftItems.indexOf(selL.value);
+      readL.textContent = leftItems[leftIndex];
+    }
+    if (lockRight){
+      rightIndex = rightItems.indexOf(selR.value);
+      readR.textContent = rightItems[rightIndex];
+    }
+
+    setControlsDisabled(true);
+
+    if (!lockLeft){
+      const stepMsL = Math.max(10, Math.floor(totalMs / leftItems.length));
+      let iL = 0;
+      readL.textContent = leftItems[iL];
+      timerL = setInterval(() => {
+        iL++;
+        if (iL >= leftItems.length) {
+          clearInterval(timerL);
+          timerL = null;
+        } else {
+          readL.textContent = leftItems[iL];
+        }
+      }, stepMsL);
+    }
+
+    if (!lockRight){
+      const stepMsR = Math.max(10, Math.floor(totalMs / rightItems.length));
+      let iR = 0;
+      readR.textContent = rightItems[iR];
+      timerR = setInterval(() => {
+        iR++;
+        if (iR >= rightItems.length) {
+          clearInterval(timerR);
+          timerR = null;
+        } else {
+          readR.textContent = rightItems[iR];
+        }
+      }, stepMsR);
+    }
+
+    finishTimeout = setTimeout(() => {
+      if (timerL) { clearInterval(timerL); timerL = null; }
+      if (timerR) { clearInterval(timerR); timerR = null; }
+      finishTimeout = null;
+
+      if (!lockLeft) leftIndex = randIndex(leftItems);
+      if (!lockRight) rightIndex = randIndex(rightItems);
+
+      update();
+      running = false;
+      setControlsDisabled(false);
+    }, totalMs);
+  }
+
+  function nextLeft(){
+    stopFlashIfRunning();
+    selL.value = "";
+    leftIndex = (leftIndex + 1) % leftItems.length;
+    update();
+  }
+
+  function nextRight(){
+    stopFlashIfRunning();
+    selR.value = "";
+    rightIndex = (rightIndex + 1) % rightItems.length;
+    update();
+  }
+
+  btnSpin.addEventListener("click", flashAllThenPick);
+  btnNextL.addEventListener("click", nextLeft);
+  btnNextR.addEventListener("click", nextRight);
+
+  leftIndex = randIndex(leftItems);
+  rightIndex = randIndex(rightItems);
+  update();
+})();
+</script>
+</div>
+<footer class="site-footer">
+  <p>© 2026 SmartZonen &nbsp;·&nbsp; Udarbejdet af Susan &amp; Manfred Conrath &nbsp;·&nbsp; <a href="mailto:mco@outlook.dk">Kontakt</a></p>
+</footer>
+</body>
+</html>

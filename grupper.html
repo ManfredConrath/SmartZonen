@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grupper – SmartZonen</title>
+  <style>
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  color: #1f2937;
+  background: #f5f7fa;
+  min-height: 100vh;
+}
+
+/* NAV */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #1a2f3a;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.2);
+}
+.site-nav .logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.site-nav .site-title {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: none;
+}
+.site-nav .nav-links {
+  margin-left: auto;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.site-nav .nav-links a {
+  color: rgba(255,255,255,.8);
+  text-decoration: none;
+  font-size: 13px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  transition: background .15s, color .15s;
+}
+.site-nav .nav-links a:hover,
+.site-nav .nav-links a.active {
+  background: rgba(255,255,255,.15);
+  color: #fff;
+}
+
+/* HERO */
+.hero {
+  width: 100%;
+  max-height: 340px;
+  overflow: hidden;
+  display: block;
+}
+.hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* INFO BAND */
+.info-band {
+  background: #b8dff0;
+  padding: 28px 24px;
+  text-align: center;
+}
+.info-band h1 {
+  font-size: clamp(22px, 3vw, 36px);
+  font-weight: 800;
+  color: #1a2f3a;
+  margin-bottom: 8px;
+}
+.info-band p {
+  font-size: clamp(15px, 1.8vw, 20px);
+  color: #2a4a5a;
+  font-style: italic;
+  line-height: 1.4;
+}
+
+/* CONTENT */
+.page-content {
+  max-width: 1100px;
+  margin: 32px auto;
+  padding: 0 20px 60px;
+}
+
+/* HOME GRID */
+.section-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #1a2f3a;
+  margin: 32px 0 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #b8dff0;
+}
+.tool-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 18px;
+}
+.tool-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  padding: 22px 20px;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 4px 14px rgba(15,23,42,.06);
+  transition: transform .15s, box-shadow .15s;
+  display: block;
+}
+.tool-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(15,23,42,.12);
+}
+.tool-card h3 {
+  font-size: 18px;
+  font-weight: 800;
+  color: #0f766e;
+  margin-bottom: 6px;
+}
+.tool-card p {
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 1.4;
+}
+
+/* FOOTER */
+.site-footer {
+  background: #1a2f3a;
+  color: rgba(255,255,255,.7);
+  text-align: center;
+  padding: 20px 24px;
+  font-size: 13px;
+}
+.site-footer a {
+  color: rgba(255,255,255,.9);
+}
+
+@media (max-width: 640px) {
+  .site-nav .nav-links { display: none; }
+  .info-band { padding: 20px 16px; }
+}
+
+
+  </style>
+</head>
+<body>
+<nav class="site-nav">
+  <img class="logo" src="/assets/logo.png" onerror="this.style.display='none'" alt="SmartZonen logo">
+  <a class="site-title" href="/">SmartZonen</a>
+  <div class="nav-links">
+    <a href="/">Start</a>
+<a href="/pustero.html">Pustero</a>
+<a href="/grupper.html" class="active">Grupper</a>
+<a href="/dagens-dato.html">Dagens dato</a>
+<a href="/leg-med-lyde-1.html">Leg med lyde 1</a>
+<a href="/leg-med-lyde-2.html">Leg med lyde 2</a>
+<a href="/saetningsmaskinen.html">Sætningsmaskinen</a>
+<a href="/laer-klokken.html">Lær klokken</a>
+<a href="/regnemaskinen.html">Regnemaskinen</a>
+
+  </div>
+</nav>
+<div class="hero">
+  <img src="/assets/banner.jpg" onerror="this.closest('.hero').style.display='none'" alt="SmartZonen banner">
+</div>
+<div class="info-band">
+  <h1>Grupper</h1>
+  <p>Del klassen i grupper · Makkerarbejde, små grupper eller samarbejdsopgaver</p>
+</div>
+<div class="page-content">
+<!-- SmartZonen – Grupper (tilpasset fælles layout) -->
+<div id="smart-grupper" style="max-width:1000px;margin:0 auto;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:#1f2937;">
+  <style>
+    #smart-grupper{
+      --card:#ffffff;
+      --card-border:#e5e7eb;
+      --panel:#f8fafc;
+      --text:#1f2937;
+      --muted:#6b7280;
+      --accent:#0f766e;
+      --secondary:#334155;
+    }
+
+    #smart-grupper *{ box-sizing:border-box; }
+
+    #smart-grupper .module{
+      background:var(--card);
+      border:1px solid var(--card-border);
+      border-radius:24px;
+      box-shadow:0 8px 24px rgba(15,23,42,.06);
+      padding:28px 24px 24px;
+    }
+
+    #smart-grupper .module-inner{
+      max-width:900px;
+      margin:0 auto;
+    }
+
+    #smart-grupper .module-title{
+      margin:0 0 18px;
+      text-align:center;
+      font-size:clamp(30px,2.4vw,40px);
+      line-height:1.1;
+      font-weight:800;
+      color:var(--text);
+    }
+
+    #smart-grupper .layout{
+      display:grid;
+      grid-template-columns:2fr 1fr;
+      gap:18px;
+      align-items:start;
+    }
+
+    #smart-grupper .box{
+      background:var(--panel);
+      border:1px solid var(--card-border);
+      border-radius:20px;
+      padding:18px;
+    }
+
+    #smart-grupper .box h2{
+      margin:0 0 12px;
+      font-size:24px;
+      line-height:1.2;
+      color:var(--text);
+    }
+
+    #smart-grupper textarea{
+      width:100%;
+      min-height:280px;
+      border:1px solid #d1d5db;
+      border-radius:16px;
+      padding:16px;
+      font-size:17px;
+      line-height:1.5;
+      resize:vertical;
+      background:#ffffff;
+      color:#111827;
+      outline:none;
+    }
+
+    #smart-grupper textarea::placeholder{
+      color:#9ca3af;
+    }
+
+    #smart-grupper .button-group{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+
+    #smart-grupper button{
+      border:0;
+      border-radius:14px;
+      padding:12px 16px;
+      font-size:15px;
+      font-weight:800;
+      cursor:pointer;
+      background:var(--accent);
+      color:#ffffff;
+      box-shadow:0 4px 10px rgba(15,23,42,.12);
+      transition:transform .15s ease, opacity .15s ease;
+    }
+
+    #smart-grupper button:hover{
+      opacity:.97;
+      transform:translateY(-1px);
+    }
+
+    #smart-grupper .btn-nulstil{
+      background:#94a3b8;
+      margin-top:6px;
+    }
+
+    #smart-grupper .output{
+      margin-top:18px;
+      background:var(--panel);
+      border:1px solid var(--card-border);
+      border-radius:20px;
+      padding:18px;
+    }
+
+    #smart-grupper .output h2{
+      margin:0 0 12px;
+      font-size:24px;
+      line-height:1.2;
+      color:var(--text);
+    }
+
+    #smart-grupper #resultat{
+      background:#ffffff;
+      border:1px solid #d1d5db;
+      border-radius:16px;
+      padding:16px;
+      min-height:120px;
+      font-size:16px;
+      line-height:1.5;
+      color:#374151;
+    }
+
+    #smart-grupper .grupper-grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:14px;
+    }
+
+    #smart-grupper .gruppe{
+      padding:12px 14px;
+      background:#f8fafc;
+      border:1px solid #dbe2ea;
+      border-radius:14px;
+      font-size:16px;
+      line-height:1.5;
+      min-height:90px;
+      color:#374151;
+    }
+
+    #smart-grupper .gruppe strong{
+      display:block;
+      margin-bottom:6px;
+      font-size:18px;
+      line-height:1.2;
+      color:#111827;
+    }
+
+    @media (max-width: 900px){
+      #smart-grupper .layout{
+        grid-template-columns:1fr;
+      }
+
+      #smart-grupper .grupper-grid{
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px){
+      #smart-grupper .module{
+        padding:20px 16px 18px;
+      }
+
+      #smart-grupper .grupper-grid{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
+
+  <div class="module">
+    <div class="module-inner">
+      <h1 class="module-title">Gruppedeler</h1>
+
+      <div class="layout">
+        <div class="box">
+          <h2>Elever</h2>
+          <textarea id="navneInput" placeholder="Skriv ét elevnavn pr. linje"></textarea>
+        </div>
+
+        <div class="box">
+          <h2>Grupper</h2>
+          <div class="button-group">
+            <button type="button" data-size="2">2 elever</button>
+            <button type="button" data-size="3">3 elever</button>
+            <button type="button" data-size="4">4 elever</button>
+            <button type="button" id="nulstilBtn" class="btn-nulstil">Nulstil</button>
+            <button type="button" id="sletBtn" class="btn-nulstil">Slet elever</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="output">
+        <h2>Output</h2>
+        <div id="resultat">Grupperne vises her.</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (() => {
+      function blandArray(array) {
+        const kopi = [...array];
+        for (let i = kopi.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [kopi[i], kopi[j]] = [kopi[j], kopi[i]];
+        }
+        return kopi;
+      }
+
+      function lavGrupper(antalPrGruppe) {
+        const input = document.getElementById("navneInput").value;
+        const resultat = document.getElementById("resultat");
+
+        let navne = input
+          .split("\n")
+          .map(navn => navn.trim())
+          .filter(navn => navn !== "");
+
+        if (navne.length === 0) {
+          resultat.innerHTML = "Skriv mindst ét navn i feltet.";
+          return;
+        }
+
+        navne = blandArray(navne);
+
+        const grupper = [];
+        for (let i = 0; i < navne.length; i += antalPrGruppe) {
+          grupper.push(navne.slice(i, i + antalPrGruppe));
+        }
+
+        let html = '<div class="grupper-grid">';
+        grupper.forEach((gruppe, index) => {
+          html += `
+            <div class="gruppe">
+              <strong>Gruppe ${index + 1}</strong>
+              ${gruppe.join("<br>")}
+            </div>
+          `;
+        });
+        html += '</div>';
+
+        resultat.innerHTML= html;
+      }
+
+      function nulstil() {
+        document.getElementById("resultat").innerHTML = "Grupperne vises her.";
+      }
+
+      function sletElever() {
+        document.getElementById("navneInput").value = "";
+        document.getElementById("resultat").innerHTML = "Grupperne vises her.";
+      }
+
+      document.querySelectorAll('#smart-grupper button[data-size]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          lavGrupper(Number(btn.dataset.size));
+        });
+      });
+
+      document.getElementById("nulstilBtn").addEventListener("click", nulstil);
+      document.getElementById("sletBtn").addEventListener("click", sletElever);
+    })();
+  </script>
+</div>
+</div>
+<footer class="site-footer">
+  <p>© 2026 SmartZonen &nbsp;·&nbsp; Udarbejdet af Susan &amp; Manfred Conrath &nbsp;·&nbsp; <a href="mailto:mco@outlook.dk">Kontakt</a></p>
+</footer>
+</body>
+</html>

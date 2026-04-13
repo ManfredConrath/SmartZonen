@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pustero – SmartZonen</title>
+  <style>
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  color: #1f2937;
+  background: #f5f7fa;
+  min-height: 100vh;
+}
+
+/* NAV */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #1a2f3a;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.2);
+}
+.site-nav .logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.site-nav .site-title {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: none;
+}
+.site-nav .nav-links {
+  margin-left: auto;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.site-nav .nav-links a {
+  color: rgba(255,255,255,.8);
+  text-decoration: none;
+  font-size: 13px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  transition: background .15s, color .15s;
+}
+.site-nav .nav-links a:hover,
+.site-nav .nav-links a.active {
+  background: rgba(255,255,255,.15);
+  color: #fff;
+}
+
+/* HERO */
+.hero {
+  width: 100%;
+  max-height: 340px;
+  overflow: hidden;
+  display: block;
+}
+.hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* INFO BAND */
+.info-band {
+  background: #b8dff0;
+  padding: 28px 24px;
+  text-align: center;
+}
+.info-band h1 {
+  font-size: clamp(22px, 3vw, 36px);
+  font-weight: 800;
+  color: #1a2f3a;
+  margin-bottom: 8px;
+}
+.info-band p {
+  font-size: clamp(15px, 1.8vw, 20px);
+  color: #2a4a5a;
+  font-style: italic;
+  line-height: 1.4;
+}
+
+/* CONTENT */
+.page-content {
+  max-width: 1100px;
+  margin: 32px auto;
+  padding: 0 20px 60px;
+}
+
+/* HOME GRID */
+.section-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #1a2f3a;
+  margin: 32px 0 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #b8dff0;
+}
+.tool-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 18px;
+}
+.tool-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  padding: 22px 20px;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 4px 14px rgba(15,23,42,.06);
+  transition: transform .15s, box-shadow .15s;
+  display: block;
+}
+.tool-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(15,23,42,.12);
+}
+.tool-card h3 {
+  font-size: 18px;
+  font-weight: 800;
+  color: #0f766e;
+  margin-bottom: 6px;
+}
+.tool-card p {
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 1.4;
+}
+
+/* FOOTER */
+.site-footer {
+  background: #1a2f3a;
+  color: rgba(255,255,255,.7);
+  text-align: center;
+  padding: 20px 24px;
+  font-size: 13px;
+}
+.site-footer a {
+  color: rgba(255,255,255,.9);
+}
+
+@media (max-width: 640px) {
+  .site-nav .nav-links { display: none; }
+  .info-band { padding: 20px 16px; }
+}
+
+
+  </style>
+</head>
+<body>
+<nav class="site-nav">
+  <img class="logo" src="/assets/logo.png" onerror="this.style.display='none'" alt="SmartZonen logo">
+  <a class="site-title" href="/">SmartZonen</a>
+  <div class="nav-links">
+    <a href="/">Start</a>
+<a href="/pustero.html" class="active">Pustero</a>
+<a href="/grupper.html">Grupper</a>
+<a href="/dagens-dato.html">Dagens dato</a>
+<a href="/leg-med-lyde-1.html">Leg med lyde 1</a>
+<a href="/leg-med-lyde-2.html">Leg med lyde 2</a>
+<a href="/saetningsmaskinen.html">Sætningsmaskinen</a>
+<a href="/laer-klokken.html">Lær klokken</a>
+<a href="/regnemaskinen.html">Regnemaskinen</a>
+
+  </div>
+</nav>
+<div class="hero">
+  <img src="/assets/banner.jpg" onerror="this.closest('.hero').style.display='none'" alt="SmartZonen banner">
+</div>
+<div class="info-band">
+  <h1>Pustero</h1>
+  <p>Vælg et program og følg ringen sammen</p>
+</div>
+<div class="page-content">
+<!-- SmartZonen – Pustero (tilpasset fælles layout) -->
+<div id="smart-pustero" style="max-width:1000px;margin:0 auto;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:#1f2937;">
+  <style>
+    #smart-pustero{
+      --card:#ffffff;
+      --card-border:#e5e7eb;
+      --panel:#f8fafc;
+      --panel-soft:#eef5f6;
+      --text:#1f2937;
+      --muted:#6b7280;
+      --mint:#8fd8c7;
+      --lightblue:#9fd2f6;
+      --midblue:#5d8fe8;
+      --purple:#9b7ae0;
+      --active-color:#8fd8c7;
+
+      --skin:#f1c9a8;
+      --shirt:#9fd2f6;
+      --pants:#5d8fe8;
+      --hair:#6b4b3e;
+    }
+
+    #smart-pustero *{ box-sizing:border-box; }
+
+    #smart-pustero .module{
+      background:var(--card);
+      border:1px solid var(--card-border);
+      border-radius:24px;
+      box-shadow:0 8px 24px rgba(15,23,42,.06);
+      padding:28px 24px 24px;
+    }
+
+    #smart-pustero .module-inner{
+      max-width:900px;
+      margin:0 auto;
+    }
+
+    #smart-pustero .ring-stage{
+      padding:8px 0 0;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+    }
+
+    #smart-pustero .ring-wrap{
+      width:min(92vw, 500px);
+      height:min(92vw, 500px);
+      max-width:500px;
+      max-height:500px;
+      display:grid;
+      place-items:center;
+      position:relative;
+      margin:0 auto 12px;
+    }
+
+    #smart-pustero .ring{
+      width:100%;
+      height:100%;
+      border-radius:50%;
+      position:relative;
+      display:grid;
+      place-items:center;
+      z-index:1;
+    }
+
+    #smart-pustero .ring-svg{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      transform:rotate(-90deg);
+      overflow:visible;
+      filter:drop-shadow(0 0 14px rgba(15,23,42,.08));
+      z-index:1;
+    }
+
+    #smart-pustero .ring-track{
+      fill:none;
+      stroke:#d7e3e6;
+      stroke-width:8;
+      opacity:.95;
+    }
+
+    #smart-pustero .ring-progress{
+      fill:none;
+      stroke:var(--active-color);
+      stroke-width:8;
+      stroke-linecap:round;
+      transition:stroke .2s ease;
+    }
+
+    #smart-pustero .ring::before{
+      content:"";
+      position:absolute;
+      inset:15.5%;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(255,255,255,.99), rgba(255,255,255,.94));
+      box-shadow:
+        inset 0 0 0 1px rgba(215,227,230,.55),
+        0 8px 24px rgba(15,23,42,.05);
+      z-index:1;
+    }
+
+    #smart-pustero .person{
+      position:relative;
+      width:190px;
+      height:285px;
+      z-index:3;
+      pointer-events:none;
+    }
+
+    #smart-pustero .head{
+      width:70px;
+      height:70px;
+      border-radius:50%;
+      background:var(--skin);
+      margin:0 auto;
+      position:relative;
+      box-shadow:inset 0 -4px 0 rgba(0,0,0,.05);
+      overflow:hidden;
+      z-index:4;
+    }
+
+    #smart-pustero .hair{
+      position:absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:28px;
+      background:var(--hair);
+      border-radius:50% 50% 35% 35%;
+    }
+
+    #smart-pustero .eye{
+      position:absolute;
+      top:28px;
+      width:8px;
+      height:8px;
+      background:#2f2a28;
+      border-radius:50%;
+      z-index:2;
+    }
+
+    #smart-pustero .eye.left{ left:18px; }
+    #smart-pustero .eye.right{ right:18px; }
+
+    #smart-pustero .nose{
+      position:absolute;
+      left:50%;
+      top:30px;
+      width:6px;
+      height:10px;
+      background:rgba(0,0,0,.08);
+      border-radius:4px;
+      transform:translateX(-50%);
+      z-index:2;
+    }
+
+    #smart-pustero .mouth{
+      position:absolute;
+      left:50%;
+      top:44px;
+      transform:translateX(-50%);
+      width:12px;
+      height:8px;
+      border-radius:0 0 10px 10px;
+      background:#8e4b4b;
+      z-index:6;
+    }
+
+    #smart-pustero .neck{
+      width:18px;
+      height:18px;
+      background:var(--skin);
+      margin:0 auto;
+      border-radius:0 0 8px 8px;
+      position:relative;
+      top:2px;
+      z-index:2;
+      transform:translateY(0);
+    }
+
+    #smart-pustero .torso{
+      width:132px;
+      height:138px;
+      margin:0 auto;
+      position:relative;
+    }
+
+    #smart-pustero .chest{
+      position:absolute;
+      left:50%;
+      top:6px;
+      transform:translateX(-50%) scaleX(1);
+      transform-origin:center center;
+      width:126px;
+      height:92px;
+      background:var(--shirt);
+      border-radius:48px 48px 34px 34px;
+      box-shadow:inset 0 -6px 0 rgba(0,0,0,.06);
+    }
+
+    #smart-pustero .belly{
+      position:absolute;
+      left:50%;
+      top:78px;
+      transform:translateX(-50%) scaleX(1);
+      transform-origin:center center;
+      width:92px;
+      height:56px;
+      background:var(--shirt);
+      border-radius:0 0 30px 30px;
+      box-shadow:inset 0 -5px 0 rgba(0,0,0,.05);
+    }
+
+    #smart-pustero .arm{
+      position:absolute;
+      top:24px;
+      width:22px;
+      height:100px;
+      background:var(--shirt);
+      border-radius:14px;
+    }
+
+    #smart-pustero .arm.left{ left:16px; transform:rotate(12deg); }
+    #smart-pustero .arm.right{ right:16px; transform:rotate(-12deg); }
+
+    #smart-pustero .leg{
+      position:absolute;
+      top:204px;
+      width:28px;
+      height:82px;
+      background:var(--pants);
+      border-radius:16px;
+    }
+
+    #smart-pustero .leg.left{ left:54px; }
+    #smart-pustero .leg.right{ right:54px; }
+
+    #smart-pustero .air-layer{
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      z-index:4;
+    }
+
+    #smart-pustero .air-arrow{
+      position:absolute;
+      width:54px;
+      height:6px;
+      background:rgba(93,143,232,.85);
+      border-radius:999px;
+      opacity:0;
+      box-shadow:0 0 8px rgba(93,143,232,.2);
+    }
+
+    #smart-pustero .air-arrow::after{
+      content:"";
+      position:absolute;
+      top:50%;
+      right:-10px;
+      transform:translateY(-50%);
+      border-top:6px solid transparent;
+      border-bottom:6px solid transparent;
+      border-left:10px solid rgba(93,143,232,.85);
+    }
+
+    #smart-pustero .air-arrow.flip::after{
+      right:auto;
+      left:-10px;
+      border-left:none;
+      border-right:10px solid rgba(93,143,232,.85);
+    }
+
+    #smart-pustero .phase{
+      text-align:center;
+      margin:2px 0 4px;
+      font-size:clamp(28px,2.6vw,40px);
+      font-weight:800;
+    }
+
+    #smart-pustero .subphase{
+      text-align:center;
+      color:var(--muted);
+      font-size:clamp(16px,1.3vw,20px);
+      line-height:1.4;
+      min-height:30px;
+      margin-bottom:18px;
+    }
+
+    #smart-pustero .status-panel{
+      width:100%;
+      max-width:760px;
+      margin:0 auto 20px;
+      padding:16px;
+      border:1px solid var(--card-border);
+      border-radius:18px;
+      background:var(--panel);
+    }
+
+    #smart-pustero .meters{
+      width:100%;
+      display:grid;
+      gap:12px;
+      margin-bottom:16px;
+    }
+
+    #smart-pustero .progress,
+    #smart-pustero .breath-progress{
+      width:100%;
+      height:14px;
+      background:#d7e3e6;
+      border-radius:999px;
+      overflow:hidden;
+    }
+
+    #smart-pustero .progress > span,
+    #smart-pustero .breath-progress > span{
+      display:block;
+      height:100%;
+      width:0%;
+      border-radius:999px;
+      transition:width .12s linear;
+      background:linear-gradient(90deg, color-mix(in srgb, var(--active-color) 68%, white), var(--active-color));
+    }
+
+    #smart-pustero .actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+
+    #smart-pustero .primary,
+    #smart-pustero .secondary{
+      appearance:none;
+      border-radius:14px;
+      padding:12px 16px;
+      font-size:15px;
+      font-weight:800;
+      cursor:pointer;
+      border:0;
+      white-space:nowrap;
+      box-shadow:0 4px 10px rgba(15,23,42,.12);
+    }
+
+    #smart-pustero .primary{
+      background:#0f766e;
+      color:#fff;
+    }
+
+    #smart-pustero .secondary{
+      background:#6b7280;
+      color:#fff;
+    }
+
+    #smart-pustero .bottom-grid{
+      display:grid;
+      grid-template-columns:1.1fr 1.2fr;
+      gap:18px;
+      width:100%;
+      max-width:900px;
+      margin:0 auto;
+    }
+
+    #smart-pustero .info-card,
+    #smart-pustero .levels-card{
+      background:var(--panel);
+      border:1px solid var(--card-border);
+      border-radius:18px;
+      padding:18px 18px;
+    }
+
+    #smart-pustero .info-card h2{
+      margin:0 0 12px;
+      font-size:clamp(24px,2vw,32px);
+      line-height:1.1;
+    }
+
+    #smart-pustero .info-card p{
+      margin:0 0 10px;
+      font-size:clamp(15px,1.05vw,18px);
+      line-height:1.5;
+      color:#314348;
+    }
+
+    #smart-pustero .info-card p:last-child{ margin-bottom:0; }
+
+    #smart-pustero .levels-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:12px;
+    }
+
+    #smart-pustero .program-btn{
+      width:100%;
+      text-align:left;
+      padding:16px 16px 14px;
+      border-radius:16px;
+      border:1px solid #d7e3e6;
+      background:#fff;
+      cursor:pointer;
+      transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+    }
+
+    #smart-pustero .program-btn:hover{
+      transform:translateY(-1px);
+      box-shadow:0 8px 20px rgba(15,23,42,.08);
+    }
+
+    #smart-pustero .program-btn.active{
+      border-color:var(--active-color);
+      box-shadow:0 0 0 3px color-mix(in srgb, var(--active-color) 18%, transparent);
+    }
+
+    #smart-pustero .program-btn h3{
+      margin:0 0 8px;
+      font-size:clamp(19px,1.4vw,24px);
+      line-height:1.2;
+    }
+
+    #smart-pustero .program-btn p{
+      margin:0 0 10px;
+      color:var(--muted);
+      font-size:clamp(14px,1vw,16px);
+      line-height:1.35;
+    }
+
+    #smart-pustero .timing{
+      display:block;
+      font-size:clamp(14px,1vw,16px);
+      font-weight:700;
+      color:#314348;
+    }
+
+    #smart-pustero .swatch{
+      width:14px;
+      height:14px;
+      border-radius:50%;
+      display:inline-block;
+      margin-right:8px;
+      vertical-align:middle;
+    }
+
+    @media (max-width: 900px){
+      #smart-pustero .bottom-grid{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 760px){
+      #smart-pustero .module{
+        padding:20px 16px 18px;
+      }
+
+      #smart-pustero .ring-wrap{
+        width:min(94vw, 460px);
+        height:min(94vw, 460px);
+      }
+
+      #smart-pustero .levels-grid{
+        grid-template-columns:1fr;
+      }
+
+      #smart-pustero .actions{
+        flex-direction:column;
+      }
+
+      #smart-pustero .primary,
+      #smart-pustero .secondary{
+        width:100%;
+      }
+    }
+  </style>
+
+  <div class="module">
+    <div class="module-inner">
+      <div class="ring-stage">
+        <div class="ring-wrap">
+          <div class="ring" id="ring">
+            <svg class="ring-svg" viewBox="0 0 100 100" aria-hidden="true">
+              <circle class="ring-track" cx="50" cy="50" r="36"></circle>
+              <circle class="ring-progress" id="ringProgress" cx="50" cy="50" r="36"></circle>
+            </svg>
+
+            <div class="air-layer" id="airLayer"></div>
+
+            <div class="person">
+              <div class="head">
+                <div class="hair"></div>
+                <div class="eye left"></div>
+                <div class="eye right"></div>
+                <div class="nose"></div>
+                <div class="mouth" id="mouth"></div>
+              </div>
+              <div class="neck" id="neck"></div>
+              <div class="torso">
+                <div class="arm left"></div>
+                <div class="arm right"></div>
+                <div class="chest" id="chest"></div>
+                <div class="belly" id="belly"></div>
+              </div>
+              <div class="leg left"></div>
+              <div class="leg right"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="phase" id="phase">Klar</div>
+        <div class="subphase" id="subphase">Sessionen varer 2 minutter og nulstilles bagefter</div>
+
+        <div class="status-panel">
+          <div class="meters">
+            <div class="breath-progress"><span id="breathBar"></span></div>
+            <div class="progress"><span id="sessionBar"></span></div>
+          </div>
+
+          <div class="actions">
+            <button class="primary" id="startBtn" type="button">Start valgt niveau</button>
+            <button class="secondary" id="resetBtn" type="button">Nulstil</button>
+          </div>
+        </div>
+
+        <div class="bottom-grid">
+          <div class="info-card" id="detailsBox">
+            <h2>Niveau 1</h2>
+            <p><strong>Rolig og enkel start.</strong> Et roligt og jævnt tempo med ind og ud i samme længde.</p>
+            <p><strong>Mønster:</strong> 5-5</p>
+            <p><strong>Velegnet til:</strong> God til at starte roligt sammen.</p>
+            <p><strong>Brug det fx:</strong> I starten af første time, efter pausen, efter morgensang eller når klassen skal lande roligt og samlet.</p>
+          </div>
+
+          <div class="levels-card">
+            <div class="levels-grid" id="programGrid"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (() => {
+      const SESSION_SECONDS = 120;
+
+      const programs = {
+        level1: {
+          key: 'level1',
+          name: 'Niveau 1',
+          color: '#8fd8c7',
+          effect: 'Rolig og enkel start',
+          patternLabel: '5-5',
+          inhale: 5,
+          hold1: 0,
+          exhale: 5,
+          hold2: 0,
+          intro: 'Et roligt og jævnt tempo med ind og ud i samme længde.',
+          bestFor: 'God til at starte roligt sammen.',
+          usage: 'I starten af første time, efter pausen, efter morgensang eller når klassen skal lande roligt og samlet.'
+        },
+        level2: {
+          key: 'level2',
+          name: 'Niveau 2',
+          color: '#9fd2f6',
+          effect: 'Mere ro i kroppen',
+          patternLabel: '4-6',
+          inhale: 4,
+          hold1: 0,
+          exhale: 6,
+          hold2: 0,
+          intro: 'Længere udånding hjælper kroppen med at falde mere til ro.',
+          bestFor: 'God når gruppen skal ned i tempo.',
+          usage: 'Efter frikvarter, efter idræt, når eleverne kommer ind med høj energi, eller når der er småuro i klassen.'
+        },
+        level3: {
+          key: 'level3',
+          name: 'Niveau 3',
+          color: '#5d8fe8',
+          effect: 'Fokus og koncentration',
+          patternLabel: '4-4-4-4',
+          inhale: 4,
+          hold1: 4,
+          exhale: 4,
+          hold2: 4,
+          intro: 'Et fast mønster med pauser, som hjælper med fokus og opmærksomhed.',
+          bestFor: 'God før opgaver, der kræver koncentration.',
+          usage: 'Inden læsning, fordybelsesopgaver, stillearbejde eller når klassen skal samle opmærksomheden om en fælles opgave.'
+        },
+        level4: {
+          key: 'level4',
+          name: 'Niveau 4',
+          color: '#9b7ae0',
+          effect: 'Dyb ro og længere pauser',
+          patternLabel: '4-7-8',
+          inhale: 4,
+          hold1: 7,
+          exhale: 8,
+          hold2: 0,   intro: 'Et mere krævende mønster med længere hold og længere udånding.',
+          bestFor: 'God når der er brug for ekstra ro.',
+          usage: 'Ved meget uro, efter en konflikt, ved overstimulering eller når der er behov for at hjælpe eleverne helt ned i tempo.'
+        }
+      };
+
+      const ringProgress = document.getElementById('ringProgress');
+      const chest = document.getElementById('chest');
+      const belly = document.getElementById('belly');
+      const neck = document.getElementById('neck');
+      const mouth = document.getElementById('mouth');
+      const airLayer = document.getElementById('airLayer');
+
+      const phaseEl = document.getElementById('phase');
+      const subphaseEl = document.getElementById('subphase');
+      const sessionBar = document.getElementById('sessionBar');
+      const breathBar = document.getElementById('breathBar');
+      const detailsBox = document.getElementById('detailsBox');
+      const programGrid = document.getElementById('programGrid');
+      const startBtn = document.getElementById('startBtn');
+      const resetBtn = document.getElementById('resetBtn');
+
+      const RADIUS = 36;
+      const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
+
+      ringProgress.style.strokeDasharray = CIRCUMFERENCE;
+      ringProgress.style.strokeDashoffset = CIRCUMFERENCE;
+
+      let selected = programs.level1;
+      let active = false;
+      let rafId = null;
+      let startTs = null;
+      let cycleStartTs = null;
+      let currentPhases = [];
+      let airInterval = null;
+      let currentMode = "hold";
+
+      function setRingProgress(percent){
+        const clamped = Math.max(0, Math.min(100, percent));
+        const offset = CIRCUMFERENCE - (clamped / 100) * CIRCUMFERENCE;
+        ringProgress.style.strokeDashoffset = offset;
+      }
+
+      function setBody(chestScale, bellyScale){
+        chest.style.transform = `translateX(-50%) scaleX(${chestScale})`;
+        belly.style.transform = `translateX(-50%) scaleX(${bellyScale})`;
+        neck.style.transform = `translateY(0px)`;
+      }
+
+      function clearAir(){
+        airLayer.innerHTML = "";
+      }
+
+      function spawnArrow(mode, yOffset){
+        const arrow = document.createElement("div");
+        arrow.className = "air-arrow";
+        airLayer.appendChild(arrow);
+
+        const wrapRect = airLayer.getBoundingClientRect();
+        const mouthRect = mouth.getBoundingClientRect();
+
+        const mouthX = mouthRect.left - wrapRect.left + mouthRect.width / 2;
+        const mouthY = mouthRect.top - wrapRect.top + mouthRect.height / 2 + yOffset;
+
+        const fromLeft = Math.random() < 0.5;
+        const farX = fromLeft ? mouthX - 130 : mouthX + 130;
+        const nearX = fromLeft ? mouthX - 36 : mouthX + 36;
+
+        arrow.style.top = `${mouthY}px`;
+
+        let startX, endX;
+
+        if(mode === "in"){
+          startX = farX;
+          endX = nearX;
+          if (fromLeft) {
+            arrow.classList.remove("flip");
+          } else {
+            arrow.classList.add("flip");
+          }
+        } else {
+          startX = nearX;
+          endX = farX;
+          if (fromLeft) {
+            arrow.classList.add("flip");
+          } else {
+            arrow.classList.remove("flip");
+          }
+        }
+
+        arrow.animate(
+          [
+            { left: `${startX}px`, opacity: 0, transform: "translateY(-50%) scaleX(0.6)" },
+            { left: `${(startX + endX) / 2}px`, opacity: 1, transform: "translateY(-50%) scaleX(1)" },
+            { left: `${endX}px`, opacity: 0, transform: "translateY(-50%) scaleX(0.75)" }
+          ],
+          {
+            duration: mode === "in" ? 850 : 1100,
+            easing: "ease-out",
+            fill: "forwards"
+          }
+        );
+
+        setTimeout(() => arrow.remove(), 1200);
+      }
+
+      function stopAir(){
+        if(airInterval){
+          clearInterval(airInterval);
+          airInterval = null;
+        }
+        clearAir();
+      }
+
+      function startAir(mode){
+        stopAir();
+        if(mode === "hold") return;
+
+        airInterval = setInterval(() => {
+          spawnArrow(mode, -14);
+          spawnArrow(mode, 0);
+          spawnArrow(mode, 14);
+        }, 260);
+      }
+
+      function buildButtons(){
+        programGrid.innerHTML = '';
+        Object.values(programs).forEach(program => {
+          const btn = document.createElement('button');
+          btn.className = 'program-btn';
+          btn.dataset.key = program.key;
+          btn.type = 'button';
+          btn.innerHTML = `
+            <h3><span class="swatch" style="background:${program.color}"></span>${program.name}</h3>
+            <p>${program.effect}</p>
+            <span class="timing">Mønster: ${program.patternLabel}</span>
+          `;
+          btn.addEventListener('click', () => {
+            selectProgram(program.key);
+          });
+          programGrid.appendChild(btn);
+        });
+        updateActiveButton();
+      }
+
+      function updateActiveButton(){
+        document.querySelectorAll('#smart-pustero .program-btn').forEach(btn => {
+          btn.classList.toggle('active', btn.dataset.key === selected.key);
+        });
+      }
+
+      function renderDetails(){
+        detailsBox.innerHTML = `
+          <h2>${selected.name}</h2>
+          <p><strong>${selected.effect}.</strong> ${selected.intro}</p>
+          <p><strong>Mønster:</strong> ${selected.patternLabel}</p>
+          <p><strong>Velegnet til:</strong> ${selected.bestFor}</p>
+          <p><strong>Brug det fx:</strong> ${selected.usage}</p>
+        `;
+        document.documentElement.style.setProperty('--active-color', selected.color);
+        ringProgress.style.stroke = selected.color;
+      }
+
+      function selectProgram(key){
+        selected = programs[key];
+        updateActiveButton();
+        renderDetails();
+        if(!active){
+          setNeutralState();
+        }
+      }
+
+      function setNeutralState(){
+        phaseEl.textContent = 'Klar';
+        subphaseEl.textContent = 'Sessionen varer 2 minutter og nulstilles bagefter';
+        breathBar.style.width = '0%';
+        sessionBar.style.width = '0%';
+        setRingProgress(0);
+        setBody(1, 1);
+        stopAir();
+        currentMode = "hold";
+      }
+
+      function getPhases(program){
+        const phases = [];
+        phases.push({
+          name: 'Indånding',
+          seconds: program.inhale,
+          hint: `Træk vejret ind i ${program.inhale} sek.`,
+          barFrom: 0,
+          barTo: 100,
+          chestFrom: 0.85,
+          chestTo: 1.18,
+          bellyFrom: 0.93,
+          bellyTo: 1.10,
+          air: "in"
+        });
+
+        if(program.hold1 > 0){
+          phases.push({
+            name: 'Hold',
+            seconds: program.hold1,
+            hint: `Hold roligt i ${program.hold1} sek.`,
+            barFrom: 100,
+            barTo: 100,
+            chestFrom: 1.18,
+            chestTo: 1.18,
+            bellyFrom: 1.10,
+            bellyTo: 1.10,
+            air: "hold"
+          });
+        }
+
+        phases.push({
+          name: 'Udånding',
+          seconds: program.exhale,
+          hint: `Pust ud i ${program.exhale} sek.`,
+          barFrom: 100,
+          barTo: 0,
+          chestFrom: 1.18,
+          chestTo: 0.85,
+          bellyFrom: 1.10,
+          bellyTo: 0.93,
+          air: "out"
+        });
+
+        if(program.hold2 > 0){
+          const lowChest = 0.85;
+          const lowBelly = 0.93;
+          phases.push({
+            name: 'Hold',
+            seconds: program.hold2,
+            hint: `Bliv i pausen i ${program.hold2} sek.`,
+            barFrom: 0,
+            barTo: 0,
+            chestFrom: lowChest,
+            chestTo: lowChest,
+            bellyFrom: lowBelly,
+            bellyTo: lowBelly,
+            air: "hold"
+          });
+        }
+
+        return phases;
+      }
+
+      function startSession(){
+        cancelAnimationFrame(rafId);
+        active = true;
+        startTs = null;
+        cycleStartTs = null;
+        currentPhases = getPhases(selected);
+        currentMode = "hold";
+        stopAir();
+        requestAnimationFrame(tick);
+      }
+
+      function resetSession(showFinish = false){
+        active = false;
+        cancelAnimationFrame(rafId);
+        rafId = null;
+        stopAir();
+        currentMode = "hold";
+
+        if(showFinish){
+          phaseEl.textContent = 'Færdig';
+          subphaseEl.textContent = 'Session afsluttet – klar igen';
+          sessionBar.style.width = '100%';
+          breathBar.style.width = '100%';
+          setRingProgress(0);
+          setBody(1, 1);
+
+          setTimeout(() => {
+            renderDetails();
+            setNeutralState();
+          }, 1400);
+        } else {
+          renderDetails();
+          setNeutralState();
+        }
+      }
+
+      function tick(ts){
+        if(!active) return;
+
+        if(startTs === null){
+          startTs = ts;
+          cycleStartTs = ts;
+        }
+
+        const elapsedSession = (ts - startTs) / 1000;
+
+        if(elapsedSession >= SESSION_SECONDS){
+     
+
+
+Tab Context:
+- Executed on tabId: 1501817133
+- Available tabs:
+  • tabId 1501817133: "SmartZonen" (https://sites.google.com/d/1VBHxLQCyD8kuNjj8bSF4id7FuAATcNrr/p/1IxBH_7NthvKFh7n_VtabWMPxEdOCkApj/edit)
+  • tabId 1501817136: "SmartZonen" (https://www.smartzonen.dk/)     resetSession(true);
+          return;
+        }
+
+        const cycleDuration = currentPhases.reduce((sum, p) => sum + p.seconds, 0);
+        const cycleElapsed = ((ts - cycleStartTs) / 1000) % cycleDuration;
+
+        let acc = 0;
+        let phase = currentPhases[0];
+        let phaseElapsed = 0;
+
+        for(const p of currentPhases){
+          if(cycleElapsed <= acc + p.seconds){
+            phase = p;
+            phaseElapsed = cycleElapsed - acc;
+            break;
+          }
+          acc += p.seconds;
+        }
+
+        const phaseProgress = phase.seconds === 0 ? 1 : Math.min(1, Math.max(0, phaseElapsed / phase.seconds));
+        const directionalBar = phase.barFrom + (phase.barTo - phase.barFrom) * phaseProgress;
+        const chestValue = phase.chestFrom + (phase.chestTo - phase.chestFrom) * phaseProgress;
+        const bellyValue = phase.bellyFrom + (phase.bellyTo - phase.bellyFrom) * phaseProgress;
+
+        phaseEl.textContent = phase.name;
+        subphaseEl.textContent = phase.hint;
+        breathBar.style.width = `${directionalBar.toFixed(1)}%`;
+        sessionBar.style.width = `${((elapsedSession / SESSION_SECONDS) * 100).toFixed(1)}%`;
+
+        setRingProgress(directionalBar);
+        setBody(chestValue, bellyValue);
+
+        if(phase.air !== currentMode){
+          currentMode = phase.air;
+          startAir(currentMode);
+        }
+
+        rafId = requestAnimationFrame(tick);
+      }
+
+      startBtn.addEventListener('click', startSession);
+      resetBtn.addEventListener('click', () => resetSession(false));
+
+      buildButtons();
+      renderDetails();
+      setNeutralState();
+    })();
+  </script>
+</div>
+</div>
+<footer class="site-footer">
+  <p>© 2026 SmartZonen &nbsp;·&nbsp; Udarbejdet af Susan &amp; Manfred Conrath &nbsp;·&nbsp; <a href="mailto:mco@outlook.dk">Kontakt</a></p>
+</footer>
+</body>
+</html>

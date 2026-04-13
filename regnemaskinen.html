@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Regnemaskinen – SmartZonen</title>
+  <style>
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  color: #1f2937;
+  background: #f5f7fa;
+  min-height: 100vh;
+}
+
+/* NAV */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #1a2f3a;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.2);
+}
+.site-nav .logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.site-nav .site-title {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: none;
+}
+.site-nav .nav-links {
+  margin-left: auto;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.site-nav .nav-links a {
+  color: rgba(255,255,255,.8);
+  text-decoration: none;
+  font-size: 13px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  transition: background .15s, color .15s;
+}
+.site-nav .nav-links a:hover,
+.site-nav .nav-links a.active {
+  background: rgba(255,255,255,.15);
+  color: #fff;
+}
+
+/* HERO */
+.hero {
+  width: 100%;
+  max-height: 340px;
+  overflow: hidden;
+  display: block;
+}
+.hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* INFO BAND */
+.info-band {
+  background: #b8dff0;
+  padding: 28px 24px;
+  text-align: center;
+}
+.info-band h1 {
+  font-size: clamp(22px, 3vw, 36px);
+  font-weight: 800;
+  color: #1a2f3a;
+  margin-bottom: 8px;
+}
+.info-band p {
+  font-size: clamp(15px, 1.8vw, 20px);
+  color: #2a4a5a;
+  font-style: italic;
+  line-height: 1.4;
+}
+
+/* CONTENT */
+.page-content {
+  max-width: 1100px;
+  margin: 32px auto;
+  padding: 0 20px 60px;
+}
+
+/* HOME GRID */
+.section-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #1a2f3a;
+  margin: 32px 0 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #b8dff0;
+}
+.tool-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 18px;
+}
+.tool-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  padding: 22px 20px;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 4px 14px rgba(15,23,42,.06);
+  transition: transform .15s, box-shadow .15s;
+  display: block;
+}
+.tool-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(15,23,42,.12);
+}
+.tool-card h3 {
+  font-size: 18px;
+  font-weight: 800;
+  color: #0f766e;
+  margin-bottom: 6px;
+}
+.tool-card p {
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 1.4;
+}
+
+/* FOOTER */
+.site-footer {
+  background: #1a2f3a;
+  color: rgba(255,255,255,.7);
+  text-align: center;
+  padding: 20px 24px;
+  font-size: 13px;
+}
+.site-footer a {
+  color: rgba(255,255,255,.9);
+}
+
+@media (max-width: 640px) {
+  .site-nav .nav-links { display: none; }
+  .info-band { padding: 20px 16px; }
+}
+
+
+  </style>
+</head>
+<body>
+<nav class="site-nav">
+  <img class="logo" src="/assets/logo.png" onerror="this.style.display='none'" alt="SmartZonen logo">
+  <a class="site-title" href="/">SmartZonen</a>
+  <div class="nav-links">
+    <a href="/">Start</a>
+<a href="/pustero.html">Pustero</a>
+<a href="/grupper.html">Grupper</a>
+<a href="/dagens-dato.html">Dagens dato</a>
+<a href="/leg-med-lyde-1.html">Leg med lyde 1</a>
+<a href="/leg-med-lyde-2.html">Leg med lyde 2</a>
+<a href="/saetningsmaskinen.html">Sætningsmaskinen</a>
+<a href="/laer-klokken.html">Lær klokken</a>
+<a href="/regnemaskinen.html" class="active">Regnemaskinen</a>
+
+  </div>
+</nav>
+<div class="hero">
+  <img src="/assets/banner.jpg" onerror="this.closest('.hero').style.display='none'" alt="SmartZonen banner">
+</div>
+<div class="info-band">
+  <h1>Regnemaskinen</h1>
+  <p>Lav regnestykker i plus og minus til indskolingen</p>
+</div>
+<div class="page-content">
+<!-- SmartZonen – Regnestykker (plus og minus) -->
+<div id="smart-regnestykker" style="max-width:1100px;margin:0 auto;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:#1f2937;">
+  <style>
+    #smart-regnestykker{
+      --card:#ffffff;
+      --card-border:#e5e7eb;
+      --panel:#f8fafc;
+      --panel-strong:#eef5f6;
+      --text:#1f2937;
+      --muted:#6b7280;
+      --accent:#0f766e;
+      --accent-soft:rgba(15,118,110,.10);
+      --accent-border:#d7e3e6;
+      --shadow:0 10px 24px rgba(15,23,42,.06);
+      --radius:18px;
+    }
+
+    #smart-regnestykker *{box-sizing:border-box}
+
+    #smart-regnestykker .sr-wrap{
+      background:var(--card);
+      border:1px solid var(--card-border);
+      border-radius:24px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+    }
+
+    #smart-regnestykker .sr-head{
+      padding:24px 24px 8px;
+      background:linear-gradient(180deg,#f8fbfb 0%, #ffffff 100%);
+    }
+
+    #smart-regnestykker .sr-title{
+      margin:0;
+      font-size:clamp(1.6rem,2.2vw,2.1rem);
+      line-height:1.15;
+      color:var(--text);
+    }
+
+    #smart-regnestykker .sr-sub{
+      margin:10px 0 0;
+      color:var(--muted);
+      font-size:1rem;
+      line-height:1.5;
+    }
+
+    #smart-regnestykker .sr-body{
+      padding:24px;
+      display:grid;
+      gap:20px;
+    }
+
+    #smart-regnestykker .sr-panel{
+      background:var(--panel);
+      border:1px solid var(--accent-border);
+      border-radius:var(--radius);
+      padding:18px;
+    }
+
+    #smart-regnestykker .sr-panel-title{
+      margin:0 0 14px;
+      font-size:1.05rem;
+      font-weight:700;
+      color:var(--text);
+    }
+
+    #smart-regnestykker .sr-grid{
+      display:grid;
+      grid-template-columns:repeat(12,minmax(0,1fr));
+      gap:14px;
+    }
+
+    #smart-regnestykker .sr-field{
+      display:flex;
+      flex-direction:column;
+      gap:7px;
+    }
+
+    #smart-regnestykker .sr-field label{
+      font-size:.95rem;
+      font-weight:600;
+      color:var(--text);
+    }
+
+    #smart-regnestykker .sr-field small{
+      color:var(--muted);
+      font-size:.83rem;
+      line-height:1.35;
+    }
+
+    #smart-regnestykker select,
+    #smart-regnestykker input[type="number"]{
+      width:100%;
+      min-height:46px;
+      border:1px solid #d1d5db;
+      border-radius:12px;
+      padding:10px 12px;
+      font-size:1rem;
+      background:#fff;
+      color:var(--text);
+      outline:none;
+    }
+
+    #smart-regnestykker select:focus,
+    #smart-regnestykker input[type="number"]:focus{
+      border-color:var(--accent);
+      box-shadow:0 0 0 4px rgba(15,118,110,.12);
+    }
+
+    #smart-regnestykker .span-3{grid-column:span 3}
+    #smart-regnestykker .span-4{grid-column:span 4}
+    #smart-regnestykker .span-6{grid-column:span 6}
+    #smart-regnestykker .span-12{grid-column:span 12}
+
+    #smart-regnestykker .sr-checks{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      padding-top:2px;
+    }
+
+    #smart-regnestykker .sr-chip{
+      display:inline-flex; align-items:center;
+      gap:8px;
+      min-height:44px;
+      padding:0 14px;
+      border-radius:999px;
+      border:1px solid #d1d5db;
+      background:#fff;
+      cursor:pointer;
+      user-select:none;
+      transition:.15s ease;
+    }
+
+    #smart-regnestykker .sr-chip:hover{
+      border-color:var(--accent);
+      background:var(--accent-soft);
+    }
+
+    #smart-regnestykker .sr-chip input{
+      margin:0;
+      accent-color:var(--accent);
+      width:18px;
+      height:18px;
+    }
+
+    #smart-regnestykker .sr-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+    }
+
+    #smart-regnestykker button{
+      appearance:none;
+      border:none;
+      border-radius:14px;
+      min-height:48px;
+      padding:0 18px;
+      font-size:1rem;
+      font-weight:700;
+      cursor:pointer;
+      transition:transform .05s ease, opacity .2s ease, box-shadow .2s ease;
+    }
+
+    #smart-regnestykker button:active{transform:translateY(1px)}
+
+    #smart-regnestykker .sr-btn-primary{
+      background:var(--accent);
+      color:#fff;
+      box-shadow:0 10px 18px rgba(15,118,110,.18);
+    }
+
+    #smart-regnestykker .sr-btn-secondary{
+      background:#fff;
+      color:var(--text);
+      border:1px solid #d1d5db;
+    }
+
+    #smart-regnestykker .sr-status{
+      color:var(--muted);
+      font-size:.95rem;
+      min-height:1.3em;
+    }
+
+    #smart-regnestykker .sr-output{
+      display:grid;
+      gap:16px;
+    }
+
+    #smart-regnestykker .sr-sheet{
+      background:#fff;
+      border:1px solid var(--card-border);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      padding:22px;
+    }
+
+    #smart-regnestykker .sr-sheet-top{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      align-items:flex-start;
+      margin-bottom:16px;
+      flex-wrap:wrap;
+    }
+
+    #smart-regnestykker .sr-sheet-title{
+      margin:0;
+      font-size:1.2rem;
+      font-weight:800;
+    }
+
+    #smart-regnestykker .sr-sheet-meta{
+      color:var(--muted);
+      font-size:.95rem;
+      line-height:1.5;
+    }
+
+    #smart-regnestykker .sr-tasks{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:12px 18px;
+    }
+
+    #smart-regnestykker .sr-task{
+      background:var(--panel);
+      border:1px solid var(--accent-border);
+      border-radius:16px;
+      min-height:72px;
+      padding:14px 16px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+
+    #smart-regnestykker .sr-task-left{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:0;
+    }
+
+    #smart-regnestykker .sr-nr{
+      width:32px;
+      height:32px;
+      border-radius:999px;
+      background:#fff;
+      border:1px solid #d1d5db;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:700;
+      flex:0 0 auto;
+    }
+
+    #smart-regnestykker .sr-expression{
+      font-size:1.25rem;
+      font-weight:700;letter-spacing:.02em;
+      white-space:nowrap;
+    }
+
+    #smart-regnestykker .sr-answer{
+      color:var(--accent);
+      font-weight:800;
+      opacity:0;
+      transition:opacity .18s ease;
+      flex:0 0 auto;
+    }
+
+    #smart-regnestykker .show-answers .sr-answer{
+      opacity:1;
+    }
+
+    #smart-regnestykker .sr-note{
+      margin-top:10px;
+      color:var(--muted);
+      font-size:.88rem;
+      line-height:1.45;
+    }
+
+    @media (max-width: 880px){
+      #smart-regnestykker .span-3,
+      #smart-regnestykker .span-4,
+      #smart-regnestykker .span-6{
+        grid-column:span 6;
+      }
+      #smart-regnestykker .sr-tasks{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 560px){
+      #smart-regnestykker .span-3,
+      #smart-regnestykker .span-4,
+      #smart-regnestykker .span-6{
+        grid-column:span 12;
+      }
+      #smart-regnestykker .sr-body,
+      #smart-regnestykker .sr-head{
+        padding:18px;
+      }
+      #smart-regnestykker .sr-sheet{
+        padding:16px;
+      }
+      #smart-regnestykker .sr-expression{
+        font-size:1.1rem;
+      }
+      #smart-regnestykker .sr-task{
+        min-height:66px;
+        padding:12px 14px;
+      }
+    }
+  </style>
+
+  <div class="sr-wrap">
+    <div class="sr-head">
+      <h2 class="sr-title">Regnestykker – plus og minus</h2>
+      <p class="sr-sub">
+        Vælg klassetrin og niveau, og lav et ark med tilfældige regnestykker i vandret form.
+      </p>
+    </div>
+
+    <div class="sr-body">
+      <div class="sr-panel">
+        <h3 class="sr-panel-title">Indstillinger</h3>
+
+        <div class="sr-grid">
+          <div class="sr-field span-3">
+            <label for="sr-grade">Klassetrin</label>
+            <select id="sr-grade">
+              <option value="1">1. klasse</option>
+              <option value="2">2. klasse</option>
+              <option value="3">3. klasse</option>
+            </select>
+          </div>
+
+          <div class="sr-field span-3">
+            <label for="sr-count">Antal opgaver</label>
+            <select id="sr-count">
+              <option value="8">8</option>
+              <option value="10" selected>10</option>
+              <option value="12">12</option>
+              <option value="16">16</option>
+              <option value="20">20</option>
+            </select>
+          </div>
+
+          <div class="sr-field span-3">
+            <label for="sr-first-digits">Første tal</label>
+            <select id="sr-first-digits">
+              <option value="1">1-cifret</option>
+              <option value="2">2-cifret</option>
+              <option value="3">3-cifret</option>
+            </select>
+          </div>
+
+          <div class="sr-field span-3">
+            <label for="sr-second-digits">Andet tal</label>
+            <select id="sr-second-digits">
+              <option value="1">1-cifret</option>
+              <option value="2">2-cifret</option>
+              <option value="3">3-cifret</option>
+            </select>
+          </div>
+
+          <div class="sr-field span-6">
+            <label>Regningsart</label>
+            <div class="sr-checks">
+              <label class="sr-chip">
+                <input type="checkbox" id="sr-plus" checked>
+                <span>Plus</span>
+              </label>
+              <label class="sr-chip">
+                <input type="checkbox" id="sr-minus">
+                <span>Minus</span>
+              </label>
+            </div>
+            <small>Sæt begge hak for blandede opgaver.</small>
+          </div>
+
+          <div class="sr-field span-3">
+            <label for="sr-min">Talområde fra</label>
+            <input id="sr-min" type="number" min="0" step="1" value="0">
+          </div>
+
+          <div class="sr-field span-3">
+            <label for="sr-max">Talområde til</label>
+            <input id="sr-max" type="number" min="1" step="1" value="20">
+          </div>
+
+          <div class="sr-field span-3">
+            <label for="sr-ten">10’er-overgang</label>
+            <select id="sr-ten">
+              <option value="mixed">Blandet</option>
+              <option value="yes">Ja</option>
+              <option value="no">Nej</option>
+            </select>
+          </div>
+
+          <div class="sr-field span-3">
+            <label for="sr-hundred">100’er-overgang</label>
+            <select id="sr-hundred">
+              <option value="mixed">Blandet</option>
+              <option value="yes">Ja</option>
+              <option value="no">Nej</option>
+            </select>
+          </div>
+
+          <div class="sr-field span-6">
+            <label class="sr-chip" style="width:max-content;">
+              <input type="checkbox" id="sr-negative">
+              <span>Tillad negative resultater</span>
+            </label>
+            <small>Bruges kun ved minusstykker.</small>
+          </div>
+
+          <div class="sr-field span-12">
+            <div class="sr-actions">
+              <button class="sr-btn-primary" id="sr-generate" type="button">Lav opgaver</button>
+              <button class="sr-btn-secondary" id="sr-toggle-answers" type="button">Vis svar</button>
+              <button class="sr-btn-secondary" id="sr-pdf" type="button">Download PDF</button>
+            </div>
+          </div>
+
+          <div class="sr-field span-12">
+            <div class="sr-status" id="sr-status">Vælg indstillinger og tryk på “Lav opgaver”.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sr-output" id="sr-output"></div>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const gradeEl = document.getElementById('sr-grade');
+      const countEl = document.getElementById('sr-count');
+      const firstDigitsEl = document.getElementById('sr-first-digits');
+      const secondDigitsEl = document.getElementById('sr-second-digits');
+      const plusEl = document.getElementById('sr-plus');
+      const minusEl = document.getElementById('sr-minus');
+      const minEl = document.getElementById('sr-min');
+      const maxEl = document.getElementById('sr-max');
+      const tenEl = document.getElementById('sr-ten');
+      const hundredEl = document.getElementById('sr-hundred');
+      const negativeEl = document.getElementById('sr-negative');
+      const generateBtn = document.getElementById('sr-generate');
+      const toggleAnswersBtn = document.getElementById('sr-toggle-answers');
+      const pdfBtn = document.getElementById('sr-pdf');
+      const outputEl = document.getElementById('sr-output');
+      const statusEl = document.getElementById('sr-status');
+
+      let currentTasks = [];
+      let answersVisible = false;
+
+      const gradeDefaults = {
+        1: { max: 20, firstDigits: 1, secondDigits: 1, ten: 'mixed', hundred: 'no', plus: true, minus: false },
+        2: { max: 100, firstDigits: 2, secondDigits: 1, ten: 'mixed', hundred: 'no', plus: true, minus: true },
+        3: { max: 1000, firstDigits: 2, secondDigits: 2, ten: 'mixed', hundred: 'mixed', plus: true, minus: true }
+      };
+
+      function applyDefaults(){
+        const d = gradeDefaults[gradeEl.value];
+        minEl.value = 0;
+        maxEl.value = d.max;
+        firstDigitsEl.value = String(d.firstDigits);
+        secondDigitsEl.value = String(d.secondDigits);
+        tenEl.value = d.ten;
+        hundredEl.value = d.hundred;
+        plusEl.checked = d.plus;
+        minusEl.checked = d.minus;
+        negativeEl.checked = false;
+      }
+
+      function ensureOperationSelected(){
+        if(!plusEl.checked && !minusEl.checked){
+          plusEl.checked = true;
+        }
+      }
+
+      function randomInt(min, max){
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+
+      function minForDigits(d){
+        if(d <= 1) return 0;
+        return Math.pow(10, d - 1);
+      }
+
+      function maxForDigits(d){
+        if(d <= 1) return 9;
+        return Math.pow(10, d) - 1;
+      }
+
+      function pickNumberWithDigits(digits, rangeMin, rangeMax){
+        const low = Math.max(rangeMin, minForDigits(digits));
+        const high = Math.min(rangeMax, maxForDigits(digits));
+        if(low > high) return null;
+        return randomInt(low, high);
+      }
+
+      function hasTenTransitionAdd(a, b){
+        return (a % 10) + (b % 10) >= 10;
+      }
+
+      function hasHundredTransitionAdd(a, b){
+        const carryFromOnes = ((a % 10) + (b % 10) >= 10) ? 1 : 0;
+        const tensA = Math.floor((a % 100) / 10);
+        const tensB = Math.floor((b % 100) / 10);
+        return tensA + tensB + carryFromOnes >= 10;
+      }
+
+      function hasTenTransitionSub(a, b){
+        return (a % 10) < (b % 10);
+      }
+
+      function hasHundredTransitionSub(a, b){
+        const onesBorrow = ((a % 10) < (b % 10)) ? 1 : 0;
+        const tensA = Math.floor((a % 100) / 10);
+        const tensB = Math.floor((b % 100) / 10);
+        return tensA < (tensB + onesBorrow);
+      }
+
+      function matchesTransition(setting, actual){
+        if(setting === 'mixed') return true;
+        if(setting === 'yes') return actual === true;    if(setting === 'no') return actual === false;
+        return true;
+      }
+
+      function getOperations(){
+        const ops = [];
+        if(plusEl.checked) ops.push('+');
+        if(minusEl.checked) ops.push('-');
+        return ops;
+      }
+
+      function validateSettings(){
+        ensureOperationSelected();
+
+        const rangeMin = Number(minEl.value);
+        const rangeMax = Number(maxEl.value);
+        const d1 = Number(firstDigitsEl.value);
+        const d2 = Number(secondDigitsEl.value);
+
+        if(!Number.isFinite(rangeMin) || !Number.isFinite(rangeMax)){
+          return 'Talområdet skal være gyldigt.';
+        }
+        if(rangeMin < 0){
+          return 'Talområde fra skal være 0 eller højere.';
+        }
+        if(rangeMax <= rangeMin){
+          return 'Talområde til skal være større end Talområde fra.';
+        }
+
+        const possible1 = Math.max(rangeMin, minForDigits(d1)) <= Math.min(rangeMax, maxForDigits(d1));
+        const possible2 = Math.max(rangeMin, minForDigits(d2)) <= Math.min(rangeMax, maxForDigits(d2));
+
+        if(!possible1 || !possible2){
+          return 'Det valgte talområde passer ikke til det valgte antal cifre.';
+        }
+
+        return '';
+      }
+
+      function buildTask(){
+        const rangeMin = Number(minEl.value);
+        const rangeMax = Number(maxEl.value);
+        const d1 = Number(firstDigitsEl.value);
+        const d2 = Number(secondDigitsEl.value);
+        const tenSetting = tenEl.value;
+        const hundredSetting = hundredEl.value;
+        const allowNegative = negativeEl.checked;
+        const ops = getOperations();
+
+        for(let attempt = 0; attempt < 3000; attempt++){
+          const op = ops[randomInt(0, ops.length - 1)];
+          const a = pickNumberWithDigits(d1, rangeMin, rangeMax);
+          const b = pickNumberWithDigits(d2, rangeMin, rangeMax);
+
+          if(a === null || b === null) continue;
+
+          let result;
+          let tenTransition = false;
+          let hundredTransition = false;
+
+          if(op === '+'){
+            result = a + b;
+            tenTransition = hasTenTransitionAdd(a, b);
+            hundredTransition = hasHundredTransitionAdd(a, b);
+          } else {
+            result = a - b;
+            if(!allowNegative && result < 0) continue;
+            tenTransition = hasTenTransitionSub(a, b);
+            hundredTransition = hasHundredTransitionSub(a, b);
+          }
+
+          if(!matchesTransition(tenSetting, tenTransition)) continue;
+          if(!matchesTransition(hundredSetting, hundredTransition)) continue;
+
+          return {
+            a, b, op, result,
+            key: `${a}${op}${b}=${result}`
+          };
+        }
+
+        return null;
+      }
+
+      function generateTasks(){
+        const error = validateSettings();
+        if(error){
+          statusEl.textContent = error;
+          outputEl.innerHTML = '';
+          currentTasks = [];
+          return;
+        }
+
+        const wanted = Number(countEl.value);
+        const tasks = [];
+        const used = new Set();
+
+        for(let i = 0; i < wanted; i++){
+          let task = null;
+
+          for(let tries = 0; tries < 400; tries++){
+            const candidate = buildTask();
+            if(candidate && !used.has(candidate.key)){
+              task = candidate;
+              used.add(candidate.key);
+              break;
+            }
+          }
+
+          if(!task) break;
+          tasks.push(task);
+        }
+
+        currentTasks = tasks;
+        answersVisible = false;
+        renderTasks();
+
+        if(tasks.length === wanted){
+          statusEl.textContent = `${tasks.length} opgaver er klar.`;
+        } else if(tasks.length > 0){
+          statusEl.textContent = `Jeg kunne kun lave ${tasks.length} opgaver med de valgte indstillinger. Prøv evt. et større talområde eller blandede overgange.`;
+        } else {
+          statusEl.textContent = 'Jeg kunne ikke lave opgaver med de valgte indstillinger. Prøv et større talområde eller færre begrænsninger.';
+        }
+      }
+
+      function renderTasks(){
+        if(!currentTasks.length){
+          outputEl.innerHTML = '';
+          toggleAnswersBtn.textContent = 'Vis svar';
+          return;
+        }
+
+        const opText = plusEl.checked && minusEl.checked
+          ? 'Blandet plus og minus'
+          : plusEl.checked
+            ? 'Plus'
+            : 'Minus';
+
+        const html = `
+          <div class="sr-sheet ${answersVisible ? 'show-answers' : ''}">
+            <div class="sr-sheet-top">
+              <div>
+                <h3 class="sr-sheet-title">Regnestykker</h3>
+                <div class="sr-sheet-meta">
+                  ${gradeEl.value}. klasse · ${opText} · ${currentTasks.length} opgaver
+                </div>
+              </div>
+            </div>
+
+            <div class="sr-tasks">
+              ${currentTasks.map((task, i) => `
+                <div class="sr-task">
+                  <div class="sr-task-left">
+                    <div class="sr-nr">${i + 1}</div>
+                    <div class="sr-expression">${task.a} ${task.op} ${task.b} = ___</div>
+                  </div>
+                  <div class="sr-answer">${task.result}</div>
+                </div>
+              `).join('')}
+            </div>
+
+            <div class="sr-note">
+              Tryk på “Lav opgaver” igen for et nyt sæt tal.
+            </div>
+          </div>
+        `;
+
+        outputEl.innerHTML = html;
+        toggleAnswersBtn.textContent = answersVisible ? 'Skjul svar' : 'Vis svar';
+      }
+
+      function buildPdfHtml(){
+        const opText = plusEl.checked && minusEl.checked
+          ? 'Blandet plus og minus'
+          : plusEl.checked
+            ? 'Plus'
+            : 'Minus';
+
+        const created = new Date().toLocaleDateString('da-DK');
+
+        const tasksHtml = currentTasks.map((task, i) => `
+          <div class="task">
+            <div class="nr">${i + 1}</div>
+            <div class="expr">${task.a} ${task.op} ${task.b} = ______</div>
+          </div>     `).join('');
+
+        return `
+          <!DOCTYPE html>
+          <html lang="da">
+          <head>
+            <meta charset="UTF-8">
+            <title>Regnestykker</title>
+            <style>
+              *{box-sizing:border-box}
+              body{
+                font-family: Arial, Helvetica, sans-serif;
+                color:#111827;
+                margin:0;
+                padding:24mm 16mm 18mm;
+              }
+              .top{
+                display:flex;
+                justify-content:space-between;
+                gap:16px;
+                align-items:flex-start;
+                margin-bottom:18px;
+              }
+              h1{
+                margin:0 0 8px;
+                font-size:22px;
+              }
+              .meta{
+                font-size:12px;
+                color:#4b5563;
+                line-height:1.5;
+              }
+              .name-line{
+                font-size:12px;
+                margin-top:12px;
+              }
+              .line{
+                display:inline-block;
+                width:220px;
+                border-bottom:1px solid #9ca3af;
+                height:16px;
+                vertical-align:bottom;
+              }
+              .tasks{
+                display:grid;
+                grid-template-columns:1fr 1fr;
+                gap:12px 18px;
+                margin-top:18px;
+              }
+              .task{
+                border:1px solid #d1d5db;
+                border-radius:12px;
+                min-height:56px;
+                padding:12px 14px;
+                display:flex;
+                align-items:center;
+                gap:12px;
+                break-inside:avoid;
+              }
+              .nr{
+                width:28px;
+                height:28px;
+                border:1px solid #d1d5db;
+                border-radius:999px;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                font-weight:700;
+                font-size:13px;
+                flex:0 0 auto;
+              }
+              .expr{
+                font-size:20px;
+                font-weight:700;
+                letter-spacing:.02em;
+                white-space:nowrap;
+              }
+              @media print{
+                body{padding:16mm 14mm}
+              }
+            </style>
+          </head>
+          <body>
+            <div class="top">
+              <div>
+                <h1>Regnestykker</h1>
+                <div class="meta">
+                  ${gradeEl.value}. klasse · ${opText} · ${currentTasks.length} opgaver<br>
+                  Dato: ${created}
+                </div>
+                <div class="name-line">Navn: <span class="line"></span></div>
+              </div>
+            </div>
+
+            <div class="tasks">
+              ${tasksHtml}
+            </div>
+
+            <script>
+              window.onload = function(){
+                setTimeout(function(){
+                  window.print();        }, 250);
+              };
+            <\/script>
+          </body>
+          </html>
+        `;
+      }
+
+      function openPdfView(){
+        if(!currentTasks.length){
+          statusEl.textContent = 'Lav først et sæt opgaver, før du downloader PDF.';
+          return;
+        }
+
+        const win = window.open('', '_blank');
+        if(!win){
+          statusEl.textContent = 'Browseren blokerede det nye vindue. Tillad pop op-vinduer og prøv igen.';
+          return;
+        }
+
+        win.document.open();
+        win.document.write(buildPdfHtml());
+        win.document.close();
+      }
+
+      gradeEl.addEventListener('change', applyDefaults);
+      plusEl.addEventListener('change', ensureOperationSelected);
+      minusEl.addEventListener('change', ensureOperationSelected);
+
+      generateBtn.addEventListener('click', generateTasks);
+
+      toggleAnswersBtn.addEventListener('click', function(){
+        if(!currentTasks.length) return;
+        answersVisible = !answersVisible;
+        renderTasks();
+      });
+
+      pdfBtn.addEventListener('click', openPdfView);
+
+      applyDefaults();
+      generateTasks();
+    })();
+  </script>
+</div>
+
+
+Tab Context:
+- Executed on tabId: 1501817133
+- Available tabs:
+  • tabId 1501817133: "SmartZonen" (https://sites.google.com/d/1VBHxLQCyD8kuNjj8bSF4id7FuAATcNrr/p/1IxBH_7NthvKFh7n_VtabWMPxEdOCkApj/edit)
+  • tabId 1501817136: "SmartZonen" (https://www.smartzonen.dk/)
+</div>
+<footer class="site-footer">
+  <p>© 2026 SmartZonen &nbsp;·&nbsp; Udarbejdet af Susan &amp; Manfred Conrath &nbsp;·&nbsp; <a href="mailto:mco@outlook.dk">Kontakt</a></p>
+</footer>
+</body>
+</html>
