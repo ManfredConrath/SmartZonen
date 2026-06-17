@@ -575,7 +575,7 @@ body {
 
     #smart-pustero .levels-grid{
       display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
+      grid-template-columns:1fr;
       gap:12px;
     }
 
@@ -710,11 +710,11 @@ body {
 
         <div class="bottom-grid">
           <div class="info-card" id="detailsBox">
-            <h2>Niveau 1</h2>
-            <p><strong>Blød overgang.</strong> Et simpelt og ensartet åndedræt – ind og ud i samme tempo.</p>
-            <p><strong>Mønster:</strong> 5-5</p>
-            <p><strong>Velegnet til:</strong> God som fast klasseritual ved start på en ny aktivitet.</p>
-            <p><strong>Brug det fx:</strong> I begyndelsen af første time, efter morgensang, efter frikvarter eller når klassen skifter fra ét fag til et andet.</p>
+            <h2>Morgenklart</h2>
+            <p><strong>Blød opstart.</strong> Et enkelt og ensartet åndedræt – ind og ud i samme tempo.</p>
+            <p><strong>Mønster:</strong> 4-4</p>
+            <p><strong>Velegnet til:</strong> God som fast ritual ved dagens start eller ved skift mellem aktiviteter.</p>
+            <p><strong>Brug det fx:</strong> I begyndelsen af første time, efter morgensang eller når klassen skifter fra ét fag til et andet.</p>
           </div>
 
           <div class="levels-card">
@@ -730,61 +730,47 @@ body {
       const SESSION_SECONDS = 120;
 
       const programs = {
-        level1: {
-          key: 'level1',
-          name: 'Niveau 1',
+        morgenklart: {
+          key: 'morgenklart',
+          name: 'Morgenklart',
           color: '#8fd8c7',
-          effect: 'Blød overgang',
-          patternLabel: '5-5',
-          inhale: 5,
-          hold1: 0,
-          exhale: 5,
-          hold2: 0,
-          intro: 'Et simpelt og ensartet åndedræt – ind og ud i samme tempo.',
-          bestFor: 'God som fast klasseritual ved start på en ny aktivitet.',
-          usage: 'I begyndelsen af første time, efter morgensang, efter frikvarter eller når klassen skifter fra ét fag til et andet.'
-        },
-        level2: {
-          key: 'level2',
-          name: 'Niveau 2',
-          color: '#9fd2f6',
-          effect: 'Hjælper klassen med at lande',
-          patternLabel: '4-6',
+          effect: 'Blød opstart',
+          patternLabel: '4-4',
           inhale: 4,
           hold1: 0,
-          exhale: 6,
+          exhale: 4,
           hold2: 0,
-          intro: 'Lidt længere udånding end indånding – hjælper kroppen med at skifte gear.',
-          bestFor: 'God når gruppen kommer ind med høj energi.',
-          usage: 'Efter frikvarter, efter idræt eller boldspil – eller når eleverne har brug for at komme fra aktiv til stille mode.'
+          intro: 'Et enkelt og ensartet åndedræt – ind og ud i samme tempo.',
+          bestFor: 'God som fast ritual ved dagens start eller ved skift mellem aktiviteter.',
+          usage: 'I begyndelsen af første time, efter morgensang eller når klassen skifter fra ét fag til et andet.'
         },
-        level3: {
-          key: 'level3',
-          name: 'Niveau 3',
+        fokuspause: {
+          key: 'fokuspause',
+          name: 'Fokuspause',
           color: '#5d8fe8',
           effect: 'Skærper opmærksomheden',
-          patternLabel: '4-4-4-4',
-          inhale: 4,
-          hold1: 4,
-          exhale: 4,
-          hold2: 4,
-          intro: 'Fast rytme med korte pauser – aktiverer opmærksomheden og hjælper med at samle sig.',
-          bestFor: 'God som forberedelse til fordybelsesarbejde.',
+          patternLabel: '3-3-3-3',
+          inhale: 3,
+          hold1: 3,
+          exhale: 3,
+          hold2: 3,
+          intro: 'Fast rytme med korte pauser – samler opmærksomheden og aktiverer koncentrationen.',
+          bestFor: 'God som forberedelse til fordybelsesopgaver.',
           usage: 'Inden læsning, diktat, matematik eller andre opgaver, der kræver fuld opmærksomhed.'
         },
-        level4: {
-          key: 'level4',
-          name: 'Niveau 4',
+        stilletid: {
+          key: 'stilletid',
+          name: 'Stilletid',
           color: '#9b7ae0',
-          effect: 'Dyb regulering af tempo',
-          patternLabel: '4-7-8',
+          effect: 'Dyb ro og regulering',
+          patternLabel: '4-6-7',
           inhale: 4,
-          hold1: 7,
-          exhale: 8,
+          hold1: 6,
+          exhale: 7,
           hold2: 0,
-          intro: 'Langt hold og lang udånding – et bevidst og langsomt mønster til situationer med meget uro.',
-          bestFor: 'God ved kraftig uro eller efter en konflikt.',
-          usage: 'Brug den hvis klassen er meget urolig, efter en konflikt eller uventet hændelse, eller som en fælles pausetid midt i en svær dag.'
+          intro: 'Langt hold og lang udånding – et bevidst mønster til at finde ro i kroppen.',
+          bestFor: 'God ved uro eller som fælles afslutning på en aktiv dag.',
+          usage: 'Efter frikvarter, inden prøver eller når klassen har brug for at finde ro sammen.'
         }
       };
 
@@ -810,7 +796,7 @@ body {
       ringProgress.style.strokeDasharray = CIRCUMFERENCE;
       ringProgress.style.strokeDashoffset = CIRCUMFERENCE;
 
-      let selected = programs.level1;
+      let selected = programs.morgenklart;
       let active = false;
       let rafId = null;
       let startTs = null;
