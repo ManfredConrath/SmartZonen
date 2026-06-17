@@ -573,6 +573,32 @@ body {
 
     #smart-pustero .info-card p:last-child{ margin-bottom:0; }
 
+    #smart-pustero .mode-toggle{
+      display:flex;
+      gap:8px;
+      justify-content:center;
+      margin-bottom:20px;
+    }
+
+    #smart-pustero .mode-btn{
+      appearance:none;
+      border:2px solid #d7e3e6;
+      border-radius:12px;
+      padding:10px 22px;
+      font-size:15px;
+      font-weight:700;
+      cursor:pointer;
+      background:#fff;
+      color:#6b7280;
+      transition:border-color .15s, background .15s, color .15s;
+    }
+
+    #smart-pustero .mode-btn.active{
+      border-color:#0f766e;
+      background:#0f766e;
+      color:#fff;
+    }
+
     #smart-pustero .levels-grid{
       display:grid;
       grid-template-columns:1fr;
@@ -718,6 +744,10 @@ body {
           </div>
 
           <div class="levels-card">
+            <div class="mode-toggle">
+              <button class="mode-btn active" id="btnBegynder" type="button">Begynder</button>
+              <button class="mode-btn" id="btnØvede" type="button">Øvede</button>
+            </div>
             <div class="levels-grid" id="programGrid"></div>
           </div>
         </div>
@@ -727,7 +757,13 @@ body {
 
   <script>
     (() => {
-      const SESSION_SECONDS = 120;
+      let classMode = 'begynder'; // 'begynder' | 'ovede'
+
+      function getSessionSeconds(){
+        return classMode === 'begynder' ? selected.durationBegynder : selected.durationØvede;
+      }
+
+      function formatMin(s){ return s === 60 ? '1 min' : (s/60) + ' min'; }
 
       const programs = {
         morgenklart: {
@@ -740,6 +776,8 @@ body {
           hold1: 0,
           exhale: 4,
           hold2: 0,
+          durationBegynder: 60,
+          durationØvede: 120,
           intro: 'Et enkelt og ensartet åndedræt – ind og ud i samme tempo.',
           bestFor: 'God som fast ritual ved dagens start eller ved skift mellem aktiviteter.',
           usage: 'I begyndelsen af første time, efter morgensang eller når klassen skifter fra ét fag til et andet.'
@@ -754,6 +792,8 @@ body {
           hold1: 3,
           exhale: 3,
           hold2: 3,
+          durationBegynder: 60,
+          durationØvede: 120,
           intro: 'Fast rytme med korte pauser – samler opmærksomheden og aktiverer koncentrationen.',
           bestFor: 'God som forberedelse til fordybelsesopgaver.',
           usage: 'Inden læsning, diktat, matematik eller andre opgaver, der kræver fuld opmærksomhed.'
@@ -768,6 +808,8 @@ body {
           hold1: 6,
           exhale: 7,
           hold2: 0,
+          durationBegynder: 120,
+          durationØvede: 180,
           intro: 'Langt hold og lang udånding – et bevidst mønster til at finde ro i kroppen.',
           bestFor: 'God ved uro eller som fælles afslutning på en aktiv dag.',
           usage: 'Efter frikvarter, inden prøver eller når klassen har brug for at finde ro sammen.'
@@ -942,7 +984,7 @@ body {
 
       function setNeutralState(){
         phaseEl.textContent = 'Klar';
-        subphaseEl.textContent = 'Sessionen varer 2 minutter og nulstilles bagefter';
+        subphaseEl.textContent = `Sessionen varer ${formatMin(getSessionSeconds())} og nulstilles bagefter`;
         breathBar.style.width = '0%';
         sessionBar.style.width = '0%';
         setRingProgress(0);
@@ -1060,7 +1102,7 @@ body {
 
         const elapsedSession = (ts - startTs) / 1000;
 
-        if(elapsedSession >= SESSION_SECONDS){
+        if(elapsedSession >= getSessionSeconds()){
           resetSession(true);
           return;
         }
@@ -1089,7 +1131,7 @@ body {
         phaseEl.textContent = phase.name;
         subphaseEl.textContent = phase.hint;
         breathBar.style.width = `${directionalBar.toFixed(1)}%`;
-        sessionBar.style.width = `${((elapsedSession / SESSION_SECONDS) * 100).toFixed(1)}%`;
+        sessionBar.style.width = `${((elapsedSession / getSessionSeconds()) * 100).toFixed(1)}%`;
 
         setRingProgress(directionalBar);
         setBody(chestValue, bellyValue);
@@ -1101,6 +1143,19 @@ body {
 
         rafId = requestAnimationFrame(tick);
       }
+
+      const btnBegynder = document.getElementById('btnBegynder');
+      const btnØvede = document.getElementById('btnØvede');
+
+      function setMode(mode){
+        classMode = mode;
+        btnBegynder.classList.toggle('active', mode === 'begynder');
+        btnØvede.classList.toggle('active', mode === 'ovede');
+        if(!active) setNeutralState();
+      }
+
+      btnBegynder.addEventListener('click', () => setMode('begynder'));
+      btnØvede.addEventListener('click', () => setMode('ovede'));
 
       startBtn.addEventListener('click', startSession);
       resetBtn.addEventListener('click', () => resetSession(false));
