@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="da">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basisord-træner – SmartZonen</title>
+  <style>
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      color: #1f2937;
+      background: #f5f7fa;
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #1a2f3a;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 24px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.2);
+    }
+    .site-nav .logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .site-nav .site-title {
+      color: #fff;
+      font-size: 18px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .site-nav .nav-links {
+      margin-left: auto;
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .site-nav .nav-links a {
+      color: rgba(255,255,255,.8);
+      text-decoration: none;
+      font-size: 13px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      transition: background .15s, color .15s;
+    }
+    .site-nav .nav-links a:hover,
+    .site-nav .nav-links a.active {
+      background: rgba(255,255,255,.15);
+      color: #fff;
+    }
+
+    /* HERO */
+    .hero {
+      width: 100%;
+      max-height: 340px;
+      overflow: hidden;
+      display: block;
+    }
+    .hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* INFO BAND */
+    .info-band {
+      background: #b8dff0;
+      padding: 28px 24px;
+      text-align: center;
+    }
+    .info-band h1 {
+      font-size: clamp(22px, 3vw, 36px);
+      font-weight: 800;
+      color: #1a2f3a;
+      margin-bottom: 8px;
+    }
+    .info-band p {
+      font-size: clamp(15px, 1.8vw, 20px);
+      color: #2a4a5a;
+      font-style: italic;
+      line-height: 1.4;
+    }
+
+    /* CONTENT */
+    .page-content {
+      max-width: 1100px;
+      margin: 32px auto;
+      padding: 0 20px 60px;
+    }
+
+    /* HOME GRID */
+    .section-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: #1a2f3a;
+      margin: 32px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #b8dff0;
+    }
+    .tool-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 18px;
+    }
+    .tool-card {
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 20px;
+      padding: 22px 20px;
+      text-decoration: none;
+      color: inherit;
+      box-shadow: 0 4px 14px rgba(15,23,42,.06);
+      transition: transform .15s, box-shadow .15s;
+      display: block;
+    }
+    .tool-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(15,23,42,.12);
+    }
+    .tool-card h3 {
+      font-size: 18px;
+      font-weight: 800;
+      color: #0f766e;
+      margin-bottom: 6px;
+    }
+    .tool-card p {
+      font-size: 14px;
+      color: #6b7280;
+      line-height: 1.4;
+    }
+
+    /* FOOTER */
+    .site-footer {
+      background: #1a2f3a;
+      color: rgba(255,255,255,.7);
+      text-align: center;
+      padding: 20px 24px;
+      font-size: 13px;
+    }
+    .site-footer a {
+      color: rgba(255,255,255,.9);
+    }
+
+    @media (max-width: 640px) {
+      .site-nav .nav-links { display: none; }
+      .info-band { padding: 20px 16px; }
+    }
+
+
+    </style>
+  </head>
+  <body>
+    <nav class="site-nav">
+      <img class="logo" src="/assets/logo.png" onerror="this.style.display='none'" alt="SmartZonen logo">
+      <a class="site-title" href="/">SmartZonen</a>a>
+      <div class="nav-links">
+        <a href="/">Start</a>a>
+        <a href="/pustero.html">Pustero</a>a>
+        <a href="/grupper.html">Grupper</a>a>
+        <a href="/dagens-dato.html">Dagens dato</a>a>
+        <a href="/lykkehjul.html">Lykkehjul</a>a>
+        <a href="/aeggeur.html">Æggeur</a>a>
+        <a href="/bevaegelsespause.html">Bevægelsespause</a>a>
+        <a href="/leg-med-lyde-1.html">Leg med lyde 1</a>a>
+        <a href="/leg-med-lyde-2.html">Leg med lyde 2</a>a>
+        <a href="/saetningsmaskinen.html">Sætningsmaskinen</a>a>
+        <a href="/basisord-traener.html" class="active">Basisord-træner</a>a>
+        <a href="/laer-klokken.html">Lær klokken</a>a>
+        <a href="/regnemaskinen.html">Regnemaskinen</a>a>
+        <a href="/former-og-moenstre.html">Former og mønstre</a>a>
+        <a href="/penge.html">Penge</a>a>
+
+      </div>div>
+    </nav>nav>
+
+    <div class="hero">
+      <img src="/assets/banner.jpg" onerror="this.closest('.hero').style.display='none'" alt="SmartZonen banner">
+    </div>div>
+    <div class="info-band">
+      <h1>Basisord-træner</h1>
+    <p>Træn de mest almindelige danske ord som flashcards – tilpasset indskolingen</p>
+    </div>div>
+  <div class="page-content">
+  <!-- SmartZonen – Basisord-træner -->
+  <div id="smart-basisord" style="max-width:900px;margin:0 auto;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:#1f2937;">
+  <style>
+  #smart-basisord{
+    --card:#ffffff;
+    --card-border:#e5e7eb;
+    --panel:#f8fafc;
+    --text:#1f2937;
+    --muted:#6b7280;
+    --accent:#4f46e5;
+    --accent-soft:rgba(79,70,229,.10);
+    --accent-border:#e0e1fb;
+    --good:#16a34a;
+    --practice:#d97706;
+    --shadow:0 10px 24px rgba(15,23,42,.06);
+  }
+  #smart-basisord *{box-sizing:border-box}
+  #smart-basisord .bo-wrap{background:var(--card);border:1px solid var(--card-border);border-radius:24px;overflow:hidden;box-shadow:var(--shadow);}
+  #smart-basisord .bo-head{padding:24px 24px 8px;background:linear-gradient(180deg,#f8f7ff 0%, #ffffff 100%);}
+  #smart-basisord .bo-title{margin:0;font-size:clamp(1.5rem,2.2vw,2rem);color:var(--text);}
+  #smart-basisord .bo-sub{margin:10px 0 0;color:var(--muted);font-size:1rem;line-height:1.5;}
+  #smart-basisord .bo-body{padding:24px;display:grid;gap:20px;}
+  #smart-basisord .bo-panel{background:var(--panel);border:1px solid var(--accent-border);border-radius:18px;padding:18px;}
+  #smart-basisord .bo-panel-title{margin:0 0 14px;font-size:1.05rem;font-weight:700;color:var(--text);}
+  #smart-basisord .bo-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;}
+  #smart-basisord .bo-chip{border:1px solid var(--accent-border);background:#fff;color:var(--text);border-radius:999px;padding:8px 16px;font-size:.92rem;font-weight:600;cursor:pointer;transition:.15s;}
+  #smart-basisord .bo-chip:hover{border-color:var(--accent);}
+  #smart-basisord .bo-chip.active{background:var(--accent);border-color:var(--accent);color:#fff;}
+  #smart-basisord .bo-startbtn{margin-top:4px;background:var(--accent);color:#fff;border:none;border-radius:14px;padding:14px 22px;font-size:1.05rem;font-weight:700;cursor:pointer;transition:.15s;}
+  #smart-basisord .bo-startbtn:hover{filter:brightness(1.08);}
+  #smart-basisord .bo-session{display:none;}
+  #smart-basisord .bo-session.active{display:grid;gap:18px;}
+  #smart-basisord .bo-progress{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:.92rem;font-weight:600;}
+  #smart-basisord .bo-bar{height:8px;border-radius:999px;background:#eef0fb;overflow:hidden;}
+  #smart-basisord .bo-bar-fill{height:100%;background:var(--accent);border-radius:999px;transition:width .25s;}
+  #smart-basisord .bo-card{background:#fff;border:2px solid var(--accent-border);border-radius:22px;padding:50px 24px;text-align:center;min-height:160px;display:flex;align-items:center;justify-content:center;}
+  #smart-basisord .bo-word{font-size:clamp(2.4rem,7vw,4.2rem);font-weight:900;color:var(--accent);letter-spacing:.5px;}
+  #smart-basisord .bo-actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  #smart-basisord .bo-btn{border:none;border-radius:14px;padding:16px;font-size:1.05rem;font-weight:700;cursor:pointer;color:#fff;transition:.15s;}
+  #smart-basisord .bo-btn:hover{filter:brightness(1.08);transform:translateY(-1px);}
+  #smart-basisord .bo-btn.know{background:var(--good);}
+  #smart-basisord .bo-btn.practice{background:var(--practice);}
+  #smart-basisord .bo-stop{align-self:start;background:none;border:1px solid var(--accent-border);color:var(--muted);border-radius:10px;padding:8px 14px;font-size:.85rem;cursor:pointer;}
+  #smart-basisord .bo-stop:hover{border-color:var(--accent);color:var(--accent);}
+  #smart-basisord .bo-summary{display:none;text-align:center;padding:10px;}
+  #smart-basisord .bo-summary.active{display:block;}
+  #smart-basisord .bo-summary h3{font-size:1.4rem;margin-bottom:10px;}
+  #smart-basisord .bo-stats{display:flex;gap:20px;justify-content:center;margin:18px 0;flex-wrap:wrap;}
+  #smart-basisord .bo-stat{background:#fff;border:1px solid var(--accent-border);border-radius:14px;padding:14px 22px;min-width:120px;}
+  #smart-basisord .bo-stat b{display:block;font-size:1.8rem;}
+  #smart-basisord .bo-stat.know b{color:var(--good);}
+  #smart-basisord .bo-stat.practice b{color:var(--practice);}
+  #smart-basisord .bo-summary-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:10px;}
+  #smart-basisord .bo-summary-actions button{border:none;border-radius:12px;padding:12px 20px;font-weight:700;cursor:pointer;}
+  #smart-basisord .bo-again{background:var(--practice);color:#fff;}
+  #smart-basisord .bo-restart{background:var(--accent);color:#fff;}
+  #smart-basisord .bo-newlist{background:#fff;border:1px solid var(--accent-border) !important;color:var(--text);}
+  #smart-basisord .bo-howto{padding:18px 24px 26px;color:var(--muted);font-size:.92rem;line-height:1.6;border-top:1px solid var(--card-border);margin-top:4px;}
+  #smart-basisord .bo-howto b{color:var(--text);}
+  </style>
+  
+  <div class="bo-wrap">
+  <div class="bo-head">
+  <h2 class="bo-title">Basisord-træner</h2>
+  <p class="bo-sub">Træn de mest almindelige danske ord som flashcards. Vælg antal ord og gå i gang – marker om du kender ordet, eller om det skal øves igen.</p>
+  </div>div>
+  <div class="bo-body">
+  
+  <div class="bo-panel" id="bo-setup">
+  <p class="bo-panel-title">Hvor mange ord vil du øve?</p>
+  <div class="bo-row" id="bo-count-row">
+  <button class="bo-chip" data-count="10">10 ord</button>button>
+  <button class="bo-chip active" data-count="20">20 ord</button>button>
+  <button class="bo-chip" data-count="40">40 ord</button>button>
+  <button class="bo-chip" data-count="120">Alle 120 ord</button>button>
+  </div>div>
+  <button class="bo-startbtn" id="bo-start">Start træning</button>button>
+  </div>div>
+  
+  <div class="bo-session" id="bo-session">
+  <button class="bo-stop" id="bo-stop">← Afslut og vælg nyt antal</button>button>
+  <div class="bo-progress">
+  <span id="bo-progress-text">Ord 1 af 20</span>span>
+  <span id="bo-progress-stats">Kender: 0 · Øves: 0</span>span>
+  </div>div>
+  <div class="bo-bar"><div class="bo-bar-fill" id="bo-bar-fill" style="width:0%"></div>div></div>div>
+  <div class="bo-card"><div class="bo-word" id="bo-word">ord</div>div></div>div>
+  <div class="bo-actions">
+  <button class="bo-btn practice" id="bo-btn-practice">🔁 Øv igen</button>button>
+  <button class="bo-btn know" id="bo-btn-know">✅ Jeg kan det</button>button>
+  </div>div>
+  </div>div>
+  
+  <div class="bo-summary" id="bo-summary">
+  <h3>Sådan gik det!</h3>
+  <div class="bo-stats">
+  <div class="bo-stat know"><b id="bo-final-know">0</b>b>kendte ord</div>div>
+  <div class="bo-stat practice"><b id="bo-final-practice">0</b>b>skal øves</div>div>
+  </div>div>
+  <div class="bo-summary-actions">
+  <button class="bo-again" id="bo-again">Øv kun dem der skal øves</button>button>
+  <button class="bo-restart" id="bo-restart">Kør samme liste igen</button>button>
+  <button class="bo-newlist" id="bo-newlist">Vælg nyt antal</button>button>
+  </div>div>
+  </div>div>
+  
+  </div>div>
+  <div class="bo-howto">
+  <b>Sådan bruges værktøjet:</b> Vælg hvor mange ord du vil øve, og tryk "Start træning". Ordene vises ét ad gangen i tilfældig rækkefølge. Tryk <b>"Jeg kan det"</b>, hvis du kender ordet, eller <b>"Øv igen"</b>, hvis du er i tvivl. Til sidst kan du øve videre på de ord, der skal trænes mere.
+  </div>div>
+  </div>div>
+  </div>div>
+  
+  <script>
+    (function(){
+      var ALL_WORDS = ["jeg", "du", "han", "hun", "den", "det", "vi", "I", "de", "er", "var", "har", "havde", "ikke", "og", "på", "til", "af", "med", "for", "en", "et", "der", "som", "at", "men", "om", "så", "nu", "her", "hvor", "hvad", "hvem", "hvorfor", "hvordan", "kan", "skal", "vil", "må", "ja", "nej", "godt", "stor", "lille", "mor", "far", "hus", "bil", "hund", "kat", "skole", "bog", "ven", "dag", "nat", "sol", "regn", "sne", "spise", "drikke", "lege", "løbe", "gå", "se", "høre", "sige", "komme", "gøre", "tage", "give", "finde", "tro", "vide", "synes", "elske", "lave", "sidde", "stå", "ligge", "sove", "glad", "ked", "rød", "blå", "grøn", "gul", "to", "tre", "fire", "fem", "seks", "syv", "otte", "ni", "ti", "mand", "kvinde", "barn", "mange", "alle", "ingen", "noget", "meget", "lidt", "mere", "mest", "først", "sidst", "snart", "altid", "aldrig", "tit", "igen", "også", "kun", "selv", "hver", "alt", "hvilken", "dette"];
+
+      var root = document.getElementById('smart-basisord');
+      var setupEl = root.querySelector('#bo-setup');
+      var sessionEl = root.querySelector('#bo-session');
+      var summaryEl = root.querySelector('#bo-summary');
+      var countRow = root.querySelector('#bo-count-row');
+      var startBtn = root.querySelector('#bo-start');
+      var stopBtn = root.querySelector('#bo-stop');
+      var wordEl = root.querySelector('#bo-word');
+      var progressText = root.querySelector('#bo-progress-text');
+      var progressStats = root.querySelector('#bo-progress-stats');
+      var barFill = root.querySelector('#bo-bar-fill');
+      var btnKnow = root.querySelector('#bo-btn-know');
+      var btnPractice = root.querySelector('#bo-btn-practice');
+      var finalKnow = root.querySelector('#bo-final-know');
+      var finalPractice = root.querySelector('#bo-final-practice');
+      var againBtn = root.querySelector('#bo-again');
+      var restartBtn = root.querySelector('#bo-restart');
+      var newlistBtn = root.querySelector('#bo-newlist');
+
+      var selectedCount = 20;
+      var deck = [];
+      var index = 0;
+      var known = [];
+      var practice = [];
+
+      function shuffle(arr){
+        var a = arr.slice();
+        for (var i = a.length - 1; i > 0; i--){
+          var j = Math.floor(Math.random() * (i + 1));
+          var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+        }
+        return a;
+      }
+
+      countRow.addEventListener('click', function(e){
+        var btn = e.target.closest('.bo-chip');
+        if (!btn) return;
+        countRow.querySelectorAll('.bo-chip').forEach(function(b){ b.classList.remove('active'); });
+        btn.classList.add('active');
+        selectedCount = parseInt(btn.getAttribute('data-count'), 10);
+      });
+
+      function startSession(words){
+        deck = shuffle(words);
+        index = 0;
+        known = [];
+        practice = [];
+        setupEl.style.display = 'none';
+        summaryEl.classList.remove('active');
+        sessionEl.classList.add('active');
+        showCard();
+      }
+
+      startBtn.addEventListener('click', function(){
+        var pool = shuffle(ALL_WORDS).slice(0, Math.min(selectedCount, ALL_WORDS.length));
+        startSession(pool);
+      });
+
+      function showCard(){
+        if (index >= deck.length){
+          finishSession();
+          return;
+        }
+        wordEl.textContent = deck[index];
+        progressText.textContent = 'Ord ' + (index + 1) + ' af ' + deck.length;
+        progressStats.textContent = 'Kender: ' + known.length + ' · Øves: ' + practice.length;
+        barFill.style.width = Math.round((index / deck.length) * 100) + '%';
+      }
+
+      function nextCard(){
+        index++;
+        showCard();
+      }
+
+      btnKnow.addEventListener('click', function(){
+        known.push(deck[index]);
+        nextCard();
+      });
+      btnPractice.addEventListener('click', function(){
+        practice.push(deck[index]);
+        nextCard();
+      });
+
+      function finishSession(){
+        sessionEl.classList.remove('active');
+        summaryEl.classList.add('active');
+        barFill.style.width = '100%';
+        finalKnow.textContent = known.length;
+        finalPractice.textContent = practice.length;
+      }
+
+      stopBtn.addEventListener('click', function(){
+        sessionEl.classList.remove('active');
+        summaryEl.classList.remove('active');
+    setupEl.style.display = 'block';
+      });
+
+      againBtn.addEventListener('click', function(){
+        if (practice.length === 0){ startSession(shuffle(ALL_WORDS).slice(0, selectedCount)); return; }
+        startSession(practice);
+    });
+      restartBtn.addEventListener('click', function(){
+        startSession(deck);
+      });
+      newlistBtn.addEventListener('click', function(){
+        summaryEl.classList.remove('active');
+        setupEl.style.display = 'block';
+      });
+    })();
+  </script>
+
+  </div>div>
+    <footer class="site-footer">
+      <p>© 2026 SmartZonen &nbsp;·&nbsp; Udarbejdet af Susan &amp; Manfred Conrath &nbsp;·&nbsp; <a href="/kontakt.html">Kontakt</a>a></p>
+    </footer>footer>
+  </body>
+</html>html></p>
+  </script></b></b></p></h1>
+  </body>
+  </style></title>
+  </head>
