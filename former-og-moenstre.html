@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Former og mønstre – SmartZonen</title>
+<style>
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+color: #1f2937;
+background: #f5f7fa;
+min-height: 100vh;
+}
+
+/* NAV */
+.site-nav {
+position: sticky;
+top: 0;
+z-index: 100;
+background: #1a2f3a;
+display: flex;
+align-items: center;
+gap: 10px;
+padding: 10px 24px;
+box-shadow: 0 2px 8px rgba(0,0,0,.2);
+}
+.site-nav .logo {
+width: 36px;
+height: 36px;
+border-radius: 50%;
+object-fit: cover;
+}
+.site-nav .site-title {
+color: #fff;
+font-size: 18px;
+font-weight: 700;
+text-decoration: none;
+}
+.site-nav .nav-links {
+margin-left: auto;
+display: flex;
+gap: 6px;
+flex-wrap: wrap;
+}
+.site-nav .nav-links a {
+color: rgba(255,255,255,.8);
+text-decoration: none;
+font-size: 13px;
+padding: 4px 10px;
+border-radius: 20px;
+transition: background .15s, color .15s;
+}
+.site-nav .nav-links a:hover,
+.site-nav .nav-links a.active {
+background: rgba(255,255,255,.15);
+color: #fff;
+}
+
+/* HERO */
+.hero {
+width: 100%;
+max-height: 340px;
+overflow: hidden;
+display: block;
+}
+.hero img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+display: block;
+}
+
+/* INFO BAND */
+.info-band {
+background: #b8dff0;
+padding: 28px 24px;
+text-align: center;
+}
+.info-band h1 {
+font-size: clamp(22px, 3vw, 36px);
+font-weight: 800;
+color: #1a2f3a;
+margin-bottom: 8px;
+}
+.info-band p {
+font-size: clamp(15px, 1.8vw, 20px);
+color: #2a4a5a;
+font-style: italic;
+line-height: 1.4;
+}
+
+/* CONTENT */
+.page-content {
+max-width: 1100px;
+margin: 32px auto;
+padding: 0 20px 60px;
+}
+
+/* HOME GRID */
+.section-title {
+font-size: 22px;
+font-weight: 800;
+color: #1a2f3a;
+margin: 32px 0 16px;
+padding-bottom: 8px;
+border-bottom: 2px solid #b8dff0;
+}
+.tool-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+gap: 18px;
+}
+.tool-card {
+background: #fff;
+border: 1px solid #e5e7eb;
+border-radius: 20px;
+padding: 22px 20px;
+text-decoration: none;
+color: inherit;
+box-shadow: 0 4px 14px rgba(15,23,42,.06);
+transition: transform .15s, box-shadow .15s;
+display: block;
+}
+.tool-card:hover {
+transform: translateY(-2px);
+box-shadow: 0 8px 24px rgba(15,23,42,.12);
+}
+.tool-card h3 {
+font-size: 18px;
+font-weight: 800;
+color: #0f766e;
+margin-bottom: 6px;
+}
+.tool-card p {
+font-size: 14px;
+color: #6b7280;
+line-height: 1.4;
+}
+
+/* FOOTER */
+.site-footer {
+background: #1a2f3a;
+color: rgba(255,255,255,.7);
+text-align: center;
+padding: 20px 24px;
+font-size: 13px;
+}
+.site-footer a {
+color: rgba(255,255,255,.9);
+}
+
+@media (max-width: 640px) {
+.site-nav .nav-links { display: none; }
+.info-band { padding: 20px 16px; }
+}
+
+
+</style>
+</head>
+<body>
+<nav class="site-nav">
+<img class="logo" src="/assets/logo.png" onerror="this.style.display='none'" alt="SmartZonen logo">
+<a class="site-title" href="/">SmartZonen</a>
+<div class="nav-links">
+<a href="/">Start</a>
+<a href="/pustero.html">Pustero</a>
+<a href="/grupper.html">Grupper</a>
+<a href="/dagens-dato.html">Dagens dato</a>
+<a href="/lykkehjul.html">Lykkehjul</a>
+<a href="/aeggeur.html">Æggeur</a>
+<a href="/bevaegelsespause.html">Bevægelsespause</a>
+<a href="/leg-med-lyde-1.html">Leg med lyde 1</a>
+<a href="/leg-med-lyde-2.html">Leg med lyde 2</a>
+<a href="/saetningsmaskinen.html">Sætningsmaskinen</a>
+<a href="/basisord-traener.html">Basisord-træner</a>
+<a href="/laer-klokken.html">Lær klokken</a>
+<a href="/regnemaskinen.html">Regnemaskinen</a>
+<a href="/former-og-moenstre.html" class="active">Former og mønstre</a>
+<a href="/penge.html">Penge</a>
+
+</div>
+</nav>
+
+<div class="hero">
+<img src="/assets/banner.jpg" onerror="this.closest('.hero').style.display='none'" alt="SmartZonen banner">
+</div>
+<div class="info-band">
+<h1>Former og mønstre</h1>
+<p>Genkend geometriske former, og find ud af hvad der kommer næst i mønsteret</p>
+</div>
+<div class="page-content">
+<!-- SmartZonen – Former og mønstre -->
+<div id="smart-former" style="max-width:900px;margin:0 auto;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:#1f2937;">
+<style>
+#smart-former{
+--card:#ffffff; --card-border:#e5e7eb; --panel:#f8fafc; --text:#1f2937; --muted:#6b7280;
+--accent:#d97706; --accent-soft:rgba(217,119,6,.10); --accent-border:#f3e0c7;
+--good:#16a34a; --bad:#dc2626; --shadow:0 10px 24px rgba(15,23,42,.06);
+}
+#smart-former *{box-sizing:border-box}
+#smart-former .fm-wrap{background:var(--card);border:1px solid var(--card-border);border-radius:24px;overflow:hidden;box-shadow:var(--shadow);}
+#smart-former .fm-head{padding:24px 24px 8px;background:linear-gradient(180deg,#fffaf3 0%, #ffffff 100%);}
+#smart-former .fm-title{margin:0;font-size:clamp(1.5rem,2.2vw,2rem);color:var(--text);}
+#smart-former .fm-sub{margin:10px 0 0;color:var(--muted);font-size:1rem;line-height:1.5;}
+#smart-former .fm-tabs{display:flex;gap:8px;padding:0 24px;margin-top:14px;flex-wrap:wrap;}
+#smart-former .fm-tab{border:1px solid var(--accent-border);background:#fff;color:var(--text);border-radius:999px;padding:9px 18px;font-weight:700;font-size:.92rem;cursor:pointer;transition:.15s;}
+#smart-former .fm-tab.active{background:var(--accent);border-color:var(--accent);color:#fff;}
+#smart-former .fm-body{padding:22px 24px 24px;display:grid;gap:20px;}
+#smart-former .fm-panel{display:none;}
+#smart-former .fm-panel.active{display:grid;gap:18px;}
+#smart-former .fm-progress{display:flex;justify-content:space-between;color:var(--muted);font-size:.9rem;font-weight:600;}
+#smart-former .fm-stage{background:var(--panel);border:1px solid var(--accent-border);border-radius:20px;padding:30px;display:flex;align-items:center;justify-content:center;min-height:200px;}
+#smart-former .fm-stage svg{max-width:220px;width:100%;height:auto;}
+#smart-former .fm-options{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;}
+#smart-former .fm-opt{border:2px solid var(--accent-border);background:#fff;border-radius:14px;padding:14px 10px;font-size:1rem;font-weight:700;cursor:pointer;transition:.15s;color:var(--text);}
+#smart-former .fm-opt:hover{border-color:var(--accent);}
+#smart-former .fm-opt.correct{background:#dcfce7;border-color:var(--good);color:#15803d;}
+#smart-former .fm-opt.wrong{background:#fee2e2;border-color:var(--bad);color:#b91c1c;}
+#smart-former .fm-feedback{min-height:26px;font-weight:700;text-align:center;}
+#smart-former .fm-feedback.good{color:var(--good);}
+#smart-former .fm-feedback.bad{color:var(--bad);}
+#smart-former .fm-nextbtn{justify-self:center;background:var(--accent);color:#fff;border:none;border-radius:12px;padding:12px 24px;font-weight:700;cursor:pointer;display:none;}
+#smart-former .fm-nextbtn.show{display:block;}
+#smart-former .fm-pattern-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;align-items:center;}
+#smart-former .fm-pattern-item{width:56px;height:56px;border-radius:12px;display:flex;align-items:center;justify-content:center;}
+#smart-former .fm-pattern-item svg{width:40px;height:40px;}
+#smart-former .fm-pattern-item.q{background:#fff;border:3px dashed var(--accent);font-size:1.6rem;font-weight:900;color:var(--accent);}
+#smart-former .fm-howto{padding:18px 24px 26px;color:var(--muted);font-size:.92rem;line-height:1.6;border-top:1px solid var(--card-border);}
+#smart-former .fm-howto b{color:var(--text);}
+#smart-former .fm-score{color:var(--muted);font-size:.9rem;font-weight:600;}
+</style>
+
+<div class="fm-wrap">
+<div class="fm-head">
+<h2 class="fm-title">Former og mønstre</h2>
+<p class="fm-sub">Genkend geometriske former, eller find ud af hvad der kommer næst i mønsteret.</p>
+</div>
+<div class="fm-tabs">
+<button class="fm-tab active" data-tab="shapes">Genkend former</button>
+<button class="fm-tab" data-tab="patterns">Fortsæt mønster</button>
+</div>
+<div class="fm-body">
+
+<div class="fm-panel active" id="fm-panel-shapes">
+<div class="fm-progress"><span id="fm-shape-progress">Opgave 1</span><span class="fm-score" id="fm-shape-score">Rigtige: 0</span></div>
+<div class="fm-stage" id="fm-shape-stage"></div>
+<div class="fm-options" id="fm-shape-options"></div>
+<div class="fm-feedback" id="fm-shape-feedback"></div>
+<button class="fm-nextbtn" id="fm-shape-next">Næste opgave →</button>
+</div>
+
+<div class="fm-panel" id="fm-panel-patterns">
+<div class="fm-progress"><span id="fm-pattern-progress">Opgave 1</span><span class="fm-score" id="fm-pattern-score">Rigtige: 0</span></div>
+<div class="fm-stage"><div class="fm-pattern-row" id="fm-pattern-row"></div></div>
+<div class="fm-options" id="fm-pattern-options"></div>
+<div class="fm-feedback" id="fm-pattern-feedback"></div>
+<button class="fm-nextbtn" id="fm-pattern-next">Næste opgave →</button>
+</div>
+
+</div>
+<div class="fm-howto">
+<b>Sådan bruges værktøjet:</b> Vælg fanen "Genkend former" for at øve navne på geometriske former, eller "Fortsæt mønster" for at finde den brik, der mangler i rækken. Klik på et svar for at se, om det er rigtigt.
+</div>
+</div>
+</div>
+
+<script>
+(function(){
+var root = document.getElementById('smart-former');
+
+// ---- tabs ----
+var tabs = root.querySelectorAll('.fm-tab');
+var panels = { shapes: root.querySelector('#fm-panel-shapes'), patterns: root.querySelector('#fm-panel-patterns') };
+tabs.forEach(function(t){
+t.addEventListener('click', function(){
+tabs.forEach(function(x){ x.classList.remove('active'); });
+t.classList.add('active');
+Object.keys(panels).forEach(function(k){ panels[k].classList.remove('active'); });
+panels[t.getAttribute('data-tab')].classList.add('active');
+});
+});
+
+// ================= SHAPES =================
+var SHAPES = [
+{ name: 'Cirkel', draw: function(c){ return '<circle cx="60" cy="60" r="46" fill="'+c+'"/>'; } },
+{ name: 'Kvadrat', draw: function(c){ return '<rect x="16" y="16" width="88" height="88" rx="6" fill="'+c+'"/>'; } },
+{ name: 'Trekant', draw: function(c){ return '<polygon points="60,12 108,104 12,104" fill="'+c+'"/>'; } },
+{ name: 'Rektangel', draw: function(c){ return '<rect x="8" y="30" width="104" height="60" rx="6" fill="'+c+'"/>'; } },
+{ name: 'Femkant', draw: function(c){ return '<polygon points="60,10 110,46 90,106 30,106 10,46" fill="'+c+'"/>'; } },
+{ name: 'Sekskant', draw: function(c){ return '<polygon points="35,12 85,12 110,60 85,108 35,108 10,60" fill="'+c+'"/>'; } },
+{ name: 'Oval', draw: function(c){ return '<ellipse cx="60" cy="60" rx="52" ry="34" fill="'+c+'"/>'; } },
+{ name: 'Stjerne', draw: function(c){ return '<polygon points="60,8 73,44 112,44 80,66 92,104 60,80 28,104 40,66 8,44 47,44" fill="'+c+'"/>'; } }
+];
+var COLORS = ['#d97706','#0f766e','#7c3aed','#db2777','#2563eb','#16a34a'];
+
+var shapeScore = 0, shapeTaskN = 0, shapeCurrent = null;
+
+function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+function shuffleArr(arr){ var a=arr.slice(); for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;} return a; }
+
+function newShapeTask(){
+shapeTaskN++;
+root.querySelector('#fm-shape-progress').textContent = 'Opgave ' + shapeTaskN;
+root.querySelector('#fm-shape-feedback').textContent = '';
+root.querySelector('#fm-shape-feedback').className = 'fm-feedback';
+root.querySelector('#fm-shape-next').classList.remove('show');
+shapeCurrent = pick(SHAPES);
+var color = pick(COLORS);
+root.querySelector('#fm-shape-stage').innerHTML = '<svg viewBox="0 0 120 120">'+shapeCurrent.draw(color)+'</svg>';
+var wrongPool = SHAPES.filter(function(s){ return s.name !== shapeCurrent.name; });
+var opts = shuffleArr(wrongPool).slice(0,3).concat([shapeCurrent]);
+opts = shuffleArr(opts);
+var optEl = root.querySelector('#fm-shape-options');
+optEl.innerHTML = '';
+opts.forEach(function(o){
+var b = document.createElement('button');
+b.className = 'fm-opt';
+b.textContent = o.name;
+b.addEventListener('click', function(){ answerShape(b, o.name); });
+optEl.appendChild(b);
+});
+}
+
+function answerShape(btn, chosen){
+var options = root.querySelectorAll('#fm-shape-options .fm-opt');
+options.forEach(function(b){ b.disabled = true; if (b.textContent === shapeCurrent.name) b.classList.add('correct'); });
+var fb = root.querySelector('#fm-shape-feedback');
+if (chosen === shapeCurrent.name){
+shapeScore++;
+fb.textContent = 'Rigtigt! Det er en ' + shapeCurrent.name.toLowerCase() + '.';
+fb.className = 'fm-feedback good';
+} else {
+btn.classList.add('wrong');
+fb.textContent = 'Ikke helt – det var en ' + shapeCurrent.name.toLowerCase() + '.';
+fb.className = 'fm-feedback bad';
+}
+root.querySelector('#fm-shape-score').textContent = 'Rigtige: ' + shapeScore;
+root.querySelector('#fm-shape-next').classList.add('show');
+}
+
+root.querySelector('#fm-shape-next').addEventListener('click', newShapeTask);
+
+// ================= PATTERNS =================
+var patternScore = 0, patternTaskN = 0, patternAnswer = null;
+var PATTERN_ITEMS = [
+{ key:'circle', color:'#d97706', draw:function(c){ return '<circle cx="20" cy="20" r="18" fill="'+c+'"/>'; } },
+{ key:'square', color:'#0f766e', draw:function(c){ return '<rect x="2" y="2" width="36" height="36" rx="5" fill="'+c+'"/>'; } },
+{ key:'triangle', color:'#7c3aed', draw:function(c){ return '<polygon points="20,2 38,36 2,36" fill="'+c+'"/>'; } },
+{ key:'star', color:'#db2777', draw:function(c){ return '<polygon points="20,1 24,14 38,14 27,22 31,36 20,27 9,36 13,22 2,14 16,14" fill="'+c+'"/>'; } }
+];
+function svgFor(item){ return '<svg viewBox="0 0 40 40">'+item.draw(item.color)+'</svg>'; }
+
+function buildPatternSequence(){
+// choose 2 or 3-item repeating pattern
+var unitLen = Math.random() < 0.5 ? 2 : 3;
+var chosenItems = shuffleArr(PATTERN_ITEMS).slice(0, unitLen);
+var repeats = 3;
+var seq = [];
+for (var r = 0; r < repeats; r++){ seq = seq.concat(chosenItems); }
+// show first (unitLen*repeats - 1) items, ask for the next one
+var visibleCount = unitLen * repeats - 1;
+var visible = seq.slice(0, visibleCount);
+var answer = seq[visibleCount];
+return { visible: visible, answer: answer, allItems: chosenItems };
+}
+
+function newPatternTask(){
+patternTaskN++;
+root.querySelector('#fm-pattern-progress').textContent = 'Opgave ' + patternTaskN;
+root.querySelector('#fm-pattern-feedback').textContent = '';
+root.querySelector('#fm-pattern-feedback').className = 'fm-feedback';
+root.querySelector('#fm-pattern-next').classList.remove('show');
+
+var task = buildPatternSequence();
+patternAnswer = task.answer;
+var rowEl = root.querySelector('#fm-pattern-row');
+rowEl.innerHTML = '';
+task.visible.forEach(function(item){
+var d = document.createElement('div');
+d.className = 'fm-pattern-item';
+d.innerHTML = svgFor(item);
+rowEl.appendChild(d);
+});
+var q = document.createElement('div');
+q.className = 'fm-pattern-item q';
+q.textContent = '?';
+rowEl.appendChild(q);
+
+var pool = PATTERN_ITEMS.filter(function(i){ return i.key !== task.answer.key; });
+var opts = shuffleArr(pool).slice(0,3).concat([task.answer]);
+opts = shuffleArr(opts);
+var optEl = root.querySelector('#fm-pattern-options');
+optEl.innerHTML = '';
+opts.forEach(function(o){
+var b = document.createElement('button');
+b.className = 'fm-opt';
+b.innerHTML = '<svg viewBox="0 0 40 40" style="width:32px;height:32px;vertical-align:middle;">'+o.draw(o.color)+'</svg>';
+b.addEventListener('click', function(){ answerPattern(b, o.key); });
+optEl.appendChild(b);
+});
+}
+
+function answerPattern(btn, chosenKey){
+var options = root.querySelectorAll('#fm-pattern-options .fm-opt');
+options.forEach(function(b){ b.disabled = true; });
+var fb = root.querySelector('#fm-pattern-feedback');
+if (chosenKey === patternAnswer.key){
+btn.classList.add('correct');
+patternScore++;
+fb.textContent = 'Rigtigt! Du fandt mønsteret.';
+fb.className = 'fm-feedback good';
+} else {
+btn.classList.add('wrong');
+fb.textContent = 'Prøv at se rækken igen – tjek næste opgave.';
+fb.className = 'fm-feedback bad';
+}
+root.querySelector('#fm-pattern-score').textContent = 'Rigtige: ' + patternScore;
+root.querySelector('#fm-pattern-next').classList.add('show');
+}
+
+root.querySelector('#fm-pattern-next').addEventListener('click', newPatternTask);
+
+// init
+newShapeTask();
+newPatternTask();
+})();
+</script>
+
+</div>
+<footer class="site-footer">
+<p>© 2026 SmartZonen &nbsp;·&nbsp; Udarbejdet af Susan &amp; Manfred Conrath &nbsp;·&nbsp; <a href="/kontakt.html">Kontakt</a></p>
+</footer>
+</body>
+</html>
