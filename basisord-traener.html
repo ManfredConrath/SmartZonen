@@ -227,8 +227,13 @@
   #smart-basisord .bo-progress{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:.92rem;font-weight:600;}
   #smart-basisord .bo-bar{height:8px;border-radius:999px;background:#eef0fb;overflow:hidden;}
   #smart-basisord .bo-bar-fill{height:100%;background:var(--accent);border-radius:999px;transition:width .25s;}
-  #smart-basisord .bo-card{background:#fff;border:2px solid var(--accent-border);border-radius:22px;padding:50px 24px;text-align:center;min-height:160px;display:flex;align-items:center;justify-content:center;}
+  #smart-basisord .bo-card{background:#fff;border:2px solid var(--accent-border);border-radius:22px;padding:36px 24px;text-align:center;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;}
   #smart-basisord .bo-word{font-size:clamp(2.4rem,7vw,4.2rem);font-weight:900;color:var(--accent);letter-spacing:.5px;}
+  #smart-basisord .bo-word .syll:nth-child(odd){color:var(--accent);}
+  #smart-basisord .bo-word .syll:nth-child(even){color:#f97316;}
+  #smart-basisord .bo-word .syll-sep{color:#c7c9d9;font-weight:700;}
+  #smart-basisord .bo-sentence{margin-top:6px;font-size:1.05rem;color:var(--muted);font-style:italic;font-weight:500;}
+  #smart-basisord .bo-sentence mark{background:none;color:var(--accent);font-weight:800;font-style:normal;padding:0;}
   #smart-basisord .bo-actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
   #smart-basisord .bo-btn{border:none;border-radius:14px;padding:16px;font-size:1.05rem;font-weight:700;cursor:pointer;color:#fff;transition:.15s;}
   #smart-basisord .bo-btn:hover{filter:brightness(1.08);transform:translateY(-1px);}
@@ -278,7 +283,7 @@
   <span id="bo-progress-stats">Kender: 0 · Øves: 0</span>
   </div>
   <div class="bo-bar"><div class="bo-bar-fill" id="bo-bar-fill" style="width:0%"></div></div>
-  <div class="bo-card"><div class="bo-word" id="bo-word">ord</div></div>
+  <div class="bo-card"><div class="bo-word" id="bo-word">ord</div><p class="bo-sentence" id="bo-sentence"></p></div>
   <div class="bo-actions">
   <button class="bo-btn practice" id="bo-btn-practice">🔁 Øv igen</button>
   <button class="bo-btn know" id="bo-btn-know">✅ Jeg kan det</button>
@@ -308,6 +313,9 @@
   <script>
     (function(){
       var ALL_WORDS = ["jeg", "du", "han", "hun", "den", "det", "vi", "I", "de", "er", "var", "har", "havde", "ikke", "og", "på", "til", "af", "med", "for", "en", "et", "der", "som", "at", "men", "om", "så", "nu", "her", "hvor", "hvad", "hvem", "hvorfor", "hvordan", "kan", "skal", "vil", "må", "ja", "nej", "godt", "stor", "lille", "mor", "far", "hus", "bil", "hund", "kat", "skole", "bog", "ven", "dag", "nat", "sol", "regn", "sne", "spise", "drikke", "lege", "løbe", "gå", "se", "høre", "sige", "komme", "gøre", "tage", "give", "finde", "tro", "vide", "synes", "elske", "lave", "sidde", "stå", "ligge", "sove", "glad", "ked", "rød", "blå", "grøn", "gul", "to", "tre", "fire", "fem", "seks", "syv", "otte", "ni", "ti", "mand", "kvinde", "barn", "mange", "alle", "ingen", "noget", "meget", "lidt", "mere", "mest", "først", "sidst", "snart", "altid", "aldrig", "tit", "igen", "også", "kun", "selv", "hver", "alt", "hvilken", "dette"];
+var WORD_DATA = [["jeg","Jeg cykler til skole."],["du","Du er min bedste ven."],["han","Han spiller fodbold."],["hun","Hun tegner et hus."],["den","Den bold er rød."],["det","Det regner i dag."],["vi","Vi leger i haven."],["I","I skal børste tænder."],["de","De bor i et hus."],["er","Solen er varm."],["var","Det var sjovt i går."],["har","Jeg har en hund."],["hav-de","Hun havde en ny bog."],["ik-ke","Katten er ikke sulten."],["og","Mor og far vinker."],["på","Bogen ligger på bordet."],["til","Vi går til skole."],["af","Æblet falder af træet."],["med","Han leger med bolden."],["for","Gaven er for dig."],["en","Jeg ser en fugl."],["et","Hun har et æble."],["der","Der bor en hund i huset."],["som","Katten, som er sort, sover."],["at","Jeg elsker at synge."],["men","Solen skinner, men det er koldt."],["om","Vi taler om skolen."],["så","Han var så glad."],["nu","Nu skal vi spise."],["her","Bogen ligger her."],["hvor","Hvor er min bold?"],["hvad","Hvad laver du?"],["hvem","Hvem er din ven?"],["hvor-for","Hvorfor græder du?"],["hvor-dan","Hvordan har du det?"],["kan","Jeg kan svømme."],["skal","Vi skal i skole."],["vil","Hun vil lege udenfor."],["må","Må jeg låne din blyant?"],["ja","Ja, jeg vil gerne med."],["nej","Nej, jeg er ikke sulten."],["godt","Kagen smager godt."],["stor","Elefanten er meget stor."],["lil-le","Musen er meget lille."],["mor","Min mor bager boller."],["far","Min far kører bil."],["hus","Vi bor i et hvidt hus."],["bil","Far har en rød bil."],["hund","Jeg har en sort hund."],["kat","Vi har en kat derhjemme."],["sko-le","Jeg cykler i skole hver dag."],["bog","Jeg læser en spændende bog."],["ven","Min ven hedder Emma."],["dag","I dag skinner solen."],["nat","God nat, sagde mor."],["sol","Vi håber på sol i morgen."],["regn","Regn falder fra skyerne."],["sne","Sne dækker haven."],["spi-se","Vi skal spise aftensmad."],["drik-ke","Jeg vil gerne drikke saft."],["le-ge","Børnene vil lege udenfor."],["lø-be","Hunden kan løbe stærkt."],["gå","Vi skal gå en tur."],["se","Jeg vil se en film."],["hø-re","Kan du høre fuglene synge?"],["si-ge","Hvad vil du sige?"],["kom-me","Vil du komme med ud?"],["gø-re","Hvad skal vi gøre nu?"],["ta-ge","Må jeg tage din bold?"],["gi-ve","Jeg vil give dig en gave."],["fin-de","Kan du finde min sko?"],["tro","Man skal tro på sig selv."],["vi-de","Jeg vil gerne vide mere."],["sy-nes","Jeg synes, kagen er lækker."],["el-ske","Jeg vil altid elske dig."],["la-ve","Vi skal lave mad sammen."],["sid-de","Kom og sidde her."],["stå","Du må gerne stå op."],["lig-ge","Katten kan ligge hele dagen."],["so-ve","Nu skal vi sove."],["glad","Jeg er meget glad."],["ked","Hun var ked af det."],["rød","Bilen er rød."],["blå","Himlen er blå."],["grøn","Frøen er grøn."],["gul","Solen er gul."],["to","Jeg har to hunde."],["tre","Der sidder tre fugle på taget."],["fi-re","Bordet har fire ben."],["fem","Hun er fem år gammel."],["seks","Klokken er seks."],["syv","Ugen har syv dage."],["ot-te","Edderkoppen har otte ben."],["ni","Klokken er ni."],["ti","Kan du tælle til ti?"],["mand","Han er en høj mand."],["kvin-de","Der står en kvinde ved bussen."],["barn","Hvert barn fik en gave."],["man-ge","Der er mange fugle i træet."],["al-le","Alle børn må være med."],["in-gen","Der er ingen hjemme."],["no-get","Vil du have noget at spise?"],["me-get","Jeg er meget træt."],["lidt","Må jeg få lidt saft?"],["me-re","Jeg vil gerne have mere."],["mest","Han spiste mest af kagen."],["først","Hun kom først til mål."],["sidst","Han løb sidst i løbet."],["snart","Vi skal snart hjem."],["al-tid","Hun er altid glad."],["al-drig","Jeg vil aldrig give op."],["tit","Vi leger tit sammen."],["i-gen","Kan vi lege igen?"],["og-så","Jeg vil også med."],["kun","Der er kun én kage tilbage."],["selv","Jeg kan selv binde mine sko."],["hver","Hver dag går vi i skole."],["alt","Han spiste alt maden."],["hvil-ken","Hvilken farve kan du lide?"],["det-te","Dette hus er meget stort."]];
+var WORD_INFO = {};
+ALL_WORDS.forEach(function(w, i){ WORD_INFO[w] = { syll: WORD_DATA[i][0], sentence: WORD_DATA[i][1] }; });
 
       var root = document.getElementById('smart-basisord');
       var setupEl = root.querySelector('#bo-setup');
@@ -317,6 +325,7 @@
       var startBtn = root.querySelector('#bo-start');
       var stopBtn = root.querySelector('#bo-stop');
       var wordEl = root.querySelector('#bo-word');
+var sentenceEl = root.querySelector('#bo-sentence');
       var progressText = root.querySelector('#bo-progress-text');
       var progressStats = root.querySelector('#bo-progress-stats');
       var barFill = root.querySelector('#bo-bar-fill');
@@ -372,7 +381,15 @@
           finishSession();
           return;
         }
-        wordEl.textContent = deck[index];
+        var w = deck[index];
+        var info = WORD_INFO[w] || { syll: w, sentence: '' };
+        var parts = info.syll.split('-');
+        wordEl.innerHTML = parts.map(function(p){ return '<span class="syll">' + p + '</span>'; }).join('<span class="syll-sep">-</span>');
+        if (sentenceEl) {
+          var esc = w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+          var re = new RegExp('(?<![a-zA-Z\u00e6\u00f8\u00e5\u00c6\u00d8\u00c5])(' + esc + ')(?![a-zA-Z\u00e6\u00f8\u00e5\u00c6\u00d8\u00c5])', 'gi');
+          sentenceEl.innerHTML = info.sentence.replace(re, '<mark>$1</mark>');
+        }
         progressText.textContent = 'Ord ' + (index + 1) + ' af ' + deck.length;
         progressStats.textContent = 'Kender: ' + known.length + ' · Øves: ' + practice.length;
         barFill.style.width = Math.round((index / deck.length) * 100) + '%';
