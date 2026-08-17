@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Æggeur – SmartZonen</title>
+<style>
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+color: #1f2937;
+background: #f5f7fa;
+min-height: 100vh;
+}
+
+/* NAV */
+.site-nav {
+position: sticky;
+top: 0;
+z-index: 100;
+background: #1a2f3a;
+display: flex;
+align-items: center;
+gap: 10px;
+padding: 10px 24px;
+box-shadow: 0 2px 8px rgba(0,0,0,.2);
+}
+.site-nav .logo {
+width: 36px;
+height: 36px;
+border-radius: 50%;
+object-fit: cover;
+}
+.site-nav .site-title {
+color: #fff;
+font-size: 18px;
+font-weight: 700;
+text-decoration: none;
+}
+.site-nav .nav-links {
+margin-left: auto;
+display: flex;
+gap: 6px;
+flex-wrap: wrap;
+}
+.site-nav .nav-links a {
+color: rgba(255,255,255,.8);
+text-decoration: none;
+font-size: 13px;
+padding: 4px 10px;
+border-radius: 20px;
+transition: background .15s, color .15s;
+}
+.site-nav .nav-links a:hover,
+.site-nav .nav-links a.active {
+background: rgba(255,255,255,.15);
+color: #fff;
+}
+
+/* HERO */
+.hero {
+width: 100%;
+max-height: 340px;
+overflow: hidden;
+display: block;
+}
+.hero img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+display: block;
+}
+
+/* INFO BAND */
+.info-band {
+background: #b8dff0;
+padding: 28px 24px;
+text-align: center;
+}
+.info-band h1 {
+font-size: clamp(22px, 3vw, 36px);
+font-weight: 800;
+color: #1a2f3a;
+margin-bottom: 8px;
+}
+.info-band p {
+font-size: clamp(15px, 1.8vw, 20px);
+color: #2a4a5a;
+font-style: italic;
+line-height: 1.4;
+}
+
+/* CONTENT */
+.page-content {
+max-width: 1100px;
+margin: 32px auto;
+padding: 0 20px 60px;
+}
+
+/* HOME GRID */
+.section-title {
+font-size: 22px;
+font-weight: 800;
+color: #1a2f3a;
+margin: 32px 0 16px;
+padding-bottom: 8px;
+border-bottom: 2px solid #b8dff0;
+}
+.tool-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+gap: 18px;
+}
+.tool-card {
+background: #fff;
+border: 1px solid #e5e7eb;
+border-radius: 20px;
+padding: 22px 20px;
+text-decoration: none;
+color: inherit;
+box-shadow: 0 4px 14px rgba(15,23,42,.06);
+transition: transform .15s, box-shadow .15s;
+display: block;
+}
+.tool-card:hover {
+transform: translateY(-2px);
+box-shadow: 0 8px 24px rgba(15,23,42,.12);
+}
+.tool-card h3 {
+font-size: 18px;
+font-weight: 800;
+color: #0f766e;
+margin-bottom: 6px;
+}
+.tool-card p {
+font-size: 14px;
+color: #6b7280;
+line-height: 1.4;
+}
+
+/* FOOTER */
+.site-footer {
+background: #1a2f3a;
+color: rgba(255,255,255,.7);
+text-align: center;
+padding: 20px 24px;
+font-size: 13px;
+}
+.site-footer a {
+color: rgba(255,255,255,.9);
+}
+
+@media (max-width: 640px) {
+.site-nav .nav-links { display: none; }
+.info-band { padding: 20px 16px; }
+}
+
+
+</style>
+</head>
+<body>
+<nav class="site-nav">
+<img class="logo" src="/assets/logo.png" onerror="this.style.display='none'" alt="SmartZonen logo">
+<a class="site-title" href="/">SmartZonen</a>
+<div class="nav-links">
+<a href="/">Start</a>
+<a href="/pustero.html">Pustero</a>
+<a href="/grupper.html">Grupper</a>
+<a href="/dagens-dato.html">Dagens dato</a>
+<a href="/lykkehjul.html">Lykkehjul</a>
+<a href="/aeggeur.html" class="active">Æggeur</a>
+<a href="/bevaegelsespause.html">Bevægelsespause</a>
+<a href="/leg-med-lyde-1.html">Leg med lyde 1</a>
+<a href="/leg-med-lyde-2.html">Leg med lyde 2</a>
+<a href="/saetningsmaskinen.html">Sætningsmaskinen</a>
+<a href="/basisord-traener.html">Basisord-træner</a>
+<a href="/laer-klokken.html">Lær klokken</a>
+<a href="/regnemaskinen.html">Regnemaskinen</a>
+<a href="/former-og-moenstre.html">Former og mønstre</a>
+<a href="/penge.html">Penge</a>
+
+</div>
+</nav>
+
+<div class="hero">
+<img src="/assets/banner.jpg" onerror="this.closest('.hero').style.display='none'" alt="SmartZonen banner">
+</div>
+<div class="info-band">
+<h1>Æggeur</h1>
+<p>Simpel nedtælling til opgaver, pauser og aktiviteter – med lyd og visning</p>
+</div>
+<div class="page-content">
+<!-- SmartZonen – Æggeur -->
+<div id="smart-aeggeur" style="max-width:760px;margin:0 auto;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:#1f2937;">
+<style>
+#smart-aeggeur{
+--card:#ffffff; --card-border:#e5e7eb; --panel:#f8fafc; --text:#1f2937; --muted:#6b7280;
+--accent:#dc2626; --accent-soft:rgba(220,38,38,.10); --accent-border:#fbd5d5;
+--shadow:0 10px 24px rgba(15,23,42,.06);
+}
+#smart-aeggeur *{box-sizing:border-box}
+#smart-aeggeur .ae-wrap{background:var(--card);border:1px solid var(--card-border);border-radius:24px;overflow:hidden;box-shadow:var(--shadow);}
+#smart-aeggeur .ae-head{padding:24px 24px 8px;background:linear-gradient(180deg,#fff5f5 0%, #ffffff 100%);}
+#smart-aeggeur .ae-title{margin:0;font-size:clamp(1.5rem,2.2vw,2rem);color:var(--text);}
+#smart-aeggeur .ae-sub{margin:10px 0 0;color:var(--muted);font-size:1rem;line-height:1.5;}
+#smart-aeggeur .ae-body{padding:24px;display:grid;gap:22px;justify-items:center;}
+#smart-aeggeur .ae-ringholder{position:relative;width:260px;height:260px;}
+#smart-aeggeur svg{width:100%;height:100%;transform:rotate(-90deg);}
+#smart-aeggeur .ae-track{fill:none;stroke:#f1f5f9;stroke-width:14;}
+#smart-aeggeur .ae-progress{fill:none;stroke:var(--accent);stroke-width:14;stroke-linecap:round;transition:stroke-dashoffset 1s linear, stroke .3s;}
+#smart-aeggeur .ae-time{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:2.6rem;font-weight:900;color:var(--text);font-variant-numeric:tabular-nums;}
+#smart-aeggeur .ae-wrap.done .ae-progress{stroke:#16a34a;}
+#smart-aeggeur .ae-panel{width:100%;background:var(--panel);border:1px solid var(--accent-border);border-radius:18px;padding:16px 18px;}
+#smart-aeggeur .ae-panel-title{margin:0 0 10px;font-weight:700;font-size:.95rem;}
+#smart-aeggeur .ae-presets{display:flex;flex-wrap:wrap;gap:8px;}
+#smart-aeggeur .ae-chip{border:1px solid var(--accent-border);background:#fff;color:var(--text);border-radius:999px;padding:8px 16px;font-weight:700;font-size:.9rem;cursor:pointer;}
+#smart-aeggeur .ae-chip:hover{border-color:var(--accent);}
+#smart-aeggeur .ae-custom{display:flex;align-items:center;gap:8px;margin-top:12px;flex-wrap:wrap;}
+#smart-aeggeur .ae-custom input{width:64px;font-size:1rem;text-align:center;padding:8px;border:1px solid var(--accent-border);border-radius:10px;}
+#smart-aeggeur .ae-custom button{border:none;background:#fff;border:1px solid var(--accent-border);border-radius:10px;padding:8px 14px;font-weight:700;cursor:pointer;}
+#smart-aeggeur .ae-controls{display:flex;gap:12px;}
+#smart-aeggeur .ae-btn{border:none;border-radius:14px;padding:14px 28px;font-size:1.05rem;font-weight:800;cursor:pointer;color:#fff;background:var(--accent);}
+#smart-aeggeur .ae-btn.secondary{background:#fff;color:var(--text);border:1px solid var(--accent-border);}
+#smart-aeggeur .ae-btn:disabled{opacity:.5;cursor:not-allowed;}
+#smart-aeggeur .ae-msg{font-weight:800;font-size:1.2rem;min-height:28px;color:#16a34a;text-align:center;}
+#smart-aeggeur .ae-howto{padding:18px 24px 26px;color:var(--muted);font-size:.92rem;line-height:1.6;border-top:1px solid var(--card-border);width:100%;}
+#smart-aeggeur .ae-howto b{color:var(--text);}
+</style>
+
+<div class="ae-wrap" id="ae-wrap">
+<div class="ae-head">
+<h2 class="ae-title">Æggeur</h2>
+<p class="ae-sub">Simpel nedtælling til opgaver, pauser eller aktiviteter – med lyd og visning, når tiden er gået.</p>
+</div>
+<div class="ae-body">
+
+<div class="ae-ringholder">
+<svg viewBox="0 0 200 200">
+<circle class="ae-track" cx="100" cy="100" r="86"></circle>
+<circle class="ae-progress" id="ae-progress" cx="100" cy="100" r="86"></circle>
+</svg>
+<div class="ae-time" id="ae-time">01:00</div>
+</div>
+
+<div class="ae-msg" id="ae-msg"></div>
+
+<div class="ae-panel">
+<p class="ae-panel-title">Vælg tid</p>
+<div class="ae-presets" id="ae-presets">
+<button class="ae-chip" data-sec="60">1 min</button>
+<button class="ae-chip" data-sec="120">2 min</button>
+<button class="ae-chip" data-sec="180">3 min</button>
+<button class="ae-chip" data-sec="300">5 min</button>
+<button class="ae-chip" data-sec="600">10 min</button>
+<button class="ae-chip" data-sec="900">15 min</button>
+</div>
+<div class="ae-custom">
+<input type="number" id="ae-min" min="0" max="59" value="0" placeholder="min">
+<span>min</span>
+<input type="number" id="ae-sec" min="0" max="59" value="30" placeholder="sek">
+<span>sek</span>
+<button id="ae-setcustom">Sæt tid</button>
+</div>
+</div>
+
+<div class="ae-controls">
+<button class="ae-btn" id="ae-startpause">Start</button>
+<button class="ae-btn secondary" id="ae-reset">Nulstil</button>
+</div>
+
+</div>
+<div class="ae-howto">
+<b>Sådan bruges værktøjet:</b> Vælg en af de faste tider, eller indtast en tid selv, og tryk "Sæt tid". Tryk "Start" for at sætte nedtællingen i gang. Der lyder en lyd, og ringen bliver grøn, når tiden er gået.
+</div>
+</div>
+</div>
+
+<script>
+(function(){
+var root = document.getElementById('smart-aeggeur');
+var wrapEl = root.querySelector('#ae-wrap');
+var timeEl = root.querySelector('#ae-time');
+var progressEl = root.querySelector('#ae-progress');
+var msgEl = root.querySelector('#ae-msg');
+var startPauseBtn = root.querySelector('#ae-startpause');
+var resetBtn = root.querySelector('#ae-reset');
+var presets = root.querySelector('#ae-presets');
+var minInput = root.querySelector('#ae-min');
+var secInput = root.querySelector('#ae-sec');
+var setCustomBtn = root.querySelector('#ae-setcustom');
+
+var CIRC = 2 * Math.PI * 86;
+progressEl.style.strokeDasharray = CIRC;
+progressEl.style.strokeDashoffset = 0;
+
+var totalSeconds = 60;
+var remaining = 60;
+var timerId = null;
+var running = false;
+
+function fmt(s){
+var m = Math.floor(s/60), sec = s%60;
+return (m<10?'0':'')+m + ':' + (sec<10?'0':'')+sec;
+}
+
+function render(){
+timeEl.textContent = fmt(remaining);
+var frac = totalSeconds > 0 ? remaining/totalSeconds : 0;
+progressEl.style.strokeDashoffset = CIRC * (1-frac);
+}
+
+function setTime(sec){
+if (running) return;
+totalSeconds = sec;
+remaining = sec;
+wrapEl.classList.remove('done');
+msgEl.textContent = '';
+render();
+}
+
+presets.addEventListener('click', function(e){
+var btn = e.target.closest('.ae-chip');
+if (!btn) return;
+setTime(parseInt(btn.getAttribute('data-sec'),10));
+});
+
+setCustomBtn.addEventListener('click', function(){
+var m = parseInt(minInput.value,10) || 0;
+var s = parseInt(secInput.value,10) || 0;
+var total = m*60 + s;
+if (total <= 0) total = 10;
+if (total > 3600) total = 3600;
+setTime(total);
+});
+
+function beep(){
+try {
+var Ctx = window.AudioContext || window.webkitAudioContext;
+var ctx = new Ctx();
+var times = [0, 0.35, 0.7];
+times.forEach(function(t){
+var osc = ctx.createOscillator();
+var gain = ctx.createGain();
+osc.type = 'sine';
+osc.frequency.value = 880;
+gain.gain.value = 0.2;
+osc.connect(gain);
+gain.connect(ctx.destination);
+osc.start(ctx.currentTime + t);
+osc.stop(ctx.currentTime + t + 0.25);
+});
+} catch(e){ /* audio not available */ }
+}
+
+function tick(){
+remaining--;
+if (remaining <= 0){
+remaining = 0;
+render();
+finish();
+return;
+}
+render();
+}
+
+function finish(){
+clearInterval(timerId);
+timerId = null;
+running = false;
+startPauseBtn.textContent = 'Start';
+wrapEl.classList.add('done');
+msgEl.textContent = '⏰ Tiden er gået!';
+beep();
+}
+
+startPauseBtn.addEventListener('click', function(){
+if (running){
+clearInterval(timerId);
+timerId = null;
+running = false;
+startPauseBtn.textContent = 'Start';
+} else {
+if (remaining <= 0) remaining = totalSeconds;
+wrapEl.classList.remove('done');
+msgEl.textContent = '';
+running = true;
+startPauseBtn.textContent = 'Pause';
+timerId = setInterval(tick, 1000);
+}
+});
+
+resetBtn.addEventListener('click', function(){
+clearInterval(timerId);
+timerId = null;
+running = false;
+startPauseBtn.textContent = 'Start';
+remaining = totalSeconds;
+wrapEl.classList.remove('done');
+msgEl.textContent = '';
+render();
+});
+
+render();
+})();
+</script>
+
+</div>
+<footer class="site-footer">
+<p>© 2026 SmartZonen &nbsp;·&nbsp; Udarbejdet af Susan &amp; Manfred Conrath &nbsp;·&nbsp; <a href="/kontakt.html">Kontakt</a></p>
+</footer>
+</body>
+</html>
