@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Penge – SmartZonen</title>
+<style>
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+color: #1f2937;
+background: #f5f7fa;
+min-height: 100vh;
+}
+
+/* NAV */
+.site-nav {
+position: sticky;
+top: 0;
+z-index: 100;
+background: #1a2f3a;
+display: flex;
+align-items: center;
+gap: 10px;
+padding: 10px 24px;
+box-shadow: 0 2px 8px rgba(0,0,0,.2);
+}
+.site-nav .logo {
+width: 36px;
+height: 36px;
+border-radius: 50%;
+object-fit: cover;
+}
+.site-nav .site-title {
+color: #fff;
+font-size: 18px;
+font-weight: 700;
+text-decoration: none;
+}
+.site-nav .nav-links {
+margin-left: auto;
+display: flex;
+gap: 6px;
+flex-wrap: wrap;
+}
+.site-nav .nav-links a {
+color: rgba(255,255,255,.8);
+text-decoration: none;
+font-size: 13px;
+padding: 4px 10px;
+border-radius: 20px;
+transition: background .15s, color .15s;
+}
+.site-nav .nav-links a:hover,
+.site-nav .nav-links a.active {
+background: rgba(255,255,255,.15);
+color: #fff;
+}
+
+/* HERO */
+.hero {
+width: 100%;
+max-height: 340px;
+overflow: hidden;
+display: block;
+}
+.hero img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+display: block;
+}
+
+/* INFO BAND */
+.info-band {
+background: #b8dff0;
+padding: 28px 24px;
+text-align: center;
+}
+.info-band h1 {
+font-size: clamp(22px, 3vw, 36px);
+font-weight: 800;
+color: #1a2f3a;
+margin-bottom: 8px;
+}
+.info-band p {
+font-size: clamp(15px, 1.8vw, 20px);
+color: #2a4a5a;
+font-style: italic;
+line-height: 1.4;
+}
+
+/* CONTENT */
+.page-content {
+max-width: 1100px;
+margin: 32px auto;
+padding: 0 20px 60px;
+}
+
+/* HOME GRID */
+.section-title {
+font-size: 22px;
+font-weight: 800;
+color: #1a2f3a;
+margin: 32px 0 16px;
+padding-bottom: 8px;
+border-bottom: 2px solid #b8dff0;
+}
+.tool-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+gap: 18px;
+}
+.tool-card {
+background: #fff;
+border: 1px solid #e5e7eb;
+border-radius: 20px;
+padding: 22px 20px;
+text-decoration: none;
+color: inherit;
+box-shadow: 0 4px 14px rgba(15,23,42,.06);
+transition: transform .15s, box-shadow .15s;
+display: block;
+}
+.tool-card:hover {
+transform: translateY(-2px);
+box-shadow: 0 8px 24px rgba(15,23,42,.12);
+}
+.tool-card h3 {
+font-size: 18px;
+font-weight: 800;
+color: #0f766e;
+margin-bottom: 6px;
+}
+.tool-card p {
+font-size: 14px;
+color: #6b7280;
+line-height: 1.4;
+}
+
+/* FOOTER */
+.site-footer {
+background: #1a2f3a;
+color: rgba(255,255,255,.7);
+text-align: center;
+padding: 20px 24px;
+font-size: 13px;
+}
+.site-footer a {
+color: rgba(255,255,255,.9);
+}
+
+@media (max-width: 640px) {
+.site-nav .nav-links { display: none; }
+.info-band { padding: 20px 16px; }
+}
+
+
+</style>
+</head>
+<body>
+<nav class="site-nav">
+<img class="logo" src="/assets/logo.png" onerror="this.style.display='none'" alt="SmartZonen logo">
+<a class="site-title" href="/">SmartZonen</a>
+<div class="nav-links">
+<a href="/">Start</a>
+<a href="/pustero.html">Pustero</a>
+<a href="/grupper.html">Grupper</a>
+<a href="/dagens-dato.html">Dagens dato</a>
+<a href="/lykkehjul.html">Lykkehjul</a>
+<a href="/aeggeur.html">Æggeur</a>
+<a href="/bevaegelsespause.html">Bevægelsespause</a>
+<a href="/leg-med-lyde-1.html">Leg med lyde 1</a>
+<a href="/leg-med-lyde-2.html">Leg med lyde 2</a>
+<a href="/saetningsmaskinen.html">Sætningsmaskinen</a>
+<a href="/basisord-traener.html">Basisord-træner</a>
+<a href="/laer-klokken.html">Lær klokken</a>
+<a href="/regnemaskinen.html">Regnemaskinen</a>
+<a href="/former-og-moenstre.html">Former og mønstre</a>
+<a href="/penge.html" class="active">Penge</a>
+
+</div>
+</nav>
+
+<div class="hero">
+<img src="/assets/banner.jpg" onerror="this.closest('.hero').style.display='none'" alt="SmartZonen banner">
+</div>
+<div class="info-band">
+<h1>Penge</h1>
+<p>Regn med kroner, eller byg et beløb med mønter og sedler</p>
+</div>
+<div class="page-content">
+<!-- SmartZonen – Penge -->
+<div id="smart-penge" style="max-width:900px;margin:0 auto;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:#1f2937;">
+<style>
+#smart-penge{
+--card:#ffffff; --card-border:#e5e7eb; --panel:#f8fafc; --text:#1f2937; --muted:#6b7280;
+--accent:#0d9488; --accent-soft:rgba(13,148,136,.10); --accent-border:#cdeae7;
+--good:#16a34a; --bad:#dc2626; --shadow:0 10px 24px rgba(15,23,42,.06);
+}
+#smart-penge *{box-sizing:border-box}
+#smart-penge .pg-wrap{background:var(--card);border:1px solid var(--card-border);border-radius:24px;overflow:hidden;box-shadow:var(--shadow);}
+#smart-penge .pg-head{padding:24px 24px 8px;background:linear-gradient(180deg,#f2fbfa 0%, #ffffff 100%);}
+#smart-penge .pg-title{margin:0;font-size:clamp(1.5rem,2.2vw,2rem);color:var(--text);}
+#smart-penge .pg-sub{margin:10px 0 0;color:var(--muted);font-size:1rem;line-height:1.5;}
+#smart-penge .pg-tabs{display:flex;gap:8px;padding:0 24px;margin-top:14px;flex-wrap:wrap;}
+#smart-penge .pg-tab{border:1px solid var(--accent-border);background:#fff;color:var(--text);border-radius:999px;padding:9px 18px;font-weight:700;font-size:.92rem;cursor:pointer;transition:.15s;}
+#smart-penge .pg-tab.active{background:var(--accent);border-color:var(--accent);color:#fff;}
+#smart-penge .pg-body{padding:22px 24px 24px;display:grid;gap:20px;}
+#smart-penge .pg-panel{display:none;}
+#smart-penge .pg-panel.active{display:grid;gap:18px;}
+
+#smart-penge .pg-problem{background:var(--panel);border:1px solid var(--accent-border);border-radius:18px;padding:24px;text-align:center;font-size:1.15rem;line-height:1.6;}
+#smart-penge .pg-problem b{color:var(--accent);}
+#smart-penge .pg-answer-row{display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap;}
+#smart-penge .pg-answer-row input{width:120px;font-size:1.3rem;font-weight:700;text-align:center;padding:12px;border:2px solid var(--accent-border);border-radius:12px;}
+#smart-penge .pg-answer-row span{font-size:1.1rem;color:var(--muted);font-weight:700;}
+#smart-penge .pg-checkbtn, #smart-penge .pg-nextbtn, #smart-penge .pg-resetbtn, #smart-penge .pg-newbtn{border:none;border-radius:12px;padding:12px 22px;font-weight:700;cursor:pointer;color:#fff;background:var(--accent);}
+#smart-penge .pg-resetbtn{background:#fff;border:1px solid var(--accent-border) !important;color:var(--text);}
+#smart-penge .pg-btnrow{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+#smart-penge .pg-feedback{min-height:26px;font-weight:700;text-align:center;}
+#smart-penge .pg-feedback.good{color:var(--good);}
+#smart-penge .pg-feedback.bad{color:var(--bad);}
+#smart-penge .pg-score{text-align:center;color:var(--muted);font-size:.9rem;font-weight:600;}
+
+#smart-penge .pg-target{background:var(--panel);border:1px solid var(--accent-border);border-radius:18px;padding:20px;text-align:center;}
+#smart-penge .pg-target b{font-size:1.6rem;color:var(--accent);}
+#smart-penge .pg-total{font-size:1.1rem;font-weight:700;text-align:center;}
+#smart-penge .pg-coins{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;}
+#smart-penge .pg-coin{border:none;cursor:pointer;font-weight:800;color:#3b2a06;display:flex;align-items:center;justify-content:center;transition:.12s;box-shadow:0 3px 0 rgba(0,0,0,.15);}
+#smart-penge .pg-coin:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(0,0,0,.15);}
+#smart-penge .pg-coin.round{border-radius:50%;}
+#smart-penge .pg-coin.note{border-radius:8px;color:#fff;font-size:.95rem;}
+#smart-penge .pg-basket{min-height:50px;background:#fff;border:2px dashed var(--accent-border);border-radius:14px;padding:10px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;}
+#smart-penge .pg-basket-item{background:var(--accent-soft);border:1px solid var(--accent-border);border-radius:8px;padding:4px 10px;font-size:.85rem;font-weight:700;color:var(--accent);}
+#smart-penge .pg-howto{padding:18px 24px 26px;color:var(--muted);font-size:.92rem;line-height:1.6;border-top:1px solid var(--card-border);}
+#smart-penge .pg-howto b{color:var(--text);}
+</style>
+
+<div class="pg-wrap">
+<div class="pg-head">
+<h2 class="pg-title">Penge</h2>
+<p class="pg-sub">Regn med kroner, eller byg et beløb med mønter og sedler.</p>
+</div>
+<div class="pg-tabs">
+<button class="pg-tab active" data-tab="regn">Regnestykker</button>
+<button class="pg-tab" data-tab="byg">Byg beløb</button>
+</div>
+<div class="pg-body">
+
+<div class="pg-panel active" id="pg-panel-regn">
+<div class="pg-problem" id="pg-problem"></div>
+<div class="pg-answer-row">
+<input type="number" id="pg-answer" placeholder="?">
+<span>kr</span>
+</div>
+<div class="pg-btnrow">
+<button class="pg-checkbtn" id="pg-check">Tjek svar</button>
+<button class="pg-nextbtn" id="pg-next" style="display:none;">Ny opgave →</button>
+</div>
+<div class="pg-feedback" id="pg-feedback"></div>
+<div class="pg-score" id="pg-score">Rigtige: 0 af 0</div>
+</div>
+
+<div class="pg-panel" id="pg-panel-byg">
+<div class="pg-target">Byg <b id="pg-target-amount">0 kr</b> med mønter og sedler</div>
+<div class="pg-coins" id="pg-coins"></div>
+<div class="pg-total" id="pg-total">I kurven: 0 kr</div>
+<div class="pg-basket" id="pg-basket"></div>
+<div class="pg-btnrow">
+<button class="pg-checkbtn" id="pg-deliver">Aflever</button>
+<button class="pg-resetbtn" id="pg-clear">Ryd kurv</button>
+<button class="pg-newbtn" id="pg-newtarget" style="display:none;">Ny opgave →</button>
+</div>
+<div class="pg-feedback" id="pg-byg-feedback"></div>
+</div>
+
+</div>
+<div class="pg-howto">
+<b>Sådan bruges værktøjet:</b> Under "Regnestykker" lægger og trækker du kroner sammen. Under "Byg beløb" klikker du mønter og sedler ind i kurven, indtil du rammer det beløb, der er vist – tryk så "Aflever" for at tjekke.
+</div>
+</div>
+</div>
+
+<script>
+(function(){
+var root = document.getElementById('smart-penge');
+
+var tabs = root.querySelectorAll('.pg-tab');
+var panels = { regn: root.querySelector('#pg-panel-regn'), byg: root.querySelector('#pg-panel-byg') };
+tabs.forEach(function(t){
+t.addEventListener('click', function(){
+tabs.forEach(function(x){ x.classList.remove('active'); });
+t.classList.add('active');
+Object.keys(panels).forEach(function(k){ panels[k].classList.remove('active'); });
+panels[t.getAttribute('data-tab')].classList.add('active');
+});
+});
+
+// ================= REGNESTYKKER =================
+var correctAnswer = null, correctCount = 0, totalCount = 0;
+
+function rand(min, max){ return Math.floor(Math.random() * (max - min + 1)) + min; }
+
+function newProblem(){
+root.querySelector('#pg-answer').value = '';
+root.querySelector('#pg-answer').disabled = false;
+root.querySelector('#pg-check').style.display = 'inline-block';
+root.querySelector('#pg-next').style.display = 'none';
+var fb = root.querySelector('#pg-feedback');
+fb.textContent = ''; fb.className = 'pg-feedback';
+
+var isPlus = Math.random() < 0.5;
+var problemEl = root.querySelector('#pg-problem');
+if (isPlus){
+var a = rand(5, 60), b = rand(5, 60);
+correctAnswer = a + b;
+problemEl.innerHTML = 'Du har <b>' + a + ' kr</b>. Du får <b>' + b + ' kr</b> mere.<br>Hvor mange kroner har du nu?';
+} else {
+var total = rand(20, 100);
+var spend = rand(5, total);
+correctAnswer = total - spend;
+problemEl.innerHTML = 'Du har <b>' + total + ' kr</b>. Du bruger <b>' + spend + ' kr</b>.<br>Hvor mange kroner har du tilbage?';
+}
+}
+
+root.querySelector('#pg-check').addEventListener('click', function(){
+var val = parseInt(root.querySelector('#pg-answer').value, 10);
+var fb = root.querySelector('#pg-feedback');
+totalCount++;
+if (val === correctAnswer){
+correctCount++;
+fb.textContent = 'Rigtigt! Svaret er ' + correctAnswer + ' kr.';
+fb.className = 'pg-feedback good';
+} else {
+fb.textContent = 'Ikke helt – det rigtige svar er ' + correctAnswer + ' kr.';
+fb.className = 'pg-feedback bad';
+}
+root.querySelector('#pg-score').textContent = 'Rigtige: ' + correctCount + ' af ' + totalCount;
+root.querySelector('#pg-answer').disabled = true;
+root.querySelector('#pg-check').style.display = 'none';
+root.querySelector('#pg-next').style.display = 'inline-block';
+});
+root.querySelector('#pg-next').addEventListener('click', newProblem);
+
+// ================= BYG BELØB =================
+var DENOMS = [
+{ value: 1, label: '1 kr', type: 'round', size: 40, bg: '#c9a227' },
+{ value: 2, label: '2 kr', type: 'round', size: 46, bg: '#c9a227' },
+{ value: 5, label: '5 kr', type: 'round', size: 52, bg: '#c9a227' },
+{ value: 10, label: '10 kr', type: 'round', size: 46, bg: '#b0b8bf' },
+{ value: 20, label: '20 kr', type: 'round', size: 52, bg: '#b0b8bf' },
+{ value: 50, label: '50 kr', type: 'note', bg: '#7c5cbf' },
+{ value: 100, label: '100 kr', type: 'note', bg: '#2f8f4e' },
+{ value: 200, label: '200 kr', type: 'note', bg: '#c65a2e' },
+{ value: 500, label: '500 kr', type: 'note', bg: '#3a6fb5' }
+];
+
+var basket = [];
+var target = 0;
+
+function renderCoins(){
+var el = root.querySelector('#pg-coins');
+el.innerHTML = '';
+DENOMS.forEach(function(d){
+var b = document.createElement('button');
+if (d.type === 'round'){
+b.className = 'pg-coin round';
+b.style.width = d.size + 'px';
+b.style.height = d.size + 'px';
+b.style.background = 'radial-gradient(circle at 35% 30%, #fff7d6, ' + d.bg + ')';
+b.textContent = d.value;
+} else {
+b.className = 'pg-coin note';
+b.style.width = '76px';
+b.style.height = '40px';
+b.style.background = d.bg;
+b.textContent = d.label;
+}
+b.addEventListener('click', function(){ addToBasket(d); });
+el.appendChild(b);
+});
+}
+
+function addToBasket(d){
+basket.push(d);
+renderBasket();
+}
+
+function renderBasket(){
+var el = root.querySelector('#pg-basket');
+el.innerHTML = '';
+basket.forEach(function(d, i){
+var span = document.createElement('span');
+span.className = 'pg-basket-item';
+span.textContent = d.label;
+span.title = 'Klik for at fjerne';
+span.style.cursor = 'pointer';
+span.addEventListener('click', function(){
+basket.splice(i, 1);
+renderBasket();
+});
+el.appendChild(span);
+});
+var sum = basket.reduce(function(s, d){ return s + d.value; }, 0);
+root.querySelector('#pg-total').textContent = 'I kurven: ' + sum + ' kr';
+}
+
+function newTarget(){
+target = rand(1, 12) * 10 + pick([0,0,0,5]);
+if (target < 5) target = rand(2,9);
+root.querySelector('#pg-target-amount').textContent = target + ' kr';
+basket = [];
+renderBasket();
+root.querySelector('#pg-byg-feedback').textContent = '';
+root.querySelector('#pg-byg-feedback').className = 'pg-feedback';
+root.querySelector('#pg-deliver').style.display = 'inline-block';
+root.querySelector('#pg-newtarget').style.display = 'none';
+}
+function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+
+root.querySelector('#pg-clear').addEventListener('click', function(){
+basket = [];
+renderBasket();
+});
+
+root.querySelector('#pg-deliver').addEventListener('click', function(){
+var sum = basket.reduce(function(s, d){ return s + d.value; }, 0);
+var fb = root.querySelector('#pg-byg-feedback');
+if (sum === target){
+fb.textContent = 'Flot! Du ramte præcis ' + target + ' kr.';
+fb.className = 'pg-feedback good';
+root.querySelector('#pg-deliver').style.display = 'none';
+root.querySelector('#pg-newtarget').style.display = 'inline-block';
+} else if (sum < target){
+fb.textContent = 'Der mangler ' + (target - sum) + ' kr endnu.';
+fb.className = 'pg-feedback bad';
+} else {
+fb.textContent = 'Det er ' + (sum - target) + ' kr for meget – fjern noget fra kurven.';
+fb.className = 'pg-feedback bad';
+}
+});
+root.querySelector('#pg-newtarget').addEventListener('click', newTarget);
+
+// init
+renderCoins();
+newProblem();
+newTarget();
+})();
+</script>
+
+</div>
+<footer class="site-footer">
+<p>© 2026 SmartZonen &nbsp;·&nbsp; Udarbejdet af Susan &amp; Manfred Conrath &nbsp;·&nbsp; <a href="/kontakt.html">Kontakt</a></p>
+</footer>
+</body>
+</html>
