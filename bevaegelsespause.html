@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bevægelsespause – SmartZonen</title>
+<style>
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+color: #1f2937;
+background: #f5f7fa;
+min-height: 100vh;
+}
+
+/* NAV */
+.site-nav {
+position: sticky;
+top: 0;
+z-index: 100;
+background: #1a2f3a;
+display: flex;
+align-items: center;
+gap: 10px;
+padding: 10px 24px;
+box-shadow: 0 2px 8px rgba(0,0,0,.2);
+}
+.site-nav .logo {
+width: 36px;
+height: 36px;
+border-radius: 50%;
+object-fit: cover;
+}
+.site-nav .site-title {
+color: #fff;
+font-size: 18px;
+font-weight: 700;
+text-decoration: none;
+}
+.site-nav .nav-links {
+margin-left: auto;
+display: flex;
+gap: 6px;
+flex-wrap: wrap;
+}
+.site-nav .nav-links a {
+color: rgba(255,255,255,.8);
+text-decoration: none;
+font-size: 13px;
+padding: 4px 10px;
+border-radius: 20px;
+transition: background .15s, color .15s;
+}
+.site-nav .nav-links a:hover,
+.site-nav .nav-links a.active {
+background: rgba(255,255,255,.15);
+color: #fff;
+}
+
+/* HERO */
+.hero {
+width: 100%;
+max-height: 340px;
+overflow: hidden;
+display: block;
+}
+.hero img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+display: block;
+}
+
+/* INFO BAND */
+.info-band {
+background: #b8dff0;
+padding: 28px 24px;
+text-align: center;
+}
+.info-band h1 {
+font-size: clamp(22px, 3vw, 36px);
+font-weight: 800;
+color: #1a2f3a;
+margin-bottom: 8px;
+}
+.info-band p {
+font-size: clamp(15px, 1.8vw, 20px);
+color: #2a4a5a;
+font-style: italic;
+line-height: 1.4;
+}
+
+/* CONTENT */
+.page-content {
+max-width: 1100px;
+margin: 32px auto;
+padding: 0 20px 60px;
+}
+
+/* HOME GRID */
+.section-title {
+font-size: 22px;
+font-weight: 800;
+color: #1a2f3a;
+margin: 32px 0 16px;
+padding-bottom: 8px;
+border-bottom: 2px solid #b8dff0;
+}
+.tool-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+gap: 18px;
+}
+.tool-card {
+background: #fff;
+border: 1px solid #e5e7eb;
+border-radius: 20px;
+padding: 22px 20px;
+text-decoration: none;
+color: inherit;
+box-shadow: 0 4px 14px rgba(15,23,42,.06);
+transition: transform .15s, box-shadow .15s;
+display: block;
+}
+.tool-card:hover {
+transform: translateY(-2px);
+box-shadow: 0 8px 24px rgba(15,23,42,.12);
+}
+.tool-card h3 {
+font-size: 18px;
+font-weight: 800;
+color: #0f766e;
+margin-bottom: 6px;
+}
+.tool-card p {
+font-size: 14px;
+color: #6b7280;
+line-height: 1.4;
+}
+
+/* FOOTER */
+.site-footer {
+background: #1a2f3a;
+color: rgba(255,255,255,.7);
+text-align: center;
+padding: 20px 24px;
+font-size: 13px;
+}
+.site-footer a {
+color: rgba(255,255,255,.9);
+}
+
+@media (max-width: 640px) {
+.site-nav .nav-links { display: none; }
+.info-band { padding: 20px 16px; }
+}
+
+
+</style>
+</head>
+<body>
+<nav class="site-nav">
+<img class="logo" src="/assets/logo.png" onerror="this.style.display='none'" alt="SmartZonen logo">
+<a class="site-title" href="/">SmartZonen</a>
+<div class="nav-links">
+<a href="/">Start</a>
+<a href="/pustero.html">Pustero</a>
+<a href="/grupper.html">Grupper</a>
+<a href="/dagens-dato.html">Dagens dato</a>
+<a href="/lykkehjul.html">Lykkehjul</a>
+<a href="/aeggeur.html">Æggeur</a>
+<a href="/bevaegelsespause.html" class="active">Bevægelsespause</a>
+<a href="/leg-med-lyde-1.html">Leg med lyde 1</a>
+<a href="/leg-med-lyde-2.html">Leg med lyde 2</a>
+<a href="/saetningsmaskinen.html">Sætningsmaskinen</a>
+<a href="/basisord-traener.html">Basisord-træner</a>
+<a href="/laer-klokken.html">Lær klokken</a>
+<a href="/regnemaskinen.html">Regnemaskinen</a>
+<a href="/former-og-moenstre.html">Former og mønstre</a>
+<a href="/penge.html">Penge</a>
+
+</div>
+</nav>
+
+<div class="hero">
+<img src="/assets/banner.jpg" onerror="this.closest('.hero').style.display='none'" alt="SmartZonen banner">
+</div>
+<div class="info-band">
+<h1>Bevægelsespause</h1>
+<p>En guidet bevægelsespause med stræk, hop og balance</p>
+</div>
+<div class="page-content">
+<!-- SmartZonen – Bevægelsespause -->
+<div id="smart-bevaegelse" style="max-width:900px;margin:0 auto;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:#1f2937;">
+<style>
+#smart-bevaegelse{
+--card:#ffffff; --card-border:#e5e7eb; --panel:#f8fafc; --text:#1f2937; --muted:#6b7280;
+--accent:#ea580c; --accent-soft:rgba(234,88,12,.10); --accent-border:#fde0c7;
+--shadow:0 10px 24px rgba(15,23,42,.06);
+}
+#smart-bevaegelse *{box-sizing:border-box}
+#smart-bevaegelse .bv-wrap{background:var(--card);border:1px solid var(--card-border);border-radius:24px;overflow:hidden;box-shadow:var(--shadow);}
+#smart-bevaegelse .bv-head{padding:24px 24px 8px;background:linear-gradient(180deg,#fff8f2 0%, #ffffff 100%);}
+#smart-bevaegelse .bv-title{margin:0;font-size:clamp(1.5rem,2.2vw,2rem);color:var(--text);}
+#smart-bevaegelse .bv-sub{margin:10px 0 0;color:var(--muted);font-size:1rem;line-height:1.5;}
+#smart-bevaegelse .bv-body{padding:24px;display:grid;gap:20px;}
+
+#smart-bevaegelse .bv-levels{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;}
+#smart-bevaegelse .bv-level{border:2px solid var(--accent-border);background:#fff;border-radius:16px;padding:16px;text-align:left;cursor:pointer;transition:.15s;}
+#smart-bevaegelse .bv-level:hover{border-color:var(--accent);}
+#smart-bevaegelse .bv-level.active{border-color:var(--accent);background:var(--accent-soft);}
+#smart-bevaegelse .bv-level h3{margin:0 0 4px;font-size:1.05rem;}
+#smart-bevaegelse .bv-level p{margin:0;font-size:.85rem;color:var(--muted);}
+
+#smart-bevaegelse .bv-stage{display:none;flex-direction:column;align-items:center;gap:16px;}
+#smart-bevaegelse .bv-stage.active{display:flex;}
+#smart-bevaegelse .bv-ringholder{position:relative;width:230px;height:230px;}
+#smart-bevaegelse svg{width:100%;height:100%;transform:rotate(-90deg);}
+#smart-bevaegelse .bv-track{fill:none;stroke:#f1f5f9;stroke-width:12;}
+#smart-bevaegelse .bv-progress{fill:none;stroke:var(--accent);stroke-width:12;stroke-linecap:round;transition:stroke-dashoffset 1s linear;}
+#smart-bevaegelse .bv-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
+#smart-bevaegelse .bv-emoji{font-size:3.2rem;line-height:1;}
+#smart-bevaegelse .bv-count{font-size:1.6rem;font-weight:900;font-variant-numeric:tabular-nums;}
+#smart-bevaegelse .bv-exname{font-size:1.3rem;font-weight:800;text-align:center;}
+#smart-bevaegelse .bv-instruction{color:var(--muted);text-align:center;max-width:420px;line-height:1.5;}
+#smart-bevaegelse .bv-next{color:var(--muted);font-size:.9rem;}
+#smart-bevaegelse .bv-sessionbar{width:100%;max-width:460px;height:8px;background:#f1f5f9;border-radius:999px;overflow:hidden;}
+#smart-bevaegelse .bv-sessionbar-fill{height:100%;background:var(--accent);border-radius:999px;transition:width .3s;}
+#smart-bevaegelse .bv-controls{display:flex;gap:12px;}
+#smart-bevaegelse .bv-btn{border:none;border-radius:14px;padding:13px 26px;font-size:1rem;font-weight:800;cursor:pointer;color:#fff;background:var(--accent);}
+#smart-bevaegelse .bv-btn.secondary{background:#fff;color:var(--text);border:1px solid var(--accent-border);}
+#smart-bevaegelse .bv-done{display:none;text-align:center;padding:10px;}
+#smart-bevaegelse .bv-done.active{display:block;}
+#smart-bevaegelse .bv-done h3{font-size:1.5rem;margin-bottom:14px;}
+#smart-bevaegelse .bv-howto{padding:18px 24px 26px;color:var(--muted);font-size:.92rem;line-height:1.6;border-top:1px solid var(--card-border);}
+#smart-bevaegelse .bv-howto b{color:var(--text);}
+#smart-bevaegelse .bv-back{align-self:flex-start;background:none;border:1px solid var(--accent-border);color:var(--muted);border-radius:10px;padding:8px 14px;font-size:.85rem;cursor:pointer;}
+#smart-bevaegelse .bv-back:hover{border-color:var(--accent);color:var(--accent);}
+</style>
+
+<div class="bv-wrap">
+<div class="bv-head">
+<h2 class="bv-title">Bevægelsespause</h2>
+<p class="bv-sub">En kort, guidet bevægelsespause – stræk, hop og balance i stedet for stille siddetid. Vælg et program, og lad klassen følge med.</p>
+</div>
+<div class="bv-body">
+
+<div class="bv-levels" id="bv-levels"></div>
+
+<div class="bv-stage" id="bv-stage">
+<button class="bv-back" id="bv-back">← Vælg andet program</button>
+<div class="bv-sessionbar"><div class="bv-sessionbar-fill" id="bv-sessionbar-fill" style="width:0%"></div></div>
+<div class="bv-ringholder">
+<svg viewBox="0 0 200 200">
+<circle class="bv-track" cx="100" cy="100" r="86"></circle>
+<circle class="bv-progress" id="bv-progress" cx="100" cy="100" r="86"></circle>
+</svg>
+<div class="bv-center">
+<div class="bv-emoji" id="bv-emoji">🙆</div>
+<div class="bv-count" id="bv-count">10</div>
+</div>
+</div>
+<div class="bv-exname" id="bv-exname">Øvelse</div>
+<div class="bv-instruction" id="bv-instruction">Instruktion</div>
+<div class="bv-next" id="bv-next"></div>
+<div class="bv-controls">
+<button class="bv-btn" id="bv-startpause">Start</button>
+<button class="bv-btn secondary" id="bv-reset">Nulstil</button>
+</div>
+</div>
+
+<div class="bv-done" id="bv-done">
+<h3>Godt klaret! 💪</h3>
+<p style="color:var(--muted);margin-bottom:16px;">Bevægelsespausen er slut – klar til at fortsætte undervisningen.</p>
+<button class="bv-btn" id="bv-again">Kør programmet igen</button>
+</div>
+
+</div>
+<div class="bv-howto">
+<b>Sådan bruges værktøjet:</b> Vælg et program, tryk "Start", og følg øvelserne på skift – de skifter automatisk, når tiden er gået. Brug det som pause mellem lektioner, eller når klassen trænger til at komme op at stå.
+</div>
+</div>
+</div>
+
+<script>
+(function(){
+var root = document.getElementById('smart-bevaegelse');
+
+var PROGRAMS = [
+{
+id: 'vaagn',
+name: 'Vågn op',
+desc: 'Blid opstart med stræk – god ved dagens start.',
+exercises: [
+{ name: 'Stræk armene mod loftet', emoji: '🙆', seconds: 15, text: 'Stå op og stræk begge arme højt over hovedet. Træk vejret roligt.' },
+{ name: 'Rul med skuldrene', emoji: '🔄', seconds: 15, text: 'Rul skuldrene langsomt bagud 5 gange, og fremad 5 gange.' },
+{ name: 'Sidebøjning', emoji: '🤸', seconds: 15, text: 'Stræk højre arm op og bøj overkroppen mod venstre. Skift side.' },
+{ name: 'Vip fra side til side', emoji: '🕺', seconds: 15, text: 'Stå med fødderne bredt og vip roligt vægten fra fod til fod.' }
+]
+},
+{
+id: 'energi',
+name: 'Energiudladning',
+desc: 'Få pulsen op med hop og bevægelse.',
+exercises: [
+{ name: 'Hop på stedet', emoji: '🤾', seconds: 15, text: 'Hop på stedet så hurtigt du kan.' },
+{ name: 'Jumping jacks', emoji: '⭐', seconds: 15, text: 'Hop med arme og ben ud og ind på samme tid.' },
+{ name: 'Løb på stedet', emoji: '🏃', seconds: 15, text: 'Løb på stedet med høje knæ.' },
+{ name: 'Boksehop', emoji: '🥊', seconds: 15, text: 'Hop let fra fod til fod, og box ud i luften.' }
+]
+},
+{
+id: 'balance',
+name: 'Balance og ro',
+desc: 'Rolige balanceøvelser – godt til at falde til ro igen.',
+exercises: [
+{ name: 'Stå på ét ben', emoji: '🦩', seconds: 15, text: 'Løft det ene ben og hold balancen. Skift efter halvdelen af tiden.' },
+{ name: 'Træets pose', emoji: '🌳', seconds: 15, text: 'Sæt fodsålen mod det andet ben og stræk armene op som en gren.' },
+{ name: 'Gå på line', emoji: '🚶', seconds: 15, text: 'Gå ti skridt langsomt, som om du går på en line.' },
+{ name: 'Stille vejrtrækning', emoji: '😌', seconds: 15, text: 'Stå stille, luk øjnene, og træk vejret roligt tre gange.' }
+]
+}
+];
+
+var levelsEl = root.querySelector('#bv-levels');
+var stageEl = root.querySelector('#bv-stage');
+var doneEl = root.querySelector('#bv-done');
+var backBtn = root.querySelector('#bv-back');
+var startPauseBtn = root.querySelector('#bv-startpause');
+var resetBtn = root.querySelector('#bv-reset');
+var againBtn = root.querySelector('#bv-again');
+var progressEl = root.querySelector('#bv-progress');
+var emojiEl = root.querySelector('#bv-emoji');
+var countEl = root.querySelector('#bv-count');
+var exnameEl = root.querySelector('#bv-exname');
+var instructionEl = root.querySelector('#bv-instruction');
+var nextEl = root.querySelector('#bv-next');
+var sessionFillEl = root.querySelector('#bv-sessionbar-fill');
+
+var CIRC = 2 * Math.PI * 86;
+progressEl.style.strokeDasharray = CIRC;
+
+var currentProgram = null;
+var exIndex = 0;
+var remaining = 0;
+var timerId = null;
+var running = false;
+
+function renderLevels(){
+levelsEl.innerHTML = '';
+PROGRAMS.forEach(function(p){
+var btn = document.createElement('button');
+btn.className = 'bv-level';
+btn.innerHTML = '<h3>' + p.name + '</h3><p>' + p.desc + '</p>';
+btn.addEventListener('click', function(){ selectProgram(p); });
+levelsEl.appendChild(btn);
+});
+}
+
+function selectProgram(p){
+currentProgram = p;
+exIndex = 0;
+stageEl.classList.add('active');
+doneEl.classList.remove('active');
+levelsEl.style.display = 'none';
+loadExercise(0);
+}
+
+backBtn.addEventListener('click', function(){
+stopTimer();
+stageEl.classList.remove('active');
+levelsEl.style.display = 'grid';
+});
+
+function loadExercise(i){
+exIndex = i;
+var ex = currentProgram.exercises[i];
+remaining = ex.seconds;
+emojiEl.textContent = ex.emoji;
+exnameEl.textContent = ex.name;
+instructionEl.textContent = ex.text;
+countEl.textContent = remaining;
+progressEl.style.strokeDashoffset = 0;
+var nextEx = currentProgram.exercises[i+1];
+nextEl.textContent = nextEx ? ('Næste: ' + nextEx.name) : 'Sidste øvelse';
+updateSessionBar();
+}
+
+function updateSessionBar(){
+var total = currentProgram.exercises.length;
+sessionFillEl.style.width = Math.round((exIndex/total)*100) + '%';
+}
+
+function stopTimer(){
+clearInterval(timerId);
+timerId = null;
+running = false;
+startPauseBtn.textContent = 'Start';
+}
+
+function tick(){
+remaining--;
+var ex = currentProgram.exercises[exIndex];
+var frac = remaining / ex.seconds;
+progressEl.style.strokeDashoffset = CIRC * (1 - frac);
+countEl.textContent = Math.max(remaining,0);
+if (remaining <= 0){
+if (exIndex + 1 < currentProgram.exercises.length){
+loadExercise(exIndex + 1);
+} else {
+finishSession();
+}
+}
+}
+
+function finishSession(){
+stopTimer();
+sessionFillEl.style.width = '100%';
+stageEl.classList.remove('active');
+doneEl.classList.add('active');
+}
+
+startPauseBtn.addEventListener('click', function(){
+if (running){
+stopTimer();
+} else {
+running = true;
+startPauseBtn.textContent = 'Pause';
+timerId = setInterval(tick, 1000);
+}
+});
+
+resetBtn.addEventListener('click', function(){
+stopTimer();
+loadExercise(0);
+});
+
+againBtn.addEventListener('click', function(){
+doneEl.classList.remove('active');
+stageEl.classList.add('active');
+loadExercise(0);
+});
+
+renderLevels();
+})();
+</script>
+
+</div>
+<footer class="site-footer">
+<p>© 2026 SmartZonen &nbsp;·&nbsp; Udarbejdet af Susan &amp; Manfred Conrath &nbsp;·&nbsp; <a href="/kontakt.html">Kontakt</a></p>
+</footer>
+</body>
+</html>
