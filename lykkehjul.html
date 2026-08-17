@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lykkehjul – SmartZonen</title>
+<style>
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+color: #1f2937;
+background: #f5f7fa;
+min-height: 100vh;
+}
+
+/* NAV */
+.site-nav {
+position: sticky;
+top: 0;
+z-index: 100;
+background: #1a2f3a;
+display: flex;
+align-items: center;
+gap: 10px;
+padding: 10px 24px;
+box-shadow: 0 2px 8px rgba(0,0,0,.2);
+}
+.site-nav .logo {
+width: 36px;
+height: 36px;
+border-radius: 50%;
+object-fit: cover;
+}
+.site-nav .site-title {
+color: #fff;
+font-size: 18px;
+font-weight: 700;
+text-decoration: none;
+}
+.site-nav .nav-links {
+margin-left: auto;
+display: flex;
+gap: 6px;
+flex-wrap: wrap;
+}
+.site-nav .nav-links a {
+color: rgba(255,255,255,.8);
+text-decoration: none;
+font-size: 13px;
+padding: 4px 10px;
+border-radius: 20px;
+transition: background .15s, color .15s;
+}
+.site-nav .nav-links a:hover,
+.site-nav .nav-links a.active {
+background: rgba(255,255,255,.15);
+color: #fff;
+}
+
+/* HERO */
+.hero {
+width: 100%;
+max-height: 340px;
+overflow: hidden;
+display: block;
+}
+.hero img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+display: block;
+}
+
+/* INFO BAND */
+.info-band {
+background: #b8dff0;
+padding: 28px 24px;
+text-align: center;
+}
+.info-band h1 {
+font-size: clamp(22px, 3vw, 36px);
+font-weight: 800;
+color: #1a2f3a;
+margin-bottom: 8px;
+}
+.info-band p {
+font-size: clamp(15px, 1.8vw, 20px);
+color: #2a4a5a;
+font-style: italic;
+line-height: 1.4;
+}
+
+/* CONTENT */
+.page-content {
+max-width: 1100px;
+margin: 32px auto;
+padding: 0 20px 60px;
+}
+
+/* HOME GRID */
+.section-title {
+font-size: 22px;
+font-weight: 800;
+color: #1a2f3a;
+margin: 32px 0 16px;
+padding-bottom: 8px;
+border-bottom: 2px solid #b8dff0;
+}
+.tool-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+gap: 18px;
+}
+.tool-card {
+background: #fff;
+border: 1px solid #e5e7eb;
+border-radius: 20px;
+padding: 22px 20px;
+text-decoration: none;
+color: inherit;
+box-shadow: 0 4px 14px rgba(15,23,42,.06);
+transition: transform .15s, box-shadow .15s;
+display: block;
+}
+.tool-card:hover {
+transform: translateY(-2px);
+box-shadow: 0 8px 24px rgba(15,23,42,.12);
+}
+.tool-card h3 {
+font-size: 18px;
+font-weight: 800;
+color: #0f766e;
+margin-bottom: 6px;
+}
+.tool-card p {
+font-size: 14px;
+color: #6b7280;
+line-height: 1.4;
+}
+
+/* FOOTER */
+.site-footer {
+background: #1a2f3a;
+color: rgba(255,255,255,.7);
+text-align: center;
+padding: 20px 24px;
+font-size: 13px;
+}
+.site-footer a {
+color: rgba(255,255,255,.9);
+}
+
+@media (max-width: 640px) {
+.site-nav .nav-links { display: none; }
+.info-band { padding: 20px 16px; }
+}
+
+
+</style>
+</head>
+<body>
+<nav class="site-nav">
+<img class="logo" src="/assets/logo.png" onerror="this.style.display='none'" alt="SmartZonen logo">
+<a class="site-title" href="/">SmartZonen</a>
+<div class="nav-links">
+<a href="/">Start</a>
+<a href="/pustero.html">Pustero</a>
+<a href="/grupper.html">Grupper</a>
+<a href="/dagens-dato.html">Dagens dato</a>
+<a href="/lykkehjul.html" class="active">Lykkehjul</a>
+<a href="/aeggeur.html">Æggeur</a>
+<a href="/bevaegelsespause.html">Bevægelsespause</a>
+<a href="/leg-med-lyde-1.html">Leg med lyde 1</a>
+<a href="/leg-med-lyde-2.html">Leg med lyde 2</a>
+<a href="/saetningsmaskinen.html">Sætningsmaskinen</a>
+<a href="/basisord-traener.html">Basisord-træner</a>
+<a href="/laer-klokken.html">Lær klokken</a>
+<a href="/regnemaskinen.html">Regnemaskinen</a>
+<a href="/former-og-moenstre.html">Former og mønstre</a>
+<a href="/penge.html">Penge</a>
+
+</div>
+</nav>
+
+<div class="hero">
+<img src="/assets/banner.jpg" onerror="this.closest('.hero').style.display='none'" alt="SmartZonen banner">
+</div>
+<div class="info-band">
+<h1>Lykkehjul</h1>
+<p>Spin hjulet for at vælge en elev, et emne eller en aktivitet</p>
+</div>
+<div class="page-content">
+<!-- SmartZonen – Lykkehjul -->
+<div id="smart-lykkehjul" style="max-width:900px;margin:0 auto;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:#1f2937;">
+<style>
+#smart-lykkehjul{
+--card:#ffffff; --card-border:#e5e7eb; --panel:#f8fafc; --text:#1f2937; --muted:#6b7280;
+--accent:#db2777; --accent-soft:rgba(219,39,119,.10); --accent-border:#f7d3e6;
+--shadow:0 10px 24px rgba(15,23,42,.06);
+}
+#smart-lykkehjul *{box-sizing:border-box}
+#smart-lykkehjul .lh-wrap{background:var(--card);border:1px solid var(--card-border);border-radius:24px;overflow:hidden;box-shadow:var(--shadow);}
+#smart-lykkehjul .lh-head{padding:24px 24px 8px;background:linear-gradient(180deg,#fff5fa 0%, #ffffff 100%);}
+#smart-lykkehjul .lh-title{margin:0;font-size:clamp(1.5rem,2.2vw,2rem);color:var(--text);}
+#smart-lykkehjul .lh-sub{margin:10px 0 0;color:var(--muted);font-size:1rem;line-height:1.5;}
+#smart-lykkehjul .lh-body{padding:24px;display:grid;gap:22px;grid-template-columns:1fr;}
+@media (min-width:760px){ #smart-lykkehjul .lh-body{grid-template-columns:1fr 340px;align-items:start;} }
+#smart-lykkehjul .lh-panel{background:var(--panel);border:1px solid var(--accent-border);border-radius:18px;padding:18px;}
+#smart-lykkehjul .lh-panel-title{margin:0 0 12px;font-size:1rem;font-weight:700;}
+#smart-lykkehjul textarea{width:100%;min-height:170px;border:1px solid var(--accent-border);border-radius:12px;padding:12px;font-size:.95rem;font-family:inherit;resize:vertical;}
+#smart-lykkehjul .lh-check{display:flex;align-items:center;gap:8px;margin-top:12px;font-size:.9rem;color:var(--text);}
+#smart-lykkehjul .lh-updatebtn{margin-top:12px;width:100%;background:#fff;border:1px solid var(--accent-border);border-radius:12px;padding:10px;font-weight:700;cursor:pointer;color:var(--text);}
+#smart-lykkehjul .lh-updatebtn:hover{border-color:var(--accent);color:var(--accent);}
+#smart-lykkehjul .lh-wheel-area{display:flex;flex-direction:column;align-items:center;gap:18px;}
+#smart-lykkehjul .lh-wheel-holder{position:relative;width:100%;max-width:340px;aspect-ratio:1/1;}
+#smart-lykkehjul .lh-pointer{position:absolute;top:-6px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:14px solid transparent;border-right:14px solid transparent;border-top:26px solid var(--accent);z-index:5;filter:drop-shadow(0 2px 2px rgba(0,0,0,.25));}
+#smart-lykkehjul canvas{width:100%;height:100%;border-radius:50%;box-shadow:0 6px 20px rgba(0,0,0,.18);transition:transform 4.5s cubic-bezier(.17,.67,.21,1);}
+#smart-lykkehjul .lh-hub{position:absolute;top:50%;left:50%;width:16%;height:16%;background:#fff;border:3px solid var(--accent);border-radius:50%;transform:translate(-50%,-50%);z-index:4;}
+#smart-lykkehjul .lh-spinbtn{background:var(--accent);color:#fff;border:none;border-radius:14px;padding:14px 32px;font-size:1.1rem;font-weight:800;cursor:pointer;transition:.15s;}
+#smart-lykkehjul .lh-spinbtn:hover{filter:brightness(1.08);}
+#smart-lykkehjul .lh-spinbtn:disabled{opacity:.6;cursor:not-allowed;}
+#smart-lykkehjul .lh-result{min-height:34px;font-size:1.3rem;font-weight:800;color:var(--accent);text-align:center;}
+#smart-lykkehjul .lh-howto{padding:18px 24px 26px;color:var(--muted);font-size:.92rem;line-height:1.6;border-top:1px solid var(--card-border);}
+#smart-lykkehjul .lh-howto b{color:var(--text);}
+</style>
+
+<div class="lh-wrap">
+<div class="lh-head">
+<h2 class="lh-title">Lykkehjul</h2>
+<p class="lh-sub">Skriv navne, emner eller aktiviteter ind – ét pr. linje – og spin hjulet for at vælge én.</p>
+</div>
+<div class="lh-body">
+
+<div class="lh-panel">
+<p class="lh-panel-title">Muligheder (ét pr. linje)</p>
+<textarea id="lh-input">Emma
+Noah
+Frederikke
+Oscar
+Alma
+William</textarea>
+<label class="lh-check"><input type="checkbox" id="lh-remove-winner"> Fjern vinderen fra hjulet efter spin</label>
+<button class="lh-updatebtn" id="lh-update">Opdater hjul</button>
+</div>
+
+<div class="lh-wheel-area">
+<div class="lh-wheel-holder">
+<div class="lh-pointer"></div>
+<canvas id="lh-canvas" width="340" height="340"></canvas>
+<div class="lh-hub"></div>
+</div>
+<button class="lh-spinbtn" id="lh-spin">Spin hjulet</button>
+<div class="lh-result" id="lh-result"></div>
+</div>
+
+</div>
+<div class="lh-howto">
+<b>Sådan bruges værktøjet:</b> Ret listen i boksen til venstre og tryk "Opdater hjul". Tryk derefter "Spin hjulet" – pilen øverst peger på vinderen, når hjulet stopper. Sæt flueben, hvis vinderen automatisk skal fjernes fra hjulet bagefter.
+</div>
+</div>
+</div>
+
+<script>
+(function(){
+var root = document.getElementById('smart-lykkehjul');
+var textarea = root.querySelector('#lh-input');
+var canvas = root.querySelector('#lh-canvas');
+var ctx = canvas.getContext('2d');
+var spinBtn = root.querySelector('#lh-spin');
+var resultEl = root.querySelector('#lh-result');
+var updateBtn = root.querySelector('#lh-update');
+var removeWinnerBox = root.querySelector('#lh-remove-winner');
+
+var COLORS = ['#db2777','#f59e0b','#0d9488','#7c3aed','#2563eb','#16a34a','#dc2626','#ea580c','#0891b2','#a855f7'];
+
+var items = [];
+var currentRotation = 0;
+var spinning = false;
+
+function parseItems(){
+return textarea.value.split('\n').map(function(s){ return s.trim(); }).filter(function(s){ return s.length > 0; });
+}
+
+function drawWheel(){
+var n = items.length;
+var w = canvas.width, h = canvas.height;
+var cx = w/2, cy = h/2, r = w/2 - 4;
+ctx.clearRect(0,0,w,h);
+if (n === 0){
+ctx.fillStyle = '#f1f5f9';
+ctx.beginPath(); ctx.arc(cx,cy,r,0,Math.PI*2); ctx.fill();
+ctx.fillStyle = '#94a3b8';
+ctx.font = 'bold 16px system-ui';
+ctx.textAlign = 'center';
+ctx.fillText('Tilføj mindst 2', cx, cy);
+return;
+}
+var seg = (Math.PI*2) / n;
+for (var i=0; i<n; i++){
+var start = -Math.PI/2 + i*seg;
+var end = start + seg;
+ctx.beginPath();
+ctx.moveTo(cx,cy);
+ctx.arc(cx,cy,r,start,end);
+ctx.closePath();
+ctx.fillStyle = COLORS[i % COLORS.length];
+ctx.fill();
+ctx.save();
+ctx.translate(cx,cy);
+ctx.rotate(start + seg/2);
+ctx.textAlign = 'right';
+ctx.fillStyle = '#fff';
+ctx.font = 'bold 15px system-ui, sans-serif';
+var label = items[i];
+if (label.length > 14) label = label.slice(0,13) + '…';
+ctx.fillText(label, r - 16, 5);
+ctx.restore();
+}
+}
+
+function rebuild(){
+items = parseItems();
+spinBtn.disabled = items.length < 2;
+drawWheel();
+}
+
+updateBtn.addEventListener('click', function(){
+resultEl.textContent = '';
+canvas.style.transition = 'none';
+currentRotation = currentRotation % 360;
+canvas.style.transform = 'rotate(' + currentRotation + 'deg)';
+rebuild();
+});
+
+spinBtn.addEventListener('click', function(){
+if (spinning || items.length < 2) return;
+spinning = true;
+resultEl.textContent = '';
+spinBtn.disabled = true;
+
+var extraSpins = 5 + Math.floor(Math.random()*3); // 5-7 full turns
+var randomOffset = Math.random() * 360;
+var newRotation = currentRotation + extraSpins*360 + randomOffset;
+
+canvas.style.transition = 'transform 4.5s cubic-bezier(.17,.67,.21,1)';
+canvas.style.transform = 'rotate(' + newRotation + 'deg)';
+
+setTimeout(function(){
+var normalized = ((360 - (newRotation % 360)) % 360 + 360) % 360;
+var segDeg = 360 / items.length;
+var idx = Math.floor(normalized / segDeg) % items.length;
+resultEl.textContent = '🎉 ' + items[idx];
+currentRotation = newRotation;
+spinning = false;
+spinBtn.disabled = items.length < 2;
+
+if (removeWinnerBox.checked){
+var lines = parseItems();
+lines.splice(idx, 1);
+textarea.value = lines.join('\n');
+rebuild();
+}
+}, 4600);
+});
+
+rebuild();
+})();
+</script>
+
+</div>
+<footer class="site-footer">
+<p>© 2026 SmartZonen &nbsp;·&nbsp; Udarbejdet af Susan &amp; Manfred Conrath &nbsp;·&nbsp; <a href="/kontakt.html">Kontakt</a></p>
+</footer>
+</body>
+</html>
